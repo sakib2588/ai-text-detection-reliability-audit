@@ -1,0 +1,24 @@
+{
+  "key": "full_D2_NaiveBayes_BoW",
+  "dataset": "D2",
+  "model": "Naive Bayes",
+  "representation": "BoW",
+  "n_train": 38785,
+  "n_test": 10732,
+  "test": {
+    "accuracy": 0.8713,
+    "precision": 0.8715,
+    "recall": 0.8713,
+    "f1": 0.8713
+  },
+  "test_confusion": [
+    [
+      4743,
+      634
+    ],
+    [
+      747,
+      4608
+    ]
+  ]
+}

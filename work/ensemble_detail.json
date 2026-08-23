@@ -1,0 +1,42 @@
+{
+  "D1": {
+    "weight_bert": 0.35000000000000003,
+    "weight_deberta": 0.65,
+    "member_bert": "D1_BERT_lr3e-05_bs32_wd0.1_s42",
+    "member_deberta": "D1_DeBERTa_lr3e-05_bs16_wd0.01_s42",
+    "member_bert_test_f1": 0.9908,
+    "member_deberta_test_f1": 0.9933,
+    "ensemble_test_f1": 0.9925,
+    "degenerate": false,
+    "confusion": [
+      [
+        599,
+        1
+      ],
+      [
+        8,
+        592
+      ]
+    ]
+  },
+  "D2": {
+    "weight_bert": 0.0,
+    "weight_deberta": 1.0,
+    "member_bert": "D2_BERT_lr2e-05_bs16_wd0.1_s42",
+    "member_deberta": "D2_DeBERTa_lr3e-05_bs16_wd0.1_s42",
+    "member_bert_test_f1": 0.9875,
+    "member_deberta_test_f1": 0.9992,
+    "ensemble_test_f1": 0.9992,
+    "degenerate": true,
+    "confusion": [
+      [
+        599,
+        1
+      ],
+      [
+        0,
+        600
+      ]
+    ]
+  }
+}

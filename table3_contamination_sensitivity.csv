@@ -1,0 +1,13 @@
+dataset,Model,F1 full test,F1 clean test,delta
+D1,Naive Bayes (BoW),0.9566,0.9566,0.0
+D1,Logistic Regression (BoW),0.9825,0.9825,0.0
+D1,Support Vector Machine (TF-IDF),0.9875,0.9875,0.0
+D1,BERT,0.9908,0.9908,0.0
+D1,DeBERTa,0.9933,0.9933,0.0
+D1,ENSEMBLE,0.9925,0.9925,0.0
+D2,Naive Bayes (BoW),0.8583,0.8573,-0.001
+D2,Logistic Regression (BoW),0.9333,0.9328,-0.0004
+D2,Support Vector Machine (TF-IDF),0.9083,0.9077,-0.0006
+D2,BERT,0.9875,0.9874,-0.0001
+D2,DeBERTa,0.9992,0.9992,-0.0
+D2,ENSEMBLE,0.9992,0.9992,-0.0

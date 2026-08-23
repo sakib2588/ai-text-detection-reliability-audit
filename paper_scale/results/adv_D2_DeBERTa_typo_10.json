@@ -1,0 +1,27 @@
+{
+  "key": "adv_D2_DeBERTa_typo_10",
+  "dataset": "D2",
+  "dataset_name": "HC3",
+  "model": "DeBERTa",
+  "attack": "typo",
+  "strength": 0.1,
+  "n_test": 10732,
+  "perturb_seconds": 1.3,
+  "eval_seconds": 45.1,
+  "test": {
+    "accuracy": 0.5147,
+    "precision": 0.7501,
+    "recall": 0.5147,
+    "f1": 0.3644
+  },
+  "test_confusion": [
+    [
+      5376,
+      1
+    ],
+    [
+      5207,
+      148
+    ]
+  ]
+}

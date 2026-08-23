@@ -1,0 +1,27 @@
+{
+  "key": "adv_D1_DeBERTa_homoglyph_01",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "DeBERTa",
+  "attack": "homoglyph",
+  "strength": 0.01,
+  "n_test": 6998,
+  "perturb_seconds": 1.1,
+  "eval_seconds": 1341.5,
+  "test": {
+    "accuracy": 0.9923,
+    "precision": 0.9923,
+    "recall": 0.9923,
+    "f1": 0.9923
+  },
+  "test_confusion": [
+    [
+      3497,
+      22
+    ],
+    [
+      32,
+      3447
+    ]
+  ]
+}

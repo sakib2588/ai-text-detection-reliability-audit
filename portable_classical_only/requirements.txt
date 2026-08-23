@@ -1,0 +1,18 @@
+# NLP Final Term Project, Group 02 -- classical baselines only
+#
+# Tested for Windows 10 compatibility. Every package below ships prebuilt
+# Windows wheels for Python 3.9 through 3.13, so "pip install -r requirements.txt"
+# should never need to compile anything from source on your machine.
+#
+# NO torch, NO CUDA, NO transformers -- those are what caused the earlier install
+# error (nvidia-cufile-cu12 has no Windows wheel at all, Linux-only package).
+# None of that is needed here. This file works on your EXISTING Python install,
+# whatever version that is -- no need to upgrade Python for this part.
+#
+# These are minimum-version bounds, not exact pins, so pip can resolve them
+# against whatever you already have without a version conflict.
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.4
+nltk>=3.8
+pyarrow>=14.0

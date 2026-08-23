@@ -1,0 +1,139 @@
+{
+  "n_total": 44868,
+  "n_human": 27371,
+  "n_ai": 17497,
+  "dup_groups": 6,
+  "dup_rows": 6,
+  "dup_pct": 0.01,
+  "cross_label_texts": 0,
+  "leakage_by_seed": {
+    "42": null,
+    "123": null,
+    "456": null
+  },
+  "empty": 0,
+  "under50": 1,
+  "n_prompts": 15,
+  "by_source": [
+    {
+      "source": "NousResearch/Llama-2-7b-chat-hf",
+      "n": 400,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "chat_gpt_moth",
+      "n": 2421,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "cohere-command",
+      "n": 350,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "darragh_claude_v6",
+      "n": 1000,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "darragh_claude_v7",
+      "n": 1000,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "falcon_180b_v1",
+      "n": 1055,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "kingki19_palm",
+      "n": 1384,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "llama2_chat",
+      "n": 2421,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "llama_70b_v1",
+      "n": 1172,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "mistral7binstruct_v1",
+      "n": 2421,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "mistral7binstruct_v2",
+      "n": 2421,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "mistralai/Mistral-7B-Instruct-v0.1",
+      "n": 400,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "palm-text-bison1",
+      "n": 349,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "persuade_corpus",
+      "n": 25996,
+      "label_uniform": 0,
+      "dup_rows": 2,
+      "dup_pct": 0.01
+    },
+    {
+      "source": "radek_500",
+      "n": 500,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "radekgpt4",
+      "n": 200,
+      "label_uniform": 1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    },
+    {
+      "source": "train_essays",
+      "n": 1378,
+      "label_uniform": -1,
+      "dup_rows": 0,
+      "dup_pct": 0.0
+    }
+  ],
+  "leakage_full_corpus_seed42_pct": 0.01
+}

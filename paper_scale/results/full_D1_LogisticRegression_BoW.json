@@ -1,0 +1,24 @@
+{
+  "key": "full_D1_LogisticRegression_BoW",
+  "dataset": "D1",
+  "model": "Logistic Regression",
+  "representation": "BoW",
+  "n_train": 25196,
+  "n_test": 6998,
+  "test": {
+    "accuracy": 0.9893,
+    "precision": 0.9893,
+    "recall": 0.9893,
+    "f1": 0.9893
+  },
+  "test_confusion": [
+    [
+      3496,
+      23
+    ],
+    [
+      52,
+      3427
+    ]
+  ]
+}

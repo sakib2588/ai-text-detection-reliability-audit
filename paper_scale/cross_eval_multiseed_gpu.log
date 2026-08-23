@@ -1,0 +1,90 @@
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D1_DeBERTa_seed456' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D2_DeBERTa_seed123' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D2_DeBERTa_seed456' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+running 3-seed cross-dataset eval on device: cuda
+[skip] cross_trainD1_testD2_BERT                      cross_f1=0.7696
+[skip] cross_trainD1_testD2_BERT_s123                 cross_f1=0.7908
+[skip] cross_trainD1_testD2_BERT_s456                 cross_f1=0.8103
+[skip] cross_trainD1_testD2_DeBERTa                   cross_f1=0.8907
+[skip] cross_trainD1_testD2_DeBERTa_s123              cross_f1=0.9123
+loading DeBERTa seed=456 (trained on DAIGT V2), evaluating on HC3 test set...
+  0 / 10732  (0.0 min elapsed)
+  640 / 10732  (0.1 min elapsed)
+  1280 / 10732  (0.2 min elapsed)
+  1920 / 10732  (0.3 min elapsed)
+  2560 / 10732  (0.4 min elapsed)
+  3200 / 10732  (0.4 min elapsed)
+  3840 / 10732  (0.5 min elapsed)
+  4480 / 10732  (0.6 min elapsed)
+  5120 / 10732  (0.7 min elapsed)
+  5760 / 10732  (0.8 min elapsed)
+  6400 / 10732  (0.9 min elapsed)
+  7040 / 10732  (0.9 min elapsed)
+  7680 / 10732  (1.0 min elapsed)
+  8320 / 10732  (1.1 min elapsed)
+  8960 / 10732  (1.2 min elapsed)
+  9600 / 10732  (1.3 min elapsed)
+  10240 / 10732  (1.4 min elapsed)
+[done] cross_trainD1_testD2_DeBERTa_s456              cross_f1=0.9259  (1.4 min, 10732 examples)
+[skip] cross_trainD2_testD1_BERT                      cross_f1=0.8281
+loading BERT seed=123 (trained on HC3), evaluating on DAIGT V2 test set...
+  0 / 6998  (0.0 min elapsed)
+  640 / 6998  (0.1 min elapsed)
+  1280 / 6998  (0.1 min elapsed)
+  1920 / 6998  (0.2 min elapsed)
+  2560 / 6998  (0.2 min elapsed)
+  3200 / 6998  (0.3 min elapsed)
+  3840 / 6998  (0.4 min elapsed)
+  4480 / 6998  (0.4 min elapsed)
+  5120 / 6998  (0.5 min elapsed)
+  5760 / 6998  (0.6 min elapsed)
+  6400 / 6998  (0.6 min elapsed)
+[done] cross_trainD2_testD1_BERT_s123                 cross_f1=0.8130  (0.7 min, 6998 examples)
+loading BERT seed=456 (trained on HC3), evaluating on DAIGT V2 test set...
+  0 / 6998  (0.0 min elapsed)
+  640 / 6998  (0.1 min elapsed)
+  1280 / 6998  (0.1 min elapsed)
+  1920 / 6998  (0.2 min elapsed)
+  2560 / 6998  (0.2 min elapsed)
+  3200 / 6998  (0.3 min elapsed)
+  3840 / 6998  (0.4 min elapsed)
+  4480 / 6998  (0.4 min elapsed)
+  5120 / 6998  (0.5 min elapsed)
+  5760 / 6998  (0.6 min elapsed)
+  6400 / 6998  (0.6 min elapsed)
+[done] cross_trainD2_testD1_BERT_s456                 cross_f1=0.8523  (0.7 min, 6998 examples)
+[skip] cross_trainD2_testD1_DeBERTa                   cross_f1=0.8874
+loading DeBERTa seed=123 (trained on HC3), evaluating on DAIGT V2 test set...
+  0 / 6998  (0.0 min elapsed)
+  640 / 6998  (0.0 min elapsed)
+  1280 / 6998  (0.1 min elapsed)
+  1920 / 6998  (0.1 min elapsed)
+  2560 / 6998  (0.2 min elapsed)
+  3200 / 6998  (0.2 min elapsed)
+  3840 / 6998  (0.3 min elapsed)
+  4480 / 6998  (0.3 min elapsed)
+  5120 / 6998  (0.4 min elapsed)
+  5760 / 6998  (0.5 min elapsed)
+  6400 / 6998  (0.6 min elapsed)
+[done] cross_trainD2_testD1_DeBERTa_s123              cross_f1=0.8304  (0.7 min, 6998 examples)
+loading DeBERTa seed=456 (trained on HC3), evaluating on DAIGT V2 test set...
+  0 / 6998  (0.0 min elapsed)
+  640 / 6998  (0.1 min elapsed)
+  1280 / 6998  (0.2 min elapsed)
+  1920 / 6998  (0.3 min elapsed)
+  2560 / 6998  (0.3 min elapsed)
+  3200 / 6998  (0.4 min elapsed)
+  3840 / 6998  (0.5 min elapsed)
+  4480 / 6998  (0.6 min elapsed)
+  5120 / 6998  (0.7 min elapsed)
+  5760 / 6998  (0.8 min elapsed)
+  6400 / 6998  (0.9 min elapsed)
+[done] cross_trainD2_testD1_DeBERTa_s456              cross_f1=0.8358  (0.9 min, 6998 examples)
+
+trained_on   model  n_seeds  in_domain_f1_mean  cross_domain_f1_mean  cross_domain_f1_min  cross_domain_f1_max  generalization_gap_mean  generalization_gap_min  generalization_gap_max
+  DAIGT V2    BERT        3             0.9921                0.7902               0.7696               0.8103                   0.2019                  0.1817                  0.2220
+  DAIGT V2 DeBERTa        3             0.9930                0.9096               0.8907               0.9259                   0.0833                  0.0672                  0.1010
+       HC3    BERT        3             0.9930                0.8311               0.8130               0.8523                   0.1619                  0.1400                  0.1822
+       HC3 DeBERTa        3             0.9970                0.8512               0.8304               0.8874                   0.1458                  0.1098                  0.1668
+
+written to: /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/table_cross_dataset_generalization_3seed.csv

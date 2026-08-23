@@ -1,0 +1,54 @@
+{
+  "key": "D2_BERT_lr3e-05_bs16_wd0.01_s123",
+  "dataset": "D2",
+  "dataset_name": "HC3",
+  "model": "BERT",
+  "checkpoint": "bert-base-uncased",
+  "lr": 3e-05,
+  "batch_size": 16,
+  "per_device_batch_size": 16,
+  "gradient_accumulation_steps": 1,
+  "weight_decay": 0.01,
+  "seed": 123,
+  "max_len": 128,
+  "epochs_requested": 1,
+  "train_seconds": 32.2,
+  "epochs_run": 1,
+  "best_checkpoint_metric": 0.9645388529883405,
+  "peak_vram_gib": 2.18,
+  "resumed": false,
+  "val": {
+    "accuracy": 0.9646,
+    "precision": 0.9669,
+    "recall": 0.9646,
+    "f1": 0.9645
+  },
+  "val_confusion": [
+    [
+      223,
+      17
+    ],
+    [
+      0,
+      240
+    ]
+  ],
+  "val_macro_f1": 0.9645,
+  "test": {
+    "accuracy": 0.9667,
+    "precision": 0.9678,
+    "recall": 0.9667,
+    "f1": 0.9666
+  },
+  "test_confusion": [
+    [
+      565,
+      35
+    ],
+    [
+      5,
+      595
+    ]
+  ],
+  "test_macro_f1": 0.9666
+}
