@@ -1,0 +1,290 @@
+{
+  "seed": 42,
+  "note": "all baselines are deployed checkpoints, never grid maxima",
+  "datasets": {
+    "D1": {
+      "name": "DAIGT V2",
+      "n_test": 6998,
+      "models": {
+        "Naive Bayes (BoW)": {
+          "accuracy": 0.9591,
+          "error_rate": 0.0409,
+          "weighted_f1": 0.9591,
+          "macro_f1": 0.9591,
+          "roc_auc": 0.991804,
+          "confusion_tn_fp_fn_tp": [
+            3466,
+            53,
+            233,
+            3246
+          ],
+          "fpr_human_called_machine": 0.0151,
+          "representation": "BoW",
+          "score_type": "predict_proba",
+          "n_features": 47637
+        },
+        "Naive Bayes (TF-IDF)": {
+          "accuracy": 0.9577,
+          "error_rate": 0.0423,
+          "weighted_f1": 0.9577,
+          "macro_f1": 0.9577,
+          "roc_auc": 0.991469,
+          "confusion_tn_fp_fn_tp": [
+            3399,
+            120,
+            176,
+            3303
+          ],
+          "fpr_human_called_machine": 0.0341,
+          "representation": "TF-IDF",
+          "score_type": "predict_proba",
+          "n_features": 47637
+        },
+        "Logistic Regression (BoW)": {
+          "accuracy": 0.9893,
+          "error_rate": 0.0107,
+          "weighted_f1": 0.9893,
+          "macro_f1": 0.9893,
+          "roc_auc": 0.998809,
+          "confusion_tn_fp_fn_tp": [
+            3496,
+            23,
+            52,
+            3427
+          ],
+          "fpr_human_called_machine": 0.0065,
+          "representation": "BoW",
+          "score_type": "predict_proba",
+          "n_features": 47637
+        },
+        "Logistic Regression (TF-IDF)": {
+          "accuracy": 0.9857,
+          "error_rate": 0.0143,
+          "weighted_f1": 0.9857,
+          "macro_f1": 0.9857,
+          "roc_auc": 0.998354,
+          "confusion_tn_fp_fn_tp": [
+            3497,
+            22,
+            78,
+            3401
+          ],
+          "fpr_human_called_machine": 0.0063,
+          "representation": "TF-IDF",
+          "score_type": "predict_proba",
+          "n_features": 47637
+        },
+        "Support Vector Machine (BoW)": {
+          "accuracy": 0.987,
+          "error_rate": 0.013,
+          "weighted_f1": 0.987,
+          "macro_f1": 0.987,
+          "roc_auc": 0.998368,
+          "confusion_tn_fp_fn_tp": [
+            3482,
+            37,
+            54,
+            3425
+          ],
+          "fpr_human_called_machine": 0.0105,
+          "representation": "BoW",
+          "score_type": "decision_function",
+          "n_features": 47637
+        },
+        "Support Vector Machine (TF-IDF)": {
+          "accuracy": 0.991,
+          "error_rate": 0.009,
+          "weighted_f1": 0.991,
+          "macro_f1": 0.991,
+          "roc_auc": 0.999192,
+          "confusion_tn_fp_fn_tp": [
+            3507,
+            12,
+            51,
+            3428
+          ],
+          "fpr_human_called_machine": 0.0034,
+          "representation": "TF-IDF",
+          "score_type": "decision_function",
+          "n_features": 47637
+        },
+        "BERT": {
+          "accuracy": 0.9916,
+          "error_rate": 0.0084,
+          "weighted_f1": 0.9916,
+          "macro_f1": 0.9916,
+          "roc_auc": 0.999641,
+          "confusion_tn_fp_fn_tp": [
+            3475,
+            44,
+            15,
+            3464
+          ],
+          "fpr_human_called_machine": 0.0125,
+          "representation": "raw text (subword)",
+          "score_type": "softmax",
+          "checkpoint_key": "full_D1_BERT_lr3e-05_bs32_wd0.1_s42"
+        },
+        "DeBERTa": {
+          "accuracy": 0.9917,
+          "error_rate": 0.0083,
+          "weighted_f1": 0.9917,
+          "macro_f1": 0.9917,
+          "roc_auc": 0.999144,
+          "confusion_tn_fp_fn_tp": [
+            3491,
+            28,
+            30,
+            3449
+          ],
+          "fpr_human_called_machine": 0.008,
+          "representation": "raw text (subword)",
+          "score_type": "softmax",
+          "checkpoint_key": "full_D1_DeBERTa_lr3e-05_bs16_wd0.01_s42"
+        }
+      }
+    },
+    "D2": {
+      "name": "HC3",
+      "n_test": 10732,
+      "models": {
+        "Naive Bayes (BoW)": {
+          "accuracy": 0.8713,
+          "error_rate": 0.1287,
+          "weighted_f1": 0.8713,
+          "macro_f1": 0.8713,
+          "roc_auc": 0.930489,
+          "confusion_tn_fp_fn_tp": [
+            4743,
+            634,
+            747,
+            4608
+          ],
+          "fpr_human_called_machine": 0.1179,
+          "representation": "BoW",
+          "score_type": "predict_proba",
+          "n_features": 47359
+        },
+        "Naive Bayes (TF-IDF)": {
+          "accuracy": 0.8672,
+          "error_rate": 0.1328,
+          "weighted_f1": 0.867,
+          "macro_f1": 0.867,
+          "roc_auc": 0.946474,
+          "confusion_tn_fp_fn_tp": [
+            4440,
+            937,
+            488,
+            4867
+          ],
+          "fpr_human_called_machine": 0.1743,
+          "representation": "TF-IDF",
+          "score_type": "predict_proba",
+          "n_features": 47359
+        },
+        "Logistic Regression (BoW)": {
+          "accuracy": 0.9551,
+          "error_rate": 0.0449,
+          "weighted_f1": 0.9551,
+          "macro_f1": 0.9551,
+          "roc_auc": 0.986545,
+          "confusion_tn_fp_fn_tp": [
+            5144,
+            233,
+            249,
+            5106
+          ],
+          "fpr_human_called_machine": 0.0433,
+          "representation": "BoW",
+          "score_type": "predict_proba",
+          "n_features": 47359
+        },
+        "Logistic Regression (TF-IDF)": {
+          "accuracy": 0.9365,
+          "error_rate": 0.0635,
+          "weighted_f1": 0.9365,
+          "macro_f1": 0.9365,
+          "roc_auc": 0.983501,
+          "confusion_tn_fp_fn_tp": [
+            5038,
+            339,
+            342,
+            5013
+          ],
+          "fpr_human_called_machine": 0.063,
+          "representation": "TF-IDF",
+          "score_type": "predict_proba",
+          "n_features": 47359
+        },
+        "Support Vector Machine (BoW)": {
+          "accuracy": 0.9475,
+          "error_rate": 0.0525,
+          "weighted_f1": 0.9475,
+          "macro_f1": 0.9475,
+          "roc_auc": 0.981816,
+          "confusion_tn_fp_fn_tp": [
+            5083,
+            294,
+            269,
+            5086
+          ],
+          "fpr_human_called_machine": 0.0547,
+          "representation": "BoW",
+          "score_type": "decision_function",
+          "n_features": 47359
+        },
+        "Support Vector Machine (TF-IDF)": {
+          "accuracy": 0.9449,
+          "error_rate": 0.0551,
+          "weighted_f1": 0.9449,
+          "macro_f1": 0.9449,
+          "roc_auc": 0.986309,
+          "confusion_tn_fp_fn_tp": [
+            5021,
+            356,
+            235,
+            5120
+          ],
+          "fpr_human_called_machine": 0.0662,
+          "representation": "TF-IDF",
+          "score_type": "decision_function",
+          "n_features": 47359
+        },
+        "BERT": {
+          "accuracy": 0.9916,
+          "error_rate": 0.0084,
+          "weighted_f1": 0.9916,
+          "macro_f1": 0.9916,
+          "roc_auc": 0.999632,
+          "confusion_tn_fp_fn_tp": [
+            5304,
+            73,
+            17,
+            5338
+          ],
+          "fpr_human_called_machine": 0.0136,
+          "representation": "raw text (subword)",
+          "score_type": "softmax",
+          "checkpoint_key": "full_D2_BERT_lr2e-05_bs16_wd0.1_s42"
+        },
+        "DeBERTa": {
+          "accuracy": 0.9972,
+          "error_rate": 0.0028,
+          "weighted_f1": 0.9972,
+          "macro_f1": 0.9972,
+          "roc_auc": 0.999977,
+          "confusion_tn_fp_fn_tp": [
+            5360,
+            17,
+            13,
+            5342
+          ],
+          "fpr_human_called_machine": 0.0032,
+          "representation": "raw text (subword)",
+          "score_type": "softmax",
+          "checkpoint_key": "full_D2_DeBERTa_lr3e-05_bs16_wd0.1_s42"
+        }
+      }
+    }
+  }
+}

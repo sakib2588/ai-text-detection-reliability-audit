@@ -26,9 +26,17 @@
 
 \hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
 
+% Float spacing tightened to hold the six-page ICCIT budget with three figures
+% and two tables. Same lever used by the companion submission from this group.
+\setlength{\textfloatsep}{2pt plus 1pt minus 1pt}
+\setlength{\floatsep}{2pt plus 1pt minus 1pt}
+\setlength{\intextsep}{2pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+
 \begin{document}
 
-\title{How Much of AI-Text Detection Accuracy Is Real? A Dataset-Dependent Reliability Audit of DAIGT V2 and HC3}
+\title{A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks: Evidence from Five Models on DAIGT V2 and HC3}
 
 \ifblind
   \author{\IEEEauthorblockN{Anonymous Author(s)}
@@ -47,7 +55,7 @@
 \end{abstract}
 
 \begin{IEEEkeywords}
-AI-generated text detection, benchmark reliability, adversarial robustness, artifact leakage, cross-dataset generalization
+AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, ROC analysis
 \end{IEEEkeywords}
 
 \input{sections/01_introduction.tex}
@@ -57,7 +65,7 @@ AI-generated text detection, benchmark reliability, adversarial robustness, arti
 \input{sections/05_discussion_conclusion.tex}
 
 \section*{Data and Code Availability}
-Both datasets (DAIGT V2, HC3) are public; code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
+Both datasets, DAIGT V2 and HC3, are public, and code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib/refs}
