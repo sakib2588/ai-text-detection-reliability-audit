@@ -1,0 +1,24 @@
+[D1] DAIGT V2: preprocessing 34994 docs (slow, once per dataset)...
+  Naive Bayes (BoW)                  F1=0.9591 AUC=0.9918
+  Naive Bayes (TF-IDF)               F1=0.9577 AUC=0.9915
+  Logistic Regression (BoW)          F1=0.9893 AUC=0.9988
+  Logistic Regression (TF-IDF)       F1=0.9857 AUC=0.9984
+/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /.venv/lib/python3.12/site-packages/sklearn/svm/_base.py:1298: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+  Support Vector Machine (BoW)       F1=0.9864 AUC=0.9984
+  Support Vector Machine (TF-IDF)    F1=0.9910 AUC=0.9992
+  BERT                               F1=0.9916 AUC=0.9996
+  DeBERTa                            F1=0.9917 AUC=0.9991
+[D2] HC3: preprocessing 53806 docs (slow, once per dataset)...
+  Naive Bayes (BoW)                  F1=0.8713 AUC=0.9305
+  Naive Bayes (TF-IDF)               F1=0.8670 AUC=0.9465
+  Logistic Regression (BoW)          F1=0.9551 AUC=0.9865
+  Logistic Regression (TF-IDF)       F1=0.9365 AUC=0.9835
+/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /.venv/lib/python3.12/site-packages/sklearn/svm/_base.py:1298: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+  Support Vector Machine (BoW)       F1=0.9475 AUC=0.9818
+  Support Vector Machine (TF-IDF)    F1=0.9449 AUC=0.9863
+  BERT                               F1=0.9916 AUC=0.9996
+  DeBERTa                            F1=0.9972 AUC=1.0000
+
+written to: /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/audit/full_model_evaluation.json and /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/audit/full_model_scores.npz

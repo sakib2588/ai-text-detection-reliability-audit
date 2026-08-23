@@ -1,11 +1,48 @@
 # Numbers SSOT — Paper Track (Full-Scale Only)
 
+---
+
+## RETRACTIONS AND CORRECTIONS, 2026-08-23
+
+Three audits plus direct measurement invalidated several numbers previously recorded here.
+**Nothing in the sections below marked RETRACTED may be quoted in the paper.**
+
+**R1. The artifact-cleaning ablation is VOID.** `run_artifact_cleaning_full.py:94-105` compares
+`raw_f1` (best validation F1 across the *entire grid*) against `cleaned_f1` (one fixed config),
+so three of four cells compare different hyperparameters. Checkpoint-matched, the deltas are
+HC3/BERT **0.0000**, HC3/DeBERTa **0.0010**, DAIGT/DeBERTa **-0.0026**. It is additionally
+confounded because `build_cleaned_data` applies `length_match(unit='words')` to the cleaned arm
+only. Section 6's table is retracted in full.
+
+**R2. Every adversarial `drop` is inflated by the same bug.** `table_adversarial_robustness.csv`
+takes `in_domain_f1` from the grid maximum rather than the attacked checkpoint. Deployed
+checkpoints are D2_BERT **0.9916** (not 0.9945), D2_DeBERTa **0.9972** (not 0.9980), D1_DeBERTa
+**0.9917** (not 0.9949). Corrected typo-10 drops: D1 BERT 0.1950, D1 DeBERTa 0.0327, D2 BERT
+0.6170, D2 DeBERTa 0.6328.
+
+**R3. The noise band 0.0011 was cherry-picked** — smallest of four measured seed spreads. The
+band for the relevant config is **0.0036**, and it is a *range over n=3*, not an SD, whose own
+sampling error exceeds every delta previously tested against it. Use paired McNemar on the
+existing `.npz` predictions instead.
+
+**R4. "Below chance" is a misreading.** Weighted F1 floors at 0.333 for an all-one-class
+predictor on a 50/50 split; guessing is ~0.50. The observed 0.3644 is 1.4% above total
+degeneracy, not below chance.
+
+**R5. "DAIGT V2 is at chance on the whitespace cue" is retracted.** That was an instrument
+artifact of a single >=1-occurrence threshold applied to a sparse cue. A fitted 47-feature
+surface model reaches **0.9214** on DAIGT V2. Both datasets carry substantial surface signal.
+
+**R6. The adversarial-robustness interpretation is withdrawn** (see Section 11).
+
+---
+
 Every number below traces to a file on disk. Do not type a number into prose
 without checking it here first, and do not add a row here without citing its
 source file. Course-track (6k-sample) numbers are OUT OF SCOPE for this paper
 and are not listed — see `REPORT.md` if the course submission needs them.
 
-## 1. Headline 5-model comparison (Table 2, full-corpus)
+## 1. Headline 5-model comparison — **SUPERSEDED by Section 13 (used grid maxima)**
 
 Source: `Final/table2_combined_full.csv`
 
@@ -49,7 +86,7 @@ though the two directions' min-max ranges are close and nearly touch
 reported as a mean-level pattern that survives 3-seed averaging, not as a
 statistically confirmed effect; do not overclaim non-overlap.
 
-## 4. Scale-dependent BERT seed instability
+## 4. Scale-dependent BERT seed instability — **DEMOTED, not a contribution (n=3 estimate moved 31% on rerun)**
 
 - Small-scale (6k-sample) D1 BERT, config `lr=3e-05 bs=32 wd=0.1`: F1 values
   `[0.9908, 0.985, 0.9641]` across seeds 42/123/456, **spread = 0.0267**.
@@ -92,7 +129,7 @@ actually cite — "eight leaked rows... 0.67%"). Treat 11.2–11.3% as
 unconfirmed/possibly-wrong until a full-corpus leakage script and its output
 file are located or re-run; do not put it in the paper.
 
-## 6. Artifact-cleaning ablation (Gap 4) — DONE, both stages
+## 6. Artifact-cleaning ablation (Gap 4) — **RETRACTED, see R1. DO NOT QUOTE.**
 
 Source: `Final/table_artifact_cleaning_zeroshot.csv` (test-time-only cleaning,
 existing checkpoints, no retraining) and `Final/table_artifact_cleaning_full.csv`
@@ -113,7 +150,7 @@ table2-reported number), not table2's per-cell grid maximum — this table is
 an internally consistent raw-vs-cleaned comparison on a fixed checkpoint,
 which is what an ablation requires.
 
-## 7. Adversarial robustness (Gap 2) — DONE, 28/28
+## 7. Adversarial robustness (Gap 2) — **drops RETRACTED (R2); interpretation WITHDRAWN, see Section 11**
 
 Source: `Final/table_adversarial_robustness.csv`. Headline: DAIGT V2 robust
 across all attacks (worst case BERT/10%-typo: 0.9916 -> 0.7966); HC3 collapses
@@ -175,6 +212,93 @@ Median % of essay kept at 128-token truncation: 30.8%. Human essays run
 discards proportionally more human content. Previously an in-session ad-hoc
 measurement; now persisted as a proper audit script following the
 `daigt_full_audit.py` / `hc3_full_audit.py` convention.
+
+## 10. Surface/content separability decomposition (THE PAPER'S LEAD RESULT)
+
+Source: `audit/surface_content_decomposition.py` -> `audit/surface_content_decomposition.json`.
+Logistic regression for both arms so they are directly comparable; transformer read from the
+deployed checkpoint's `run_info.json`, never from a grid maximum.
+
+| dataset | surface-only (47 orthographic feats, no lexical content) | content-only (BoW, surface stripped) | full transformer (reference) |
+|---|---|---|---|
+| DAIGT V2 | 0.9214 wF1 = mF1, err 7.86%, FPR 0.0881 | **0.9901, err 0.99%, FPR 0.0080** | 0.9917 DeBERTa / 0.9916 BERT |
+| HC3 | **0.9680 wF1 = mF1, err 3.20%, FPR 0.0562** | 0.9674, err 3.26%, FPR 0.0303 | 0.9972 DeBERTa / 0.9916 BERT |
+
+Macro equals weighted in every arm, so no arm is exploiting class skew.
+
+- **HC3: orthography matches content** (3.20% vs 3.26% error). 47 features that never read a word
+  do as well as bag-of-words.
+- **DAIGT V2: content wins 7.9x on error** (0.99% vs 7.86%).
+- On DAIGT V2 the transformer adds nothing over content-only (0.9917 vs 0.9901); on HC3 it adds
+  ~0.03 over either arm.
+
+## 11. Adversarial collapse: interpretation WITHDRAWN
+
+Source: `audit/collapse_probe.py` -> `audit/collapse_probe.json`. Percent classified **human** on
+inputs carrying no label information, with mean max-softmax:
+
+| model | random chars | token-shuffled | punctuation-only | repeated token | empty |
+|---|---|---|---|---|---|
+| D2_BERT | 51.0% (0.71) | 98.5% (1.00) | 100% (1.00) | 100% (0.98) | 0% (1.00) |
+| D2_DeBERTa | **100% (0.98)** | 100% (1.00) | 100% (0.99) | 0% (0.84) | 0% (0.99) |
+| D1_BERT | 0% (0.91) | 94.8% (0.99) | 97.8% (0.71) | 0% (0.83) | 0% (0.82) |
+| D1_DeBERTa | 100% (0.99) | 100% (1.00) | 100% (1.00) | 100% (1.00) | 0% (0.94) |
+
+The model that collapsed to 0.3644 under typo attack classifies **random character strings as
+human at 0.98 confidence**. All four models do so for token-shuffled and punctuation-only text.
+The one-directional flip is therefore not a targeted vulnerability and not a learned cue — it is a
+degenerate response to unreadable input, and it is not HC3-specific.
+
+Mechanisms tested and refuted, for the record: majority-prior collapse (training is balanced,
+D1 0.4981/0.5019, D2 0.4999/0.5001); cue injection (typo-10 moves machine-text artifact count
+0.000 -> 0.005, homoglyph 0.000); "messy implies human" (subword fertility runs the wrong way,
+HC3 human 1.1192 vs machine 1.1980).
+
+**Paper position:** report the label-free control as a methodological requirement, note that our
+models fail it, and decline to read the attack numbers as robustness evidence. The same caution
+applies to prior work reporting comparable collapses without such a control.
+
+## 12. Tokenizer blindness to the whitespace cue
+
+Verified on the deployed checkpoints. BERT (`paper_scale/models/D2_BERT`, WordPiece) yields
+**identical token ids for 3/3** artifact pairs — `"the answer is simple ."` and
+`"the answer is simple."` both give `['the','answer','is','simple','.']`. DeBERTa
+(`D2_DeBERTa`, SentencePiece) yields **0/3 identical**, encoding the difference as `▁.` versus `.`.
+
+BERT cannot represent the cue and still reaches **0.9916** on HC3, so the cue is not necessary for
+~0.99 performance. **Do not attribute the BERT/DeBERTa difference to the cue** — the two differ in
+architecture, pretraining corpus, and size.
+
+Pipeline-fires control (required, else the bit-identical result is uninterpretable): SHA-256 over
+`paper_scale/probs/` shows D2/BERT raw and cleaned **bit-identical**, while D1/BERT raw and
+cleaned **differ** — emoji removal is visible to WordPiece. The cleaning pipeline does fire; the
+blindness is specific to whitespace.
+
+## 13. Complete model evaluation, all 8 configurations (SUPERSEDES Section 1)
+
+Source: `paper_scale/full_model_evaluation.py` -> `audit/full_model_evaluation.json`
+and `audit/full_model_scores.npz`. Transformer rows read from the **deployed
+checkpoint's** `run_info.json`, never a grid maximum. Classical rows refit with
+`LinearSVC(max_iter=20000)` because the sklearn default fails to converge on HC3.
+Section 1's table used grid maxima for the transformers and is superseded by this one.
+
+| Model | Rep. | DAIGT V2 F1 / err% / AUC | HC3 F1 / err% / AUC |
+|---|---|---|---|
+| Naive Bayes | BoW | 0.9591 / 4.09 / 0.991804 | 0.8713 / 12.87 / 0.930489 |
+| Naive Bayes | TF-IDF | 0.9577 / 4.23 / 0.991469 | 0.8670 / 13.28 / 0.946474 |
+| Logistic Regression | BoW | 0.9893 / 1.07 / 0.998809 | **0.9551** / 4.49 / 0.986545 |
+| Logistic Regression | TF-IDF | 0.9857 / 1.43 / 0.998354 | 0.9365 / 6.35 / 0.983501 |
+| SVM | BoW | 0.9870 / 1.30 / 0.998368 | 0.9475 / 5.25 / 0.981816 |
+| SVM | TF-IDF | **0.9910** / 0.90 / 0.999192 | 0.9449 / 5.51 / 0.986309 |
+| BERT | raw | 0.9916 / 0.84 / 0.999641 | 0.9916 / 0.84 / 0.999632 |
+| DeBERTa | raw | **0.9917** / 0.83 / 0.999144 | **0.9972** / 0.28 / 0.999977 |
+
+Macro F1 equals weighted F1 to four decimals in every row. Two observations:
+- **DAIGT V2**: best classical (SVM/TF-IDF 0.9910) is 0.0007 below best transformer
+  (0.9917), inside the 0.0036 seed range. Transformers add nothing measurable.
+- **HC3**: best classical 0.9551 vs 0.9972, an error-rate ratio of 16 to one.
+- AUC ordering differs from F1 ordering on DAIGT V2 (BERT 0.999641 > DeBERTa
+  0.999144 by AUC, reversed by F1). Report both.
 
 ## Files explicitly excluded from this SSOT (superseded/course-track/duplicate)
 
