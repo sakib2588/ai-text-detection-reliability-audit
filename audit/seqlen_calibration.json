@@ -1,0 +1,102 @@
+{
+  "n_timed_steps": 30,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "results": {
+    "D1_BERT_len128": {
+      "batch_size": 32,
+      "seq_len": 128,
+      "sec_per_step": 0.1265,
+      "peak_vram_gib": 2.96,
+      "steps_per_epoch": 788,
+      "est_sec_per_epoch": 99.7,
+      "oom": false
+    },
+    "D1_BERT_len256": {
+      "batch_size": 32,
+      "seq_len": 256,
+      "sec_per_step": 0.2478,
+      "peak_vram_gib": 4.55,
+      "steps_per_epoch": 788,
+      "est_sec_per_epoch": 195.3,
+      "oom": false
+    },
+    "D1_BERT_len512": {
+      "batch_size": 32,
+      "seq_len": 512,
+      "oom": true
+    },
+    "D1_DeBERTa_len128": {
+      "batch_size": 16,
+      "seq_len": 128,
+      "sec_per_step": 0.1356,
+      "peak_vram_gib": 4.22,
+      "steps_per_epoch": 1575,
+      "est_sec_per_epoch": 213.5,
+      "oom": false
+    },
+    "D1_DeBERTa_len256": {
+      "batch_size": 16,
+      "seq_len": 256,
+      "sec_per_step": 0.2622,
+      "peak_vram_gib": 6.41,
+      "steps_per_epoch": 1575,
+      "est_sec_per_epoch": 413.0,
+      "oom": false
+    },
+    "D1_DeBERTa_len512": {
+      "batch_size": 16,
+      "seq_len": 512,
+      "oom": true
+    },
+    "D2_BERT_len128": {
+      "batch_size": 16,
+      "seq_len": 128,
+      "sec_per_step": 0.0814,
+      "peak_vram_gib": 2.18,
+      "steps_per_epoch": 2425,
+      "est_sec_per_epoch": 197.5,
+      "oom": false
+    },
+    "D2_BERT_len256": {
+      "batch_size": 16,
+      "seq_len": 256,
+      "sec_per_step": 0.1401,
+      "peak_vram_gib": 2.97,
+      "steps_per_epoch": 2425,
+      "est_sec_per_epoch": 339.6,
+      "oom": false
+    },
+    "D2_BERT_len512": {
+      "batch_size": 16,
+      "seq_len": 512,
+      "sec_per_step": 0.2004,
+      "peak_vram_gib": 4.6,
+      "steps_per_epoch": 2425,
+      "est_sec_per_epoch": 485.9,
+      "oom": false
+    },
+    "D2_DeBERTa_len128": {
+      "batch_size": 16,
+      "seq_len": 128,
+      "sec_per_step": 0.1359,
+      "peak_vram_gib": 4.22,
+      "steps_per_epoch": 2425,
+      "est_sec_per_epoch": 329.6,
+      "oom": false
+    },
+    "D2_DeBERTa_len256": {
+      "batch_size": 16,
+      "seq_len": 256,
+      "sec_per_step": 0.2587,
+      "peak_vram_gib": 6.41,
+      "steps_per_epoch": 2425,
+      "est_sec_per_epoch": 627.3,
+      "oom": false
+    },
+    "D2_DeBERTa_len512": {
+      "batch_size": 16,
+      "seq_len": 512,
+      "oom": true
+    }
+  }
+}
