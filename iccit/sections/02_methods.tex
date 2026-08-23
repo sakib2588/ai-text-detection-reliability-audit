@@ -1,0 +1,23 @@
+\section{Methods}
+
+\subsection{Datasets}
+
+DAIGT V2~\cite{Thedrcat2023daigtv2} contains 44,868 argumentative student essays, 27,371 human-written (PERSUADE 2.0) and 17,497 machine-generated across a mixture of GPT-3.5, Llama-2, Mistral-7B, Falcon-180B, and other 2023-era models, a 61\%/39\% human/AI split. HC3~\cite{Guo2023close} contains question-answer pairs across five English sources, contrasting human answers against GPT-3.5-Turbo-0301 responses, 85,449 rows total. Both were balanced for full-scale training (34,994 DAIGT V2 rows, 53,806 HC3 rows).
+
+A duplicate-detection audit finds DAIGT V2 has essentially no internal duplication, six rows across six groups (0.01\%), zero cross-label duplicates. HC3 shows a substantially different picture, 6,118 duplicate rows across 5,986 groups (7.16\%), plus 476 rows nominally labeled ChatGPT-authored that are collection artifacts, text such as API failure messages stored under the answer field. These figures corroborate a smaller, directly inspectable leakage check at 1,200-row test scale, eight leaked rows (0.67\%), rescoring on the leakage-excluded subset changes F1 by at most 0.0010 with no ranking change, so the leakage's effect on the reported metric is smaller than ordinary seed-to-seed noise even though the leakage itself is real.
+
+\subsection{Models}
+
+Five classifiers span the classical-to-transformer spectrum, Naive Bayes, Logistic Regression, and a linear SVM over bag-of-words or TF-IDF features, and fine-tuned \texttt{bert-base-uncased} and \texttt{microsoft/deberta-v3-base}. Transformers were swept over learning rate $\{2\mathrm{e}{-5}, 3\mathrm{e}{-5}\}$, batch size $\{16, 32\}$, and weight decay $\{0.01, 0.1\}$, best configuration selected by validation F1, with 128-token truncation inherited from the originating course specification, an open limitation discussed in Section~\ref{sec:discussion}. A subset of winning configurations was re-run at seeds 123 and 456, in addition to the default 42, to establish seed-to-seed variance.
+
+\subsection{Cross-dataset transfer}
+
+Each transformer is trained on one dataset's training split and evaluated on the other dataset's held-out test split, in both directions, across all three seeds, alongside the matched in-domain baseline. This is a strict one-way transfer design, distinct from Alikhanov et al.'s~\cite{Alikhanov2026generated} merge-and-topic-split approach, transferring asks whether knowledge of one dataset generalizes to the other, a harder question than whether one model can handle both.
+
+\subsection{Artifact-cleaning ablation}
+
+Two variants were run per model and dataset, a zero-shot pass re-scoring the existing raw-trained checkpoint on cleaned test text only, and a full ablation retraining from scratch on cleaned train/validation/test data at the same fixed configuration. Cleaning removes the whitespace-before-punctuation artifact for HC3 and the emoji/pictograph signal for DAIGT V2 (present in 3.2\% of AI-labeled versus 0\% of human-labeled DAIGT V2 essays), plus per-row length-matching for the full-retrain variant.
+
+\subsection{Adversarial robustness}
+
+Test text only, never training data, is perturbed via character-level typo injection and homoglyph substitution (Latin-to-Cyrillic visual lookalikes) at 1\%, 5\%, and 10\% of eligible characters, and a single back-translation (English-German-English) paraphrase pass, then scored against the same in-domain checkpoints. All experiments use bootstrap-appropriate reporting, no parametric significance tests at $n \leq 30$, given the small seed count.
