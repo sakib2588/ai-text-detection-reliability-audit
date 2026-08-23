@@ -29,3 +29,11 @@ __pycache__/
 
 # Editor/OS
 .DS_Store
+
+# LaTeX build artifacts (iccit/) -- main.bbl kept, matches reference project convention
+iccit/*.aux
+iccit/*.log
+iccit/*.out
+iccit/*.blg
+iccit/*.fdb_latexmk
+iccit/*.fls

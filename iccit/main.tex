@@ -1,0 +1,65 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{url}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% ============================================================
+% ICCIT conference cut of the AI-text-detection reliability study.
+% Every number traces to Final/paper_draft/NUMBERS_SSOT.md.
+% ============================================================
+
+% ============================================================
+% DOUBLE-BLIND TOGGLE
+%   \blindtrue   -> anonymous, for SUBMISSION   (current setting)
+%   \blindfalse  -> full author block, for CAMERA-READY
+% ============================================================
+\newif\ifblind
+\blindtrue
+
+\hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
+
+\begin{document}
+
+\title{How Much of AI-Text Detection Accuracy Is Real? A Dataset-Dependent Reliability Audit of DAIGT V2 and HC3}
+
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Author(s)}
+  \IEEEauthorblockA{Affiliation withheld for double-blind review}}
+\else
+  \author{\IEEEauthorblockN{Group 02, Section B}
+  \IEEEauthorblockA{Department of Computer Science and Engineering\\
+  American International University-Bangladesh (AIUB)\\
+  Dhaka, Bangladesh}}
+\fi
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI-generated text detection, benchmark reliability, adversarial robustness, artifact leakage, cross-dataset generalization
+\end{IEEEkeywords}
+
+\input{sections/01_introduction.tex}
+\input{sections/04_related_work.tex}
+\input{sections/02_methods.tex}
+\input{sections/03_results.tex}
+\input{sections/05_discussion_conclusion.tex}
+
+\section*{Data and Code Availability}
+Both datasets (DAIGT V2, HC3) are public; code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib/refs}
+
+\end{document}
