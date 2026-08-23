@@ -1,4 +1,4 @@
-"""Builds a PLAIN random 80/10/10 split (no duplicate-group awareness) on the SAME
+"""Builds a PLAIN random 72/8/20 split (no duplicate-group awareness) on the SAME
 balanced sample already used for the duplicate-aware split, so the only difference
 between the two conditions is the split method itself -- not which rows were sampled.
 Written to distinct filenames (split_D1_naive.npz / split_D2_naive.npz) so this can

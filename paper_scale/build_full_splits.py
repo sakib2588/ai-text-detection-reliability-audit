@@ -1,9 +1,11 @@
 """Builds the ONE fixed full-scale balanced split per dataset (seed=42), used by every
 training run regardless of training seed. HC3 uses a duplicate-group-aware split so that
 no near-identical answer crosses the train/val/test boundary (see Final/audit/hc3_full_audit.json:
-7.16% of the full corpus is duplicated, 11.2-11.3% test leakage under a naive random split).
-DAIGT uses a plain stratified split (duplication is 0.01%, group-awareness is a no-op there
-but applied uniformly for methodological consistency)."""
+7.16% of the full corpus is duplicated). MEASURED 2026-08-24 by audit/verify_paper_claims.py:
+this split leaks 0 of 10,732 HC3 test rows, while the naive split in build_naive_splits.py
+leaks 570 of 10,762, 5.30%. The "11.2-11.3%" figure previously quoted here was never measured
+and is wrong. DAIGT uses a plain stratified split (duplication is 0.01%, group-awareness is a
+no-op there but applied uniformly for methodological consistency)."""
 import re, hashlib, json, pathlib, gc
 import numpy as np, pandas as pd
 from sklearn.model_selection import GroupShuffleSplit
@@ -28,7 +30,11 @@ def balance_full(df, seed=SPLIT_SEED):
     return pd.concat(parts).sample(frac=1, random_state=seed).reset_index(drop=True)
 
 def group_split(df, seed=SPLIT_SEED):
-    """80/10/10 train/val/test, never splitting a duplicate-content group across partitions."""
+    """72/8/20 train/val/test, never splitting a duplicate-content group across partitions.
+
+    NOT 80/10/10: test_size=0.2 takes a fifth for test, then test_size=0.1 takes a tenth of
+    the REMAINING 80% for validation, so the shares are 72/8/20. Verified against the written
+    row counts (DAIGT 25,196/2,800/6,998; HC3 38,785/4,289/10,732)."""
     groups = df['hash'].values
     gss1 = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=seed)
     tr_full_idx, te_idx = next(gss1.split(df, df['label'], groups))
