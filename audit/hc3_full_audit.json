@@ -1,0 +1,10 @@
+{
+  "n_total": 85449,
+  "dup_groups": 5986,
+  "dup_rows": 6118,
+  "cross_label_texts": 0,
+  "artefact_chatgpt": 476,
+  "artefact_human": 7,
+  "empty": 18,
+  "under20": 27
+}

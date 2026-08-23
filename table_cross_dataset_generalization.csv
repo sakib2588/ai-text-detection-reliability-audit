@@ -1,0 +1,5 @@
+trained_on,model,in_domain_f1,cross_domain_f1,generalization_gap
+DAIGT V2,BERT,0.9916,0.7696,0.222
+DAIGT V2,DeBERTa,0.9949,0.8907,0.1042
+HC3,BERT,0.9945,0.8281,0.1664
+HC3,DeBERTa,0.998,0.8874,0.1106

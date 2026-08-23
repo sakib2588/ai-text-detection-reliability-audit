@@ -1,0 +1,27 @@
+{
+  "D1": {
+    "test_size": 1200,
+    "leaked": 0,
+    "degenerate": 0,
+    "excluded": 0,
+    "pct_of_test": 0.0,
+    "rows": []
+  },
+  "D2": {
+    "test_size": 1200,
+    "leaked": 8,
+    "degenerate": 0,
+    "excluded": 8,
+    "pct_of_test": 0.67,
+    "rows": [
+      2108,
+      2278,
+      2691,
+      2937,
+      3786,
+      4098,
+      4372,
+      4568
+    ]
+  }
+}

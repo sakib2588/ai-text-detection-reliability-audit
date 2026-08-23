@@ -1,0 +1,54 @@
+{
+  "key": "D1_DeBERTa_lr2e-05_bs32_wd0.1_s42",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "DeBERTa",
+  "checkpoint": "microsoft/deberta-v3-base",
+  "lr": 2e-05,
+  "batch_size": 32,
+  "per_device_batch_size": 32,
+  "gradient_accumulation_steps": 1,
+  "weight_decay": 0.1,
+  "seed": 42,
+  "max_len": 128,
+  "epochs_requested": 5,
+  "train_seconds": 213.7,
+  "epochs_run": 5,
+  "best_checkpoint_metric": 0.9812479652740097,
+  "peak_vram_gib": 6.18,
+  "resumed": false,
+  "val": {
+    "accuracy": 0.9812,
+    "precision": 0.9815,
+    "recall": 0.9812,
+    "f1": 0.9812
+  },
+  "val_confusion": [
+    [
+      233,
+      7
+    ],
+    [
+      2,
+      238
+    ]
+  ],
+  "val_macro_f1": 0.9812,
+  "test": {
+    "accuracy": 0.9825,
+    "precision": 0.9828,
+    "recall": 0.9825,
+    "f1": 0.9825
+  },
+  "test_confusion": [
+    [
+      582,
+      18
+    ],
+    [
+      3,
+      597
+    ]
+  ],
+  "test_macro_f1": 0.9825
+}

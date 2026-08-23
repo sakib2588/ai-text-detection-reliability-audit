@@ -1,0 +1,73 @@
+/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /.venv/lib/python3.12/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.
+  warnings.warn("Recommended: pip install sacremoses.")
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D1_DeBERTa' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D2_DeBERTa' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+running adversarial robustness eval on device: cuda (set NLP_CROSS_DEVICE=cuda to use the GPU once it is free)
+[skip] adv_D1_BERT_typo_01                      adv_f1=0.9900
+[skip] adv_D1_BERT_typo_05                      adv_f1=0.9106
+[skip] adv_D1_BERT_typo_10                      adv_f1=0.7966
+[skip] adv_D1_BERT_homoglyph_01                 adv_f1=0.9933
+[skip] adv_D1_BERT_homoglyph_05                 adv_f1=0.9850
+[skip] adv_D1_BERT_homoglyph_10                 adv_f1=0.9638
+[skip] adv_D1_DeBERTa_typo_01                   adv_f1=0.9924
+[skip] adv_D1_DeBERTa_typo_05                   adv_f1=0.9836
+[skip] adv_D1_DeBERTa_typo_10                   adv_f1=0.9590
+[skip] adv_D1_DeBERTa_homoglyph_01              adv_f1=0.9923
+[skip] adv_D1_DeBERTa_homoglyph_05              adv_f1=0.9870
+[skip] adv_D1_DeBERTa_homoglyph_10              adv_f1=0.9826
+[skip] adv_D2_BERT_typo_01                      adv_f1=0.8936
+[skip] adv_D2_BERT_typo_05                      adv_f1=0.4390
+[skip] adv_D2_BERT_typo_10                      adv_f1=0.3746
+[skip] adv_D2_BERT_homoglyph_01                 adv_f1=0.9611
+[skip] adv_D2_BERT_homoglyph_05                 adv_f1=0.5826
+[skip] adv_D2_BERT_homoglyph_10                 adv_f1=0.4351
+[skip] adv_D2_DeBERTa_typo_01                   adv_f1=0.9821
+[skip] adv_D2_DeBERTa_typo_05                   adv_f1=0.5524
+[skip] adv_D2_DeBERTa_typo_10                   adv_f1=0.3644
+[skip] adv_D2_DeBERTa_homoglyph_01              adv_f1=0.9964
+[skip] adv_D2_DeBERTa_homoglyph_05              adv_f1=0.9581
+[skip] adv_D2_DeBERTa_homoglyph_10              adv_f1=0.7878
+perturbing 6998 test texts: attack=backtranslation strength=None ...
+scoring BERT (trained on DAIGT V2) under backtranslation @ None ...
+[done] adv_D1_BERT_backtranslation_bt           adv_f1=0.9856  (46.6 min)
+perturbing 6998 test texts: attack=backtranslation strength=None ...
+scoring DeBERTa (trained on DAIGT V2) under backtranslation @ None ...
+[done] adv_D1_DeBERTa_backtranslation_bt        adv_f1=0.9767  (45.5 min)
+perturbing 10732 test texts: attack=backtranslation strength=None ...
+scoring BERT (trained on HC3) under backtranslation @ None ...
+[done] adv_D2_BERT_backtranslation_bt           adv_f1=0.9872  (66.7 min)
+perturbing 10732 test texts: attack=backtranslation strength=None ...
+scoring DeBERTa (trained on HC3) under backtranslation @ None ...
+[done] adv_D2_DeBERTa_backtranslation_bt        adv_f1=0.9773  (67.0 min)
+
+ dataset   model          attack  strength  in_domain_f1  adv_f1    drop
+DAIGT V2    BERT            typo      0.01        0.9916  0.9900  0.0016
+DAIGT V2    BERT            typo      0.05        0.9916  0.9106  0.0810
+DAIGT V2    BERT            typo      0.10        0.9916  0.7966  0.1950
+DAIGT V2    BERT       homoglyph      0.01        0.9916  0.9933 -0.0017
+DAIGT V2    BERT       homoglyph      0.05        0.9916  0.9850  0.0066
+DAIGT V2    BERT       homoglyph      0.10        0.9916  0.9638  0.0278
+DAIGT V2    BERT backtranslation       NaN        0.9916  0.9856  0.0060
+DAIGT V2 DeBERTa            typo      0.01        0.9949  0.9924  0.0025
+DAIGT V2 DeBERTa            typo      0.05        0.9949  0.9836  0.0113
+DAIGT V2 DeBERTa            typo      0.10        0.9949  0.9590  0.0359
+DAIGT V2 DeBERTa       homoglyph      0.01        0.9949  0.9923  0.0026
+DAIGT V2 DeBERTa       homoglyph      0.05        0.9949  0.9870  0.0079
+DAIGT V2 DeBERTa       homoglyph      0.10        0.9949  0.9826  0.0123
+DAIGT V2 DeBERTa backtranslation       NaN        0.9949  0.9767  0.0182
+     HC3    BERT            typo      0.01        0.9945  0.8936  0.1009
+     HC3    BERT            typo      0.05        0.9945  0.4390  0.5555
+     HC3    BERT            typo      0.10        0.9945  0.3746  0.6199
+     HC3    BERT       homoglyph      0.01        0.9945  0.9611  0.0334
+     HC3    BERT       homoglyph      0.05        0.9945  0.5826  0.4119
+     HC3    BERT       homoglyph      0.10        0.9945  0.4351  0.5594
+     HC3    BERT backtranslation       NaN        0.9945  0.9872  0.0073
+     HC3 DeBERTa            typo      0.01        0.9980  0.9821  0.0159
+     HC3 DeBERTa            typo      0.05        0.9980  0.5524  0.4456
+     HC3 DeBERTa            typo      0.10        0.9980  0.3644  0.6336
+     HC3 DeBERTa       homoglyph      0.01        0.9980  0.9964  0.0016
+     HC3 DeBERTa       homoglyph      0.05        0.9980  0.9581  0.0399
+     HC3 DeBERTa       homoglyph      0.10        0.9980  0.7878  0.2102
+     HC3 DeBERTa backtranslation       NaN        0.9980  0.9773  0.0207
+
+written to: /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/table_adversarial_robustness.csv

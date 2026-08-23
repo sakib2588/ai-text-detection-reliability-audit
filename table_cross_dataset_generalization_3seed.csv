@@ -1,0 +1,5 @@
+trained_on,model,n_seeds,in_domain_f1_mean,cross_domain_f1_mean,cross_domain_f1_min,cross_domain_f1_max,generalization_gap_mean,generalization_gap_min,generalization_gap_max
+DAIGT V2,BERT,3,0.9921,0.7902,0.7696,0.8103,0.2019,0.1817,0.222
+DAIGT V2,DeBERTa,3,0.993,0.9096,0.8907,0.9259,0.0833,0.0672,0.101
+HC3,BERT,3,0.993,0.8311,0.813,0.8523,0.1619,0.14,0.1822
+HC3,DeBERTa,3,0.997,0.8512,0.8304,0.8874,0.1458,0.1098,0.1668

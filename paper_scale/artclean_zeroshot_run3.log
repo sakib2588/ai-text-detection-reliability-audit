@@ -1,0 +1,23 @@
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D2_DeBERTa' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/models/D2_DeBERTa' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+running artifact-cleaning zero-shot eval on device: cpu (set NLP_CROSS_DEVICE=cuda to use the GPU once it is free)
+[skip] artclean_zeroshot_D1_BERT_raw                  f1=0.9916
+[skip] artclean_zeroshot_D1_BERT_cleaned              f1=0.9916
+[skip] artclean_zeroshot_D1_DeBERTa_raw               f1=0.9917
+[skip] artclean_zeroshot_D1_DeBERTa_cleaned           f1=0.9917
+[skip] artclean_zeroshot_D2_BERT_raw                  f1=0.9917
+[skip] artclean_zeroshot_D2_BERT_cleaned              f1=0.9917
+scoring DeBERTa (trained on HC3, raw) under condition=raw ...
+[done] artclean_zeroshot_D2_DeBERTa_raw               f1=0.9973  (32.8 min)
+scoring DeBERTa (trained on HC3, raw) under condition=cleaned ...
+[done] artclean_zeroshot_D2_DeBERTa_cleaned           f1=0.9906  (43.0 min)
+
+ dataset   model  raw_f1  cleaned_f1  delta
+DAIGT V2    BERT  0.9916      0.9916 0.0000
+DAIGT V2 DeBERTa  0.9917      0.9917 0.0000
+     HC3    BERT  0.9917      0.9917 0.0000
+     HC3 DeBERTa  0.9973      0.9906 0.0067
+
+written to: /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/table_artifact_cleaning_zeroshot.csv
+
+Sanity check: raw_f1 should match the in-domain baseline already in table2_combined_full.csv (re-scoring the same checkpoint on unperturbed text should reproduce the known number).

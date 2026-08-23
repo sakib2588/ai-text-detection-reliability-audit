@@ -1,0 +1,27 @@
+{
+  "key": "adv_D1_DeBERTa_typo_05",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "DeBERTa",
+  "attack": "typo",
+  "strength": 0.05,
+  "n_test": 6998,
+  "perturb_seconds": 2.5,
+  "eval_seconds": 1302.5,
+  "test": {
+    "accuracy": 0.9836,
+    "precision": 0.9836,
+    "recall": 0.9836,
+    "f1": 0.9836
+  },
+  "test_confusion": [
+    [
+      3459,
+      60
+    ],
+    [
+      55,
+      3424
+    ]
+  ]
+}

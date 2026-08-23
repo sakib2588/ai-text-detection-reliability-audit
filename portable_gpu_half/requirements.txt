@@ -1,0 +1,28 @@
+# NLP Final Term Project, Group 02 -- your half of the BERT/DeBERTa sweep
+#
+# IMPORTANT: install torch FIRST, separately, using the command below.
+# Do NOT add torch to this file with a version pin copied from someone else's
+# pip freeze -- that is what caused the earlier "nvidia-cufile-cu12" error.
+# That package is Linux-only (no Windows wheel exists at all), and it only
+# showed up because it was a transitive dependency captured on a Linux machine.
+# Installing from the official index below avoids that entirely: pip resolves
+# the correct Windows-specific CUDA dependencies on its own.
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+#
+# THEN install this file:
+#
+#   pip install -r requirements.txt
+#
+# transformers is pinned exactly on purpose: version 5.x removed the
+# warmup_ratio argument that this project's specification requires. Do not
+# let pip upgrade it past 4.57.6.
+transformers==4.57.6
+accelerate>=1.0
+datasets>=5.0
+sentencepiece>=0.2
+protobuf>=4.25
+scikit-learn>=1.4
+pandas>=2.0
+numpy>=1.26
+pyarrow>=14.0

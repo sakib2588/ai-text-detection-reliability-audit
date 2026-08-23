@@ -1,0 +1,258 @@
+{
+  "split": {
+    "D1": {
+      "train": 4320,
+      "val": 480,
+      "test": 1200
+    },
+    "D2": {
+      "train": 4320,
+      "val": 480,
+      "test": 1200
+    }
+  },
+  "midterm_reproduced": true,
+  "length_stats": [
+    {
+      "dataset": "D1",
+      "name": "DAIGT V2",
+      "median": 409,
+      "mean": 439.8,
+      "p95": 803,
+      "max": 1759,
+      "pct_truncated": 99.6,
+      "median_pct_kept": 31.3
+    },
+    {
+      "dataset": "D2",
+      "name": "HC3",
+      "median": 165,
+      "mean": 181.9,
+      "p95": 376,
+      "max": 8753,
+      "pct_truncated": 61.1,
+      "median_pct_kept": 77.6
+    }
+  ],
+  "ensemble": {
+    "D1": {
+      "weight_bert": 0.35000000000000003,
+      "weight_deberta": 0.65,
+      "member_bert": "D1_BERT_lr3e-05_bs32_wd0.1_s42",
+      "member_deberta": "D1_DeBERTa_lr3e-05_bs16_wd0.01_s42",
+      "member_bert_test_f1": 0.9908,
+      "member_deberta_test_f1": 0.9933,
+      "ensemble_test_f1": 0.9925,
+      "degenerate": false,
+      "confusion": [
+        [
+          599,
+          1
+        ],
+        [
+          8,
+          592
+        ]
+      ]
+    },
+    "D2": {
+      "weight_bert": 0.0,
+      "weight_deberta": 1.0,
+      "member_bert": "D2_BERT_lr2e-05_bs16_wd0.1_s42",
+      "member_deberta": "D2_DeBERTa_lr3e-05_bs16_wd0.1_s42",
+      "member_bert_test_f1": 0.9875,
+      "member_deberta_test_f1": 0.9992,
+      "ensemble_test_f1": 0.9992,
+      "degenerate": true,
+      "confusion": [
+        [
+          599,
+          1
+        ],
+        [
+          0,
+          600
+        ]
+      ]
+    }
+  },
+  "seed_robustness": [
+    {
+      "dataset": "D1",
+      "model": "BERT",
+      "config": "lr=3e-05 bs=32 wd=0.1",
+      "seeds": "42/123/456",
+      "f1_values": [
+        0.9908,
+        0.985,
+        0.9641
+      ],
+      "mean_f1": 0.98,
+      "min_f1": 0.9641,
+      "max_f1": 0.9908,
+      "spread": 0.0267
+    },
+    {
+      "dataset": "D1",
+      "model": "DeBERTa",
+      "config": "lr=3e-05 bs=16 wd=0.01",
+      "seeds": "42/123/456",
+      "f1_values": [
+        0.9933,
+        0.99,
+        0.9917
+      ],
+      "mean_f1": 0.9917,
+      "min_f1": 0.99,
+      "max_f1": 0.9933,
+      "spread": 0.0033
+    },
+    {
+      "dataset": "D2",
+      "model": "BERT",
+      "config": "lr=2e-05 bs=16 wd=0.1",
+      "seeds": "42/123/456",
+      "f1_values": [
+        0.9875,
+        0.9817,
+        0.9867
+      ],
+      "mean_f1": 0.9853,
+      "min_f1": 0.9817,
+      "max_f1": 0.9875,
+      "spread": 0.0058
+    },
+    {
+      "dataset": "D2",
+      "model": "DeBERTa",
+      "config": "lr=3e-05 bs=16 wd=0.1",
+      "seeds": "42/123/456",
+      "f1_values": [
+        0.9992,
+        0.9967,
+        0.9983
+      ],
+      "mean_f1": 0.9981,
+      "min_f1": 0.9967,
+      "max_f1": 0.9992,
+      "spread": 0.0025
+    }
+  ],
+  "n_sweep_runs": 32,
+  "transformers_version": "4.57.6",
+  "torch_version": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "contamination": {
+    "D1": {
+      "test_size": 1200,
+      "leaked": 0,
+      "degenerate": 0,
+      "excluded": 0,
+      "pct_of_test": 0.0,
+      "rows": []
+    },
+    "D2": {
+      "test_size": 1200,
+      "leaked": 8,
+      "degenerate": 0,
+      "excluded": 8,
+      "pct_of_test": 0.67,
+      "rows": [
+        2108,
+        2278,
+        2691,
+        2937,
+        3786,
+        4098,
+        4372,
+        4568
+      ]
+    }
+  },
+  "sensitivity": [
+    {
+      "dataset": "D1",
+      "Model": "Naive Bayes (BoW)",
+      "F1 full test": 0.9566,
+      "F1 clean test": 0.9566,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D1",
+      "Model": "Logistic Regression (BoW)",
+      "F1 full test": 0.9825,
+      "F1 clean test": 0.9825,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D1",
+      "Model": "Support Vector Machine (TF-IDF)",
+      "F1 full test": 0.9875,
+      "F1 clean test": 0.9875,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D1",
+      "Model": "BERT",
+      "F1 full test": 0.9908,
+      "F1 clean test": 0.9908,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D1",
+      "Model": "DeBERTa",
+      "F1 full test": 0.9933,
+      "F1 clean test": 0.9933,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D1",
+      "Model": "ENSEMBLE",
+      "F1 full test": 0.9925,
+      "F1 clean test": 0.9925,
+      "delta": 0.0
+    },
+    {
+      "dataset": "D2",
+      "Model": "Naive Bayes (BoW)",
+      "F1 full test": 0.8583,
+      "F1 clean test": 0.8573,
+      "delta": -0.001
+    },
+    {
+      "dataset": "D2",
+      "Model": "Logistic Regression (BoW)",
+      "F1 full test": 0.9333,
+      "F1 clean test": 0.9328,
+      "delta": -0.0004
+    },
+    {
+      "dataset": "D2",
+      "Model": "Support Vector Machine (TF-IDF)",
+      "F1 full test": 0.9083,
+      "F1 clean test": 0.9077,
+      "delta": -0.0006
+    },
+    {
+      "dataset": "D2",
+      "Model": "BERT",
+      "F1 full test": 0.9875,
+      "F1 clean test": 0.9874,
+      "delta": -0.0001
+    },
+    {
+      "dataset": "D2",
+      "Model": "DeBERTa",
+      "F1 full test": 0.9992,
+      "F1 clean test": 0.9992,
+      "delta": -0.0
+    },
+    {
+      "dataset": "D2",
+      "Model": "ENSEMBLE",
+      "F1 full test": 0.9992,
+      "F1 clean test": 0.9992,
+      "delta": -0.0
+    }
+  ]
+}

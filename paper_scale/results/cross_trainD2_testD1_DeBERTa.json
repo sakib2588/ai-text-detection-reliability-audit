@@ -1,0 +1,26 @@
+{
+  "key": "cross_trainD2_testD1_DeBERTa",
+  "train_dataset": "D2",
+  "test_dataset": "D1",
+  "train_dataset_name": "HC3",
+  "test_dataset_name": "DAIGT V2",
+  "model": "DeBERTa",
+  "n_test": 6998,
+  "eval_seconds": 845.7,
+  "test": {
+    "accuracy": 0.8874,
+    "precision": 0.8874,
+    "recall": 0.8874,
+    "f1": 0.8874
+  },
+  "test_confusion": [
+    [
+      3135,
+      384
+    ],
+    [
+      404,
+      3075
+    ]
+  ]
+}

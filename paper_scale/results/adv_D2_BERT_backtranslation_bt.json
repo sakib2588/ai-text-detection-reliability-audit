@@ -1,0 +1,27 @@
+{
+  "key": "adv_D2_BERT_backtranslation_bt",
+  "dataset": "D2",
+  "dataset_name": "HC3",
+  "model": "BERT",
+  "attack": "backtranslation",
+  "strength": null,
+  "n_test": 10732,
+  "perturb_seconds": 3960.3,
+  "eval_seconds": 42.2,
+  "test": {
+    "accuracy": 0.9872,
+    "precision": 0.9872,
+    "recall": 0.9872,
+    "f1": 0.9872
+  },
+  "test_confusion": [
+    [
+      5309,
+      68
+    ],
+    [
+      69,
+      5286
+    ]
+  ]
+}

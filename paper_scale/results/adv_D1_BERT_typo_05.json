@@ -1,0 +1,27 @@
+{
+  "key": "adv_D1_BERT_typo_05",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "BERT",
+  "attack": "typo",
+  "strength": 0.05,
+  "n_test": 6998,
+  "perturb_seconds": 2.1,
+  "eval_seconds": 742.5,
+  "test": {
+    "accuracy": 0.9113,
+    "precision": 0.9234,
+    "recall": 0.9113,
+    "f1": 0.9106
+  },
+  "test_confusion": [
+    [
+      3506,
+      13
+    ],
+    [
+      608,
+      2871
+    ]
+  ]
+}

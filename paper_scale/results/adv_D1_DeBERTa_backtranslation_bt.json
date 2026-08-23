@@ -1,0 +1,27 @@
+{
+  "key": "adv_D1_DeBERTa_backtranslation_bt",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "DeBERTa",
+  "attack": "backtranslation",
+  "strength": null,
+  "n_test": 6998,
+  "perturb_seconds": 2677.8,
+  "eval_seconds": 52.0,
+  "test": {
+    "accuracy": 0.9767,
+    "precision": 0.9771,
+    "recall": 0.9767,
+    "f1": 0.9767
+  },
+  "test_confusion": [
+    [
+      3491,
+      28
+    ],
+    [
+      135,
+      3344
+    ]
+  ]
+}

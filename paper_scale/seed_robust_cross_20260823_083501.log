@@ -1,0 +1,33 @@
+=== stage 1/2: retrain_seeds_for_cross.py (GPU) ===
+[skip] retrain 1/8  D1 BERT seed=123 -- weights already on disk
+[skip] retrain 2/8  D1 BERT seed=456 -- weights already on disk
+[skip] retrain 3/8  D1 DeBERTa seed=123 -- weights already on disk
+[skip] retrain 4/8  D1 DeBERTa seed=456 -- weights already on disk
+[skip] retrain 5/8  D2 BERT seed=123 -- weights already on disk
+[skip] retrain 6/8  D2 BERT seed=456 -- weights already on disk
+[skip] retrain 7/8  D2 DeBERTa seed=123 -- weights already on disk
+[skip] retrain 8/8  D2 DeBERTa seed=456 -- weights already on disk
+RESEED-FOR-CROSS COMPLETE in 0.00 hours
+=== stage 2/2: cross_dataset_eval_multiseed.py (CPU) ===
+running 3-seed cross-dataset eval on device: cpu
+[skip] cross_trainD1_testD2_BERT                      cross_f1=0.7696
+[skip] cross_trainD1_testD2_BERT_s123                 cross_f1=0.7908
+[skip] cross_trainD1_testD2_BERT_s456                 cross_f1=0.8103
+[skip] cross_trainD1_testD2_DeBERTa                   cross_f1=0.8907
+[skip] cross_trainD1_testD2_DeBERTa_s123              cross_f1=0.9123
+[skip] cross_trainD1_testD2_DeBERTa_s456              cross_f1=0.9259
+[skip] cross_trainD2_testD1_BERT                      cross_f1=0.8281
+[skip] cross_trainD2_testD1_BERT_s123                 cross_f1=0.8130
+[skip] cross_trainD2_testD1_BERT_s456                 cross_f1=0.8523
+[skip] cross_trainD2_testD1_DeBERTa                   cross_f1=0.8874
+[skip] cross_trainD2_testD1_DeBERTa_s123              cross_f1=0.8304
+[skip] cross_trainD2_testD1_DeBERTa_s456              cross_f1=0.8358
+
+trained_on   model  n_seeds  in_domain_f1_mean  cross_domain_f1_mean  cross_domain_f1_min  cross_domain_f1_max  generalization_gap_mean  generalization_gap_min  generalization_gap_max
+  DAIGT V2    BERT        3             0.9921                0.7902               0.7696               0.8103                   0.2019                  0.1817                  0.2220
+  DAIGT V2 DeBERTa        3             0.9930                0.9096               0.8907               0.9259                   0.0833                  0.0672                  0.1010
+       HC3    BERT        3             0.9930                0.8311               0.8130               0.8523                   0.1619                  0.1400                  0.1822
+       HC3 DeBERTa        3             0.9970                0.8512               0.8304               0.8874                   0.1458                  0.1098                  0.1668
+
+written to: /media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/table_cross_dataset_generalization_3seed.csv
+=== CHAIN COMPLETE ===

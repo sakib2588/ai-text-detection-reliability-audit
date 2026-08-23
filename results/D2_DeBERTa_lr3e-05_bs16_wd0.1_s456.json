@@ -1,0 +1,54 @@
+{
+  "key": "D2_DeBERTa_lr3e-05_bs16_wd0.1_s456",
+  "dataset": "D2",
+  "dataset_name": "HC3",
+  "model": "DeBERTa",
+  "checkpoint": "microsoft/deberta-v3-base",
+  "lr": 3e-05,
+  "batch_size": 16,
+  "per_device_batch_size": 16,
+  "gradient_accumulation_steps": 1,
+  "weight_decay": 0.1,
+  "seed": 456,
+  "max_len": 128,
+  "epochs_requested": 5,
+  "train_seconds": 256.5,
+  "epochs_run": 5,
+  "best_checkpoint_metric": 0.9874991318841587,
+  "peak_vram_gib": 4.22,
+  "resumed": false,
+  "val": {
+    "accuracy": 0.9875,
+    "precision": 0.9876,
+    "recall": 0.9875,
+    "f1": 0.9875
+  },
+  "val_confusion": [
+    [
+      235,
+      5
+    ],
+    [
+      1,
+      239
+    ]
+  ],
+  "val_macro_f1": 0.9875,
+  "test": {
+    "accuracy": 0.9983,
+    "precision": 0.9983,
+    "recall": 0.9983,
+    "f1": 0.9983
+  },
+  "test_confusion": [
+    [
+      598,
+      2
+    ],
+    [
+      0,
+      600
+    ]
+  ],
+  "test_macro_f1": 0.9983
+}
