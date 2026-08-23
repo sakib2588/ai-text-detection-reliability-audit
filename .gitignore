@@ -1,0 +1,31 @@
+# Model checkpoints (large binaries, reproducible via paper_scale/run_*.py)
+models/
+paper_scale/models/
+*.safetensors
+
+# Raw/processed data (reproducible via build_full_splits.py from source CSV/JSONL)
+*.parquet
+paper_scale/work/*.npz
+work/*.npz
+paper_scale/work/split_*.npz
+work/data_*.parquet
+
+# Portable-run source data copies
+portable_full_dataset/daigt.csv
+portable_full_dataset/hc3.jsonl
+portable_classical_only/data_*.parquet
+portable_gpu_half/data_*.parquet
+
+# Large archives
+*.zip
+
+# Prediction probability arrays (large, regeneratable from checkpoints)
+probs/*.npz
+paper_scale/probs/*.npz
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Editor/OS
+.DS_Store

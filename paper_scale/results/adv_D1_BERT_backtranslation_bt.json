@@ -1,0 +1,27 @@
+{
+  "key": "adv_D1_BERT_backtranslation_bt",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "BERT",
+  "attack": "backtranslation",
+  "strength": null,
+  "n_test": 6998,
+  "perturb_seconds": 2764.4,
+  "eval_seconds": 31.8,
+  "test": {
+    "accuracy": 0.9856,
+    "precision": 0.9857,
+    "recall": 0.9856,
+    "f1": 0.9856
+  },
+  "test_confusion": [
+    [
+      3444,
+      75
+    ],
+    [
+      26,
+      3453
+    ]
+  ]
+}

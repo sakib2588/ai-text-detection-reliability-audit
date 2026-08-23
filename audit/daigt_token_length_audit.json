@@ -1,0 +1,28 @@
+{
+  "source_file": "/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/work/data_D1.parquet",
+  "tokenizer": "bert-base-uncased",
+  "sample_n": 2000,
+  "sample_seed": 42,
+  "overall": {
+    "median_len": 415.0,
+    "mean_len": 442.67,
+    "max_len": 1826,
+    "pct_exceeding_128": 99.7,
+    "median_pct_kept_at_128": 30.843373493975907
+  },
+  "by_label": {
+    "human": {
+      "n": 1020,
+      "median_len": 448.5,
+      "mean_len": 487.7274509803922,
+      "pct_exceeding_128": 100.0
+    },
+    "ai": {
+      "n": 980,
+      "median_len": 398.5,
+      "mean_len": 395.7734693877551,
+      "pct_exceeding_128": 99.38775510204081
+    }
+  },
+  "length_asymmetry_pct": 12.547051442910917
+}

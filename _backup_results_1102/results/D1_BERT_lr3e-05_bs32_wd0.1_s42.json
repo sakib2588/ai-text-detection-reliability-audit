@@ -1,0 +1,54 @@
+{
+  "key": "D1_BERT_lr3e-05_bs32_wd0.1_s42",
+  "dataset": "D1",
+  "dataset_name": "DAIGT V2",
+  "model": "BERT",
+  "checkpoint": "bert-base-uncased",
+  "lr": 3e-05,
+  "batch_size": 32,
+  "per_device_batch_size": 32,
+  "gradient_accumulation_steps": 1,
+  "weight_decay": 0.1,
+  "seed": 42,
+  "max_len": 128,
+  "epochs_requested": 5,
+  "train_seconds": 103.8,
+  "epochs_run": 4,
+  "best_checkpoint_metric": 0.9854166033706745,
+  "peak_vram_gib": 2.96,
+  "resumed": false,
+  "val": {
+    "accuracy": 0.9854,
+    "precision": 0.9854,
+    "recall": 0.9854,
+    "f1": 0.9854
+  },
+  "val_confusion": [
+    [
+      237,
+      3
+    ],
+    [
+      4,
+      236
+    ]
+  ],
+  "val_macro_f1": 0.9854,
+  "test": {
+    "accuracy": 0.9908,
+    "precision": 0.9909,
+    "recall": 0.9908,
+    "f1": 0.9908
+  },
+  "test_confusion": [
+    [
+      598,
+      2
+    ],
+    [
+      9,
+      591
+    ]
+  ],
+  "test_macro_f1": 0.9908
+}

@@ -1,0 +1,3 @@
+dataset,name,median,mean,p95,max,pct_truncated,median_pct_kept
+D1,DAIGT V2,409,439.8,803,1759,99.6,31.3
+D2,HC3,165,181.9,376,8753,61.1,77.6

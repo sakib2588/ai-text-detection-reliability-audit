@@ -1,0 +1,99 @@
+{
+  "filepath": "refs.bib",
+  "total_entries": 31,
+  "valid_entries": 26,
+  "errors": [
+    {
+      "type": "missing_required_field",
+      "field": "year",
+      "severity": "high",
+      "message": "Entry Zeyadusf2024catch: Missing required field \"year\"",
+      "entry": "Zeyadusf2024catch"
+    },
+    {
+      "type": "missing_required_field",
+      "field": "year",
+      "severity": "high",
+      "message": "Entry Neo2024didai: Missing required field \"year\"",
+      "entry": "Neo2024didai"
+    },
+    {
+      "type": "missing_required_field",
+      "field": "booktitle",
+      "severity": "high",
+      "message": "Entry Arun2026analyzing: Missing required field \"booktitle\"",
+      "entry": "Arun2026analyzing"
+    },
+    {
+      "type": "missing_required_field",
+      "field": "publisher",
+      "severity": "high",
+      "message": "Entry Arun2026analyzing: Missing required field \"publisher\"",
+      "entry": "Arun2026analyzing"
+    },
+    {
+      "type": "missing_required_field",
+      "field": "author",
+      "severity": "high",
+      "message": "Entry WPI2024supervised: Missing required field \"author\"",
+      "entry": "WPI2024supervised"
+    }
+  ],
+  "warnings": [
+    {
+      "type": "missing_recommended_field",
+      "field": "pages",
+      "severity": "medium",
+      "message": "Entry Ansary2026multirepresentation: Missing recommended field \"pages\"",
+      "entry": "Ansary2026multirepresentation"
+    },
+    {
+      "type": "missing_recommended_field",
+      "field": "pages",
+      "severity": "medium",
+      "message": "Entry Annepaka2026synergizing: Missing recommended field \"pages\"",
+      "entry": "Annepaka2026synergizing"
+    },
+    {
+      "type": "missing_recommended_field",
+      "field": "pages",
+      "severity": "medium",
+      "message": "Entry Yadagiri2025aigenerated: Missing recommended field \"pages\"",
+      "entry": "Yadagiri2025aigenerated"
+    },
+    {
+      "type": "missing_recommended_field",
+      "field": "pages",
+      "severity": "medium",
+      "message": "Entry Zhou2024exploiting: Missing recommended field \"pages\"",
+      "entry": "Zhou2024exploiting"
+    },
+    {
+      "type": "missing_recommended_field",
+      "field": "doi",
+      "severity": "medium",
+      "message": "Entry Zhou2024exploiting: Missing recommended field \"doi\"",
+      "entry": "Zhou2024exploiting"
+    }
+  ],
+  "duplicates": [
+    {
+      "type": "similar_title",
+      "entries": [
+        "Alikhanov2026generated",
+        "Yadagiri2025aigenerated"
+      ],
+      "severity": "medium",
+      "message": "Possible duplicate: \"Alikhanov2026generated\" and \"Yadagiri2025aigenerated\" have identical titles"
+    },
+    {
+      "type": "similar_title",
+      "entries": [
+        "Zeyadusf2024catch",
+        "Thedrcat2023daigtv2"
+      ],
+      "severity": "medium",
+      "message": "Possible duplicate: \"Zeyadusf2024catch\" and \"Thedrcat2023daigtv2\" have identical titles"
+    }
+  ]
+}
