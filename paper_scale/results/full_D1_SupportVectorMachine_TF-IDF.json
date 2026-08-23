@@ -1,0 +1,24 @@
+{
+  "key": "full_D1_SupportVectorMachine_TF-IDF",
+  "dataset": "D1",
+  "model": "Support Vector Machine",
+  "representation": "TF-IDF",
+  "n_train": 25196,
+  "n_test": 6998,
+  "test": {
+    "accuracy": 0.991,
+    "precision": 0.9911,
+    "recall": 0.991,
+    "f1": 0.991
+  },
+  "test_confusion": [
+    [
+      3507,
+      12
+    ],
+    [
+      51,
+      3428
+    ]
+  ]
+}

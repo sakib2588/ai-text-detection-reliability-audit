@@ -1,0 +1,114 @@
+[
+  {
+    "key": "D1_BERT_lr2e-05_bs16_wd0.01_s42",
+    "test_f1": 0.9717,
+    "val_f1": 0.9708,
+    "train_seconds": 31.1,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_BERT_lr3e-05_bs16_wd0.01_s42",
+    "test_f1": 0.9733,
+    "val_f1": 0.9687,
+    "train_seconds": 31.0,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_DeBERTa_lr2e-05_bs16_wd0.01_s42",
+    "test_f1": 0.9792,
+    "val_f1": 0.9708,
+    "train_seconds": 53.1,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_DeBERTa_lr3e-05_bs16_wd0.01_s42",
+    "test_f1": 0.985,
+    "val_f1": 0.9833,
+    "train_seconds": 52.7,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_BERT_lr2e-05_bs16_wd0.01_s42",
+    "test_f1": 0.9633,
+    "val_f1": 0.9541,
+    "train_seconds": 31.8,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_BERT_lr3e-05_bs16_wd0.01_s42",
+    "test_f1": 0.965,
+    "val_f1": 0.9604,
+    "train_seconds": 31.5,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_DeBERTa_lr2e-05_bs16_wd0.01_s42",
+    "test_f1": 0.985,
+    "val_f1": 0.9792,
+    "train_seconds": 52.2,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_DeBERTa_lr3e-05_bs16_wd0.01_s42",
+    "test_f1": 0.985,
+    "val_f1": 0.9792,
+    "train_seconds": 53.4,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_BERT_lr2e-05_bs16_wd0.01_s123",
+    "test_f1": 0.9708,
+    "val_f1": 0.9667,
+    "train_seconds": 31.2,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_BERT_lr2e-05_bs16_wd0.01_s456",
+    "test_f1": 0.9658,
+    "val_f1": 0.9499,
+    "train_seconds": 31.0,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_DeBERTa_lr3e-05_bs16_wd0.01_s123",
+    "test_f1": 0.9867,
+    "val_f1": 0.9812,
+    "train_seconds": 52.4,
+    "epochs_run": 1
+  },
+  {
+    "key": "D1_DeBERTa_lr3e-05_bs16_wd0.01_s456",
+    "test_f1": 0.9908,
+    "val_f1": 0.9854,
+    "train_seconds": 53.2,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_BERT_lr3e-05_bs16_wd0.01_s123",
+    "test_f1": 0.9666,
+    "val_f1": 0.9645,
+    "train_seconds": 32.2,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_BERT_lr3e-05_bs16_wd0.01_s456",
+    "test_f1": 0.9708,
+    "val_f1": 0.9708,
+    "train_seconds": 31.4,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_DeBERTa_lr2e-05_bs16_wd0.01_s123",
+    "test_f1": 0.9875,
+    "val_f1": 0.9875,
+    "train_seconds": 53.2,
+    "epochs_run": 1
+  },
+  {
+    "key": "D2_DeBERTa_lr2e-05_bs16_wd0.01_s456",
+    "test_f1": 0.9858,
+    "val_f1": 0.9771,
+    "train_seconds": 54.2,
+    "epochs_run": 1
+  }
+]
