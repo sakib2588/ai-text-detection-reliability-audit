@@ -1,0 +1,200 @@
+{
+ "D1": {
+  "dataset": "DAIGT V2",
+  "classifier": "LogisticRegression(max_iter=1000) on 47 surface features",
+  "explainer": "shap.LinearExplainer, exact for a linear model",
+  "background_samples": 2000,
+  "n_explained": 2000,
+  "top_features": [
+   {
+    "feature": "length, chars",
+    "mean_abs_shap": 2.774,
+    "coefficient": -3.8577,
+    "drives": "human"
+   },
+   {
+    "feature": "mean word length",
+    "mean_abs_shap": 1.8841,
+    "coefficient": 4.3634,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "uppercase-char %",
+    "mean_abs_shap": 1.7439,
+    "coefficient": -3.7698,
+    "drives": "human"
+   },
+   {
+    "feature": "length, words",
+    "mean_abs_shap": 1.6646,
+    "coefficient": 2.3286,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "capitalised-word %",
+    "mean_abs_shap": 1.4876,
+    "coefficient": 2.2002,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "rate of ','",
+    "mean_abs_shap": 1.4097,
+    "coefficient": 1.9023,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "space-before-punct (rate)",
+    "mean_abs_shap": 0.7718,
+    "coefficient": -2.2453,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of '\"'",
+    "mean_abs_shap": 0.5299,
+    "coefficient": -0.7763,
+    "drives": "human"
+   },
+   {
+    "feature": "non-ASCII rate",
+    "mean_abs_shap": 0.5033,
+    "coefficient": -2.7116,
+    "drives": "human"
+   },
+   {
+    "feature": "emoji count",
+    "mean_abs_shap": 0.4866,
+    "coefficient": 2.3795,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "double-space rate",
+    "mean_abs_shap": 0.459,
+    "coefficient": -3.2612,
+    "drives": "human"
+   },
+   {
+    "feature": "digit rate",
+    "mean_abs_shap": 0.376,
+    "coefficient": -0.6396,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of '*'",
+    "mean_abs_shap": 0.3675,
+    "coefficient": 2.1447,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "space-before-punct (count)",
+    "mean_abs_shap": 0.3479,
+    "coefficient": -1.0171,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of '.'",
+    "mean_abs_shap": 0.3241,
+    "coefficient": -0.451,
+    "drives": "human"
+   }
+  ]
+ },
+ "D2": {
+  "dataset": "HC3",
+  "classifier": "LogisticRegression(max_iter=1000) on 47 surface features",
+  "explainer": "shap.LinearExplainer, exact for a linear model",
+  "background_samples": 2000,
+  "n_explained": 2000,
+  "top_features": [
+   {
+    "feature": "space-before-punct (rate)",
+    "mean_abs_shap": 7.8126,
+    "coefficient": -8.8516,
+    "drives": "human"
+   },
+   {
+    "feature": "length, words",
+    "mean_abs_shap": 3.3502,
+    "coefficient": 5.0827,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "length, chars",
+    "mean_abs_shap": 1.967,
+    "coefficient": -2.799,
+    "drives": "human"
+   },
+   {
+    "feature": "space-before-punct (count)",
+    "mean_abs_shap": 1.2019,
+    "coefficient": -2.1252,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of ')'",
+    "mean_abs_shap": 1.0147,
+    "coefficient": -1.7806,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of 'backslash'",
+    "mean_abs_shap": 0.817,
+    "coefficient": 2.0711,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "rate of '('",
+    "mean_abs_shap": 0.5837,
+    "coefficient": 1.0159,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "double-space rate",
+    "mean_abs_shap": 0.5502,
+    "coefficient": -4.121,
+    "drives": "human"
+   },
+   {
+    "feature": "newline rate",
+    "mean_abs_shap": 0.5477,
+    "coefficient": 1.3353,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "sentence count",
+    "mean_abs_shap": 0.5045,
+    "coefficient": -0.7792,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of ']'",
+    "mean_abs_shap": 0.3372,
+    "coefficient": -1.2258,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of '['",
+    "mean_abs_shap": 0.3372,
+    "coefficient": -1.2257,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of ','",
+    "mean_abs_shap": 0.3216,
+    "coefficient": 0.4365,
+    "drives": "machine-generated"
+   },
+   {
+    "feature": "rate of '~'",
+    "mean_abs_shap": 0.2956,
+    "coefficient": -2.5168,
+    "drives": "human"
+   },
+   {
+    "feature": "rate of '.'",
+    "mean_abs_shap": 0.238,
+    "coefficient": -0.4267,
+    "drives": "human"
+   }
+  ]
+ }
+}
