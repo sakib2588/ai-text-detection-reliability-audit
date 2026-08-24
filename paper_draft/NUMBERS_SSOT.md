@@ -20,10 +20,22 @@ checkpoints are D2_BERT **0.9916** (not 0.9945), D2_DeBERTa **0.9972** (not 0.99
 **0.9917** (not 0.9949). Corrected typo-10 drops: D1 BERT 0.1950, D1 DeBERTa 0.0327, D2 BERT
 0.6170, D2 DeBERTa 0.6328.
 
-**R3. The noise band 0.0011 was cherry-picked** — smallest of four measured seed spreads. The
-band for the relevant config is **0.0036**, and it is a *range over n=3*, not an SD, whose own
-sampling error exceeds every delta previously tested against it. Use paired McNemar on the
-existing `.npz` predictions instead.
+**R3. The noise band 0.0011 was cherry-picked** — smallest of four measured seed spreads.
+**CORRECTED 2026-08-24: the replacement, 0.0036, was cherry-picked the other way.** It is the
+spread of `full_D2_BERT_lr2e-05_bs16_wd0.1`, i.e. HC3/BERT, and the ICCIT paper was applying it
+as a noise floor to a DAIGT-V2 DeBERTa-vs-SVM comparison. Never borrow a spread across a dataset
+or a model family. All four measured spreads, from `audit/paper_claim_verification.json`:
+
+| config | n | spread |
+|---|---|---|
+| `full_D1_BERT_lr3e-05_bs32_wd0.1` | 3 | 0.0011 |
+| `full_D1_DeBERTa_lr3e-05_bs16_wd0.01` | 3 | 0.0024 |
+| `full_D2_BERT_lr2e-05_bs16_wd0.1` | 3 | 0.0036 |
+| `full_D2_DeBERTa_lr3e-05_bs16_wd0.1` | 3 | 0.0005 |
+
+A range over n=3 is not a test statistic in any case. Use paired McNemar and a paired bootstrap
+on the existing `.npz` predictions instead. This is now done for every comparison the ICCIT
+paper draws.
 
 **R4. "Below chance" is a misreading.** Weighted F1 floors at 0.333 for an all-one-class
 predictor on a 50/50 split; guessing is ~0.50. The observed 0.3644 is 1.4% above total
@@ -118,7 +130,14 @@ Source: `Final/audit/daigt_full_audit.json`, `Final/audit/hc3_full_audit.json`
 | Cross-label texts | 0 | 0 |
 | Artefact rows (e.g. API-error text stored as answer) | n/a | 476 ChatGPT-side, 7 human-side |
 
-**OPEN — do not cite yet:** the "11.2–11.3% test-set leakage under naive
+**CLOSED 2026-08-24 — the 11.2—11.3% figure is WRONG, the measured value is 5.30%.**
+`audit/verify_paper_claims.py` measures exact-text leakage on both split variants directly from
+`paper_scale/work/`. Group-aware split (the one every reported number uses): **0 of 10,732 HC3
+test rows, 0.00%**, and DAIGT V2 **0 of 6,998**. Naive stratified split of the same balanced
+sample: HC3 **570 of 10,762, 5.30%**, DAIGT V2 **0**. The wrong figure has been removed from
+`build_full_splits.py`'s docstring, where it originated. Original note kept below for the record.
+
+**(superseded)** **OPEN — do not cite yet:** the "11.2–11.3% test-set leakage under naive
 80/20 split" figure used in earlier session summaries has **no located source
 file**. `hc3_full_audit.json` has no leakage-rate field; `daigt_full_audit.json`'s
 `leakage_by_seed` is null for all 3 seeds (DAIGT has ~zero leakage, consistent
@@ -232,6 +251,33 @@ Macro equals weighted in every arm, so no arm is exploiting class skew.
 - On DAIGT V2 the transformer adds nothing over content-only (0.9917 vs 0.9901); on HC3 it adds
   ~0.03 over either arm.
 
+**PREPROCESSING CORRECTION 2026-08-24.** The content arm applies **no stopword removal and no
+lemmatisation**. Those steps live in `paper_scale/classical_full.py:preprocess`, which feeds the
+Table 1 classical models, not in `surface_content_decomposition.py`, whose content arm is
+`content_normalise()` followed by a bare `CountVectorizer()`. The arm is therefore an *unfiltered*
+bag-of-words, a stronger content model than a filtered one. Any prose describing it as reduced by
+stopword removal is wrong. The script now records this in its own JSON output.
+
+**LENGTH CONTROL 2026-08-24.** The two primary arms are not disjoint. The surface arm reads
+character, word and sentence counts, and raw CountVectorizer rows sum to document length. Closing
+the channel on both sides (`length_controlled` block in the same JSON):
+
+| arm | DAIGT V2 err | HC3 err |
+|---|---|---|
+| length-only (chars, words, sentences) | 24.59% | 15.23% |
+| surface-only, 5 document-size feats dropped | 9.93% | 3.37% |
+| content-only, rows L1-normalised then rescaled | **0.94%** | 6.28% |
+| content-only, rows L1-normalised, NOT rescaled | 9.69% | 14.25% |
+
+Both findings survive and strengthen. DAIGT V2's content advantage widens from 7.9x to 10.6x, and
+HC3's parity becomes a 2.91-point *advantage for orthography*, because removing length costs the
+content arm 3.02 points against the surface arm's 0.18.
+
+**Do not quote the un-rescaled L1 row.** L1 rows sum to 1, shrinking every feature by roughly the
+mean document length, so at fixed `C` the penalty is far heavier and the arm collapses for reasons
+of scale, not length. It converges in 16-24 iterations against 121-192 for the raw-count arm. Same
+class of instrument artifact as R5.
+
 ## 11. Adversarial collapse: interpretation WITHDRAWN
 
 Source: `audit/collapse_probe.py` -> `audit/collapse_probe.json`. Percent classified **human** on
@@ -299,6 +345,108 @@ Macro F1 equals weighted F1 to four decimals in every row. Two observations:
 - **HC3**: best classical 0.9551 vs 0.9972, an error-rate ratio of 16 to one.
 - AUC ordering differs from F1 ordering on DAIGT V2 (BERT 0.999641 > DeBERTa
   0.999144 by AUC, reversed by F1). Report both.
+
+## 14. Split geometry and paired statistics (added 2026-08-24)
+
+Source: `audit/verify_paper_claims.py` -> `audit/paper_claim_verification.json`. Re-runnable on
+CPU in under a minute; every figure below is read from artifacts already on disk.
+
+**The split is 72/8/20, not 80/10/10.** `paper_scale/build_full_splits.py:group_split` takes 20%
+for test, then 10% of the remaining 80% for validation. Both docstrings said 80/10/10 and the
+ICCIT paper inherited it. Corrected in the paper and in both scripts on 2026-08-24.
+
+| dataset | balanced n | train | val | test |
+|---|---|---|---|---|
+| DAIGT V2 | 34,994 | 25,196 (72%) | 2,800 (8%) | 6,998 (20%) |
+| HC3 | 53,806 | 38,785 (72%) | 4,289 (8%) | 10,732 (20%) |
+
+**Whitespace cue, now sourced.** The 10.745 / 0.013 pair quoted in prose had no source file. It
+is the HC3 **test split**, mean space-before-punctuation count per document: human 10.7452,
+machine 0.0134. Balanced-corpus values are 10.7345 and 0.0092, and the cue is present in 88.74%
+of HC3 human documents against 0.28% of machine ones. DAIGT V2 carries the same cue weakly,
+0.5475 against 0.0044 per document, 17.08% against 0.22% of documents.
+
+**Table 1 paired tests.** All sixteen cells carry a bootstrap 95%-CI on error rate (10,000
+resamples). Derived predictions reproduce every recorded error rate to within 5e-4, which is the
+self-check that makes the rest of this block trustworthy.
+
+| comparison | discordant (b:c) | McNemar exact p | error diff | 95% CI |
+|---|---|---|---|---|
+| DAIGT V2, SVM/TF-IDF vs DeBERTa | 47:52 | 0.688 | +0.07 pp | [-0.21, +0.34] |
+| DAIGT V2, BERT vs DeBERTa | 37:38 | 1.000 | +0.01 pp | [-0.23, +0.26] |
+| HC3, LogReg/BoW vs DeBERTa | 16:468 | <1e-6 | +4.21 pp | [+3.82, +4.61] |
+| HC3, BERT vs DeBERTa | 15:75 | <1e-6 | +0.56 pp | [+0.39, +0.74] |
+
+So "transformers add nothing measurable on DAIGT V2" is now a tested claim, and the AUC-vs-F1
+rank reversal on DAIGT V2 is noise, not an ordering.
+
+**Decomposition paired tests** (predictions from `audit/surface_content_predictions.npz`):
+
+| comparison | discordant (b:c) | McNemar exact p | error diff | 95% CI |
+|---|---|---|---|---|
+| HC3, surface vs content | 316:309 | 0.810 | -0.07 pp | [-0.52, +0.40] |
+| DAIGT V2, surface vs content | 44:525 | <1e-6 | +6.87 pp | [+6.23, +7.52] |
+| HC3, length-free surface vs length-free content | 610:298 | <1e-6 | -2.91 pp | [-3.44, -2.37] |
+| DAIGT V2, length-free surface vs length-free content | 43:672 | <1e-6 | +8.99 pp | [+8.26, +9.70] |
+| DAIGT V2, content vs length-free content | 13:16 | 0.711 | +0.04 pp | [-0.11, +0.19] |
+| HC3, content vs length-free content | 468:144 | <1e-6 | -3.02 pp | [-3.47, -2.57] |
+
+HC3 parity is now a tested null, not an eyeballed one.
+
+## 15. Truncation-matched comparison and split-level variance (added 2026-08-24)
+
+### 15.1 The DAIGT V2 "classical matches transformer" result was an input-budget artefact
+
+Source: `audit/truncation_matched_comparison.py` -> `audit/truncation_matched_comparison.json`.
+
+The classical models read the WHOLE document. The transformers read 128 tokens. Refitting the
+full six-cell classical grid on the exact character span each deployed checkpoint's own tokenizer
+kept (offset mapping, no decode round-trip) removes the asymmetry:
+
+| dataset | window | chars kept | best classical, full text | best classical, 128-tok window | transformer | McNemar p |
+|---|---|---|---|---|---|---|
+| DAIGT V2 | BERT | 0.335 | 0.90% | **2.10%** | 0.84% | <1e-6 |
+| DAIGT V2 | DeBERTa | 0.341 | 0.90% | **2.09%** | 0.83% | <1e-6 |
+| HC3 | BERT | 0.746 | 4.49% | 5.66% | 0.84% | <1e-6 |
+| HC3 | DeBERTa | 0.756 | 4.49% | 5.72% | 0.28% | <1e-6 |
+
+DAIGT V2 paired result at matched input: error difference +1.257 pp, 95% CI [+0.900, +1.629].
+The DeBERTa window returns +1.257 as well, so the conclusion does not depend on which tokenizer
+defines the window.
+
+**Do not write "transformers add nothing on DAIGT V2" again.** Held to one text budget the
+transformers lead on BOTH corpora. The defensible claim is narrower: a bag-of-words model reading
+a whole essay matches a transformer reading its opening. That is a statement about information
+access, not architecture, and it is arguably a more interesting one.
+
+Caveat on record: loading the DeBERTa tokenizer under transformers 4.57.6 emits a Mistral-regex
+warning. The two windows agree to 0.6 percentage points of characters kept and to 0.01 pp of
+error, so it did not affect the conclusion, but re-check if that tokenizer is reused.
+
+### 15.2 Split-level variance
+
+Source: `audit/multisplit_decomposition.py` -> `audit/multisplit_decomposition.json`. Balanced
+sample held fixed, only the partition seed varies over 42/123/456/789/1337. Seed 42 reproduces
+the single-split numbers exactly, which is the harness self-check.
+
+| arm | DAIGT V2 mean err (range) | HC3 mean err (range) |
+|---|---|---|
+| surface-only | 7.15% (6.74-7.86) | 3.16% (3.07-3.33) |
+| content-only | 0.82% (0.66-0.99) | 3.24% (3.06-3.41) |
+| surface-only, no length | 9.76% (9.47-9.93) | 3.26% (3.14-3.37) |
+| content-only, length-normalised | 0.84% (0.77-0.94) | 6.02% (5.82-6.28) |
+| length-only | 24.31% (23.56-24.85) | 15.32% (15.23-15.49) |
+
+Paired tests per split:
+
+- **DAIGT V2 surface vs content**: +6.00 to +6.87 pp, p<1e-6 on all five, sign consistent.
+- **HC3 surface vs content**: p = 0.81, 0.27, 0.34, 0.23, 0.78. Significant on NONE. Differences
+  -0.30 to +0.27 pp, **sign changes across splits**. That sign instability is the strong form of
+  the null, since an underpowered real difference keeps its sign.
+- **HC3 length-free surface vs content**: -2.67 to -2.91 pp, p<1e-6 on all five, sign consistent.
+
+Split variance is small (0.17-1.29 pp), so the single-split figures were not misleading, but the
+multi-split evidence is what the parity claim should now rest on.
 
 ## Files explicitly excluded from this SSOT (superseded/course-track/duplicate)
 

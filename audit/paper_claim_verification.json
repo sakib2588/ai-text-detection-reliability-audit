@@ -1,0 +1,564 @@
+{
+  "seed": 42,
+  "purpose": "verifies iccit/ claims flagged in the 2026-08-24 review",
+  "splits_and_leakage": {
+    "D1": {
+      "name": "DAIGT V2",
+      "n_balanced": 34994,
+      "variants": {
+        "group_aware": {
+          "n_train": 25196,
+          "n_val": 2800,
+          "n_test": 6998,
+          "pct_train": 72.0,
+          "pct_val": 8.0,
+          "pct_test": 20.0,
+          "ratio_string": "72/8/20",
+          "exact_text_leak_rows": 0,
+          "exact_text_leak_pct": 0.0
+        },
+        "naive": {
+          "n_train": 25195,
+          "n_val": 2800,
+          "n_test": 6999,
+          "pct_train": 72.0,
+          "pct_val": 8.0,
+          "pct_test": 20.0,
+          "ratio_string": "72/8/20",
+          "exact_text_leak_rows": 0,
+          "exact_text_leak_pct": 0.0
+        }
+      }
+    },
+    "D2": {
+      "name": "HC3",
+      "n_balanced": 53806,
+      "variants": {
+        "group_aware": {
+          "n_train": 38785,
+          "n_val": 4289,
+          "n_test": 10732,
+          "pct_train": 72.08,
+          "pct_val": 7.97,
+          "pct_test": 19.95,
+          "ratio_string": "72/8/20",
+          "exact_text_leak_rows": 0,
+          "exact_text_leak_pct": 0.0
+        },
+        "naive": {
+          "n_train": 38739,
+          "n_val": 4305,
+          "n_test": 10762,
+          "pct_train": 72.0,
+          "pct_val": 8.0,
+          "pct_test": 20.0,
+          "ratio_string": "72/8/20",
+          "exact_text_leak_rows": 570,
+          "exact_text_leak_pct": 5.2964
+        }
+      }
+    }
+  },
+  "seed_spreads": {
+    "full_D1_BERT_lr3e-05_bs32_wd0.1": {
+      "dataset": "D1",
+      "model": "BERT",
+      "n_seeds": 3,
+      "seeds": [
+        "123",
+        "42",
+        "456"
+      ],
+      "test_f1_by_seed": {
+        "123": 0.9927,
+        "42": 0.9916,
+        "456": 0.992
+      },
+      "spread_range": 0.0011,
+      "mean": 0.9921
+    },
+    "full_D1_DeBERTa_lr3e-05_bs16_wd0.01": {
+      "dataset": "D1",
+      "model": "DeBERTa",
+      "n_seeds": 3,
+      "seeds": [
+        "123",
+        "42",
+        "456"
+      ],
+      "test_f1_by_seed": {
+        "123": 0.9941,
+        "42": 0.9917,
+        "456": 0.9931
+      },
+      "spread_range": 0.0024,
+      "mean": 0.993
+    },
+    "full_D2_BERT_lr2e-05_bs16_wd0.1": {
+      "dataset": "D2",
+      "model": "BERT",
+      "n_seeds": 3,
+      "seeds": [
+        "123",
+        "42",
+        "456"
+      ],
+      "test_f1_by_seed": {
+        "123": 0.9952,
+        "42": 0.9916,
+        "456": 0.9923
+      },
+      "spread_range": 0.0036,
+      "mean": 0.993
+    },
+    "full_D2_DeBERTa_lr3e-05_bs16_wd0.1": {
+      "dataset": "D2",
+      "model": "DeBERTa",
+      "n_seeds": 3,
+      "seeds": [
+        "123",
+        "42",
+        "456"
+      ],
+      "test_f1_by_seed": {
+        "123": 0.9972,
+        "42": 0.9972,
+        "456": 0.9967
+      },
+      "spread_range": 0.0005,
+      "mean": 0.997
+    }
+  },
+  "whitespace_cue": {
+    "D1": {
+      "name": "DAIGT V2",
+      "balanced_corpus": {
+        "n": 34994,
+        "mean_per_human_doc": 0.5475,
+        "mean_per_machine_doc": 0.0044,
+        "pct_human_docs_with_cue": 17.08,
+        "pct_machine_docs_with_cue": 0.22
+      },
+      "test_split": {
+        "n": 6998,
+        "mean_per_human_doc": 0.5513,
+        "mean_per_machine_doc": 0.0029,
+        "pct_human_docs_with_cue": 17.36,
+        "pct_machine_docs_with_cue": 0.14
+      }
+    },
+    "D2": {
+      "name": "HC3",
+      "balanced_corpus": {
+        "n": 53806,
+        "mean_per_human_doc": 10.7345,
+        "mean_per_machine_doc": 0.0092,
+        "pct_human_docs_with_cue": 88.74,
+        "pct_machine_docs_with_cue": 0.28
+      },
+      "test_split": {
+        "n": 10732,
+        "mean_per_human_doc": 10.7452,
+        "mean_per_machine_doc": 0.0134,
+        "pct_human_docs_with_cue": 88.73,
+        "pct_machine_docs_with_cue": 0.41
+      }
+    }
+  },
+  "table1_stats": {
+    "D1": {
+      "name": "DAIGT V2",
+      "best_classical": "Support Vector Machine (TF-IDF)",
+      "best_transformer": "DeBERTa",
+      "cells": {
+        "Naive Bayes (BoW)": {
+          "error_rate": 0.040869,
+          "ci95_lo": 0.036153,
+          "ci95_hi": 0.045584,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0409,
+          "matches_recorded": true
+        },
+        "Naive Bayes (TF-IDF)": {
+          "error_rate": 0.042298,
+          "ci95_lo": 0.037725,
+          "ci95_hi": 0.047156,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0423,
+          "matches_recorded": true
+        },
+        "Logistic Regression (BoW)": {
+          "error_rate": 0.010717,
+          "ci95_lo": 0.008431,
+          "ci95_hi": 0.013147,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0107,
+          "matches_recorded": true
+        },
+        "Logistic Regression (TF-IDF)": {
+          "error_rate": 0.01429,
+          "ci95_lo": 0.011575,
+          "ci95_hi": 0.017148,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0143,
+          "matches_recorded": true
+        },
+        "Support Vector Machine (BoW)": {
+          "error_rate": 0.013004,
+          "ci95_lo": 0.010432,
+          "ci95_hi": 0.015719,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.013,
+          "matches_recorded": true
+        },
+        "Support Vector Machine (TF-IDF)": {
+          "error_rate": 0.009003,
+          "ci95_lo": 0.006859,
+          "ci95_hi": 0.011289,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.009,
+          "matches_recorded": true
+        },
+        "BERT": {
+          "error_rate": 0.008431,
+          "ci95_lo": 0.006288,
+          "ci95_hi": 0.010574,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0084,
+          "matches_recorded": true
+        },
+        "DeBERTa": {
+          "error_rate": 0.008288,
+          "ci95_lo": 0.006288,
+          "ci95_hi": 0.010432,
+          "n_boot": 10000,
+          "n_test": 6998,
+          "recorded_error_rate": 0.0083,
+          "matches_recorded": true
+        }
+      },
+      "paired_comparisons": [
+        {
+          "a": "Support Vector Machine (TF-IDF)",
+          "b": "DeBERTa",
+          "mcnemar_b_a_right_b_wrong": 47,
+          "mcnemar_c_a_wrong_b_right": 52,
+          "mcnemar_exact_p": 0.687885,
+          "error_diff_a_minus_b": 0.000714,
+          "error_diff_ci95_lo": -0.002143,
+          "error_diff_ci95_hi": 0.00343,
+          "ci_excludes_zero": false
+        },
+        {
+          "a": "BERT",
+          "b": "DeBERTa",
+          "mcnemar_b_a_right_b_wrong": 37,
+          "mcnemar_c_a_wrong_b_right": 38,
+          "mcnemar_exact_p": 1.0,
+          "error_diff_a_minus_b": 0.000143,
+          "error_diff_ci95_lo": -0.002286,
+          "error_diff_ci95_hi": 0.002572,
+          "ci_excludes_zero": false
+        }
+      ]
+    },
+    "D2": {
+      "name": "HC3",
+      "best_classical": "Logistic Regression (BoW)",
+      "best_transformer": "DeBERTa",
+      "cells": {
+        "Naive Bayes (BoW)": {
+          "error_rate": 0.128681,
+          "ci95_lo": 0.122624,
+          "ci95_hi": 0.135017,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.1287,
+          "matches_recorded": true
+        },
+        "Naive Bayes (TF-IDF)": {
+          "error_rate": 0.13278,
+          "ci95_lo": 0.126444,
+          "ci95_hi": 0.139489,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.1328,
+          "matches_recorded": true
+        },
+        "Logistic Regression (BoW)": {
+          "error_rate": 0.044912,
+          "ci95_lo": 0.040999,
+          "ci95_hi": 0.048919,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0449,
+          "matches_recorded": true
+        },
+        "Logistic Regression (TF-IDF)": {
+          "error_rate": 0.063455,
+          "ci95_lo": 0.058889,
+          "ci95_hi": 0.068114,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0635,
+          "matches_recorded": true
+        },
+        "Support Vector Machine (BoW)": {
+          "error_rate": 0.05246,
+          "ci95_lo": 0.048267,
+          "ci95_hi": 0.056653,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0525,
+          "matches_recorded": true
+        },
+        "Support Vector Machine (TF-IDF)": {
+          "error_rate": 0.055069,
+          "ci95_lo": 0.05069,
+          "ci95_hi": 0.059542,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0551,
+          "matches_recorded": true
+        },
+        "BERT": {
+          "error_rate": 0.008386,
+          "ci95_lo": 0.006709,
+          "ci95_hi": 0.010157,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0084,
+          "matches_recorded": true
+        },
+        "DeBERTa": {
+          "error_rate": 0.002795,
+          "ci95_lo": 0.001864,
+          "ci95_hi": 0.00382,
+          "n_boot": 10000,
+          "n_test": 10732,
+          "recorded_error_rate": 0.0028,
+          "matches_recorded": true
+        }
+      },
+      "paired_comparisons": [
+        {
+          "a": "Logistic Regression (BoW)",
+          "b": "DeBERTa",
+          "mcnemar_b_a_right_b_wrong": 16,
+          "mcnemar_c_a_wrong_b_right": 468,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": 0.042117,
+          "error_diff_ci95_lo": 0.038204,
+          "error_diff_ci95_hi": 0.046124,
+          "ci_excludes_zero": true
+        },
+        {
+          "a": "BERT",
+          "b": "DeBERTa",
+          "mcnemar_b_a_right_b_wrong": 15,
+          "mcnemar_c_a_wrong_b_right": 75,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": 0.005591,
+          "error_diff_ci95_lo": 0.003914,
+          "error_diff_ci95_hi": 0.007361,
+          "ci_excludes_zero": true
+        }
+      ]
+    }
+  },
+  "decomposition_stats": {
+    "D1": {
+      "name": "DAIGT V2",
+      "arms": {
+        "content_only": {
+          "error_rate": 0.00986,
+          "ci95_lo": 0.007716,
+          "ci95_hi": 0.012289,
+          "n_boot": 10000,
+          "n_test": 6998
+        },
+        "content_only_l1norm": {
+          "error_rate": 0.096885,
+          "ci95_lo": 0.089883,
+          "ci95_hi": 0.103744,
+          "n_boot": 10000,
+          "n_test": 6998
+        },
+        "content_only_l1norm_scaled": {
+          "error_rate": 0.009431,
+          "ci95_lo": 0.007288,
+          "ci95_hi": 0.011718,
+          "n_boot": 10000,
+          "n_test": 6998
+        },
+        "length_only": {
+          "error_rate": 0.245927,
+          "ci95_lo": 0.235925,
+          "ci95_hi": 0.25593,
+          "n_boot": 10000,
+          "n_test": 6998
+        },
+        "surface_only": {
+          "error_rate": 0.078594,
+          "ci95_lo": 0.072449,
+          "ci95_hi": 0.084881,
+          "n_boot": 10000,
+          "n_test": 6998
+        },
+        "surface_only_nolength": {
+          "error_rate": 0.099314,
+          "ci95_lo": 0.092169,
+          "ci95_hi": 0.106459,
+          "n_boot": 10000,
+          "n_test": 6998
+        }
+      },
+      "paired_comparisons": [
+        {
+          "a": "surface_only",
+          "b": "content_only",
+          "mcnemar_b_a_right_b_wrong": 44,
+          "mcnemar_c_a_wrong_b_right": 525,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": 0.068734,
+          "error_diff_ci95_lo": 0.062304,
+          "error_diff_ci95_hi": 0.075164,
+          "ci_excludes_zero": true
+        },
+        {
+          "a": "surface_only_nolength",
+          "b": "content_only_l1norm_scaled",
+          "mcnemar_b_a_right_b_wrong": 43,
+          "mcnemar_c_a_wrong_b_right": 672,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": 0.089883,
+          "error_diff_ci95_lo": 0.082595,
+          "error_diff_ci95_hi": 0.097028,
+          "ci_excludes_zero": true
+        },
+        {
+          "a": "content_only",
+          "b": "content_only_l1norm_scaled",
+          "mcnemar_b_a_right_b_wrong": 13,
+          "mcnemar_c_a_wrong_b_right": 16,
+          "mcnemar_exact_p": 0.711071,
+          "error_diff_a_minus_b": 0.000429,
+          "error_diff_ci95_lo": -0.001143,
+          "error_diff_ci95_hi": 0.001858,
+          "ci_excludes_zero": false
+        },
+        {
+          "a": "surface_only",
+          "b": "surface_only_nolength",
+          "mcnemar_b_a_right_b_wrong": 264,
+          "mcnemar_c_a_wrong_b_right": 119,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": -0.02072,
+          "error_diff_ci95_lo": -0.026007,
+          "error_diff_ci95_hi": -0.01529,
+          "ci_excludes_zero": true
+        }
+      ]
+    },
+    "D2": {
+      "name": "HC3",
+      "arms": {
+        "content_only": {
+          "error_rate": 0.032613,
+          "ci95_lo": 0.029258,
+          "ci95_hi": 0.03606,
+          "n_boot": 10000,
+          "n_test": 10732
+        },
+        "content_only_l1norm": {
+          "error_rate": 0.142471,
+          "ci95_lo": 0.135855,
+          "ci95_hi": 0.14918,
+          "n_boot": 10000,
+          "n_test": 10732
+        },
+        "content_only_l1norm_scaled": {
+          "error_rate": 0.062803,
+          "ci95_lo": 0.058237,
+          "ci95_hi": 0.067462,
+          "n_boot": 10000,
+          "n_test": 10732
+        },
+        "length_only": {
+          "error_rate": 0.152255,
+          "ci95_lo": 0.145453,
+          "ci95_hi": 0.158964,
+          "n_boot": 10000,
+          "n_test": 10732
+        },
+        "surface_only": {
+          "error_rate": 0.03196,
+          "ci95_lo": 0.028699,
+          "ci95_hi": 0.035315,
+          "n_boot": 10000,
+          "n_test": 10732
+        },
+        "surface_only_nolength": {
+          "error_rate": 0.033731,
+          "ci95_lo": 0.030376,
+          "ci95_hi": 0.037272,
+          "n_boot": 10000,
+          "n_test": 10732
+        }
+      },
+      "paired_comparisons": [
+        {
+          "a": "surface_only",
+          "b": "content_only",
+          "mcnemar_b_a_right_b_wrong": 316,
+          "mcnemar_c_a_wrong_b_right": 309,
+          "mcnemar_exact_p": 0.810354,
+          "error_diff_a_minus_b": -0.000652,
+          "error_diff_ci95_lo": -0.005218,
+          "error_diff_ci95_hi": 0.004007,
+          "ci_excludes_zero": false
+        },
+        {
+          "a": "surface_only_nolength",
+          "b": "content_only_l1norm_scaled",
+          "mcnemar_b_a_right_b_wrong": 610,
+          "mcnemar_c_a_wrong_b_right": 298,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": -0.029072,
+          "error_diff_ci95_lo": -0.034383,
+          "error_diff_ci95_hi": -0.023668,
+          "ci_excludes_zero": true
+        },
+        {
+          "a": "content_only",
+          "b": "content_only_l1norm_scaled",
+          "mcnemar_b_a_right_b_wrong": 468,
+          "mcnemar_c_a_wrong_b_right": 144,
+          "mcnemar_exact_p": 0.0,
+          "error_diff_a_minus_b": -0.03019,
+          "error_diff_ci95_lo": -0.034663,
+          "error_diff_ci95_hi": -0.025717,
+          "ci_excludes_zero": true
+        },
+        {
+          "a": "surface_only",
+          "b": "surface_only_nolength",
+          "mcnemar_b_a_right_b_wrong": 39,
+          "mcnemar_c_a_wrong_b_right": 20,
+          "mcnemar_exact_p": 0.018337,
+          "error_diff_a_minus_b": -0.00177,
+          "error_diff_ci95_lo": -0.003168,
+          "error_diff_ci95_hi": -0.000373,
+          "ci_excludes_zero": true
+        }
+      ]
+    }
+  }
+}

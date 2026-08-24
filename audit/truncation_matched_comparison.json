@@ -1,0 +1,211 @@
+{
+  "max_len": 128,
+  "seed": 42,
+  "method": "classical grid refit on the exact character span each checkpoint tokenizer kept at max_length=128 (offset mapping, no decode round-trip)",
+  "datasets": {
+    "D1": {
+      "name": "DAIGT V2",
+      "n_test": 6998,
+      "windows": {
+        "BERT": {
+          "mean_fraction_of_characters_kept": 0.3351,
+          "transformer_error_rate": 0.008431,
+          "classical_truncated": {
+            "Naive Bayes (BoW)": {
+              "weighted_f1": 0.9464,
+              "accuracy": 0.9464,
+              "error_rate": 0.0536
+            },
+            "Naive Bayes (TF-IDF)": {
+              "weighted_f1": 0.9456,
+              "accuracy": 0.9456,
+              "error_rate": 0.0544
+            },
+            "Logistic Regression (BoW)": {
+              "weighted_f1": 0.9757,
+              "accuracy": 0.9757,
+              "error_rate": 0.0243
+            },
+            "Logistic Regression (TF-IDF)": {
+              "weighted_f1": 0.9731,
+              "accuracy": 0.9731,
+              "error_rate": 0.0269
+            },
+            "Support Vector Machine (BoW)": {
+              "weighted_f1": 0.9717,
+              "accuracy": 0.9717,
+              "error_rate": 0.0283
+            },
+            "Support Vector Machine (TF-IDF)": {
+              "weighted_f1": 0.979,
+              "accuracy": 0.979,
+              "error_rate": 0.021
+            }
+          },
+          "best_classical_truncated": "Support Vector Machine (TF-IDF)",
+          "paired_best_classical_vs_transformer": {
+            "a": "Support Vector Machine (TF-IDF) [128-token window]",
+            "b": "BERT",
+            "mcnemar_b": 39,
+            "mcnemar_c": 127,
+            "mcnemar_exact_p": 0.0,
+            "err_diff_a_minus_b": 0.012575,
+            "ci95_lo": 0.009003,
+            "ci95_hi": 0.01629,
+            "ci_excludes_zero": true
+          }
+        },
+        "DeBERTa": {
+          "mean_fraction_of_characters_kept": 0.3409,
+          "transformer_error_rate": 0.008288,
+          "classical_truncated": {
+            "Naive Bayes (BoW)": {
+              "weighted_f1": 0.9467,
+              "accuracy": 0.9467,
+              "error_rate": 0.0533
+            },
+            "Naive Bayes (TF-IDF)": {
+              "weighted_f1": 0.9453,
+              "accuracy": 0.9453,
+              "error_rate": 0.0547
+            },
+            "Logistic Regression (BoW)": {
+              "weighted_f1": 0.977,
+              "accuracy": 0.977,
+              "error_rate": 0.023
+            },
+            "Logistic Regression (TF-IDF)": {
+              "weighted_f1": 0.9713,
+              "accuracy": 0.9713,
+              "error_rate": 0.0287
+            },
+            "Support Vector Machine (BoW)": {
+              "weighted_f1": 0.9707,
+              "accuracy": 0.9707,
+              "error_rate": 0.0293
+            },
+            "Support Vector Machine (TF-IDF)": {
+              "weighted_f1": 0.9791,
+              "accuracy": 0.9791,
+              "error_rate": 0.0209
+            }
+          },
+          "best_classical_truncated": "Support Vector Machine (TF-IDF)",
+          "paired_best_classical_vs_transformer": {
+            "a": "Support Vector Machine (TF-IDF) [128-token window]",
+            "b": "DeBERTa",
+            "mcnemar_b": 35,
+            "mcnemar_c": 123,
+            "mcnemar_exact_p": 0.0,
+            "err_diff_a_minus_b": 0.012575,
+            "ci95_lo": 0.009003,
+            "ci95_hi": 0.016147,
+            "ci_excludes_zero": true
+          }
+        }
+      }
+    },
+    "D2": {
+      "name": "HC3",
+      "n_test": 10732,
+      "windows": {
+        "BERT": {
+          "mean_fraction_of_characters_kept": 0.7459,
+          "transformer_error_rate": 0.008386,
+          "classical_truncated": {
+            "Naive Bayes (BoW)": {
+              "weighted_f1": 0.867,
+              "accuracy": 0.867,
+              "error_rate": 0.133
+            },
+            "Naive Bayes (TF-IDF)": {
+              "weighted_f1": 0.8568,
+              "accuracy": 0.8572,
+              "error_rate": 0.1428
+            },
+            "Logistic Regression (BoW)": {
+              "weighted_f1": 0.9434,
+              "accuracy": 0.9434,
+              "error_rate": 0.0566
+            },
+            "Logistic Regression (TF-IDF)": {
+              "weighted_f1": 0.9144,
+              "accuracy": 0.9144,
+              "error_rate": 0.0856
+            },
+            "Support Vector Machine (BoW)": {
+              "weighted_f1": 0.9313,
+              "accuracy": 0.9313,
+              "error_rate": 0.0687
+            },
+            "Support Vector Machine (TF-IDF)": {
+              "weighted_f1": 0.9246,
+              "accuracy": 0.9246,
+              "error_rate": 0.0754
+            }
+          },
+          "best_classical_truncated": "Logistic Regression (BoW)",
+          "paired_best_classical_vs_transformer": {
+            "a": "Logistic Regression (BoW) [128-token window]",
+            "b": "BERT",
+            "mcnemar_b": 55,
+            "mcnemar_c": 572,
+            "mcnemar_exact_p": 0.0,
+            "err_diff_a_minus_b": 0.048174,
+            "ci95_lo": 0.043701,
+            "ci95_hi": 0.052646,
+            "ci_excludes_zero": true
+          }
+        },
+        "DeBERTa": {
+          "mean_fraction_of_characters_kept": 0.7565,
+          "transformer_error_rate": 0.002795,
+          "classical_truncated": {
+            "Naive Bayes (BoW)": {
+              "weighted_f1": 0.8695,
+              "accuracy": 0.8695,
+              "error_rate": 0.1305
+            },
+            "Naive Bayes (TF-IDF)": {
+              "weighted_f1": 0.8576,
+              "accuracy": 0.8579,
+              "error_rate": 0.1421
+            },
+            "Logistic Regression (BoW)": {
+              "weighted_f1": 0.9428,
+              "accuracy": 0.9428,
+              "error_rate": 0.0572
+            },
+            "Logistic Regression (TF-IDF)": {
+              "weighted_f1": 0.9169,
+              "accuracy": 0.9169,
+              "error_rate": 0.0831
+            },
+            "Support Vector Machine (BoW)": {
+              "weighted_f1": 0.931,
+              "accuracy": 0.931,
+              "error_rate": 0.069
+            },
+            "Support Vector Machine (TF-IDF)": {
+              "weighted_f1": 0.9254,
+              "accuracy": 0.9255,
+              "error_rate": 0.0745
+            }
+          },
+          "best_classical_truncated": "Logistic Regression (BoW)",
+          "paired_best_classical_vs_transformer": {
+            "a": "Logistic Regression (BoW) [128-token window]",
+            "b": "DeBERTa",
+            "mcnemar_b": 12,
+            "mcnemar_c": 596,
+            "mcnemar_exact_p": 0.0,
+            "err_diff_a_minus_b": 0.054417,
+            "ci95_lo": 0.05013,
+            "ci95_hi": 0.058889,
+            "ci_excludes_zero": true
+          }
+        }
+      }
+    }
+  }
+}

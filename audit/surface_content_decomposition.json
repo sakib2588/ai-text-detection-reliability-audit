@@ -1,6 +1,15 @@
 {
   "seed": 42,
   "classifier": "LogisticRegression(max_iter=1000)",
+  "content_arm_preprocessing": {
+    "lowercase": true,
+    "strip_non_alpha": true,
+    "stopword_removal": false,
+    "lemmatisation": false,
+    "vectoriser": "CountVectorizer() defaults, raw counts",
+    "why_recorded": "iccit/sections/02_methods.tex claimed stopword removal and lemmatisation for this arm. Those steps run in paper_scale/classical_full.py, not here."
+  },
+  "arms_are_not_disjoint_on": "document length; see the length_controlled block",
   "datasets": {
     "D1": {
       "name": "DAIGT V2",
@@ -26,7 +35,9 @@
         ],
         "n_predicted_machine": 3549,
         "n_test": 6998,
-        "n_features": 47
+        "n_features": 47,
+        "n_iter": 70,
+        "converged": true
       },
       "content_only": {
         "accuracy": 0.9901,
@@ -44,7 +55,96 @@
         ],
         "n_predicted_machine": 3466,
         "n_test": 6998,
-        "n_features": 51952
+        "n_features": 51952,
+        "n_iter": 121,
+        "converged": true,
+        "note": "no stopword removal, no lemmatisation; raw counts, so row sums carry document length"
+      },
+      "length_controlled": {
+        "length_only": {
+          "accuracy": 0.7541,
+          "error_rate": 0.2459,
+          "weighted_f1": 0.754,
+          "macro_f1": 0.7541,
+          "f1_human": 0.7519,
+          "f1_machine": 0.7562,
+          "fpr_human_called_machine": 0.2589,
+          "confusion_tn_fp_fn_tp": [
+            2608,
+            911,
+            810,
+            2669
+          ],
+          "n_predicted_machine": 3580,
+          "n_test": 6998,
+          "n_features": 3,
+          "n_iter": 11,
+          "converged": true,
+          "note": "characters, words and sentences only, nothing else"
+        },
+        "surface_only_nolength": {
+          "accuracy": 0.9007,
+          "error_rate": 0.0993,
+          "weighted_f1": 0.9007,
+          "macro_f1": 0.9007,
+          "f1_human": 0.8996,
+          "f1_machine": 0.9018,
+          "fpr_human_called_machine": 0.1154,
+          "confusion_tn_fp_fn_tp": [
+            3113,
+            406,
+            289,
+            3190
+          ],
+          "n_predicted_machine": 3596,
+          "n_test": 6998,
+          "n_features": 42,
+          "n_iter": 43,
+          "converged": true,
+          "note": "document-size features dropped: [0, 2, 3, 9, 13]"
+        },
+        "content_only_l1norm": {
+          "accuracy": 0.9031,
+          "error_rate": 0.0969,
+          "weighted_f1": 0.9031,
+          "macro_f1": 0.9031,
+          "f1_human": 0.9055,
+          "f1_machine": 0.9006,
+          "fpr_human_called_machine": 0.0767,
+          "confusion_tn_fp_fn_tp": [
+            3249,
+            270,
+            408,
+            3071
+          ],
+          "n_predicted_machine": 3341,
+          "n_test": 6998,
+          "n_features": 51952,
+          "n_iter": 16,
+          "converged": true,
+          "note": "rows L1-normalised, so document length is removed. Confounded: L1 rows sum to 1, which shrinks every feature by roughly the mean document length, so at a fixed C the penalty is effectively far stronger than in the raw-count arm. Read the _scaled arm instead."
+        },
+        "content_only_l1norm_scaled": {
+          "accuracy": 0.9906,
+          "error_rate": 0.0094,
+          "weighted_f1": 0.9906,
+          "macro_f1": 0.9906,
+          "f1_human": 0.9907,
+          "f1_machine": 0.9905,
+          "fpr_human_called_machine": 0.0057,
+          "confusion_tn_fp_fn_tp": [
+            3499,
+            20,
+            46,
+            3433
+          ],
+          "n_predicted_machine": 3453,
+          "n_test": 6998,
+          "n_features": 51952,
+          "n_iter": 127,
+          "converged": true,
+          "note": "rows L1-normalised then rescaled by the mean training document length (361.4 tokens), isolating length removal from the change in regularisation scale"
+        }
       },
       "full_transformer_reference": {
         "BERT": {
@@ -89,7 +189,9 @@
         ],
         "n_predicted_machine": 5616,
         "n_test": 10732,
-        "n_features": 47
+        "n_features": 47,
+        "n_iter": 86,
+        "converged": true
       },
       "content_only": {
         "accuracy": 0.9674,
@@ -107,7 +209,96 @@
         ],
         "n_predicted_machine": 5331,
         "n_test": 10732,
-        "n_features": 54368
+        "n_features": 54368,
+        "n_iter": 192,
+        "converged": true,
+        "note": "no stopword removal, no lemmatisation; raw counts, so row sums carry document length"
+      },
+      "length_controlled": {
+        "length_only": {
+          "accuracy": 0.8477,
+          "error_rate": 0.1523,
+          "weighted_f1": 0.8475,
+          "macro_f1": 0.8475,
+          "f1_human": 0.854,
+          "f1_machine": 0.8409,
+          "fpr_human_called_machine": 0.1112,
+          "confusion_tn_fp_fn_tp": [
+            4779,
+            598,
+            1036,
+            4319
+          ],
+          "n_predicted_machine": 4917,
+          "n_test": 10732,
+          "n_features": 3,
+          "n_iter": 15,
+          "converged": true,
+          "note": "characters, words and sentences only, nothing else"
+        },
+        "surface_only_nolength": {
+          "accuracy": 0.9663,
+          "error_rate": 0.0337,
+          "weighted_f1": 0.9662,
+          "macro_f1": 0.9662,
+          "f1_human": 0.9654,
+          "f1_machine": 0.9671,
+          "fpr_human_called_machine": 0.0603,
+          "confusion_tn_fp_fn_tp": [
+            5053,
+            324,
+            38,
+            5317
+          ],
+          "n_predicted_machine": 5641,
+          "n_test": 10732,
+          "n_features": 42,
+          "n_iter": 52,
+          "converged": true,
+          "note": "document-size features dropped: [0, 2, 3, 9, 13]"
+        },
+        "content_only_l1norm": {
+          "accuracy": 0.8575,
+          "error_rate": 0.1425,
+          "weighted_f1": 0.8574,
+          "macro_f1": 0.8574,
+          "f1_human": 0.8532,
+          "f1_machine": 0.8616,
+          "fpr_human_called_machine": 0.1735,
+          "confusion_tn_fp_fn_tp": [
+            4444,
+            933,
+            596,
+            4759
+          ],
+          "n_predicted_machine": 5692,
+          "n_test": 10732,
+          "n_features": 54368,
+          "n_iter": 24,
+          "converged": true,
+          "note": "rows L1-normalised, so document length is removed. Confounded: L1 rows sum to 1, which shrinks every feature by roughly the mean document length, so at a fixed C the penalty is effectively far stronger than in the raw-count arm. Read the _scaled arm instead."
+        },
+        "content_only_l1norm_scaled": {
+          "accuracy": 0.9372,
+          "error_rate": 0.0628,
+          "weighted_f1": 0.9371,
+          "macro_f1": 0.9372,
+          "f1_human": 0.9355,
+          "f1_machine": 0.9388,
+          "fpr_human_called_machine": 0.0917,
+          "confusion_tn_fp_fn_tp": [
+            4884,
+            493,
+            181,
+            5174
+          ],
+          "n_predicted_machine": 5667,
+          "n_test": 10732,
+          "n_features": 54368,
+          "n_iter": 282,
+          "converged": true,
+          "note": "rows L1-normalised then rescaled by the mean training document length (140.2 tokens), isolating length removal from the change in regularisation scale"
+        }
       },
       "full_transformer_reference": {
         "BERT": {
