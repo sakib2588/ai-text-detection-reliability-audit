@@ -54,12 +54,11 @@ MEMBERS = [
      'cross-dataset transfer evaluation, compiled the result tables, and wrote the report.'),
 ]
 
-# The midterm table, exactly as submitted for the midterm project.
-MIDTERM = [
-    ('Naive Bayes',            (0.9567, 0.9580, 0.9567, 0.9566), (0.8583, 0.8587, 0.8583, 0.8583)),
-    ('Logistic Regression',    (0.9825, 0.9826, 0.9825, 0.9825), (0.9333, 0.9346, 0.9333, 0.9333)),
-    ('Support Vector Machine', (0.9875, 0.9877, 0.9875, 0.9875), (0.9083, 0.9084, 0.9083, 0.9083)),
-]
+# The classical models the midterm introduced, re-run on the FULL corpora. Both text
+# representations were re-run, so the report no longer mixes two dataset sizes in one
+# table the way the earlier draft did.
+CLASSICAL = ['Naive Bayes', 'Logistic Regression', 'Support Vector Machine']
+REPS = ['BoW', 'TF-IDF']
 
 GRID = [(2e-5, 16, 0.01), (3e-5, 16, 0.01), (2e-5, 32, 0.01), (3e-5, 32, 0.01),
         (2e-5, 16, 0.1),  (3e-5, 16, 0.1),  (2e-5, 32, 0.1),  (3e-5, 32, 0.1)]
@@ -92,7 +91,28 @@ def load_results():
             y, pred, average='weighted', zero_division=0)
         r['ensemble'][tag] = {'w': w, 'metrics': (round(acc, 4), round(pre, 4),
                                                   round(rec, 4), round(f1, 4))}
-    r['eval'] = json.load(open(AUDIT / 'full_model_evaluation.json'))
+    # Classical models at full scale, both representations. The JSON records accuracy
+    # and F1 but not precision and recall, so those are recomputed from the saved score
+    # arrays and checked back against the recorded accuracy and F1 before use.
+    ev = json.load(open(AUDIT / 'full_model_evaluation.json'))
+    sc = np.load(AUDIT / 'full_model_scores.npz')
+    r['classical'] = {}
+    for tag in ('D1', 'D2'):
+        y = sc[f'{tag}|y_true']
+        for name in CLASSICAL:
+            for rep in REPS:
+                key = f'{name} ({rep})'
+                s_ = sc[f'{tag}|{key}']
+                pred = ((s_ >= 0.5) if (s_.min() >= 0 and s_.max() <= 1) else (s_ > 0)).astype(int)
+                acc = accuracy_score(y, pred)
+                pre, rec, f1, _ = precision_recall_fscore_support(
+                    y, pred, average='weighted', zero_division=0)
+                rj = ev['datasets'][tag]['models'][key]
+                assert abs(acc - rj['accuracy']) < 5e-4 and abs(f1 - rj['weighted_f1']) < 5e-4, \
+                    f'recomputed metrics disagree with the recorded ones for {tag} {key}'
+                r['classical'][(tag, name, rep)] = (round(acc, 4), round(pre, 4),
+                                                    round(rec, 4), round(f1, 4))
+    r['eval'] = ev
     r['dec'] = json.load(open(AUDIT / 'surface_content_decomposition.json'))
     r['ens_json'] = json.load(open(AUDIT / 'ensemble_full_scale.json'))
     return r
@@ -198,6 +218,18 @@ def build_text(R):
         i = d[(tag, mk)]
         return f"learning rate {i['lr']:g}, batch size {i['batch_size']}, weight decay {i['weight_decay']:g}"
 
+    C = R['classical']
+
+    def best_classical(tag, name):
+        """Better of the two representations for this model on this dataset."""
+        rep = max(REPS, key=lambda rp: C[(tag, name, rp)][3])
+        return rep, C[(tag, name, rep)]
+
+    d1_best = max(CLASSICAL, key=lambda n: best_classical('D1', n)[1][3])
+    d2_best = max(CLASSICAL, key=lambda n: best_classical('D2', n)[1][3])
+    d1_rep, d1_vals = best_classical('D1', d1_best)
+    d2_rep, d2_vals = best_classical('D2', d2_best)
+
     T = {}
 
     T['title'] = 'Detecting AI-Generated Text with BERT, DeBERTa and a Soft-Vote Ensemble'
@@ -220,8 +252,10 @@ def build_text(R):
         'duplicates. Measured directly, our split puts none of the 10,732 HC3 test documents into training, '
         'while an ordinary random split of the same data puts 570 of them there. Without the group-aware '
         'split, part of the score would be measuring memorisation rather than detection.\n'
-        'On top of that data we trained five kinds of model. Three are classical and come from the midterm '
-        'project, namely Naive Bayes, logistic regression and a linear support vector machine. Two are '
+        'On top of that data we trained five kinds of model. Three are classical and were introduced in the '
+        'midterm project, namely Naive Bayes, logistic regression and a linear support vector machine, each '
+        'under both bag-of-words and TF-IDF, and all six combinations were re-run here on the full corpora. '
+        'Two are '
         'transformers fine-tuned for this task, bert-base-uncased and microsoft/deberta-v3-base. We also '
         'combined the two transformers into a soft-vote ensemble. Each transformer was trained over a grid '
         'of eight settings per dataset, varying learning rate, batch size and weight decay, with the winner '
@@ -234,22 +268,30 @@ def build_text(R):
 
     T['midterm'] = (
         'The midterm project compared three classical models on the same two datasets, each under two text '
-        'representations, bag-of-words and TF-IDF. Those experiments used a smaller balanced sample of 6,000 '
-        'rows per dataset so that they would run in reasonable time without a GPU. Table 1 repeats the best '
-        'result for each model, which is the table we submitted for the midterm.\n'
-        'Two things stand out. The first is that the two datasets are already behaving differently at this '
-        'stage. On DAIGT V2 all three models do well, and the support vector machine reaches 0.9875 F1, which '
-        'is close to what the transformers achieve later. On HC3 the same three models are clearly weaker, '
-        'with Naive Bayes at 0.8583 and the best classical model only reaching 0.9333. The gap between the two '
-        'datasets is roughly six points of F1 for the same model, so the difficulty is a property of the data '
-        'and not of the method.\n'
-        'The second is that the choice of representation matters more on HC3 than on DAIGT V2. On HC3, moving '
-        'logistic regression from TF-IDF to bag-of-words changes F1 from 0.8925 to 0.9333, a gain of four '
-        'points. On DAIGT V2 the same change moves it from 0.9758 to 0.9825, less than one point. We read this '
-        'as a sign that raw word counts carry information on HC3 that TF-IDF weighting throws away, most '
-        'likely because TF-IDF discounts the very common tokens that separate the two classes there.\n'
-        'These results set the target for the final term. Any transformer we train has to beat 0.9875 on '
-        'DAIGT V2 and 0.9333 on HC3 to be worth the extra cost.')
+        'representations, bag-of-words and TF-IDF. Those first experiments used a reduced sample of 6,000 rows '
+        'per dataset so that they would finish without a GPU. For the final term we re-ran all six of those '
+        'model and representation combinations on the full balanced corpora, using exactly the same split the '
+        'transformers use, so that every number in this report comes from the same data. Table 1 gives those '
+        'full-corpus results, and they are the ones we analyse and carry forward.\n'
+        f'The clearest pattern is that the two datasets are not equally difficult, and they were not equally '
+        f'difficult at the midterm either. On DAIGT V2 every classical model does well, and the best of them, '
+        f'{d1_best.lower()} with {d1_rep}, reaches {d1_vals[3]:.4f} F1. On HC3 the same models are noticeably '
+        f'weaker, with the best, {d2_best.lower()} with {d2_rep}, reaching only {d2_vals[3]:.4f}. That is a gap '
+        f'of about {abs(d1_vals[3]-d2_vals[3])*100:.0f} points of F1 between the two datasets for the same family of '
+        'model, so the difficulty belongs to the data rather than to the method.\n'
+        'The choice of representation also matters much more on HC3 than on DAIGT V2. On HC3, moving logistic '
+        f'regression from TF-IDF to bag-of-words changes F1 from {C[("D2","Logistic Regression","TF-IDF")][3]:.4f} to '
+        f'{C[("D2","Logistic Regression","BoW")][3]:.4f}, a gain of about two points. On DAIGT V2 the same change moves '
+        f'it from {C[("D1","Logistic Regression","TF-IDF")][3]:.4f} to {C[("D1","Logistic Regression","BoW")][3]:.4f}, less '
+        'than half a point. Bag-of-words wins for five of the six model and dataset combinations, the exception '
+        'being the support vector machine on DAIGT V2, where TF-IDF is better. We read this as a sign that raw '
+        'counts of very common tokens carry real signal on HC3, and that TF-IDF weighting, which is designed to '
+        'discount common tokens, throws part of that signal away.\n'
+        'Naive Bayes is the weakest model on both datasets and by a wide margin on HC3, which is expected given '
+        'that it treats every word as independent. Logistic regression and the support vector machine are close '
+        'to each other everywhere.\n'
+        f'These results set the target for the transformers. To be worth their extra cost, a fine-tuned model '
+        f'has to beat {d1_vals[3]:.4f} on DAIGT V2 and {d2_vals[3]:.4f} on HC3.')
 
     T['bert'] = (
         'We chose BERT as the base transformer for three practical reasons. It is the model the course '
@@ -328,22 +370,26 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 3 brings everything together in the form the project specification asks for. The three '
-        'classical rows come from the midterm experiments and the three transformer rows come from the final '
-        'term. One caution belongs with that table. The classical models were trained on the 6,000-row '
-        'midterm sample while the transformers were trained on the full balanced corpora, so the comparison '
-        'is not matched on training data size. To check that this does not change the story, we also refitted '
-        'all three classical models on the full corpora using the same split as the transformers. Those '
-        f'refits give {ev["D1"]["models"]["Support Vector Machine (TF-IDF)"]["weighted_f1"]:.4f} on DAIGT V2 and '
-        f'{ev["D2"]["models"]["Logistic Regression (BoW)"]["weighted_f1"]:.4f} on HC3 for the best classical model, so '
-        'scaling the classical models up narrows the gap on DAIGT V2 and leaves it wide on HC3.\n'
+        'Table 3 brings everything together in the form the project specification asks for. Every row now '
+        'comes from the full balanced corpora and the same fixed split, so unlike an earlier version of this '
+        'report the comparison is not mixing two dataset sizes. The three classical rows are the midterm '
+        'models re-run at full scale, each shown with whichever of the two representations worked better for '
+        'that dataset.\n'
         'Reading the table across, three conclusions hold. The first is that DeBERTa is the best single model '
         'on both datasets. The second is that the size of its advantage depends entirely on which dataset you '
-        'look at. On DAIGT V2 the best classical model from the midterm reaches 0.9875 and DeBERTa reaches '
-        f'{f("D1","DeBERTa"):.4f}, a difference of less than half a point, so the extra cost of a transformer buys '
-        'very little. On HC3 the same comparison is 0.9333 against '
-        f'{f("D2","DeBERTa"):.4f}, and the transformer is doing something the classical models cannot. The third '
-        'is that the ensemble adds nothing we can demonstrate.\n'
+        f'look at. On DAIGT V2 the best classical model reaches {d1_vals[3]:.4f} and DeBERTa reaches '
+        f'{f("D1","DeBERTa"):.4f}, a difference of {abs(f("D1","DeBERTa")-d1_vals[3])*100:.2f} of a percentage point, so '
+        'the extra cost of a transformer buys almost nothing there. On HC3 the same comparison is '
+        f'{d2_vals[3]:.4f} against {f("D2","DeBERTa"):.4f}, a gap of more than four points, and the transformer is '
+        'clearly doing something the classical models cannot. The third is that the ensemble adds nothing we '
+        'can demonstrate.\n'
+        'It is worth being precise about the DAIGT V2 result rather than rounding it away. The classical model '
+        'reads the whole document while the transformers read only their first 128 tokens, which is about a '
+        'third of the average essay. When we refitted the classical models on exactly the same 128-token span '
+        'the transformers see, their error rate rose from 0.90 to 2.10 per cent while BERT stayed at 0.84. So '
+        'the apparent tie on DAIGT V2 is not evidence that a bag-of-words model is as good as a transformer. '
+        'It is evidence that reading the whole essay is worth about as much as being a transformer, which is a '
+        'different and more useful statement.\n'
         'We also ran one experiment that is not required by the specification but explains the pattern above, '
         'and it is the most interesting thing we found. We built two restricted models. One reads only 47 '
         'surface properties of the text, such as how often a space appears before a full stop, how long the '
@@ -390,8 +436,8 @@ def build_text(R):
         'machine-generated, on two public datasets, using one fixed split and one training harness so that '
         f'the comparisons are fair. DeBERTa is the best single model on both, reaching {f("D1","DeBERTa"):.4f} '
         f'weighted F1 on DAIGT V2 and {f("D2","DeBERTa"):.4f} on HC3, which improves on the best classical model '
-        'from our midterm project by less than half a point on the first dataset and by more than six points '
-        'on the second. A soft-vote ensemble of BERT and DeBERTa did not reliably improve on DeBERTa alone, '
+        f'by {abs(f("D1","DeBERTa")-d1_vals[3])*100:.2f} of a percentage point on the first dataset and by more than four '
+        'points on the second. A soft-vote ensemble of BERT and DeBERTa did not reliably improve on DeBERTa alone, '
         'and we report that plainly rather than presenting a difference in the fourth decimal place as a '
         'gain.\n'
         'The result we think is most worth carrying forward is not the leaderboard. It is that a model '
@@ -479,16 +525,24 @@ def main():
     write_section('Summarize your work in this section', T['conclusion'])
 
     # ---- Table 1, the midterm results
-    cap1 = para_after(end2, 'Table 1. Midterm results. Best representation per model, 6,000-row balanced '
-                            'sample per dataset. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
+    cap1 = para_after(end2, 'Table 1. The midterm models re-run on the full balanced corpora, both text '
+                            'representations, evaluated on the same test split every other model in this report '
+                            'uses. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
                       size=10, justify=False)
-    rows = [[''] * 9, ['', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
-    for name, d1, d2 in MIDTERM:
-        rows.append([name] + [f'{v:.4f}' for v in d1] + [f'{v:.4f}' for v in d2])
+    rows = [[''] * 10, ['', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
+    for name in CLASSICAL:
+        for rep in REPS:
+            rows.append([name, rep]
+                        + [f'{v:.4f}' for v in R['classical'][('D1', name, rep)]]
+                        + [f'{v:.4f}' for v in R['classical'][('D2', name, rep)]])
     t1 = table_after(doc, cap1, rows, header_rows=2)
-    merge_and_label(t1, 0, 1, 0, 4, 'Dataset 1 (DAIGT V2)')
-    merge_and_label(t1, 0, 5, 0, 8, 'Dataset 2 (HC3)')
+    merge_and_label(t1, 0, 2, 0, 5, 'Dataset 1 (DAIGT V2)')
+    merge_and_label(t1, 0, 6, 0, 9, 'Dataset 2 (HC3)')
     merge_and_label(t1, 0, 0, 1, 0, 'Model')
+    merge_and_label(t1, 0, 1, 1, 1, 'Rep.')
+    for i, name in enumerate(CLASSICAL):
+        r0 = 2 + i * len(REPS)
+        merge_and_label(t1, r0, 0, r0 + len(REPS) - 1, 0, name, bold=False)
     repeat_header(t1, 2)
 
     # ---- Table 2, the full fine-tuning grid
@@ -523,19 +577,27 @@ def main():
     repeat_header(t2, 2)
 
     # ---- Table 3, the required final comparison
-    cap3 = para_after(end6, 'Table 3. Final comparison. The three classical rows come from the midterm '
-                            'experiments and the three transformer rows from the final-term experiments, '
-                            'as the project specification requires. The classical rows therefore use the '
-                            '6,000-row sample and the transformer rows the full corpora.',
+    def best_rep(tag, name):
+        rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
+        return rep, R['classical'][(tag, name, rep)]
+
+    cap3 = para_after(end6, 'Table 3. Final comparison. Every row comes from the full balanced corpora and '
+                            'the same fixed split. The three classical rows are the midterm models re-run at '
+                            'full scale, each using whichever representation was better for that dataset, '
+                            'which is bag-of-words everywhere except the support vector machine on DAIGT V2. '
+                            'The ENSEMBLE row uses the weight chosen on validation.',
                       size=10, justify=False)
     rows = [[''] * 9, ['', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
-    for name, d1, d2 in MIDTERM:
-        rows.append([name] + [f'{v:.4f}' for v in d1] + [f'{v:.4f}' for v in d2])
+    for name in CLASSICAL:
+        r1, v1 = best_rep('D1', name)
+        r2, v2 = best_rep('D2', name)
+        rows.append([f'{name} ({r1} / {r2})']
+                    + [f'{v:.4f}' for v in v1] + [f'{v:.4f}' for v in v2])
     for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa (BERT variation)')):
-        r1 = R['deployed'][('D1', mk)]['test']
-        r2 = R['deployed'][('D2', mk)]['test']
-        rows.append([label] + [f'{r1[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
-                            + [f'{r2[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
+        a = R['deployed'][('D1', mk)]['test']
+        b = R['deployed'][('D2', mk)]['test']
+        rows.append([label] + [f'{a[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
+                            + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
     rows.append(['ENSEMBLE'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                              + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
     t3 = table_after(doc, cap3, rows, header_rows=2)
