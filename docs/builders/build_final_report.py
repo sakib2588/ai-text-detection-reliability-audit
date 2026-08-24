@@ -254,8 +254,7 @@ def build_text(R):
         'split, part of the score would be measuring memorisation rather than detection.\n'
         'On top of that data we trained five kinds of model. Three are classical and were introduced in the '
         'midterm project, namely Naive Bayes, logistic regression and a linear support vector machine, each '
-        'under both bag-of-words and TF-IDF, and all six combinations were re-run here on the full corpora. '
-        'Two are '
+        'under both bag-of-words and TF-IDF. Two are '
         'transformers fine-tuned for this task, bert-base-uncased and microsoft/deberta-v3-base. We also '
         'combined the two transformers into a soft-vote ensemble. Each transformer was trained over a grid '
         'of eight settings per dataset, varying learning rate, batch size and weight decay, with the winner '
@@ -268,13 +267,11 @@ def build_text(R):
 
     T['midterm'] = (
         'The midterm project compared three classical models on the same two datasets, each under two text '
-        'representations, bag-of-words and TF-IDF. Those first experiments used a reduced sample of 6,000 rows '
-        'per dataset so that they would finish without a GPU. For the final term we re-ran all six of those '
-        'model and representation combinations on the full balanced corpora, using exactly the same split the '
-        'transformers use, so that every number in this report comes from the same data. Table 1 gives those '
-        'full-corpus results, and they are the ones we analyse and carry forward.\n'
-        f'The clearest pattern is that the two datasets are not equally difficult, and they were not equally '
-        f'difficult at the midterm either. On DAIGT V2 every classical model does well, and the best of them, '
+        'representations, bag-of-words and TF-IDF. All six model and representation combinations were run on '
+        'the full balanced corpora, using the same split the transformers use, so every number in this report '
+        'comes from the same data. Table 1 gives the results.\n'
+        f'The clearest pattern is that the two datasets are not equally difficult. On DAIGT V2 every classical '
+        f'model does well, and the best of them, '
         f'{d1_best.lower()} with {d1_rep}, reaches {d1_vals[3]:.4f} F1. On HC3 the same models are noticeably '
         f'weaker, with the best, {d2_best.lower()} with {d2_rep}, reaching only {d2_vals[3]:.4f}. That is a gap '
         f'of about {abs(d1_vals[3]-d2_vals[3])*100:.0f} points of F1 between the two datasets for the same family of '
@@ -370,12 +367,10 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 3 brings everything together in the form the project specification asks for. Every row now '
-        'comes from the full balanced corpora and the same fixed split, so unlike an earlier version of this '
-        'report the comparison is not mixing two dataset sizes. The three classical rows are the midterm '
-        'models re-run at full scale, each shown with whichever of the two text representations worked '
-        'better on that dataset, which the Rep. column names. The transformers read raw text, so no '
-        'representation applies to them.\n'
+        'Table 3 brings everything together in the form the project specification asks for. Every row comes '
+        'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
+        'of the two text representations worked better on that dataset, which the Rep. column names. The '
+        'transformers read raw text, so no representation applies to them.\n'
         'Reading the table across, three conclusions hold. The first is that DeBERTa is the best single model '
         'on both datasets. The second is that the size of its advantage depends entirely on which dataset you '
         f'look at. On DAIGT V2 the best classical model reaches {d1_vals[3]:.4f} and DeBERTa reaches '
@@ -526,9 +521,8 @@ def main():
     write_section('Summarize your work in this section', T['conclusion'])
 
     # ---- Table 1, the midterm results
-    cap1 = para_after(end2, 'Table 1. The midterm models re-run on the full balanced corpora, both text '
-                            'representations, evaluated on the same test split every other model in this report '
-                            'uses. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
+    cap1 = para_after(end2, 'Table 1. Classical models on the full balanced corpora, both text representations, '
+                            'evaluated on the same test split every other model in this report uses. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
                       size=10, justify=False)
     rows = [[''] * 10, ['', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
     for name in CLASSICAL:
@@ -583,9 +577,8 @@ def main():
         return rep, R['classical'][(tag, name, rep)]
 
     cap3 = para_after(end6, 'Table 3. Final comparison. Every row comes from the full balanced corpora and '
-                            'the same fixed split. The three classical rows are the midterm models re-run at '
-                            'full scale, each shown with whichever text representation performed better on '
-                            'that dataset, which the Rep. column names. The transformers read raw text, so no '
+                            'the same fixed split. Each classical row is shown with whichever text '
+                            'representation performed better on that dataset, which the Rep. column names. The transformers read raw text, so no '
                             'representation applies to them. The ENSEMBLE row uses the weight chosen on '
                             'validation.', size=10, justify=False)
 
