@@ -13,7 +13,7 @@ from transformers import (AutoTokenizer, AutoModelForSequenceClassification, Tra
 from datasets import Dataset
 warnings.filterwarnings('ignore')
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
+FINAL = Path(__file__).resolve().parent
 WORK, RESULTS = FINAL/'work', FINAL/'results'
 MODELS_DIR = FINAL/'models'; MODELS_DIR.mkdir(exist_ok=True)
 CKPT = Path('/media/filwel/MLProject1/nlp_final_ckpt/save_best')

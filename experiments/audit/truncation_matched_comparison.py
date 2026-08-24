@@ -44,10 +44,10 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from transformers import AutoTokenizer
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-MODELS = FINAL / 'paper_scale' / 'models'
-AUDIT = FINAL / 'audit'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+MODELS = FINAL / 'experiments' / 'paper_scale' / 'models'
+AUDIT = FINAL / 'experiments' / 'audit'
 OUT = AUDIT / 'truncation_matched_comparison.json'
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}

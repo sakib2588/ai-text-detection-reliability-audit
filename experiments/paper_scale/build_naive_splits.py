@@ -8,7 +8,7 @@ import pathlib
 import numpy as np, pandas as pd
 from sklearn.model_selection import train_test_split
 
-WORK = pathlib.Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/work')
+WORK = pathlib.Path(__file__).resolve().parent / 'work'
 
 for tag in ('D1', 'D2'):
     pq = WORK / ('data_%s.parquet' % tag)

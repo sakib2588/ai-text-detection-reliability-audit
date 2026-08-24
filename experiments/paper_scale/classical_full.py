@@ -14,8 +14,8 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
 warnings.filterwarnings('ignore')
 
-WORK = pathlib.Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/work')
-OUT  = pathlib.Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale/results')
+WORK = pathlib.Path(__file__).resolve().parent / 'work'
+OUT  = pathlib.Path(__file__).resolve().parent / 'results'
 OUT.mkdir(parents=True, exist_ok=True)
 
 lemmatizer = WordNetLemmatizer()

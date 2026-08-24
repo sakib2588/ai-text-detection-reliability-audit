@@ -53,11 +53,11 @@ from sklearn.preprocessing import normalize
 from sklearn.metrics import (accuracy_score, confusion_matrix,
                              precision_recall_fscore_support)
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-RESULTS = FINAL / 'paper_scale' / 'results'
-OUT = FINAL / 'audit' / 'surface_content_decomposition.json'
-OUT_PRED = FINAL / 'audit' / 'surface_content_predictions.npz'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+RESULTS = FINAL / 'experiments' / 'paper_scale' / 'results'
+OUT = FINAL / 'experiments' / 'audit' / 'surface_content_decomposition.json'
+OUT_PRED = FINAL / 'experiments' / 'audit' / 'surface_content_predictions.npz'
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}
 SEED = 42
@@ -151,7 +151,7 @@ def transformer_reference(tag):
     which is exactly the grid-maximum bug this project already shipped twice."""
     out = {}
     for mk in ('BERT', 'DeBERTa'):
-        p = FINAL / 'paper_scale' / 'models' / f'{tag}_{mk}' / 'run_info.json'
+        p = FINAL / 'experiments' / 'paper_scale' / 'models' / f'{tag}_{mk}' / 'run_info.json'
         if p.exists():
             r = json.load(open(p))
             out[mk] = {

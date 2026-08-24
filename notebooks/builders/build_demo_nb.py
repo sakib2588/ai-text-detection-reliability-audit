@@ -49,9 +49,9 @@ import torch
 import matplotlib.pyplot as plt
 warnings.filterwarnings('ignore')
 
-PS = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale')
+PS = Path(__file__).resolve().parents[2] / 'experiments' / 'paper_scale'
 WORK, RESULTS, PROBS, MODELS = PS/'work', PS/'results', PS/'probs', PS/'models'
-OUT = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/demo_full_dataset')
+OUT = Path(__file__).resolve().parents[2] / 'archive' / 'demo_full_dataset'
 FIG = OUT / 'figures'; FIG.mkdir(exist_ok=True)
 
 print('torch', torch.__version__, '| cuda available:', torch.cuda.is_available())
@@ -340,5 +340,5 @@ display(TABLE2)
 print('\nTotal notebook wall-clock time so far: %.1f minutes' % ((time.time()-t_notebook_start)/60))
 """)
 
-json.dump(CELLS, open('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/demo_full_dataset/cells.json','w'))
+json.dump(CELLS, open(Path(__file__).resolve().parent / 'cells.json','w'))
 print('cells:', len(CELLS))

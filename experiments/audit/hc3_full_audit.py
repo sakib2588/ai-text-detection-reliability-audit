@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np, hashlib, re, json, collections, pathlib
 P = '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /hc3.jsonl'
-OUT = pathlib.Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/audit')
+OUT = pathlib.Path(__file__).resolve().parent
 
 raw = pd.read_json(P, lines=True)
 rows = []

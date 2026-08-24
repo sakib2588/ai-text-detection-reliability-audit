@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import roc_curve
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-AUDIT = FINAL / 'audit'
-FIGS = FINAL / 'iccit' / 'figures'
+FINAL = Path(__file__).resolve().parents[2]
+AUDIT = FINAL / 'experiments' / 'audit'
+FIGS = FINAL / 'paper' / 'iccit' / 'figures'
 
 COL_W, DBL_W = 3.5, 7.16          # IEEE single / double column, inches
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}

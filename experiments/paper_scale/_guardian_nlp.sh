@@ -12,11 +12,12 @@
 # second copy of anything.
 set -uo pipefail
 
-PS_="/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale"
+PS_="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PY="/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /.venv/bin/python"
 cd "$PS_" 2>/dev/null || exit 0          # drive not mounted yet -> next tick
 
-GLOG="$PS_/guardian_nlp.log"
+GLOG="$PS_/logs/guardian_nlp.log"
+mkdir -p "$PS_/logs"
 log(){ echo "[$(date '+%F %H:%M:%S')] NLPGUARD: $*" >> "$GLOG"; }
 
 # manual stop: `touch .nlp.stop` halts recovery; `rm .nlp.stop` resumes it
@@ -38,7 +39,7 @@ count(){ ls -1 "$PS_/results"/$1 2>/dev/null | wc -l; }
 # 04:00 resume floor instead of colliding with it.
 chain_done(){
   local newest
-  newest=$(ls -1t "$PS_"/seed_robust_cross_*.log 2>/dev/null | head -1)
+  newest=$(ls -1t "$PS_"/logs/seed_robust_cross_*.log 2>/dev/null | head -1)
   [ -n "$newest" ] && grep -q 'CHAIN COMPLETE' "$newest"
 }
 # 4 cells: 2 datasets (D1c/D2c) x 2 models, seed 42 only
@@ -66,7 +67,7 @@ elif ! chain_done && ! alive 'run_seed_robust_cross_dataset_overnight.sh' \
 elif ! p3b_done; then
   log "LAUNCH: stage 1 done, card free, Phase 3b at $(count 'full_D?c_*_s42.json')/4 -- starting"
   setsid nohup "$PY" run_artifact_cleaning_full.py \
-    >> "$PS_/artclean_full_guardian.log" 2>&1 </dev/null &
+    >> "$PS_/logs/artclean_full_guardian.log" 2>&1 </dev/null &
   sleep 15
   alive 'run_artifact_cleaning_full.py' \
     && log "launch OK: Phase 3b alive" \
@@ -84,7 +85,7 @@ elif [ "$nAdv" -ge 28 ]; then
 else
   log "RECOVERY: adversarial down at ${nAdv}/28 -- relaunching"
   setsid nohup "$PY" run_adversarial_robustness.py \
-    >> "$PS_/adv_robustness_guardian.log" 2>&1 </dev/null &
+    >> "$PS_/logs/adv_robustness_guardian.log" 2>&1 </dev/null &
   sleep 10
   alive 'run_adversarial_robustness.py' \
     && log "recovery OK: adversarial alive" \
@@ -100,7 +101,7 @@ elif [ "$nClean" -ge 8 ]; then
 else
   log "RECOVERY: zeroshot cleaning down at ${nClean}/8 -- relaunching"
   setsid nohup "$PY" run_artifact_cleaning_zeroshot.py \
-    >> "$PS_/artclean_zeroshot_guardian.log" 2>&1 </dev/null &
+    >> "$PS_/logs/artclean_zeroshot_guardian.log" 2>&1 </dev/null &
   sleep 10
   alive 'run_artifact_cleaning_zeroshot.py' \
     && log "recovery OK: zeroshot alive" \

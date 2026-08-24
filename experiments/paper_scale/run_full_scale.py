@@ -17,8 +17,9 @@ torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 
 PROJECT_DIR = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project ')
-FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-PS_DIR      = FINAL_DIR / 'paper_scale'
+FINAL_DIR   = Path(__file__).resolve().parents[2]
+TABLES_DIR  = FINAL_DIR / 'tables'
+PS_DIR      = FINAL_DIR / 'experiments' / 'paper_scale'
 WORK_DIR    = PS_DIR / 'work'
 RESULTS_DIR = PS_DIR / 'results'
 PROBS_DIR   = PS_DIR / 'probs'

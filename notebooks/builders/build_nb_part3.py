@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 
 CELLS = []
@@ -172,7 +173,7 @@ for tag in DATASETS:
         erow['%s %s' % (tag, col)] = fmt(v)
 t1.append(erow)
 TABLE1 = pd.DataFrame(t1)
-TABLE1.to_csv(FINAL_DIR / 'table1_experiments.csv', index=False)
+TABLE1.to_csv(FINAL_DIR / 'tables' / 'table1_experiments.csv', index=False)
 display(TABLE1)
 """)
 
@@ -202,7 +203,7 @@ t2.append(row)
 TABLE2 = pd.DataFrame(t2)
 cfg_cols = [c for c in TABLE2.columns if c.startswith('_cfg_')]
 TABLE2_DISPLAY = TABLE2.drop(columns=cfg_cols)
-TABLE2_DISPLAY.to_csv(FINAL_DIR / 'table2_combined.csv', index=False)
+TABLE2_DISPLAY.to_csv(FINAL_DIR / 'tables' / 'table2_combined.csv', index=False)
 display(TABLE2_DISPLAY)
 print('\nSelected transformer configurations (chosen on validation F1):')
 for _, r in TABLE2[TABLE2['Model'].str.contains('BERT')].iterrows():
@@ -256,7 +257,7 @@ summary = {
     'torch_version': torch.__version__,
     'gpu': torch.cuda.get_device_name(0),
 }
-atomic_write_json(FINAL_DIR / 'run_summary.json', summary)
+atomic_write_json(FINAL_DIR / 'tables' / 'run_summary.json', summary)
 print('Artefacts written to', FINAL_DIR)
 for p in sorted(FINAL_DIR.glob('*.csv')) + sorted(FINAL_DIR.glob('*.json')):
     print('  ', p.name)
@@ -270,5 +271,5 @@ for tag in DATASETS:
         tag, b['model'], b['lr'], b['batch_size'], b['weight_decay'], b['f1'], ENSEMBLE_ROWS[tag][3]))
 """)
 
-json.dump(CELLS, open('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/work/cells_part3.json','w'))
+json.dump(CELLS, open(Path(__file__).resolve().parent / 'cells_part3.json','w'))
 print('part3 cells:', len(CELLS))

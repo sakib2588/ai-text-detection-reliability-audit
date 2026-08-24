@@ -35,10 +35,10 @@ import numpy as np
 import pandas as pd
 from scipy.stats import binomtest
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-RESULTS = FINAL / 'paper_scale' / 'results'
-AUDIT = FINAL / 'audit'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+RESULTS = FINAL / 'experiments' / 'paper_scale' / 'results'
+AUDIT = FINAL / 'experiments' / 'audit'
 OUT = AUDIT / 'paper_claim_verification.json'
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}

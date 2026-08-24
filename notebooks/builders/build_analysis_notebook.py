@@ -10,8 +10,8 @@ with outputs.
 import nbformat as nbf
 from pathlib import Path
 
-FINAL = Path(__file__).resolve().parent
-OUT = FINAL / 'NLP_Full_Analysis.ipynb'
+FINAL = Path(__file__).resolve().parents[2]
+OUT = FINAL / 'notebooks' / 'NLP_Full_Analysis.ipynb'
 
 nb = nbf.v4.new_notebook()
 C = []
@@ -65,9 +65,11 @@ SEED = 42
 np.random.seed(SEED)
 
 PROJECT = Path.cwd()
-WORK    = PROJECT / 'paper_scale' / 'work'
-MODELS  = PROJECT / 'paper_scale' / 'models'
-FIGDIR  = PROJECT / 'notebook_figures'
+if not (PROJECT / 'experiments').is_dir():
+    PROJECT = PROJECT.parent
+WORK    = PROJECT / 'experiments' / 'paper_scale' / 'work'
+MODELS  = PROJECT / 'experiments' / 'paper_scale' / 'models'
+FIGDIR  = PROJECT / 'notebooks' / 'figures'
 FIGDIR.mkdir(exist_ok=True)
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}
@@ -442,7 +444,7 @@ pd.set_option('display.max_rows', 250, 'display.width', 220)
 display(master.style.format({c: '{:.4f}' for c in
         ['accuracy','precision_w','recall_w','f1_weighted','f1_macro','roc_auc','pr_auc','fpr']})
        .background_gradient(subset=['f1_weighted','roc_auc'], cmap='Greens'))
-master.to_csv(PROJECT / 'notebook_model_comparison.csv', index=False)
+master.to_csv(PROJECT / 'notebooks' / 'tables' / 'notebook_model_comparison.csv', index=False)
 print('saved -> notebook_model_comparison.csv')
 """)
 
@@ -731,7 +733,7 @@ plt.suptitle('All model families, classical (blue) versus transformer (orange)',
 plt.tight_layout(); plt.savefig(FIGDIR / 'classical_vs_transformer.png'); plt.show()
 
 combined.sort_values(['dataset','f1_weighted'], ascending=[True, False]).to_csv(
-    PROJECT / 'notebook_all_models_comparison.csv', index=False)
+    PROJECT / 'notebooks' / 'tables' / 'notebook_all_models_comparison.csv', index=False)
 print('saved -> notebook_all_models_comparison.csv')
 """)
 
@@ -747,7 +749,7 @@ The ENSEMBLE row is a validation-weighted soft vote over the two transformers, r
 """)
 
 code(r"""
-PROBS = PROJECT / 'paper_scale' / 'probs'
+PROBS = PROJECT / 'experiments' / 'paper_scale' / 'probs'
 DEPLOYED = {
     ('D1','BERT'):    'full_D1_BERT_lr3e-05_bs32_wd0.1_s42',
     ('D1','DeBERTa'): 'full_D1_DeBERTa_lr3e-05_bs16_wd0.01_s42',
@@ -807,7 +809,7 @@ t1 = G.pivot_table(index=['Model','Learning Rate','Batch Size','Weight Decay'],
 t1 = t1.swaplevel(axis=1).sort_index(axis=1, level=0)
 t1 = t1.reindex(columns=['Acc','Prec','Rec','F1'], level=1)
 display(t1)
-t1.to_csv(PROJECT / 'notebook_table1_experiments.csv')
+t1.to_csv(PROJECT / 'notebooks' / 'tables' / 'notebook_table1_experiments.csv')
 print('saved -> notebook_table1_experiments.csv')
 """)
 
@@ -846,7 +848,7 @@ rows2.append(row)
 
 T2 = pd.DataFrame(rows2).set_index('Model')
 display(T2.style.format('{:.4f}').background_gradient(cmap='Greens', axis=0))
-T2.to_csv(PROJECT / 'notebook_table2_final_comparison.csv')
+T2.to_csv(PROJECT / 'notebooks' / 'tables' / 'notebook_table2_final_comparison.csv')
 print('saved -> notebook_table2_final_comparison.csv')
 """)
 

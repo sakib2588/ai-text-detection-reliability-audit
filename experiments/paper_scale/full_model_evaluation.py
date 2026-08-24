@@ -34,12 +34,12 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-PROBS = FINAL / 'paper_scale' / 'probs'
-MODELS = FINAL / 'paper_scale' / 'models'
-OUT_JSON = FINAL / 'audit' / 'full_model_evaluation.json'
-OUT_NPZ = FINAL / 'audit' / 'full_model_scores.npz'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+PROBS = FINAL / 'experiments' / 'paper_scale' / 'probs'
+MODELS = FINAL / 'experiments' / 'paper_scale' / 'models'
+OUT_JSON = FINAL / 'experiments' / 'audit' / 'full_model_evaluation.json'
+OUT_NPZ = FINAL / 'experiments' / 'audit' / 'full_model_scores.npz'
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}
 SEED = 42

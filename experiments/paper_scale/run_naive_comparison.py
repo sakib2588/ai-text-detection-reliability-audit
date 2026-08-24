@@ -16,7 +16,8 @@ from transformers import (AutoTokenizer, AutoModelForSequenceClassification, Tra
                           Trainer, EarlyStoppingCallback, DataCollatorWithPadding, set_seed)
 from datasets import Dataset
 
-FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale')
+FINAL_DIR   = Path(__file__).resolve().parent
+TABLES_DIR  = FINAL_DIR.parents[1] / 'tables'
 WORK_DIR    = FINAL_DIR / 'work'
 RESULTS_DIR = FINAL_DIR / 'results'
 PROBS_DIR   = FINAL_DIR / 'probs'

@@ -15,9 +15,9 @@ import numpy as np
 import pandas as pd
 from transformers import AutoTokenizer
 
-FINAL_DIR = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-DATA_PATH = FINAL_DIR / 'paper_scale/work/data_D1.parquet'
-OUT_PATH = FINAL_DIR / 'audit/daigt_token_length_audit.json'
+FINAL_DIR = Path(__file__).resolve().parents[2]
+DATA_PATH = FINAL_DIR / 'experiments/paper_scale/work/data_D1.parquet'
+OUT_PATH = FINAL_DIR / 'experiments/audit/daigt_token_length_audit.json'
 SEED = 42
 SAMPLE_N = 2000
 MAX_LEN = 128

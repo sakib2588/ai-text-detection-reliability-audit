@@ -38,9 +38,9 @@ from surface_content_decomposition import (LENGTH_IDX, PURE_LENGTH_IDX,
                                            content_normalise, score,
                                            surface_features)
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-OUT = FINAL / 'audit' / 'multisplit_decomposition.json'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+OUT = FINAL / 'experiments' / 'audit' / 'multisplit_decomposition.json'
 
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}
 SPLIT_SEEDS = [42, 123, 456, 789, 1337]

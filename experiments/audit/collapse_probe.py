@@ -27,10 +27,10 @@ import pandas as pd
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-MODELS = FINAL / 'paper_scale' / 'models'
-OUT = FINAL / 'audit' / 'collapse_probe.json'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+MODELS = FINAL / 'experiments' / 'paper_scale' / 'models'
+OUT = FINAL / 'experiments' / 'audit' / 'collapse_probe.json'
 N = 400
 SEED = 42
 MAXLEN = 128

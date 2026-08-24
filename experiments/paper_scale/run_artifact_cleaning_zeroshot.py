@@ -31,7 +31,8 @@ os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
 
 from text_perturbations import normalize_nbsp, clean_hc3_whitespace, clean_daigt_unicode
 
-FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale')
+FINAL_DIR   = Path(__file__).resolve().parent
+TABLES_DIR  = FINAL_DIR.parents[1] / 'tables'
 WORK_DIR    = FINAL_DIR / 'work'
 MODELS_DIR  = FINAL_DIR / 'models'
 RESULTS_DIR = FINAL_DIR / 'results'
@@ -143,7 +144,7 @@ def build_table():
                          'cleaned_f1': clean_f1,
                          'delta': round(raw_f1 - clean_f1, 4) if (raw_f1 is not None and clean_f1 is not None) else None})
     t = pd.DataFrame(rows)
-    out_csv = FINAL_DIR.parent / 'table_artifact_cleaning_zeroshot.csv'
+    out_csv = TABLES_DIR / 'table_artifact_cleaning_zeroshot.csv'
     t.to_csv(out_csv, index=False)
     print('\n' + t.to_string(index=False))
     print('\nwritten to:', out_csv)

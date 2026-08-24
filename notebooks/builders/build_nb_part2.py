@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 
 CELLS = []
@@ -281,5 +282,5 @@ for r in SMOKE:
 print('smoke-test artefacts cleared, sweep will run these configurations properly')
 """)
 
-json.dump(CELLS, open('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/work/cells_part2.json','w'))
+json.dump(CELLS, open(Path(__file__).resolve().parent / 'cells_part2.json','w'))
 print('part2 cells:', len(CELLS))

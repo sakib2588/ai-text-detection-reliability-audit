@@ -20,9 +20,9 @@ from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
                           DataCollatorWithPadding)
 from datasets import Dataset
 
-FINAL = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK = FINAL / 'paper_scale' / 'work'
-OUT = FINAL / 'audit' / 'seqlen_calibration.json'
+FINAL = Path(__file__).resolve().parents[2]
+WORK = FINAL / 'experiments' / 'paper_scale' / 'work'
+OUT = FINAL / 'experiments' / 'audit' / 'seqlen_calibration.json'
 
 MODELS = {'BERT': 'bert-base-uncased', 'DeBERTa': 'microsoft/deberta-v3-base'}
 # the deployed configurations, so the calibration matches what would be re-run

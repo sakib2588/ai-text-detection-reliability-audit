@@ -19,7 +19,8 @@ os.environ.setdefault('HF_HOME', '/media/filwel/MLProject1/hf_cache')
 os.environ.setdefault('HF_HUB_DISABLE_SYMLINKS', '1')
 os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
 
-FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale')
+FINAL_DIR   = Path(__file__).resolve().parent
+TABLES_DIR  = FINAL_DIR.parents[1] / 'tables'
 WORK_DIR    = FINAL_DIR / 'work'
 MODELS_DIR  = FINAL_DIR / 'models'
 RESULTS_DIR = FINAL_DIR / 'results'
@@ -160,7 +161,7 @@ def build_multiseed_table():
                 'generalization_gap_max': round(float(np.max(gaps)), 4),
             })
     t = pd.DataFrame(rows)
-    out_csv = FINAL_DIR.parent / 'table_cross_dataset_generalization_3seed.csv'
+    out_csv = TABLES_DIR / 'table_cross_dataset_generalization_3seed.csv'
     t.to_csv(out_csv, index=False)
     print('\n' + t.to_string(index=False))
     print('\nwritten to:', out_csv)

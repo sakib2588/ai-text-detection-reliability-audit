@@ -21,7 +21,8 @@ os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
 
 from text_perturbations import inject_typos, homoglyph_substitute, backtranslate
 
-FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/paper_scale')
+FINAL_DIR   = Path(__file__).resolve().parent
+TABLES_DIR  = FINAL_DIR.parents[1] / 'tables'
 WORK_DIR    = FINAL_DIR / 'work'
 MODELS_DIR  = FINAL_DIR / 'models'
 RESULTS_DIR = FINAL_DIR / 'results'
@@ -155,7 +156,7 @@ def build_table():
                                  'strength': strength, 'in_domain_f1': in_domain_f1, 'adv_f1': adv_f1,
                                  'drop': round(in_domain_f1 - adv_f1, 4) if (in_domain_f1 and adv_f1) else None})
     t = pd.DataFrame(rows)
-    out_csv = FINAL_DIR.parent / 'table_adversarial_robustness.csv'
+    out_csv = TABLES_DIR / 'table_adversarial_robustness.csv'
     t.to_csv(out_csv, index=False)
     print('\n' + t.to_string(index=False))
     print('\nwritten to:', out_csv)

@@ -75,10 +75,10 @@ print('VRAM free/total %.2f / %.2f GiB' % (free_b/1024**3, total_b/1024**3))
 code(r"""
 PROJECT_DIR = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project ')
 FINAL_DIR   = Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final')
-WORK_DIR    = FINAL_DIR / 'work'
-RESULTS_DIR = FINAL_DIR / 'results'
-PROBS_DIR   = FINAL_DIR / 'probs'
-FIG_DIR     = FINAL_DIR / 'figures'
+WORK_DIR    = FINAL_DIR / 'experiments' / 'midterm' / 'work'
+RESULTS_DIR = FINAL_DIR / 'experiments' / 'midterm' / 'results'
+PROBS_DIR   = FINAL_DIR / 'experiments' / 'midterm' / 'probs'
+FIG_DIR     = FINAL_DIR / 'experiments' / 'midterm' / 'figures'
 CKPT_DIR    = Path('/media/filwel/MLProject1/nlp_final_ckpt')
 for d in (WORK_DIR, RESULTS_DIR, PROBS_DIR, FIG_DIR, CKPT_DIR):
     d.mkdir(parents=True, exist_ok=True)
@@ -245,5 +245,5 @@ print('VERIFIED: all 24 midterm numbers reproduced, split is identical to the mi
 print('=' * 70)
 """)
 
-json.dump(CELLS, open('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/work/cells_part1.json','w'))
+json.dump(CELLS, open(Path(__file__).resolve().parent / 'cells_part1.json','w'))
 print('part1 cells:', len(CELLS))

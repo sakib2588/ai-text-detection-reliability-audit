@@ -112,7 +112,7 @@ if __name__ == '__main__':
                          'cleaned_f1': clean_f1,
                          'delta': round(raw_f1 - clean_f1, 4) if (raw_f1 is not None and clean_f1 is not None) else None})
     t = pd.DataFrame(rows)
-    out_csv = rfs.FINAL_DIR / 'table_artifact_cleaning_full.csv'
+    out_csv = rfs.TABLES_DIR / 'table_artifact_cleaning_full.csv'
     t.to_csv(out_csv, index=False)
     print('\n' + t.to_string(index=False))
     print('\nwritten to:', out_csv)

@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np, hashlib, re, json, pathlib
 P = '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /daigt.csv'
-OUT = pathlib.Path('/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/audit')
+OUT = pathlib.Path(__file__).resolve().parent
 
 df = pd.read_csv(P)
 df = df[['text', 'label', 'prompt_name', 'source']].dropna(subset=['text', 'label'])

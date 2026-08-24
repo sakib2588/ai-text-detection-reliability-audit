@@ -1,4 +1,4 @@
-import gc, json, re, sys, warnings
+import gc, json, os, re, sys, warnings
 import numpy as np
 import pandas as pd
 import nltk
@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 warnings.filterwarnings('ignore')
 
 DATA_DIR = '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project '
-OUT_DIR  = '/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Final/work'
+OUT_DIR  = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_PER_CLASS = 3000
 
 lemmatizer = WordNetLemmatizer()

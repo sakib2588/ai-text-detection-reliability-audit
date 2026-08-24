@@ -8,7 +8,8 @@ set -e
 cd "$(dirname "$0")"
 
 PY="/media/filwel/All/Sakib/Semester 10/ NATURAL LANGUAGE PROCESSING /Project /.venv/bin/python"
-LOG="seed_robust_cross_$(date +%Y%m%d_%H%M%S).log"
+mkdir -p logs
+LOG="logs/seed_robust_cross_$(date +%Y%m%d_%H%M%S).log"
 
 echo "=== stage 1/2: retrain_seeds_for_cross.py (GPU) ===" | tee -a "$LOG"
 "$PY" retrain_seeds_for_cross.py >> "$LOG" 2>&1
