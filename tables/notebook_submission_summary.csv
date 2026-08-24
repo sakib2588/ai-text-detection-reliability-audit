@@ -1,0 +1,7 @@
+dataset,model,lr,batch,weight_decay,val_f1,test_f1,test_acc,test_err_pct
+DAIGT V2,BERT,3e-05,32.0,0.1,0.9957,0.9916,0.9916,0.84
+DAIGT V2,DeBERTa,3e-05,16.0,0.01,0.9943,0.9917,0.9917,0.83
+DAIGT V2,Ensemble (w_BERT=0.50),,,,,0.9936,0.9936,0.64
+HC3,BERT,2e-05,16.0,0.1,0.9939,0.9916,0.9916,0.84
+HC3,DeBERTa,3e-05,16.0,0.1,0.9979,0.9972,0.9972,0.28
+HC3,Ensemble (w_BERT=0.00),,,,,0.9972,0.9972,0.28
