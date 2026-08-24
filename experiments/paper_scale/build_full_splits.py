@@ -1,7 +1,7 @@
 """Builds the ONE fixed full-scale balanced split per dataset (seed=42), used by every
 training run regardless of training seed. HC3 uses a duplicate-group-aware split so that
-no near-identical answer crosses the train/val/test boundary (see Final/audit/hc3_full_audit.json:
-7.16% of the full corpus is duplicated). MEASURED 2026-08-24 by audit/verify_paper_claims.py:
+no near-identical answer crosses the train/val/test boundary (see Final/experiments/audit/hc3_full_audit.json:
+7.16% of the full corpus is duplicated). MEASURED 2026-08-24 by experiments/audit/verify_paper_claims.py:
 this split leaks 0 of 10,732 HC3 test rows, while the naive split in build_naive_splits.py
 leaks 570 of 10,762, 5.30%. The "11.2-11.3%" figure previously quoted here was never measured
 and is wrong. DAIGT uses a plain stratified split (duplication is 0.01%, group-awareness is a

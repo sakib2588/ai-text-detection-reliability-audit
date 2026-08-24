@@ -37,7 +37,7 @@ rows) per your faculty's instruction to use the complete dataset.
 
 One methodological fix is applied that the small-sample version did not need: HC3 was
 audited and found to contain 7.16% duplicate or near-duplicate rows (see
-Final/audit/hc3_full_audit.json), which leaks 11.2-11.3% of a naively random test split.
+Final/experiments/audit/hc3_full_audit.json), which leaks 11.2-11.3% of a naively random test split.
 This script therefore splits HC3 (and DAIGT, for consistency, though its duplication
 rate is negligible at 0.01%) so that no duplicate-content group crosses the
 train/validation/test boundary. This is stricter than a plain random split and is the

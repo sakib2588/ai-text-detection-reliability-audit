@@ -3,7 +3,7 @@
 The ICCIT paper concludes that transformers add nothing measurable on DAIGT V2,
 comparing the best classical model against the best transformer. That comparison
 is confounded as it stands. The classical models read the WHOLE document
-(paper_scale/classical_full.py and full_model_evaluation.py apply no truncation),
+(experiments/paper_scale/classical_full.py and full_model_evaluation.py apply no truncation),
 while the transformers read 128 tokens, which is about 31% of a median DAIGT V2
 essay -- 99.7% of DAIGT V2 documents exceed the window (NUMBERS_SSOT.md Section 9).
 So the classical model is reading roughly three times as much text as the model it

@@ -8,10 +8,10 @@ Three arms per dataset, all on the same fixed splits:
 
   surface-only  hand-built orthographic features, NO lexical content at all
   content-only  bag-of-words over surface-normalised text, the same
-                lower()/[^a-z\\s] pipeline paper_scale/classical_full.py uses,
+                lower()/[^a-z\\s] pipeline experiments/paper_scale/classical_full.py uses,
                 so casing, punctuation and non-ASCII cannot leak in.
                 NOTE: this arm applies NO stopword removal and NO lemmatisation.
-                Those steps belong to paper_scale/classical_full.py, which feeds
+                Those steps belong to experiments/paper_scale/classical_full.py, which feeds
                 the Table 1 classical models, not this decomposition. The content
                 arm here is therefore an UNFILTERED bag-of-words, a stronger
                 content model than a filtered one, not a weaker one.
@@ -31,7 +31,7 @@ shared channel is closed:
 
 Per-document predictions for all four arms are written alongside the JSON so the
 "indistinguishable" claim can be tested with paired McNemar rather than asserted
-from a two-decimal gap (see audit/verify_paper_claims.py).
+from a two-decimal gap (see experiments/audit/verify_paper_claims.py).
 
 surface-only and content-only share one classifier family (logistic regression)
 so the two arms are directly comparable. The transformer is a reference point,
@@ -115,7 +115,7 @@ SURFACE_NORM = re.compile(r'[^a-z\s]')
 
 
 def content_normalise(text):
-    """Identical surface normalisation to paper_scale/classical_full.py, so the
+    """Identical surface normalisation to experiments/paper_scale/classical_full.py, so the
     content arm provably cannot see punctuation, casing, or non-ASCII."""
     t = SURFACE_NORM.sub(' ', str(text).lower())
     return ' '.join(t.split())
@@ -173,7 +173,7 @@ def main():
                   'vectoriser': 'CountVectorizer() defaults, raw counts',
                   'why_recorded': 'iccit/sections/02_methods.tex claimed stopword removal '
                                   'and lemmatisation for this arm. Those steps run in '
-                                  'paper_scale/classical_full.py, not here.'},
+                                  'experiments/paper_scale/classical_full.py, not here.'},
               'arms_are_not_disjoint_on': 'document length; see the length_controlled block',
               'datasets': {}}
     preds = {}

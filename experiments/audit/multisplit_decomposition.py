@@ -1,7 +1,7 @@
 """Split-level variance for the surface-content decomposition.
 
 Every number in the ICCIT paper rests on one group-aware partition, seed 42. The
-bootstrap intervals in audit/verify_paper_claims.py resample the TEST SET, so they
+bootstrap intervals in experiments/audit/verify_paper_claims.py resample the TEST SET, so they
 capture sampling noise and say nothing about how much the result moves if the
 corpus is partitioned differently. This project's own history shows that matters:
 a three-seed spread estimate moved 31% when its runs were repeated.

@@ -44,7 +44,7 @@ OUT_NPZ = FINAL / 'experiments' / 'audit' / 'full_model_scores.npz'
 DATASETS = {'D1': 'DAIGT V2', 'D2': 'HC3'}
 SEED = 42
 
-# identical preprocessing to paper_scale/classical_full.py, kept byte-for-byte so
+# identical preprocessing to experiments/paper_scale/classical_full.py, kept byte-for-byte so
 # these numbers stay comparable with the ones already reported
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))

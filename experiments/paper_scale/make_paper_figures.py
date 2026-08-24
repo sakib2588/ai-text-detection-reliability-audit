@@ -4,7 +4,7 @@ Reads only committed artefacts, so every figure traces to a file on disk:
   audit/full_model_evaluation.json / full_model_scores.npz   (all models, ROC)
   audit/surface_content_decomposition.json                   (decomposition)
 
-Emits PDF at IEEE column widths into iccit/figures/. Colours are chosen from a
+Emits PDF at IEEE column widths into paper/iccit/figures/. Colours are chosen from a
 colourblind-safe qualitative set and every series is additionally distinguished
 by line style, so the figures survive greyscale printing.
 """
