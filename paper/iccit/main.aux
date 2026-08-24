@@ -1,0 +1,89 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Guo2023close}
+\citation{Su2023plus}
+\citation{Zhou2024exploiting}
+\citation{Ansary2026multirepresentation}
+\citation{Tian2023multiscale}
+\citation{Baidya2026detecting}
+\citation{Ardeshirifar2025comparing}
+\citation{Park2024investigating}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\citation{Guo2023close}
+\citation{Su2023plus}
+\citation{Zhou2024exploiting}
+\citation{Kubrusly2025detecting}
+\citation{Ansary2026multirepresentation}
+\citation{Lamsiyah2025daigt}
+\citation{Annepaka2026synergizing}
+\citation{Tian2023multiscale}
+\citation{Baidya2026detecting}
+\citation{Ardeshirifar2025comparing}
+\citation{Park2024investigating}
+\citation{Antoun2023towards}
+\citation{Huang2024generated}
+\citation{Lai2024adaptive}
+\citation{Zhang2024detecting}
+\citation{Borile2025generalize}
+\citation{Alikhanov2026generated}
+\citation{Lu2023large}
+\citation{Thedrcat2023daigtv2}
+\citation{Kaggle2023llmdetect}
+\citation{Crossley2023persuade}
+\citation{Guo2023close}
+\citation{HelloSimpleAI2023hc3}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Datasets}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Models and the combinations evaluated}{2}{subsection.3.2}\protected@file@percent }
+\citation{Dodge2020fine}
+\citation{Mosbach2020stability}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}The surface-content decomposition}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Statistics and confound checks}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:confound}{{\mbox  {III-D}}{3}{Statistics and confound checks}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces All model configurations, both datasets. Transformer rows are the deployed checkpoints, never a grid maximum, and classical rows are refits on the same split. Error rate is given beside F1 because F1 compresses at this ceiling. Bold marks the best classical and the best overall entry per dataset column. Macro F1 equals weighted F1 to four decimals in every row, so no result is produced by class skew.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:allmodels}{{I}{3}{All model configurations, both datasets. Transformer rows are the deployed checkpoints, never a grid maximum, and classical rows are refits on the same split. Error rate is given beside F1 because F1 compresses at this ceiling. Bold marks the best classical and the best overall entry per dataset column. Macro F1 equals weighted F1 to four decimals in every row, so no result is produced by class skew}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}A classical model matches a transformer on DAIGT V2 but not on HC3}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces ROC curves for all eight model configurations, restricted to the low-false-positive region where the models actually differ. Areas under the full curve are given in the legend. On DAIGT V2 (a) every configuration converges toward the corner and the classical models are close behind the transformers. On HC3 (b) the two transformers separate sharply from all six classical configurations. Colours are colourblind-safe and each series carries a distinct dash pattern, so the ordering survives greyscale reproduction.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:roc}{{1}{4}{ROC curves for all eight model configurations, restricted to the low-false-positive region where the models actually differ. Areas under the full curve are given in the legend. On DAIGT V2 (a) every configuration converges toward the corner and the classical models are close behind the transformers. On HC3 (b) the two transformers separate sharply from all six classical configurations. Colours are colourblind-safe and each series carries a distinct dash pattern, so the ordering survives greyscale reproduction}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}On HC3, orthography alone matches content alone}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Surface-content decomposition. Surface-only uses 47 orthographic features and never reads a word. Content-only is unfiltered bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the document-length channel that both primary arms can otherwise read. Bold marks the better arm in each block and dataset column. The transformer is a reference point, not a matched arm.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:decomp}{{II}{4}{Surface-content decomposition. Surface-only uses 47 orthographic features and never reads a word. Content-only is unfiltered bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the document-length channel that both primary arms can otherwise read. Bold marks the better arm in each block and dataset column. The transformer is a reference point, not a matched arm}{table.2}{}}
+\citation{Tian2023multiscale}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Neither result is an artefact of document length}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:decomp}{{\mbox  {IV-C}}{5}{Neither result is an artefact of document length}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}A model that cannot represent the cue reaches 0.9916 regardless}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}The adversarial collapse is not distinguishable from a degenerate response}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Discussion and Conclusion}{5}{section.5}\protected@file@percent }
+\newlabel{sec:limits}{{V}{5}{Discussion and Conclusion}{section.5}{}}
+\bibstyle{IEEEtran}
+\bibdata{bib/refs}
+\bibcite{Guo2023close}{1}
+\bibcite{Su2023plus}{2}
+\bibcite{Zhou2024exploiting}{3}
+\bibcite{Ansary2026multirepresentation}{4}
+\bibcite{Tian2023multiscale}{5}
+\bibcite{Baidya2026detecting}{6}
+\bibcite{Ardeshirifar2025comparing}{7}
+\bibcite{Park2024investigating}{8}
+\bibcite{Kubrusly2025detecting}{9}
+\bibcite{Lamsiyah2025daigt}{10}
+\bibcite{Annepaka2026synergizing}{11}
+\bibcite{Antoun2023towards}{12}
+\bibcite{Huang2024generated}{13}
+\bibcite{Lai2024adaptive}{14}
+\bibcite{Zhang2024detecting}{15}
+\bibcite{Borile2025generalize}{16}
+\bibcite{Alikhanov2026generated}{17}
+\bibcite{Lu2023large}{18}
+\bibcite{Thedrcat2023daigtv2}{19}
+\bibcite{Kaggle2023llmdetect}{20}
+\bibcite{Crossley2023persuade}{21}
+\bibcite{HelloSimpleAI2023hc3}{22}
+\bibcite{Dodge2020fine}{23}
+\bibcite{Mosbach2020stability}{24}
+\@writefile{toc}{\contentsline {section}{References}{6}{section*.2}\protected@file@percent }
+\gdef \@abspage@last{6}
