@@ -376,3 +376,85 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# --------------------------------------------------------------------------
+# Figure 4: method schematic for the decomposition
+# --------------------------------------------------------------------------
+def fig_pipeline():
+    """Schematic of the three arms. Every count printed on it is read from the
+    artefacts, so the diagram cannot drift from the experiment it describes."""
+    from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+
+    dec = json.load(open(AUDIT / 'surface_content_decomposition.json'))
+    n = {}
+    for tag in DATASETS:
+        sp = np.load(WORK / f'split_{tag}.npz')
+        n[tag] = {k: int(len(sp[k])) for k in ('train', 'val', 'test')}
+
+    n_surface = dec['datasets']['D1']['surface_only']['n_features']
+    n_nolen = dec['datasets']['D1']['length_controlled']['surface_only_nolength']['n_features']
+    n_content = {t: dec['datasets'][t]['content_only']['n_features'] for t in DATASETS}
+
+    fig, ax = plt.subplots(figsize=(DBL_W, 2.55))
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 42)
+    ax.axis('off')
+
+    def box(x, y, w, h, text, fc, ec, fs=5.6):
+        ax.add_patch(FancyBboxPatch((x, y), w, h,
+                                    boxstyle='round,pad=0.6,rounding_size=1.2',
+                                    fc=fc, ec=ec, lw=0.7))
+        ax.text(x + w / 2, y + h / 2, text, ha='center', va='center', fontsize=fs)
+
+    def arrow(x1, y1, x2, y2):
+        ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2),
+                                     arrowstyle='-|>', mutation_scale=6,
+                                     lw=0.7, color='#555555',
+                                     shrinkA=1, shrinkB=1))
+
+    box(1, 16, 15, 10,
+        'Raw corpus\n\nDAIGT V2  %s\nHC3  %s' % (
+            f"{sum(n['D1'].values()):,}", f"{sum(n['D2'].values()):,}"),
+        '#F4F4F4', '#888888')
+
+    box(19, 16, 15, 10,
+        'Balance,\nhash by content,\ngroup-aware split\n72 / 8 / 20',
+        '#F4F4F4', '#888888')
+
+    box(38, 29, 26, 11,
+        'Surface arm  (%d features)\npunctuation, whitespace, casing,\nlength, non-ASCII, digits\nno word identity is ever read'
+        % n_surface, '#DCE7F2', CB['blue'])
+
+    box(38, 15.5, 26, 11,
+        'Content arm  (%s / %s terms)\nlowercase, strip [^a-z ],\nbag-of-words, raw counts\nno punctuation, casing or non-ASCII'
+        % (f"{n_content['D1']:,}", f"{n_content['D2']:,}"), '#F7DEDE', CB['red'])
+
+    box(38, 2, 26, 11,
+        'Full arm  (reference)\nBERT and DeBERTa-v3,\nraw text, 128 tokens\nreported, not matched',
+        '#F4F4F4', '#888888')
+
+    box(68, 22.5, 15, 10,
+        'Logistic\nregression\n(shared family)', '#FFFFFF', '#555555')
+
+    box(86, 15, 13, 12,
+        'Paired\nMcNemar\n+ bootstrap\n95% CI', '#FFFFFF', '#555555')
+
+    box(6, -8, 90, 7,
+        'Length control    surface arm drops %d document-size features,    '
+        'content arm rows L1-normalised then rescaled'
+        % (n_surface - n_nolen), '#F0F0F0', '#999999', fs=5.2)
+    ax.set_ylim(-9.5, 42)
+
+    arrow(16, 21, 19, 21)
+    arrow(34, 21, 38, 34.5)
+    arrow(34, 21, 38, 21)
+    arrow(34, 21, 38, 7.5)
+    arrow(64, 34.5, 68, 29)
+    arrow(64, 21, 68, 26)
+    arrow(83, 27.5, 86, 23)
+    arrow(64, 7.5, 86, 17)
+
+    fig.savefig(FIGS / 'fig_pipeline.pdf')
+    plt.close(fig)
+    print('wrote fig_pipeline.pdf')

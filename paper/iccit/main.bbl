@@ -80,6 +80,122 @@ Y.~Annepaka, P.~Kumar, Y.~Poddar, P.~Pakray, and C.~Chunka, ``Synergizing
   linguistic features and transformer networks for detecting {AI}-generated
   text,'' \emph{Knowledge and Information Systems}, vol.~68, no.~1, 2026.
 
+\bibitem{Yadagiri2025aigenerated}
+\BIBentryALTinterwordspacing
+A.~Yadagiri, S.~Sai~Teja, P.~Pakray, and C.~Chunka, ``{AI}-generated text
+  detection using {DeBERTa} with auxiliary stylometric features,'' in
+  \emph{Proceedings of the RANLP 2025 Workshop on Multi-Domain Detection of
+  AI-Generated Text (M-DAIGT)}, 2025. [Online]. Available:
+  \url{https://aclanthology.org/2025.ranlp-mdaigt.2/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Socolof2024style}
+\BIBentryALTinterwordspacing
+G.~Z. Socolof and R.~Kacholia, ``Fast, interpretable {AI}-generated text
+  detection using style embeddings,'' Stanford CS224N final project, 2024, not
+  peer-reviewed. [Online]. Available:
+  \url{https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/GiuliaZoeSocolofRitikaKacholia.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Jawahar2020automatic}
+G.~Jawahar, M.~Abdul-Mageed, and L.~V.~S. Lakshmanan, ``Automatic detection of
+  machine generated text: A critical survey,'' in \emph{Proc. Int. Conf.
+  Computational Linguistics (COLING)}, 2020, pp. 2296--2309.
+
+\bibitem{Crothers2023machine}
+E.~Crothers, N.~Japkowicz, and H.~L. Viktor, ``Machine-generated text: A
+  comprehensive survey of threat models and detection methods,'' \emph{IEEE
+  Access}, vol.~11, pp. 70\,977--71\,002, 2023.
+
+\bibitem{Wang2024detector}
+R.~Wang, H.~Chen, R.~Zhou, H.~Ma, Y.~Duan, Y.~Kang, S.~Yang, B.~Fan, and
+  T.~Tan, ``Llm-detector: Improving {AI}-generated chinese text detection with
+  open-source llm instruction tuning,'' arXiv, 2024, preprint,
+  arXiv:2402.01158.
+
+\bibitem{Biswas2024kaggle}
+\BIBentryALTinterwordspacing
+R.~Biswas \emph{et~al.}, ``{Kaggle} ``{LLM} -- detect {AI} generated text'',
+  1st place solution,'' Kaggle competition write-up, 2024, not peer-reviewed.
+  [Online]. Available: \url{https://github.com/rbiswasfc/llm-detect-ai}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Zeyadusf2024catch}
+\BIBentryALTinterwordspacing
+Zeyadusf, ``{DAIGT} -- catch the {AI},'' GitHub, n.d., graduation project, not
+  peer-reviewed; undated in source. [Online]. Available:
+  \url{https://github.com/zeyadusf/DAIGT-Catch-the-AI}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Zain2025multi}
+A.~Zain, S.~Farooqui, and M.~Rafi, ``A multi-strategy approach for
+  {AI}-generated text detection,'' arXiv, 2025, preprint, arXiv:2509.00623.
+
+\bibitem{Neo2024didai}
+\BIBentryALTinterwordspacing
+B.~Neo, ``Did {AI} write this? using classical machine learning,'' bitgrit Data
+  Science Publication (Medium), n.d., industry blog post, not peer-reviewed;
+  undated in source. [Online]. Available:
+  \url{https://medium.com/bitgrit-data-science-publication/did-ai-write-this-7963a8d7ed2d}
+\BIBentrySTDinterwordspacing
+
+\bibitem{WPI2024supervised}
+\BIBentryALTinterwordspacing
+``Supervised machine generated text detection using {LLM},'' Worcester
+  Polytechnic Institute MS thesis repository, 2024, mS thesis, not
+  peer-reviewed; author name not identifiable from accessible metadata (PDF
+  download link, no author field extractable) -- do not fabricate, cite by
+  title/institution only. [Online]. Available:
+  \url{https://digital.wpi.edu/downloads/hh63t0231}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Arun2026analyzing}
+S.~Arun, S.~Purohit, and J.~Pareek, ``Analyzing {AI}-generated text using
+  machine learning, deep learning and large language models,'' in
+  \emph{Advances in Smart Computing and Applications}, ser. Communications in
+  Computer and Information Science.\hskip 1em plus 0.5em minus 0.4em\relax
+  Springer Nature Switzerland, 2026, pp. 173--187.
+
+\bibitem{Gehrmann2019gltr}
+S.~Gehrmann, H.~Strobelt, and A.~M. Rush, ``{GLTR}: Statistical detection and
+  visualization of generated text,'' in \emph{Proc. ACL: System
+  Demonstrations}, 2019, pp. 111--116.
+
+\bibitem{Mitchell2023detectgpt}
+E.~Mitchell, Y.~Lee, A.~Khazatsky, C.~D. Manning, and C.~Finn, ``{DetectGPT}:
+  Zero-shot machine-generated text detection using probability curvature,'' in
+  \emph{Proc. Int. Conf. Machine Learning (ICML)}, 2023, pp. 24\,950--24\,962.
+
+\bibitem{Kirchenbauer2023watermark}
+J.~Kirchenbauer, J.~Geiping, Y.~Wen, J.~Katz, I.~Miers, and T.~Goldstein, ``A
+  watermark for large language models,'' in \emph{Proc. Int. Conf. Machine
+  Learning (ICML)}, 2023, pp. 17\,061--17\,084.
+
+\bibitem{Torralba2011unbiased}
+A.~Torralba and A.~A. Efros, ``Unbiased look at dataset bias,'' in \emph{Proc.
+  IEEE Conf. Computer Vision and Pattern Recognition (CVPR)}, 2011, pp.
+  1521--1528.
+
+\bibitem{Gururangan2018annotation}
+S.~Gururangan, S.~Swayamdipta, O.~Levy, R.~Schwartz, S.~R. Bowman, and N.~A.
+  Smith, ``Annotation artifacts in natural language inference data,'' in
+  \emph{Proc. NAACL-HLT}, 2018, pp. 107--112.
+
+\bibitem{Poliak2018hypothesis}
+A.~Poliak, J.~Naradowsky, A.~Haldar, R.~Rudinger, and B.~Van~Durme,
+  ``Hypothesis only baselines in natural language inference,'' in \emph{Proc.
+  Joint Conf. on Lexical and Computational Semantics (*SEM)}, 2018, pp.
+  180--191.
+
+\bibitem{Niven2019probing}
+T.~Niven and H.-Y. Kao, ``Probing neural network comprehension of natural
+  language arguments,'' in \emph{Proc. ACL}, 2019, pp. 4658--4664.
+
+\bibitem{Geirhos2020shortcut}
+R.~Geirhos, J.-H. Jacobsen, C.~Michaelis, R.~Zemel, W.~Brendel, M.~Bethge, and
+  F.~A. Wichmann, ``Shortcut learning in deep neural networks,'' \emph{Nature
+  Machine Intelligence}, vol.~2, no.~11, pp. 665--673, 2020.
+
 \bibitem{Antoun2023towards}
 W.~Antoun, V.~Mouilleron, B.~Sagot, and D.~Seddah, ``Towards a robust detection
   of language model generated text: Is chatgpt that easy to detect?'' arXiv,
@@ -89,6 +205,17 @@ W.~Antoun, V.~Mouilleron, B.~Sagot, and D.~Seddah, ``Towards a robust detection
 G.~Huang, Y.~Zhang, Z.~Li, Y.~You, M.~Wang, and Z.~Yang, ``Are {AI}-generated
   text detectors robust to adversarial perturbations?'' arXiv, 2024, preprint,
   arXiv:2406.01179.
+
+\bibitem{Sadasivan2023can}
+V.~S. Sadasivan, A.~Kumar, S.~Balasubramanian, W.~Wang, and S.~Feizi, ``Can
+  ai-generated text be reliably detected?'' \emph{arXiv preprint
+  arXiv:2303.11156}, 2023.
+
+\bibitem{Krishna2023paraphrasing}
+K.~Krishna, Y.~Song, M.~Karpinska, J.~Wieting, and M.~Iyyer, ``Paraphrasing
+  evades detectors of ai-generated text, but retrieval is an effective
+  defense,'' in \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2023.
 
 \bibitem{Lai2024adaptive}
 Z.~Lai, X.~Zhang, and S.~Chen, ``Adaptive ensembles of fine-tuned transformers
@@ -106,6 +233,11 @@ C.~Borile and C.~Abrate, ``How to generalize the detection of {AI}-generated
   Computational Linguistics: EMNLP 2025}, 2025, pp. 25\,461--25\,476. [Online].
   Available: \url{https://aclanthology.org/2025.findings-emnlp.1388.pdf}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Liang2023gpt}
+W.~Liang, M.~Yuksekgonul, Y.~Mao, E.~Wu, and J.~Zou, ``{GPT} detectors are
+  biased against non-native {E}nglish writers,'' \emph{Patterns}, vol.~4,
+  no.~7, p. 100779, 2023.
 
 \bibitem{Alikhanov2026generated}
 A.~Alikhanov, A.~Amangeldi, D.~Demeubay, D.~Akhmetzhan, N.~Moldakhmetov,
@@ -142,6 +274,52 @@ thedrcat, ``{DAIGT} v2 train dataset,'' Kaggle, 2023. [Online]. Available:
   [Online]. Available: \url{https://huggingface.co/datasets/Hello-SimpleAI/HC3}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Devlin2019bert}
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``{BERT}: Pre-training of
+  deep bidirectional transformers for language understanding,'' in \emph{Proc.
+  NAACL-HLT}, 2019, pp. 4171--4186.
+
+\bibitem{He2023debertav3}
+P.~He, J.~Gao, and W.~Chen, ``{DeBERTaV3}: Improving {DeBERTa} using
+  {ELECTRA}-style pre-training with gradient-disentangled embedding sharing,''
+  in \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2023,
+  arXiv:2111.09543.
+
+\bibitem{Loshchilov2019adamw}
+I.~Loshchilov and F.~Hutter, ``Decoupled weight decay regularization,'' in
+  \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2019,
+  arXiv:1711.05101.
+
+\bibitem{He2021deberta}
+P.~He, X.~Liu, J.~Gao, and W.~Chen, ``{DeBERTa}: Decoding-enhanced {BERT} with
+  disentangled attention,'' in \emph{Proc. Int. Conf. Learning Representations
+  (ICLR)}, 2021, arXiv:2006.03654.
+
+\bibitem{Clark2020electra}
+K.~Clark, M.-T. Luong, Q.~V. Le, and C.~D. Manning, ``{ELECTRA}: Pre-training
+  text encoders as discriminators rather than generators,'' in \emph{Proc. Int.
+  Conf. Learning Representations (ICLR)}, 2020, arXiv:2003.10555.
+
+\bibitem{Kudo2018sentencepiece}
+T.~Kudo and J.~Richardson, ``{SentencePiece}: A simple and language independent
+  subword tokenizer and detokenizer for neural text processing,'' in
+  \emph{Proc. EMNLP: System Demonstrations}, 2018, pp. 66--71.
+
+\bibitem{Wu2016google}
+Y.~Wu, M.~Schuster, Z.~Chen, Q.~V. Le, M.~Norouzi \emph{et~al.}, ``Google's
+  neural machine translation system: Bridging the gap between human and machine
+  translation,'' \emph{arXiv preprint arXiv:1609.08144}, 2016.
+
+\bibitem{Wolf2020transformers}
+T.~Wolf, L.~Debut, V.~Sanh, J.~Chaumond, C.~Delangue \emph{et~al.},
+  ``Transformers: State-of-the-art natural language processing,'' in
+  \emph{Proc. EMNLP: System Demonstrations}, 2020, pp. 38--45.
+
+\bibitem{Pedregosa2011scikit}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion \emph{et~al.},
+  ``Scikit-learn: Machine learning in {P}ython,'' \emph{Journal of Machine
+  Learning Research}, vol.~12, pp. 2825--2830, 2011.
+
 \bibitem{Dodge2020fine}
 J.~Dodge, G.~Ilharco, R.~Schwartz, A.~Farhadi, H.~Hajishirzi, and N.~Smith,
   ``Fine-tuning pretrained language models: Weight initializations, data
@@ -151,5 +329,24 @@ J.~Dodge, G.~Ilharco, R.~Schwartz, A.~Farhadi, H.~Hajishirzi, and N.~Smith,
 M.~Mosbach, M.~Andriushchenko, and D.~Klakow, ``On the stability of fine-tuning
   bert: Misconceptions, explanations, and strong baselines,'' arXiv, 2020,
   preprint, arXiv:2006.04884.
+
+\bibitem{Dietterich1998approximate}
+T.~G. Dietterich, ``Approximate statistical tests for comparing supervised
+  classification learning algorithms,'' \emph{Neural Computation}, vol.~10,
+  no.~7, pp. 1895--1923, 1998.
+
+\bibitem{McNemar1947note}
+Q.~McNemar, ``Note on the sampling error of the difference between correlated
+  proportions or percentages,'' \emph{Psychometrika}, vol.~12, no.~2, pp.
+  153--157, 1947.
+
+\bibitem{Efron1979bootstrap}
+B.~Efron, ``Bootstrap methods: Another look at the jackknife,'' \emph{The
+  Annals of Statistics}, vol.~7, no.~1, pp. 1--26, 1979.
+
+\bibitem{Lundberg2017unified}
+S.~M. Lundberg and S.-I. Lee, ``A unified approach to interpreting model
+  predictions,'' in \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2017, pp. 4765--4774.
 
 \end{thebibliography}

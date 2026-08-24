@@ -12,8 +12,13 @@
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
 % ============================================================
-% ICCIT conference cut of the AI-text-detection reliability study.
-% Every number traces to Final/paper_draft/NUMBERS_SSOT.md.
+% Full-length cut of the AI-text-detection reliability study.
+% Every number traces to paper/draft/NUMBERS_SSOT.md.
+%
+% Float discipline: figures and tables appear in the order they are written,
+% because the placement is [!t] for page-width floats and [!ht] for
+% single-column ones, with \FloatBarrier closing every subsection so nothing
+% drifts past the text that discusses it.
 % ============================================================
 
 % ============================================================
@@ -26,24 +31,36 @@
 
 \hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
 
-% Float spacing tightened to hold the six-page ICCIT budget with three figures
-% and two tables. Same lever used by the companion submission from this group.
-\setlength{\textfloatsep}{2pt plus 1pt minus 1pt}
-\setlength{\floatsep}{2pt plus 1pt minus 1pt}
-\setlength{\intextsep}{2pt plus 1pt minus 1pt}
-\setlength{\abovecaptionskip}{2pt}
+% Float spacing tightened so no float leaves a visible gap above or below its
+% surrounding text.
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{3pt}
 \setlength{\belowcaptionskip}{0pt}
+
+% Let a page-width float take up to 85 percent of a page before LaTeX defers it,
+% which is what keeps the wide figures next to their own discussion.
+\renewcommand{\dbltopfraction}{0.85}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\dblfloatpagefraction}{0.7}
+\renewcommand{\floatpagefraction}{0.7}
 
 \begin{document}
 
-\title{A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks: Evidence from Five Models on DAIGT V2 and HC3}
+\title{Surface Form or Content? Decomposing Separability\\in AI-Generated Text Detection Benchmarks}
 
 \ifblind
   \author{\IEEEauthorblockN{Anonymous Author(s)}
   \IEEEauthorblockA{Affiliation withheld for double-blind review}}
 \else
-  \author{\IEEEauthorblockN{Group 02, Section B}
-  \IEEEauthorblockA{Department of Computer Science and Engineering\\
+  \author{\IEEEauthorblockN{Niloy Paul, Arnob Sarker Supta, Nazmus Sakib, Afnan Ur Rayan}
+  \IEEEauthorblockA{Department of Computer Science\\
+  Faculty of Science and Technology\\
   American International University-Bangladesh (AIUB)\\
   Dhaka, Bangladesh}}
 \fi
@@ -55,7 +72,7 @@
 \end{abstract}
 
 \begin{IEEEkeywords}
-AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, ROC analysis
+AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, SHAP, paired significance testing
 \end{IEEEkeywords}
 
 \input{sections/01_introduction.tex}
@@ -63,9 +80,7 @@ AI-generated text detection, benchmark evaluation, surface features, shortcut le
 \input{sections/02_methods.tex}
 \input{sections/03_results.tex}
 \input{sections/05_discussion_conclusion.tex}
-
-\section*{Data and Code Availability}
-Both datasets, DAIGT V2 and HC3, are public, and code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
+\input{sections/06_reproducibility.tex}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib/refs}

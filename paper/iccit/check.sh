@@ -9,7 +9,7 @@ pass() { printf '  \033[32mPASS\033[0m  %s\n' "$1"; }
 fail() { printf '  \033[31mFAIL\033[0m  %s\n' "$1"; FAIL=1; }
 info() { printf '  info  %s\n' "$1"; }
 
-TEX="main.tex sections/00_abstract.tex sections/01_introduction.tex sections/02_methods.tex sections/03_results.tex sections/04_related_work.tex sections/05_discussion_conclusion.tex"
+TEX="main.tex sections/00_abstract.tex sections/01_introduction.tex sections/02_methods.tex sections/03_results.tex sections/04_related_work.tex sections/05_discussion_conclusion.tex sections/06_reproducibility.tex"
 
 MANIFEST=".build-manifest"
 build_inputs() {
@@ -24,11 +24,15 @@ if [ "$1" = "--build" ]; then
 fi
 
 echo "== page budget =="
+# RELAXED 2026-08-25 by user decision: this is the full-length cut, which carries
+# every figure and table rather than the six that fit a conference budget. The
+# page count is reported, not gated. Re-arm this gate before submitting to a
+# venue with a hard cap by restoring the -le 6 test below.
 PAGES=$(pdfinfo main.pdf 2>/dev/null | awk '/^Pages/{print $2}')
-if [ -n "$PAGES" ] && [ "$PAGES" -le 6 ] 2>/dev/null; then
-  pass "pages = $PAGES (ICCIT cap is 6)"
+if [ -n "$PAGES" ]; then
+  info "pages = $PAGES (not gated in the full-length cut; a 6-page venue cap would need a cut-down)"
 else
-  fail "pages = ${PAGES:-none} (ICCIT cap is 6 including references)"
+  fail "pages = none (main.pdf did not build)"
 fi
 PAPER=$(pdfinfo main.pdf 2>/dev/null | awk -F'[()]' '/^Page size/{print $2}')
 [ "$PAPER" = "A4" ] && pass "paper size = A4" || fail "paper size = ${PAPER:-unknown} (ICCIT requires the A4 template)"
