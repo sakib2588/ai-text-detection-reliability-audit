@@ -53,3 +53,6 @@ paper/iccit/*.out
 paper/iccit/*.blg
 paper/iccit/*.fdb_latexmk
 paper/iccit/*.fls
+
+# Material belonging to a different project, dropped in here by hand
+"All Outputs_Plot_from_another_project /"

@@ -1,9 +1,0 @@
-split,class,count,percent
-Full dataset,Non-Diabetic (0),5093,93.67
-Full dataset,Diabetic (1),344,6.33
-Train (pre-SMOTE),Non-Diabetic (0),4074,93.68
-Train (pre-SMOTE),Diabetic (1),275,6.32
-Test (untouched),Non-Diabetic (0),1019,93.66
-Test (untouched),Diabetic (1),69,6.34
-Train (post-SMOTE),Non-Diabetic (0),4074,50.0
-Train (post-SMOTE),Diabetic (1),4074,50.0
