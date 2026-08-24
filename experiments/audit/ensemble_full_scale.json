@@ -1,0 +1,216 @@
+{
+ "seed": 42,
+ "bootstrap_resamples": 10000,
+ "weight_grid": [
+  0.0,
+  0.05,
+  0.1,
+  0.15,
+  0.2,
+  0.25,
+  0.3,
+  0.35,
+  0.4,
+  0.45,
+  0.5,
+  0.55,
+  0.6,
+  0.65,
+  0.7,
+  0.75,
+  0.8,
+  0.85,
+  0.9,
+  0.95,
+  1.0
+ ],
+ "selection": "mixing weight chosen on VALIDATION weighted F1 only",
+ "members": "deployed checkpoints, never grid maxima",
+ "supersedes": "NUMBERS_SSOT.md Section 1 ensemble row, which used grid maxima",
+ "datasets": {
+  "D1": {
+   "name": "DAIGT V2",
+   "n_val": 2800,
+   "n_test": 6998,
+   "members": {
+    "BERT": {
+     "key": "full_D1_BERT_lr3e-05_bs32_wd0.1_s42",
+     "lr": 3e-05,
+     "batch_size": 32,
+     "weight_decay": 0.1,
+     "test": {
+      "accuracy": 0.9916,
+      "error_rate": 0.0084,
+      "weighted_f1": 0.9916,
+      "macro_f1": 0.9916,
+      "confusion_tn_fp_fn_tp": [
+       3475,
+       44,
+       15,
+       3464
+      ]
+     }
+    },
+    "DeBERTa": {
+     "key": "full_D1_DeBERTa_lr3e-05_bs16_wd0.01_s42",
+     "lr": 3e-05,
+     "batch_size": 16,
+     "weight_decay": 0.01,
+     "test": {
+      "accuracy": 0.9917,
+      "error_rate": 0.0083,
+      "weighted_f1": 0.9917,
+      "macro_f1": 0.9917,
+      "confusion_tn_fp_fn_tp": [
+       3491,
+       28,
+       30,
+       3449
+      ]
+     }
+    }
+   },
+   "val_f1_by_weight": {
+    "0.0": 0.9943,
+    "0.05": 0.9943,
+    "0.1": 0.9943,
+    "0.15": 0.9943,
+    "0.2": 0.9946,
+    "0.25": 0.995,
+    "0.3": 0.9946,
+    "0.35": 0.9946,
+    "0.4": 0.9946,
+    "0.45": 0.995,
+    "0.5": 0.9961,
+    "0.55": 0.9961,
+    "0.6": 0.9961,
+    "0.65": 0.9957,
+    "0.7": 0.9957,
+    "0.75": 0.9957,
+    "0.8": 0.9957,
+    "0.85": 0.9957,
+    "0.9": 0.9957,
+    "0.95": 0.9957,
+    "1.0": 0.9957
+   },
+   "weight_on_bert": 0.5,
+   "weight_on_deberta": 0.5,
+   "degenerate": false,
+   "ensemble_test": {
+    "accuracy": 0.9936,
+    "error_rate": 0.0064,
+    "weighted_f1": 0.9936,
+    "macro_f1": 0.9936,
+    "confusion_tn_fp_fn_tp": [
+     3487,
+     32,
+     13,
+     3466
+    ]
+   },
+   "stronger_member": "DeBERTa",
+   "ensemble_minus_stronger_f1": 0.0019,
+   "paired_ensemble_vs_stronger": {
+    "mcnemar_b_a_right_b_wrong": 31,
+    "mcnemar_c_a_wrong_b_right": 18,
+    "mcnemar_exact_p": 0.085433,
+    "error_diff_a_minus_b": -0.001858,
+    "error_diff_ci95_lo": -0.003858,
+    "error_diff_ci95_hi": 0.000143,
+    "ci_excludes_zero": false
+   }
+  },
+  "D2": {
+   "name": "HC3",
+   "n_val": 4289,
+   "n_test": 10732,
+   "members": {
+    "BERT": {
+     "key": "full_D2_BERT_lr2e-05_bs16_wd0.1_s42",
+     "lr": 2e-05,
+     "batch_size": 16,
+     "weight_decay": 0.1,
+     "test": {
+      "accuracy": 0.9916,
+      "error_rate": 0.0084,
+      "weighted_f1": 0.9916,
+      "macro_f1": 0.9916,
+      "confusion_tn_fp_fn_tp": [
+       5304,
+       73,
+       17,
+       5338
+      ]
+     }
+    },
+    "DeBERTa": {
+     "key": "full_D2_DeBERTa_lr3e-05_bs16_wd0.1_s42",
+     "lr": 3e-05,
+     "batch_size": 16,
+     "weight_decay": 0.1,
+     "test": {
+      "accuracy": 0.9972,
+      "error_rate": 0.0028,
+      "weighted_f1": 0.9972,
+      "macro_f1": 0.9972,
+      "confusion_tn_fp_fn_tp": [
+       5360,
+       17,
+       13,
+       5342
+      ]
+     }
+    }
+   },
+   "val_f1_by_weight": {
+    "0.0": 0.9979,
+    "0.05": 0.9979,
+    "0.1": 0.9979,
+    "0.15": 0.9979,
+    "0.2": 0.9979,
+    "0.25": 0.9979,
+    "0.3": 0.9979,
+    "0.35": 0.9979,
+    "0.4": 0.9979,
+    "0.45": 0.9979,
+    "0.5": 0.9979,
+    "0.55": 0.9956,
+    "0.6": 0.9949,
+    "0.65": 0.9942,
+    "0.7": 0.9942,
+    "0.75": 0.9944,
+    "0.8": 0.9944,
+    "0.85": 0.9942,
+    "0.9": 0.9939,
+    "0.95": 0.9939,
+    "1.0": 0.9939
+   },
+   "weight_on_bert": 0.0,
+   "weight_on_deberta": 1.0,
+   "degenerate": true,
+   "ensemble_test": {
+    "accuracy": 0.9972,
+    "error_rate": 0.0028,
+    "weighted_f1": 0.9972,
+    "macro_f1": 0.9972,
+    "confusion_tn_fp_fn_tp": [
+     5360,
+     17,
+     13,
+     5342
+    ]
+   },
+   "stronger_member": "DeBERTa",
+   "ensemble_minus_stronger_f1": 0.0,
+   "paired_ensemble_vs_stronger": {
+    "mcnemar_b_a_right_b_wrong": 0,
+    "mcnemar_c_a_wrong_b_right": 0,
+    "mcnemar_exact_p": 1.0,
+    "error_diff_a_minus_b": 0.0,
+    "error_diff_ci95_lo": 0.0,
+    "error_diff_ci95_hi": 0.0,
+    "ci_excludes_zero": false
+   }
+  }
+ }
+}

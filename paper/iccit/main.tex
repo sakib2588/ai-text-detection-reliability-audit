@@ -1,0 +1,90 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{url}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% ============================================================
+% Full-length cut of the AI-text-detection reliability study.
+% Every number traces to paper/draft/NUMBERS_SSOT.md.
+%
+% Float discipline: figures and tables appear in the order they are written,
+% because the placement is [!t] for page-width floats and [!ht] for
+% single-column ones, with \FloatBarrier closing every subsection so nothing
+% drifts past the text that discusses it.
+% ============================================================
+
+% ============================================================
+% DOUBLE-BLIND TOGGLE
+%   \blindtrue   -> anonymous, for SUBMISSION   (current setting)
+%   \blindfalse  -> full author block, for CAMERA-READY
+% ============================================================
+\newif\ifblind
+\blindtrue
+
+\hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
+
+% Float spacing tightened so no float leaves a visible gap above or below its
+% surrounding text.
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
+
+% Let a page-width float take up to 85 percent of a page before LaTeX defers it,
+% which is what keeps the wide figures next to their own discussion.
+\renewcommand{\dbltopfraction}{0.85}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\dblfloatpagefraction}{0.7}
+\renewcommand{\floatpagefraction}{0.7}
+
+\begin{document}
+
+\title{Surface Form or Content? Decomposing Separability\\in AI-Generated Text Detection Benchmarks}
+
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Author(s)}
+  \IEEEauthorblockA{Affiliation withheld for double-blind review}}
+\else
+  \author{\IEEEauthorblockN{Niloy Paul, Arnob Sarker Supta, Nazmus Sakib, Afnan Ur Rayan}
+  \IEEEauthorblockA{Department of Computer Science\\
+  Faculty of Science and Technology\\
+  American International University-Bangladesh (AIUB)\\
+  Dhaka, Bangladesh}}
+\fi
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, SHAP, paired significance testing
+\end{IEEEkeywords}
+
+\input{sections/01_introduction.tex}
+\input{sections/04_related_work.tex}
+\input{sections/02_methods.tex}
+\input{sections/03_results.tex}
+\input{sections/05_discussion_conclusion.tex}
+
+\section*{Data and Code Availability}
+Both corpora are public. Every number in this paper is produced by a committed script that writes a JSON file, and no number was transcribed from a session log. The partition is built once by a script that asserts no duplicate-content group crosses a boundary, and is reused unchanged by every model and every training seed. A single notebook reproduces the preprocessing, both transformers at their deployed configurations and the ensemble, reading each configuration from the checkpoint record at runtime rather than from a value typed into the notebook. Code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib/refs}
+
+\end{document}

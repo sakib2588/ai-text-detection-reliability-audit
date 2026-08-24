@@ -1,39 +1,57 @@
-# Model checkpoints (large binaries, reproducible via paper_scale/run_*.py)
+# ---------------------------------------------------------------------------
+# Model checkpoints -- large binaries, reproducible from the run scripts
+# ---------------------------------------------------------------------------
 models/
-paper_scale/models/
 *.safetensors
 
-# Raw/processed data (reproducible via build_full_splits.py from source CSV/JSONL)
+# ---------------------------------------------------------------------------
+# Raw and processed data -- reproducible via the build_*_splits.py scripts
+# ---------------------------------------------------------------------------
 *.parquet
-paper_scale/work/*.npz
-work/*.npz
-paper_scale/work/split_*.npz
-work/data_*.parquet
+experiments/portable/full_dataset/daigt.csv
+experiments/portable/full_dataset/hc3.jsonl
 
-# Portable-run source data copies
-portable_full_dataset/daigt.csv
-portable_full_dataset/hc3.jsonl
-portable_classical_only/data_*.parquet
-portable_gpu_half/data_*.parquet
+# ---------------------------------------------------------------------------
+# Prediction arrays and split indices for the live runs.
+# Regeneratable from the checkpoints. The archived copies under archive/ and
+# the audit arrays under experiments/audit/ stay tracked on purpose, because
+# the checkpoints that produced them no longer exist.
+# ---------------------------------------------------------------------------
+experiments/midterm/probs/*.npz
+experiments/midterm/work/*.npz
+experiments/paper_scale/probs/*.npz
+experiments/paper_scale/work/*.npz
 
-# Large archives
+# ---------------------------------------------------------------------------
+# Large archives -- submission bundles live in archive/submissions/
+# ---------------------------------------------------------------------------
 *.zip
 
-# Prediction probability arrays (large, regeneratable from checkpoints)
-probs/*.npz
-paper_scale/probs/*.npz
+# ---------------------------------------------------------------------------
+# Transient control files and scratch backups
+# ---------------------------------------------------------------------------
+experiments/paper_scale/.nlp.stop
 
+# ---------------------------------------------------------------------------
 # Python cache
+# ---------------------------------------------------------------------------
 __pycache__/
 *.pyc
 
-# Editor/OS
+# ---------------------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------------------
 .DS_Store
 
-# LaTeX build artifacts (iccit/) -- main.bbl kept, matches reference project convention
-iccit/*.aux
-iccit/*.log
-iccit/*.out
-iccit/*.blg
-iccit/*.fdb_latexmk
-iccit/*.fls
+# ---------------------------------------------------------------------------
+# LaTeX build artifacts (paper/iccit/); main.bbl is kept deliberately
+# ---------------------------------------------------------------------------
+paper/iccit/*.aux
+paper/iccit/*.log
+paper/iccit/*.out
+paper/iccit/*.blg
+paper/iccit/*.fdb_latexmk
+paper/iccit/*.fls
+
+# Material belonging to a different project, dropped in here by hand
+All Outputs_Plot_from_another_project\ /

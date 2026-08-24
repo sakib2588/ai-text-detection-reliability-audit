@@ -1,0 +1,27 @@
+{
+ "surface_correlation": {
+  "D1": {
+   "n_features": 47,
+   "mean_abs_offdiagonal_spearman": 0.0621,
+   "pairs_above_0.5": 10,
+   "n_pairs": 1081,
+   "constant_on_test_split": [
+    "rate of '@'",
+    "rate of '^'"
+   ],
+   "n_constant": 2,
+   "note": "constant features have undefined correlation and are drawn as 0"
+  },
+  "D2": {
+   "n_features": 47,
+   "mean_abs_offdiagonal_spearman": 0.0838,
+   "pairs_above_0.5": 14,
+   "n_pairs": 1081,
+   "constant_on_test_split": [
+    "emoji count"
+   ],
+   "n_constant": 1,
+   "note": "constant features have undefined correlation and are drawn as 0"
+  }
+ }
+}

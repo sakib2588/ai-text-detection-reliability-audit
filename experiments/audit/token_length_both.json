@@ -1,0 +1,24 @@
+{
+ "D1": {
+  "sample_n": 2000,
+  "sample_seed": 42,
+  "tokenizer": "bert-base-uncased",
+  "median_tokens": 415.0,
+  "mean_tokens": 442.7,
+  "pct_exceeding_128": 99.7,
+  "median_pct_kept_at_128": 30.8,
+  "median_tokens_human": 448.5,
+  "median_tokens_machine": 398.5
+ },
+ "D2": {
+  "sample_n": 2000,
+  "sample_seed": 42,
+  "tokenizer": "bert-base-uncased",
+  "median_tokens": 165.0,
+  "mean_tokens": 182.1,
+  "pct_exceeding_128": 61.1,
+  "median_pct_kept_at_128": 77.6,
+  "median_tokens_human": 96.0,
+  "median_tokens_machine": 211.0
+ }
+}
