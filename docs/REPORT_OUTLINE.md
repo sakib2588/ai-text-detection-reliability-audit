@@ -4,7 +4,7 @@ Follows `NLP Report Template with Cover Page - Midterm Summer 25-26.docx`, whose
 Cover Page, Project Contributions, Dataset Description, Project Implementation Detail, Project Code.
 
 Numbers marked `{{...}}` are filled from files on disk. Nothing is typed by hand.
-Sources: `table1_experiments.csv`, `table2_combined.csv`, `run_summary.json`, `work/sweep_results.csv`,
+Sources: `tables/table1_experiments.csv`, `tables/table2_combined.csv`, `tables/run_summary.json`, `experiments/midterm/work/sweep_results.csv`,
 `work/seed_robustness.csv`, `work/length_stats.csv`, `work/ensemble_detail.json`.
 
 ---
@@ -52,9 +52,9 @@ Per the template, each task is written as Title, Description, Code, Sample outpu
 
 ## 4. Results
 
-**Table 1** — the specification's experiment table, 17 rows, from `table1_experiments.csv`.
+**Table 1** — the specification's experiment table, 17 rows, from `tables/table1_experiments.csv`.
 
-**Table 2** — the combined table, 6 rows, from `table2_combined.csv`. State beneath it that the
+**Table 2** — the combined table, 6 rows, from `tables/table2_combined.csv`. State beneath it that the
 classical rows use each model's stronger representation (Naive Bayes and Logistic Regression at
 Bag-of-Words, Support Vector Machine at TF-IDF) and that the transformer rows use the configuration
 with the best validation F1.

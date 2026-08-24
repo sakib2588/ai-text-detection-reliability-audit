@@ -1,12 +1,12 @@
 # Results
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md`. This section is
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md`. This section is
 partial: subsections 5.3 and 5.4 depend on experiments not yet run (see
 Methodology, "Planned additions").*
 
 ## 5.1 In-distribution baseline (five-model comparison)
 
-Table 2 (`Final/table2_combined_full.csv`) reports full-corpus,
+Table 2 (`Final/tables/table2_combined_full.csv`) reports full-corpus,
 in-distribution F1 for all five classifiers on both datasets. The three
 classical baselines separate clearly by representation and model
 complexity: Naive Bayes reaches 0.9591 F1 on DAIGT V2 and 0.8713 on HC3,
@@ -48,7 +48,7 @@ result rather than a replication of it.
 
 ## 5.3 Cross-dataset transfer -- 3 seeds (42, 123, 456)
 
-Table `Final/table_cross_dataset_generalization_3seed.csv` reports strict
+Table `Final/tables/table_cross_dataset_generalization_3seed.csv` reports strict
 one-way transfer for both transformers, in both directions, averaged across
 three random seeds. Every cell collapses substantially relative to its
 in-domain baseline: BERT trained on DAIGT V2 falls from a mean 0.9921
@@ -75,11 +75,11 @@ Two variants were run: a zero-shot pass (existing raw-trained checkpoints
 re-scored on cleaned test text only, no retraining) and the review-recommended
 full ablation (retraining from scratch on cleaned train/val/test data at the
 same fixed configuration). The full retrain-based numbers are the headline
-here; the zero-shot numbers (`Final/table_artifact_cleaning_zeroshot.csv`)
+here; the zero-shot numbers (`Final/tables/table_artifact_cleaning_zeroshot.csv`)
 are reported as a secondary, discussion-level figure.
 
 Under full retraining on cleaned data
-(`Final/table_artifact_cleaning_full.csv`), the direction and magnitude of
+(`Final/tables/table_artifact_cleaning_full.csv`), the direction and magnitude of
 the effect differ by dataset. On DAIGT V2, cleaning the emoji/pictograph
 signal has essentially no negative effect and, for BERT, a small positive
 one: F1 moves from 0.9916 to 0.9936 for BERT (+0.0020) and from 0.9917 to
@@ -112,7 +112,7 @@ lowers the accuracy a retrained model reaches.
 
 ## 5.5 Adversarial robustness
 
-Table `Final/table_adversarial_robustness.csv` reports F1 for both
+Table `Final/tables/table_adversarial_robustness.csv` reports F1 for both
 transformers on both datasets under three attack families -- character-level
 typo injection and homoglyph substitution, each at 1%, 5%, and 10% of
 eligible characters, and a single back-translation (English-German-English)

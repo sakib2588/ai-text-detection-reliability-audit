@@ -14,7 +14,7 @@ HC3/BERT **0.0000**, HC3/DeBERTa **0.0010**, DAIGT/DeBERTa **-0.0026**. It is ad
 confounded because `build_cleaned_data` applies `length_match(unit='words')` to the cleaned arm
 only. Section 6's table is retracted in full.
 
-**R2. Every adversarial `drop` is inflated by the same bug.** `table_adversarial_robustness.csv`
+**R2. Every adversarial `drop` is inflated by the same bug.** `tables/table_adversarial_robustness.csv`
 takes `in_domain_f1` from the grid maximum rather than the attacked checkpoint. Deployed
 checkpoints are D2_BERT **0.9916** (not 0.9945), D2_DeBERTa **0.9972** (not 0.9980), D1_DeBERTa
 **0.9917** (not 0.9949). Corrected typo-10 drops: D1 BERT 0.1950, D1 DeBERTa 0.0327, D2 BERT
@@ -24,7 +24,7 @@ checkpoints are D2_BERT **0.9916** (not 0.9945), D2_DeBERTa **0.9972** (not 0.99
 **CORRECTED 2026-08-24: the replacement, 0.0036, was cherry-picked the other way.** It is the
 spread of `full_D2_BERT_lr2e-05_bs16_wd0.1`, i.e. HC3/BERT, and the ICCIT paper was applying it
 as a noise floor to a DAIGT-V2 DeBERTa-vs-SVM comparison. Never borrow a spread across a dataset
-or a model family. All four measured spreads, from `audit/paper_claim_verification.json`:
+or a model family. All four measured spreads, from `experiments/audit/paper_claim_verification.json`:
 
 | config | n | spread |
 |---|---|---|
@@ -56,7 +56,7 @@ and are not listed — see `REPORT.md` if the course submission needs them.
 
 ## 1. Headline 5-model comparison — **SUPERSEDED by Section 13 (used grid maxima)**
 
-Source: `Final/table2_combined_full.csv`
+Source: `Final/tables/table2_combined_full.csv`
 
 | Model | D1 (DAIGT) F1 | D2 (HC3) F1 |
 |---|---|---|
@@ -68,18 +68,18 @@ Source: `Final/table2_combined_full.csv`
 | Ensemble (soft-vote) | 0.9949 | 0.9982 |
 
 Note: review recommends demoting the ensemble to a discussion point, not a
-headline result (see `paper_review/LITERATURE_REVIEW_CANONICAL.md` Section 5.3).
+headline result (see `docs/literature/LITERATURE_REVIEW_CANONICAL.md` Section 5.3).
 
 ## 2. Full hyperparameter sweep (Table 1, full-corpus, BERT/DeBERTa only)
 
-Source: `Final/table1_experiments_full.csv` — 16 configs (2 models x 2 lr x 2
+Source: `Final/tables/table1_experiments_full.csv` — 16 configs (2 models x 2 lr x 2
 bs x 2 wd) x 2 datasets. Use for the methodology/sweep-design section; do not
 re-list all 16 rows in the main paper, reference the CSV.
 
 ## 3. Cross-dataset transfer — DONE, 3 seeds (42/123/456)
 
-Source: `Final/table_cross_dataset_generalization_3seed.csv`. Supersedes the
-single-seed table (`table_cross_dataset_generalization.csv`, kept for
+Source: `Final/tables/table_cross_dataset_generalization_3seed.csv`. Supersedes the
+single-seed table (`tables/table_cross_dataset_generalization.csv`, kept for
 reference — seed-42-only values match this table's per-seed data).
 
 | Trained on | Model | In-domain F1 (mean) | Cross-domain F1 (mean) | Cross-domain F1 (min-max) | Gap (mean) | Gap (min-max) |
@@ -107,7 +107,7 @@ statistically confirmed effect; do not overclaim non-overlap.
   course-track/small-scale, not full-scale — do not confuse with row 5 below).
 - Full-scale D1 BERT, same config `lr=3e-05 bs=32 wd=0.1`: test F1
   `[0.9916 (s42), 0.9927 (s123), 0.9920 (s456)]`, **spread = 0.0011**.
-  Source: `Final/paper_scale/results/full_D1_BERT_lr3e-05_bs32_wd0.1_s{42,123,456}.json`
+  Source: `Final/experiments/paper_scale/results/full_D1_BERT_lr3e-05_bs32_wd0.1_s{42,123,456}.json`
   (`test.f1` field). **Shrinkage factor: 0.0267 / 0.0011 ≈ 24.3x.**
   **CORRECTED 2026-08-23** — the 2026-08-22 value (spread 0.0016, ratio
   16.7x) was verified correctly at the time but the seeds-123/456 files
@@ -121,7 +121,7 @@ statistically confirmed effect; do not overclaim non-overlap.
 
 ## 5. Contamination audit — full corpus
 
-Source: `Final/audit/daigt_full_audit.json`, `Final/audit/hc3_full_audit.json`
+Source: `Final/experiments/audit/daigt_full_audit.json`, `Final/experiments/audit/hc3_full_audit.json`
 
 | | DAIGT V2 (n=44,868) | HC3 (n=85,449) |
 |---|---|---|
@@ -131,8 +131,8 @@ Source: `Final/audit/daigt_full_audit.json`, `Final/audit/hc3_full_audit.json`
 | Artefact rows (e.g. API-error text stored as answer) | n/a | 476 ChatGPT-side, 7 human-side |
 
 **CLOSED 2026-08-24 — the 11.2—11.3% figure is WRONG, the measured value is 5.30%.**
-`audit/verify_paper_claims.py` measures exact-text leakage on both split variants directly from
-`paper_scale/work/`. Group-aware split (the one every reported number uses): **0 of 10,732 HC3
+`experiments/audit/verify_paper_claims.py` measures exact-text leakage on both split variants directly from
+`experiments/paper_scale/work/`. Group-aware split (the one every reported number uses): **0 of 10,732 HC3
 test rows, 0.00%**, and DAIGT V2 **0 of 6,998**. Naive stratified split of the same balanced
 sample: HC3 **570 of 10,762, 5.30%**, DAIGT V2 **0**. The wrong figure has been removed from
 `build_full_splits.py`'s docstring, where it originated. Original note kept below for the record.
@@ -150,8 +150,8 @@ file are located or re-run; do not put it in the paper.
 
 ## 6. Artifact-cleaning ablation (Gap 4) — **RETRACTED, see R1. DO NOT QUOTE.**
 
-Source: `Final/table_artifact_cleaning_zeroshot.csv` (test-time-only cleaning,
-existing checkpoints, no retraining) and `Final/table_artifact_cleaning_full.csv`
+Source: `Final/tables/table_artifact_cleaning_zeroshot.csv` (test-time-only cleaning,
+existing checkpoints, no retraining) and `Final/tables/table_artifact_cleaning_full.csv`
 (retrain from scratch on cleaned data, same winning config, seed 42 only).
 The full retrain-based numbers are the headline; zero-shot is the
 secondary/discussion figure per the review's own framing.
@@ -171,7 +171,7 @@ which is what an ablation requires.
 
 ## 7. Adversarial robustness (Gap 2) — **drops RETRACTED (R2); interpretation WITHDRAWN, see Section 11**
 
-Source: `Final/table_adversarial_robustness.csv`. Headline: DAIGT V2 robust
+Source: `Final/tables/table_adversarial_robustness.csv`. Headline: DAIGT V2 robust
 across all attacks (worst case BERT/10%-typo: 0.9916 -> 0.7966); HC3 collapses
 under typo/homoglyph (worst case BERT/5%-typo: 0.9945 -> 0.4390, near-chance)
 but stays comparatively robust to back-translation (worst case DeBERTa:
@@ -191,8 +191,8 @@ per-process GPU utilization after the patch.
 
 **Discovered 2026-08-23, does not affect internal consistency of Sections
 6-7 above, but affects how Section 1 (table2) is described in prose.**
-`table2_combined_full.csv` reports, per (dataset, model) cell, the best F1
-found anywhere in the 8-config hyperparameter grid (`table1_experiments_full.csv`),
+`tables/table2_combined_full.csv` reports, per (dataset, model) cell, the best F1
+found anywhere in the 8-config hyperparameter grid (`tables/table1_experiments_full.csv`),
 selected independently per cell. The actual saved model **weights** (used
 for cross-dataset transfer, adversarial robustness, and both cleaning
 ablations) are fixed to the `WINNERS` dict in `run_full_scale.py` — the
@@ -216,8 +216,8 @@ number. This is now the methods-note text to add to `04_methodology.md`.
 
 ## 9. DAIGT V2 token-length asymmetry under 128-token truncation
 
-Source: `Final/audit/daigt_token_length_audit.py` (output:
-`Final/audit/daigt_token_length_audit.json`), 2,000-row seeded sample
+Source: `Final/experiments/audit/daigt_token_length_audit.py` (output:
+`Final/experiments/audit/daigt_token_length_audit.json`), 2,000-row seeded sample
 (seed=42), `bert-base-uncased` tokenizer.
 
 | | overall | human | AI |
@@ -234,7 +234,7 @@ measurement; now persisted as a proper audit script following the
 
 ## 10. Surface/content separability decomposition (THE PAPER'S LEAD RESULT)
 
-Source: `audit/surface_content_decomposition.py` -> `audit/surface_content_decomposition.json`.
+Source: `experiments/audit/surface_content_decomposition.py` -> `experiments/audit/surface_content_decomposition.json`.
 Logistic regression for both arms so they are directly comparable; transformer read from the
 deployed checkpoint's `run_info.json`, never from a grid maximum.
 
@@ -252,7 +252,7 @@ Macro equals weighted in every arm, so no arm is exploiting class skew.
   ~0.03 over either arm.
 
 **PREPROCESSING CORRECTION 2026-08-24.** The content arm applies **no stopword removal and no
-lemmatisation**. Those steps live in `paper_scale/classical_full.py:preprocess`, which feeds the
+lemmatisation**. Those steps live in `experiments/paper_scale/classical_full.py:preprocess`, which feeds the
 Table 1 classical models, not in `surface_content_decomposition.py`, whose content arm is
 `content_normalise()` followed by a bare `CountVectorizer()`. The arm is therefore an *unfiltered*
 bag-of-words, a stronger content model than a filtered one. Any prose describing it as reduced by
@@ -280,7 +280,7 @@ class of instrument artifact as R5.
 
 ## 11. Adversarial collapse: interpretation WITHDRAWN
 
-Source: `audit/collapse_probe.py` -> `audit/collapse_probe.json`. Percent classified **human** on
+Source: `experiments/audit/collapse_probe.py` -> `experiments/audit/collapse_probe.json`. Percent classified **human** on
 inputs carrying no label information, with mean max-softmax:
 
 | model | random chars | token-shuffled | punctuation-only | repeated token | empty |
@@ -306,7 +306,7 @@ applies to prior work reporting comparable collapses without such a control.
 
 ## 12. Tokenizer blindness to the whitespace cue
 
-Verified on the deployed checkpoints. BERT (`paper_scale/models/D2_BERT`, WordPiece) yields
+Verified on the deployed checkpoints. BERT (`experiments/paper_scale/models/D2_BERT`, WordPiece) yields
 **identical token ids for 3/3** artifact pairs — `"the answer is simple ."` and
 `"the answer is simple."` both give `['the','answer','is','simple','.']`. DeBERTa
 (`D2_DeBERTa`, SentencePiece) yields **0/3 identical**, encoding the difference as `▁.` versus `.`.
@@ -316,14 +316,14 @@ BERT cannot represent the cue and still reaches **0.9916** on HC3, so the cue is
 architecture, pretraining corpus, and size.
 
 Pipeline-fires control (required, else the bit-identical result is uninterpretable): SHA-256 over
-`paper_scale/probs/` shows D2/BERT raw and cleaned **bit-identical**, while D1/BERT raw and
+`experiments/paper_scale/probs/` shows D2/BERT raw and cleaned **bit-identical**, while D1/BERT raw and
 cleaned **differ** — emoji removal is visible to WordPiece. The cleaning pipeline does fire; the
 blindness is specific to whitespace.
 
 ## 13. Complete model evaluation, all 8 configurations (SUPERSEDES Section 1)
 
-Source: `paper_scale/full_model_evaluation.py` -> `audit/full_model_evaluation.json`
-and `audit/full_model_scores.npz`. Transformer rows read from the **deployed
+Source: `experiments/paper_scale/full_model_evaluation.py` -> `experiments/audit/full_model_evaluation.json`
+and `experiments/audit/full_model_scores.npz`. Transformer rows read from the **deployed
 checkpoint's** `run_info.json`, never a grid maximum. Classical rows refit with
 `LinearSVC(max_iter=20000)` because the sklearn default fails to converge on HC3.
 Section 1's table used grid maxima for the transformers and is superseded by this one.
@@ -348,10 +348,10 @@ Macro F1 equals weighted F1 to four decimals in every row. Two observations:
 
 ## 14. Split geometry and paired statistics (added 2026-08-24)
 
-Source: `audit/verify_paper_claims.py` -> `audit/paper_claim_verification.json`. Re-runnable on
+Source: `experiments/audit/verify_paper_claims.py` -> `experiments/audit/paper_claim_verification.json`. Re-runnable on
 CPU in under a minute; every figure below is read from artifacts already on disk.
 
-**The split is 72/8/20, not 80/10/10.** `paper_scale/build_full_splits.py:group_split` takes 20%
+**The split is 72/8/20, not 80/10/10.** `experiments/paper_scale/build_full_splits.py:group_split` takes 20%
 for test, then 10% of the remaining 80% for validation. Both docstrings said 80/10/10 and the
 ICCIT paper inherited it. Corrected in the paper and in both scripts on 2026-08-24.
 
@@ -380,7 +380,7 @@ self-check that makes the rest of this block trustworthy.
 So "transformers add nothing measurable on DAIGT V2" is now a tested claim, and the AUC-vs-F1
 rank reversal on DAIGT V2 is noise, not an ordering.
 
-**Decomposition paired tests** (predictions from `audit/surface_content_predictions.npz`):
+**Decomposition paired tests** (predictions from `experiments/audit/surface_content_predictions.npz`):
 
 | comparison | discordant (b:c) | McNemar exact p | error diff | 95% CI |
 |---|---|---|---|---|
@@ -397,7 +397,7 @@ HC3 parity is now a tested null, not an eyeballed one.
 
 ### 15.1 The DAIGT V2 "classical matches transformer" result was an input-budget artefact
 
-Source: `audit/truncation_matched_comparison.py` -> `audit/truncation_matched_comparison.json`.
+Source: `experiments/audit/truncation_matched_comparison.py` -> `experiments/audit/truncation_matched_comparison.json`.
 
 The classical models read the WHOLE document. The transformers read 128 tokens. Refitting the
 full six-cell classical grid on the exact character span each deployed checkpoint's own tokenizer
@@ -425,7 +425,7 @@ error, so it did not affect the conclusion, but re-check if that tokenizer is re
 
 ### 15.2 Split-level variance
 
-Source: `audit/multisplit_decomposition.py` -> `audit/multisplit_decomposition.json`. Balanced
+Source: `experiments/audit/multisplit_decomposition.py` -> `experiments/audit/multisplit_decomposition.json`. Balanced
 sample held fixed, only the partition seed varies over 42/123/456/789/1337. Seed 42 reproduces
 the single-split numbers exactly, which is the harness self-check.
 
@@ -450,9 +450,9 @@ multi-split evidence is what the parity claim should now rest on.
 
 ## Files explicitly excluded from this SSOT (superseded/course-track/duplicate)
 
-- `Final/table1_experiments.csv`, `Final/table2_combined.csv` — small-scale (6k), course-track only
+- `Final/tables/table1_experiments.csv`, `Final/tables/table2_combined.csv` — small-scale (6k), course-track only
 - `Final/models/manifest.json` — small-scale manifest; its `matches_recorded: false` for D1_BERT is
   the *documented* seed-instability finding (see row 4), not a data bug
-- `Final/_backup_results_1102/` — byte-identical duplicate of `results/`+`probs/`
-- `Final/paper_review/LITERATURE_REVIEW.md`/`.pdf` (21 Aug) — superseded by
+- `Final/archive/backup_results_1102/` — byte-identical duplicate of `results/`+`probs/`
+- `Final/docs/literature/LITERATURE_REVIEW.md`/`.pdf` (21 Aug) — superseded by
   `LITERATURE_REVIEW_CANONICAL.md` per user decision 2026-08-22

@@ -1,6 +1,6 @@
 # Discussion
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md`. Synthesizes Results
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md`. Synthesizes Results
 5.1-5.5.*
 
 Taken individually, each experiment in this paper qualifies rather than

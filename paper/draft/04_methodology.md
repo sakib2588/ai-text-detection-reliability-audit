@@ -1,9 +1,9 @@
 # Methodology
 
-*Numbers in this section trace to `Final/paper_draft/NUMBERS_SSOT.md`. Working
+*Numbers in this section trace to `Final/paper/draft/NUMBERS_SSOT.md`. Working
 title: "How Much of AI-Text Detection Accuracy Is Real? Cross-Dataset
 Transfer, Artifact Leakage, and Adversarial Robustness on DAIGT V2 and HC3"
-(per `paper_review/LITERATURE_REVIEW_CANONICAL.md`, Section 3.3).*
+(per `docs/literature/LITERATURE_REVIEW_CANONICAL.md`, Section 3.3).*
 
 ## Datasets
 
@@ -36,7 +36,7 @@ encoders, `bert-base-uncased` and `microsoft/deberta-v3-base`, are
 fine-tuned for binary sequence classification over a grid of learning rate
 (2e-5, 3e-5), batch size (16, 32), and weight decay (0.01, 0.1), with the
 best configuration per model/dataset pair selected by validation F1 (full
-sweep: `Final/table1_experiments_full.csv`, 16 configurations x 2 datasets).
+sweep: `Final/tables/table1_experiments_full.csv`, 16 configurations x 2 datasets).
 
 ## Training protocol
 
@@ -57,7 +57,7 @@ acceptable for a course deliverable but a fatal flaw for a paper submission,
 since 99.6% of DAIGT V2 essays exceed 128 tokens and the median essay
 retains only 31.3% of its tokens under this truncation. Extending to 256
 tokens (512 for DAIGT) is required before the sweep numbers in
-`table1_experiments_full.csv` / `table2_combined_full.csv` can be reported as
+`tables/table1_experiments_full.csv` / `tables/table2_combined_full.csv` can be reported as
 final paper results, not just as a robustness pre-check.
 
 ## Cross-dataset transfer protocol
@@ -80,13 +80,13 @@ approximate text matching, grouping duplicates rather than requiring exact
 matches) and for cross-label duplicates, where the identical text appears
 under both the human and AI class label -- a direct source of test-set
 leakage under a naive random split. Audit outputs are written to
-`Final/audit/daigt_full_audit.json` and `Final/audit/hc3_full_audit.json`.
+`Final/experiments/audit/daigt_full_audit.json` and `Final/experiments/audit/hc3_full_audit.json`.
 
 ## Note on checkpoint configuration vs. grid-search-best configuration
 
 Section 5.1's in-distribution comparison (Table 2) reports, per dataset and
 model, the best F1 found anywhere across the full 8-configuration
-hyperparameter sweep (`table1_experiments_full.csv`), selected independently
+hyperparameter sweep (`tables/table1_experiments_full.csv`), selected independently
 per cell. The saved model **weights** used for every downstream analysis in
 this paper (cross-dataset transfer, artifact-cleaning ablation, adversarial
 robustness) are fixed to a single carried-over configuration per

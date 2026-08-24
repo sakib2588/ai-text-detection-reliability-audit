@@ -1,6 +1,6 @@
 # Datasets and Contamination Audit (Contribution 1)
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md` rows 5-6.*
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md` rows 5-6.*
 
 Both benchmarks used in this study carry documented limitations in the prior
 literature, and our own full-corpus audit both confirms and quantifies these

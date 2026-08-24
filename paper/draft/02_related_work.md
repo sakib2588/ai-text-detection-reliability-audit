@@ -1,9 +1,9 @@
 # Related Work
 
 *Condensed from the 25-paper survey in
-`Final/paper_review/LITERATURE_REVIEW_CANONICAL.md`; full reference list and
+`Final/docs/literature/LITERATURE_REVIEW_CANONICAL.md`; full reference list and
 per-paper detail there. Citation keys below are real, verified BibTeX keys
-(`Final/paper_draft/refs.bib`, 31 entries, built via arXiv/CrossRef metadata
+(`Final/paper/draft/refs.bib`, 31 entries, built via arXiv/CrossRef metadata
 lookup 2026-08-23) in `[key]` markdown form, to be converted to `\cite{key}`
 at LaTeX-port time.*
 

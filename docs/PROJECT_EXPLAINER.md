@@ -10,7 +10,7 @@ fontsize: 11pt
 
 *One place to understand this project top to bottom: what it is, why it exists, what it found, what it had to retract, and exactly which prior papers it fills a gap against.*
 
-Every number in this document comes from a committed script that writes a JSON file. Nothing here is quoted from memory. The scripts are `audit/surface_content_decomposition.py`, `audit/collapse_probe.py`, and `paper_scale/full_model_evaluation.py`.
+Every number in this document comes from a committed script that writes a JSON file. Nothing here is quoted from memory. The scripts are `experiments/audit/surface_content_decomposition.py`, `experiments/audit/collapse_probe.py`, and `experiments/paper_scale/full_model_evaluation.py`.
 
 ---
 
@@ -71,7 +71,7 @@ Arms 1 and 2 both use logistic regression, so they are directly comparable to ea
 
 ## 4. What you actually found
 
-**Current title:** *"A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks: Evidence from Five Models on DAIGT V2 and HC3"* (`iccit/main.tex`, 6 pages, ICCIT format).
+**Current title:** *"A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks: Evidence from Five Models on DAIGT V2 and HC3"* (`paper/iccit/main.tex`, 6 pages, ICCIT format).
 
 **Datasets and models.** DAIGT V2 (44,868 argumentative student essays, balanced to 34,994, test set 6,998) and HC3 (85,449 question-answer pairs, balanced to 53,806, test set 10,732). Five model families: Naive Bayes, logistic regression and linear SVM each under bag-of-words and TF-IDF (six classical configurations), plus fine-tuned BERT and DeBERTa. Eight configurations per dataset, sixteen total.
 
@@ -127,7 +127,7 @@ We tested three explanations and refuted all three. Majority-prior collapse is o
 
 ### 4.5 What we had to retract, and why you should know
 
-An earlier version of this analysis, which you may have seen, made claims that did not survive audit. They are listed here because the retractions are recorded in `paper_draft/NUMBERS_SSOT.md` and you should not quote the old numbers.
+An earlier version of this analysis, which you may have seen, made claims that did not survive audit. They are listed here because the retractions are recorded in `paper/draft/NUMBERS_SSOT.md` and you should not quote the old numbers.
 
 - **The artifact-cleaning experiment was void.** The code compared a validation maximum taken across the whole hyperparameter grid against a single fixed configuration, so three of four cells compared *different hyperparameters*. Corrected, the HC3/BERT delta is exactly **0.0000**, not the 0.0029 originally reported.
 - **The same bug inflated every adversarial drop.** Real deployed checkpoints are 0.9916 and 0.9972, not the 0.9945 and 0.9980 reported.
@@ -207,4 +207,4 @@ The decomposition is the check that catches this before deployment. It runs in m
 
 ---
 
-*Last updated: 2026-08-23. Paper source: `iccit/`. Numbers source of truth: `paper_draft/NUMBERS_SSOT.md`.*
+*Last updated: 2026-08-23. Paper source: `paper/iccit/`. Numbers source of truth: `paper/draft/NUMBERS_SSOT.md`.*

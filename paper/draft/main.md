@@ -112,9 +112,9 @@ does so only modestly (Results, Discussion).
 # Related Work
 
 *Condensed from the 25-paper survey in
-`Final/paper_review/LITERATURE_REVIEW_CANONICAL.md`; full reference list and
+`Final/docs/literature/LITERATURE_REVIEW_CANONICAL.md`; full reference list and
 per-paper detail there. Citation keys below are real, verified BibTeX keys
-(`Final/paper_draft/refs.bib`, 31 entries, built via arXiv/CrossRef metadata
+(`Final/paper/draft/refs.bib`, 31 entries, built via arXiv/CrossRef metadata
 lookup 2026-08-23) in `[key]` markdown form, to be converted to `\cite{key}`
 at LaTeX-port time.*
 
@@ -203,7 +203,7 @@ artifacts, and adversarial fragility rather than to genuine language
 understanding.
 # Datasets and Contamination Audit (Contribution 1)
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md` rows 5-6.*
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md` rows 5-6.*
 
 Both benchmarks used in this study carry documented limitations in the prior
 literature, and our own full-corpus audit both confirms and quantifies these
@@ -296,10 +296,10 @@ the HC3 case, not yet corrected for in this project's 128-token results
 (see Limitations for the scope decision on this point).
 # Methodology
 
-*Numbers in this section trace to `Final/paper_draft/NUMBERS_SSOT.md`. Working
+*Numbers in this section trace to `Final/paper/draft/NUMBERS_SSOT.md`. Working
 title: "How Much of AI-Text Detection Accuracy Is Real? Cross-Dataset
 Transfer, Artifact Leakage, and Adversarial Robustness on DAIGT V2 and HC3"
-(per `paper_review/LITERATURE_REVIEW_CANONICAL.md`, Section 3.3).*
+(per `docs/literature/LITERATURE_REVIEW_CANONICAL.md`, Section 3.3).*
 
 ## Datasets
 
@@ -332,7 +332,7 @@ encoders, `bert-base-uncased` and `microsoft/deberta-v3-base`, are
 fine-tuned for binary sequence classification over a grid of learning rate
 (2e-5, 3e-5), batch size (16, 32), and weight decay (0.01, 0.1), with the
 best configuration per model/dataset pair selected by validation F1 (full
-sweep: `Final/table1_experiments_full.csv`, 16 configurations x 2 datasets).
+sweep: `Final/tables/table1_experiments_full.csv`, 16 configurations x 2 datasets).
 
 ## Training protocol
 
@@ -353,7 +353,7 @@ acceptable for a course deliverable but a fatal flaw for a paper submission,
 since 99.6% of DAIGT V2 essays exceed 128 tokens and the median essay
 retains only 31.3% of its tokens under this truncation. Extending to 256
 tokens (512 for DAIGT) is required before the sweep numbers in
-`table1_experiments_full.csv` / `table2_combined_full.csv` can be reported as
+`tables/table1_experiments_full.csv` / `tables/table2_combined_full.csv` can be reported as
 final paper results, not just as a robustness pre-check.
 
 ## Cross-dataset transfer protocol
@@ -376,13 +376,13 @@ approximate text matching, grouping duplicates rather than requiring exact
 matches) and for cross-label duplicates, where the identical text appears
 under both the human and AI class label -- a direct source of test-set
 leakage under a naive random split. Audit outputs are written to
-`Final/audit/daigt_full_audit.json` and `Final/audit/hc3_full_audit.json`.
+`Final/experiments/audit/daigt_full_audit.json` and `Final/experiments/audit/hc3_full_audit.json`.
 
 ## Note on checkpoint configuration vs. grid-search-best configuration
 
 Section 5.1's in-distribution comparison (Table 2) reports, per dataset and
 model, the best F1 found anywhere across the full 8-configuration
-hyperparameter sweep (`table1_experiments_full.csv`), selected independently
+hyperparameter sweep (`tables/table1_experiments_full.csv`), selected independently
 per cell. The saved model **weights** used for every downstream analysis in
 this paper (cross-dataset transfer, artifact-cleaning ablation, adversarial
 robustness) are fixed to a single carried-over configuration per
@@ -420,13 +420,13 @@ beyond the original 3-pillar framing:
    Results 5.5 (in progress as of this draft).
 # Results
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md`. This section is
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md`. This section is
 partial: subsections 5.3 and 5.4 depend on experiments not yet run (see
 Methodology, "Planned additions").*
 
 ## 5.1 In-distribution baseline (five-model comparison)
 
-Table 2 (`Final/table2_combined_full.csv`) reports full-corpus,
+Table 2 (`Final/tables/table2_combined_full.csv`) reports full-corpus,
 in-distribution F1 for all five classifiers on both datasets. The three
 classical baselines separate clearly by representation and model
 complexity: Naive Bayes reaches 0.9591 F1 on DAIGT V2 and 0.8713 on HC3,
@@ -468,7 +468,7 @@ result rather than a replication of it.
 
 ## 5.3 Cross-dataset transfer -- 3 seeds (42, 123, 456)
 
-Table `Final/table_cross_dataset_generalization_3seed.csv` reports strict
+Table `Final/tables/table_cross_dataset_generalization_3seed.csv` reports strict
 one-way transfer for both transformers, in both directions, averaged across
 three random seeds. Every cell collapses substantially relative to its
 in-domain baseline: BERT trained on DAIGT V2 falls from a mean 0.9921
@@ -495,11 +495,11 @@ Two variants were run: a zero-shot pass (existing raw-trained checkpoints
 re-scored on cleaned test text only, no retraining) and the review-recommended
 full ablation (retraining from scratch on cleaned train/val/test data at the
 same fixed configuration). The full retrain-based numbers are the headline
-here; the zero-shot numbers (`Final/table_artifact_cleaning_zeroshot.csv`)
+here; the zero-shot numbers (`Final/tables/table_artifact_cleaning_zeroshot.csv`)
 are reported as a secondary, discussion-level figure.
 
 Under full retraining on cleaned data
-(`Final/table_artifact_cleaning_full.csv`), the direction and magnitude of
+(`Final/tables/table_artifact_cleaning_full.csv`), the direction and magnitude of
 the effect differ by dataset. On DAIGT V2, cleaning the emoji/pictograph
 signal has essentially no negative effect and, for BERT, a small positive
 one: F1 moves from 0.9916 to 0.9936 for BERT (+0.0020) and from 0.9917 to
@@ -532,7 +532,7 @@ lowers the accuracy a retrained model reaches.
 
 ## 5.5 Adversarial robustness
 
-Table `Final/table_adversarial_robustness.csv` reports F1 for both
+Table `Final/tables/table_adversarial_robustness.csv` reports F1 for both
 transformers on both datasets under three attack families -- character-level
 typo injection and homoglyph substitution, each at 1%, 5%, and 10% of
 eligible characters, and a single back-translation (English-German-English)
@@ -591,7 +591,7 @@ noise and should not be read as evidence that mild homoglyph substitution
 improves detection.
 # Discussion
 
-*Numbers trace to `Final/paper_draft/NUMBERS_SSOT.md`. Synthesizes Results
+*Numbers trace to `Final/paper/draft/NUMBERS_SSOT.md`. Synthesizes Results
 5.1-5.5.*
 
 Taken individually, each experiment in this paper qualifies rather than
