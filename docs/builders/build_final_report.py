@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -113,6 +114,23 @@ def load_results():
                 r['classical'][(tag, name, rep)] = (round(acc, 4), round(pre, 4),
                                                     round(rec, 4), round(f1, 4))
     r['eval'] = ev
+    r['tok'] = json.load(open(AUDIT / 'token_length_both.json'))
+    r['hc3_counts'] = json.load(open(AUDIT / 'hc3_class_counts.json'))
+    r['daigt_audit'] = json.load(open(AUDIT / 'daigt_full_audit.json'))
+    r['hc3_audit'] = json.load(open(AUDIT / 'hc3_full_audit.json'))
+    r['splits'] = {}
+    for tag in ('D1', 'D2'):
+        df = pd.read_parquet(PS / 'work' / f'data_{tag}.parquet')
+        sp = np.load(PS / 'work' / f'split_{tag}.npz')
+        y = df['label'].values
+        rec = {'balanced': len(df), 'per_class': int((y == 0).sum())}
+        for part in ('train', 'val', 'test'):
+            rec[part] = int(len(sp[part]))
+        wl = df['text'].str.split().str.len()
+        rec['median_words'] = int(wl.median())
+        rec['median_words_human'] = int(wl[y == 0].median())
+        rec['median_words_machine'] = int(wl[y == 1].median())
+        r['splits'][tag] = rec
     r['dec'] = json.load(open(AUDIT / 'surface_content_decomposition.json'))
     r['ens_json'] = json.load(open(AUDIT / 'ensemble_full_scale.json'))
     return r
@@ -152,6 +170,13 @@ def find_par(doc, needle):
         if needle in p.text:
             return p
     raise KeyError(needle)
+
+
+def keep_with_next(par):
+    """Bind a caption to the table that follows it, so the two never land on
+    opposite sides of a page break."""
+    par.paragraph_format.keep_with_next = True
+    return par
 
 
 def table_after(doc, anchor, rows, widths=None, header_rows=1, size=TABLE_PT):
@@ -264,6 +289,8 @@ def build_text(R):
         'duplicates. Measured directly, our split puts none of the 10,732 HC3 test documents into training, '
         'while an ordinary random split of the same data puts 570 of them there. Without the group-aware '
         'split, part of the score would be measuring memorisation rather than detection.\n'
+        'Table 1 summarises both datasets as published and after every preprocessing step, so the '
+        'sizes every later table depends on are stated in one place.\n'
         'On top of that data we trained five kinds of model. Three are classical and were introduced in the '
         'midterm project, namely Naive Bayes, logistic regression and a linear support vector machine, each '
         'under both bag-of-words and TF-IDF. Two are '
@@ -281,7 +308,7 @@ def build_text(R):
         'The midterm project compared three classical models on the same two datasets, each under two text '
         'representations, bag-of-words and TF-IDF. All six model and representation combinations were run on '
         'the full balanced corpora, using the same split the transformers use, so every number in this report '
-        'comes from the same data. Table 1 gives the results.\n'
+        'comes from the same data. Table 2 gives the results.\n'
         f'The clearest pattern is that the two datasets are not equally difficult. On DAIGT V2 every classical '
         f'model does well, and the best of them, '
         f'{d1_best.lower()} with {d1_rep}, reaches {d1_vals[3]:.4f} F1. On HC3 the same models are noticeably '
@@ -311,7 +338,7 @@ def build_text(R):
         'We used bert-base-uncased with a maximum sequence length of 128 tokens, at most five epochs with '
         'early stopping after two epochs without improvement, a warmup ratio of 0.1, dropout of 0.1 and the '
         'AdamW optimiser. The grid varied learning rate over 0.00002 and 0.00003, batch size over 16 and 32, '
-        'and weight decay over 0.01 and 0.1, giving eight runs per dataset. Table 2 lists every run. We picked '
+        'and weight decay over 0.01 and 0.1, giving eight runs per dataset. Table 3 lists every run. We picked '
         'the winner on the validation split, never on the test split, because choosing on test would mean '
         'reporting a number we had already optimised against.\n'
         f'On DAIGT V2 the best BERT setting is {cfg("D1","BERT")}. It reaches {f("D1","BERT"):.4f} weighted F1 on '
@@ -354,7 +381,7 @@ def build_text(R):
         'not a guarantee, and we would not present it as one.\n'
         'We trained DeBERTa with exactly the same grid, the same split and the same harness as BERT, so any '
         'difference between the two is a difference between the models and not between two training setups. '
-        'Table 2 lists all eight runs per dataset alongside the BERT ones.\n'
+        'Table 3 lists all eight runs per dataset alongside the BERT ones.\n'
         f'On DAIGT V2 the best DeBERTa setting is {cfg("D1","DeBERTa")}, reaching {f("D1","DeBERTa"):.4f} weighted F1 '
         f'on test after {d[("D1","DeBERTa")]["val"]["f1"]:.4f} on validation, in '
         f'{d[("D1","DeBERTa")]["train_seconds"]/60:.1f} minutes. Its confusion matrix is {d[("D1","DeBERTa")]["test_confusion"]}.\n'
@@ -393,7 +420,7 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 3 brings everything together in the form the project specification asks for. Every row comes '
+        'Table 4 brings everything together in the form the project specification asks for. Every row comes '
         'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
         'of the two text representations worked better on that dataset, which the Rep. column names. The '
         'transformers read raw text, so no representation applies to them.\n'
@@ -546,8 +573,61 @@ def main():
     write_section('Discuss the limitations', T['limits'])
     write_section('Summarize your work in this section', T['conclusion'])
 
-    # ---- Table 1, the midterm results
-    cap1 = para_after(end2, 'Table 1. Classical models on the full balanced corpora, both text representations, '
+    # ---- Table 1, what the datasets look like after preprocessing
+    sp = R['splits']
+    tk = R['tok']
+    da, ha, hc = R['daigt_audit'], R['hc3_audit'], R['hc3_counts']
+    cap0 = para_after(end1, 'Table 1. The two datasets as published and after preprocessing. Duplicate rows '
+                            'are exact matches after whitespace and case normalisation. Leakage is the share of '
+                            'test documents whose text also appears in training or validation. Token counts use '
+                            'the bert-base-uncased tokeniser on a 2,000-row sample per dataset.',
+                      size=10, justify=False)
+    ds_rows = [
+        ['', 'DAIGT V2', 'HC3'],
+        ['As published', '', ''],
+        ['   Total documents', f"{da['n_total']:,}", f"{hc['n_total']:,}"],
+        ['   Human-written', f"{da['n_human']:,}", f"{hc['n_human']:,}"],
+        ['   Machine-generated', f"{da['n_ai']:,}", f"{hc['n_machine']:,}"],
+        ['   Duplicate rows',
+         f"{R['daigt_audit']['dup_rows']:,} ({R['daigt_audit']['dup_pct']}%)",
+         f"{R['hc3_audit']['dup_rows']:,} ({R['hc3_audit']['dup_rows']/hc['n_total']*100:.2f}%)"],
+        ['   Collection artefact rows', 'none found',
+         f"{R['hc3_audit']['artefact_chatgpt'] + R['hc3_audit']['artefact_human']:,}"],
+        ['After class balancing', '', ''],
+        ['   Total documents', f"{sp['D1']['balanced']:,}", f"{sp['D2']['balanced']:,}"],
+        ['   Per class', f"{sp['D1']['per_class']:,}", f"{sp['D2']['per_class']:,}"],
+        ['After splitting (72 / 8 / 20)', '', ''],
+        ['   Training', f"{sp['D1']['train']:,}", f"{sp['D2']['train']:,}"],
+        ['   Validation', f"{sp['D1']['val']:,}", f"{sp['D2']['val']:,}"],
+        ['   Test', f"{sp['D1']['test']:,}", f"{sp['D2']['test']:,}"],
+        ['   Test leakage, group-aware split', '0 (0.00%)', '0 (0.00%)'],
+        ['   Test leakage, ordinary random split', '0 (0.00%)', '570 (5.30%)'],
+        ['Document length', '', ''],
+        ['   Median words per document', f"{sp['D1']['median_words']}", f"{sp['D2']['median_words']}"],
+        ['   Median words, human',
+         f"{sp['D1']['median_words_human']}", f"{sp['D2']['median_words_human']}"],
+        ['   Median words, machine',
+         f"{sp['D1']['median_words_machine']}", f"{sp['D2']['median_words_machine']}"],
+        ['   Median tokens per document',
+         f"{tk['D1']['median_tokens']:.0f}", f"{tk['D2']['median_tokens']:.0f}"],
+        ['   Documents longer than 128 tokens',
+         f"{tk['D1']['pct_exceeding_128']}%", f"{tk['D2']['pct_exceeding_128']}%"],
+        ['   Median share read at 128 tokens',
+         f"{tk['D1']['median_pct_kept_at_128']}%", f"{tk['D2']['median_pct_kept_at_128']}%"],
+    ]
+    keep_with_next(cap0)
+    t0 = table_after(doc, cap0, ds_rows, header_rows=1)
+    for i, row in enumerate(ds_rows):
+        if row[1] == '' and row[2] == '' and i > 0:
+            merge_and_label(t0, i, 0, i, 2, row[0], bold=True)
+        else:
+            t0.cell(i, 0).paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.LEFT
+    repeat_header(t0, 1)
+    no_row_split(t0)
+
+    # ---- Table 2, the classical models
+
+    cap1 = para_after(end2, 'Table 2. Classical models on the full balanced corpora, both text representations, '
                             'evaluated on the same test split every other model in this report uses. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
                       size=10, justify=False)
     rows = [[''] * 10, ['', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
@@ -556,6 +636,7 @@ def main():
             rows.append([name, rep]
                         + [f'{v:.4f}' for v in R['classical'][('D1', name, rep)]]
                         + [f'{v:.4f}' for v in R['classical'][('D2', name, rep)]])
+    keep_with_next(cap1)
     t1 = table_after(doc, cap1, rows, header_rows=2)
     merge_and_label(t1, 0, 2, 0, 5, 'Dataset 1 (DAIGT V2)')
     merge_and_label(t1, 0, 6, 0, 9, 'Dataset 2 (HC3)')
@@ -567,8 +648,8 @@ def main():
     repeat_header(t1, 2)
     no_row_split(t1)
 
-    # ---- Table 2, the full fine-tuning grid
-    cap2 = para_after(end3, 'Table 2. Final-term fine-tuning experiments. Eight configurations for each '
+    # ---- Table 3, the full fine-tuning grid
+    cap2 = para_after(end3, 'Table 3. Final-term fine-tuning experiments. Eight configurations for each '
                             'model on each dataset, full balanced corpora, evaluated on the test split. '
                             'The ENSEMBLE row uses the weight chosen on validation.', size=10, justify=False)
     rows = [[''] * 12,
@@ -587,6 +668,7 @@ def main():
     rows.append([''] * 4
                 + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                 + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
+    keep_with_next(cap2)
     t2 = table_after(doc, cap2, rows, header_rows=2, size=6.5)
     merge_and_label(t2, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
     merge_and_label(t2, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
@@ -604,7 +686,7 @@ def main():
         rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
         return rep, R['classical'][(tag, name, rep)]
 
-    cap3 = para_after(end6, 'Table 3. Final comparison. Every row comes from the full balanced corpora and '
+    cap3 = para_after(end6, 'Table 4. Final comparison. Every row comes from the full balanced corpora and '
                             'the same fixed split. Each classical row is shown with whichever text '
                             'representation performed better on that dataset, which the Rep. column names. The transformers read raw text, so no '
                             'representation applies to them. The ENSEMBLE row uses the weight chosen on '
@@ -632,6 +714,7 @@ def main():
                     + ['raw'] + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
     rows.append(['ENSEMBLE', 'raw'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                 + ['raw'] + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
+    keep_with_next(cap3)
     t3 = table_after(doc, cap3, rows, header_rows=2, size=7)
     merge_and_label(t3, 0, 1, 0, 5, 'Dataset 1 (DAIGT V2)', size=7)
     merge_and_label(t3, 0, 6, 0, 10, 'Dataset 2 (HC3)', size=7)
@@ -664,7 +747,7 @@ def main():
 
     doc.save(str(OUT))
     print('wrote', OUT.name)
-    print(f'  sections filled 8, tables 3, code listings {len(code_listings())}')
+    print(f'  sections filled 8, tables 4, code listings {len(code_listings())}')
 
 
 if __name__ == '__main__':
