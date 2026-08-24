@@ -192,6 +192,18 @@ def merge_and_label(table, r0, c0, r1, c1, text, size=TABLE_PT, bold=True):
     return cell
 
 
+def no_row_split(table):
+    """Stop a single row breaking across a page. Without this, a tall cell such as
+    "Support Vector Machine" splits and Word leaves an empty continuation row on the
+    next page, which reads as a spurious extra model."""
+    from docx.oxml import OxmlElement
+    for row in table.rows:
+        trPr = row._tr.get_or_add_trPr()
+        el = OxmlElement('w:cantSplit')
+        el.set(qn('w:val'), 'true')
+        trPr.append(el)
+
+
 def repeat_header(table, n_rows):
     """Mark the first n rows as a header so they repeat when the table breaks a page."""
     from docx.oxml import OxmlElement
@@ -539,6 +551,7 @@ def main():
         r0 = 2 + i * len(REPS)
         merge_and_label(t1, r0, 0, r0 + len(REPS) - 1, 0, name, bold=False)
     repeat_header(t1, 2)
+    no_row_split(t1)
 
     # ---- Table 2, the full fine-tuning grid
     cap2 = para_after(end3, 'Table 2. Final-term fine-tuning experiments. Eight configurations for each '
@@ -570,6 +583,7 @@ def main():
     set_cell(t2.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
     merge_and_label(t2, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
     repeat_header(t2, 2)
+    no_row_split(t2)
 
     # ---- Table 3, the required final comparison
     def best_rep(tag, name):
@@ -609,6 +623,7 @@ def main():
     merge_and_label(t3, 0, 6, 0, 10, 'Dataset 2 (HC3)', size=7)
     merge_and_label(t3, 0, 0, 1, 0, 'Model', size=7)
     repeat_header(t3, 2)
+    no_row_split(t3)
 
     # ---- code appendix
     anchor = find_par(doc, 'Give the entire code of your project here')
