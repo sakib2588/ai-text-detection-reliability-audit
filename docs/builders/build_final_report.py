@@ -373,8 +373,9 @@ def build_text(R):
         'Table 3 brings everything together in the form the project specification asks for. Every row now '
         'comes from the full balanced corpora and the same fixed split, so unlike an earlier version of this '
         'report the comparison is not mixing two dataset sizes. The three classical rows are the midterm '
-        'models re-run at full scale, each shown with whichever of the two representations worked better for '
-        'that dataset.\n'
+        'models re-run at full scale, each shown with whichever of the two text representations worked '
+        'better on that dataset, which the Rep. column names. The transformers read raw text, so no '
+        'representation applies to them.\n'
         'Reading the table across, three conclusions hold. The first is that DeBERTa is the best single model '
         'on both datasets. The second is that the size of its advantage depends entirely on which dataset you '
         f'look at. On DAIGT V2 the best classical model reaches {d1_vals[3]:.4f} and DeBERTa reaches '
@@ -583,27 +584,37 @@ def main():
 
     cap3 = para_after(end6, 'Table 3. Final comparison. Every row comes from the full balanced corpora and '
                             'the same fixed split. The three classical rows are the midterm models re-run at '
-                            'full scale, each using whichever representation was better for that dataset, '
-                            'which is bag-of-words everywhere except the support vector machine on DAIGT V2. '
-                            'The ENSEMBLE row uses the weight chosen on validation.',
-                      size=10, justify=False)
-    rows = [[''] * 9, ['', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
+                            'full scale, each shown with whichever text representation performed better on '
+                            'that dataset, which the Rep. column names. The transformers read raw text, so no '
+                            'representation applies to them. The ENSEMBLE row uses the weight chosen on '
+                            'validation.', size=10, justify=False)
+
+    def best_rep(tag, name):
+        rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
+        return rep, R['classical'][(tag, name, rep)]
+
+    # Eleven columns. The representation sits inside each dataset group rather than being
+    # packed into the model name, because a model can win with one representation on one
+    # dataset and the other on the other, and a combined label like "TF-IDF / BoW" makes
+    # the reader decode which half belongs to which dataset.
+    rows = [[''] * 11,
+            ['', 'Rep.', 'Acc', 'Prec', 'Rec', 'F1', 'Rep.', 'Acc', 'Prec', 'Rec', 'F1']]
     for name in CLASSICAL:
         r1, v1 = best_rep('D1', name)
         r2, v2 = best_rep('D2', name)
-        rows.append([f'{name} ({r1} / {r2})']
-                    + [f'{v:.4f}' for v in v1] + [f'{v:.4f}' for v in v2])
+        rows.append([name, r1] + [f'{v:.4f}' for v in v1]
+                    + [r2] + [f'{v:.4f}' for v in v2])
     for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa (BERT variation)')):
         a = R['deployed'][('D1', mk)]['test']
         b = R['deployed'][('D2', mk)]['test']
-        rows.append([label] + [f'{a[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
-                            + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
-    rows.append(['ENSEMBLE'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
-                             + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
-    t3 = table_after(doc, cap3, rows, header_rows=2)
-    merge_and_label(t3, 0, 1, 0, 4, 'Dataset 1 (DAIGT V2)')
-    merge_and_label(t3, 0, 5, 0, 8, 'Dataset 2 (HC3)')
-    merge_and_label(t3, 0, 0, 1, 0, 'Model')
+        rows.append([label, 'raw'] + [f'{a[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
+                    + ['raw'] + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
+    rows.append(['ENSEMBLE', 'raw'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
+                + ['raw'] + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
+    t3 = table_after(doc, cap3, rows, header_rows=2, size=7)
+    merge_and_label(t3, 0, 1, 0, 5, 'Dataset 1 (DAIGT V2)', size=7)
+    merge_and_label(t3, 0, 6, 0, 10, 'Dataset 2 (HC3)', size=7)
+    merge_and_label(t3, 0, 0, 1, 0, 'Model', size=7)
     repeat_header(t3, 2)
 
     # ---- code appendix
