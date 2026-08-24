@@ -31,7 +31,6 @@ experiments/paper_scale/work/*.npz
 # Transient control files and scratch backups
 # ---------------------------------------------------------------------------
 experiments/paper_scale/.nlp.stop
-archive/pre-review-bak/
 
 # ---------------------------------------------------------------------------
 # Python cache
