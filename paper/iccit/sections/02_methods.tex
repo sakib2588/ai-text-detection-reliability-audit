@@ -61,7 +61,7 @@ Each arm fits one logistic regression on the same training partition,
 \label{eq:arm}
 h_{a}  =  \arg\min_{h} \, \sum_{(x,y) \in \mathcal{D}_{\text{tr}}} \ell\big(h(\phi_{a}(x)), y\big)  +  \tfrac{1}{2C}\lVert h \rVert_2^2 ,
 \end{equation}
-for $a \in \{\mathrm{S}, \mathrm{C}\}$, with $\ell$ the logistic loss and $C$ fixed at the library default for both arms. Sharing the classifier family and the regularisation strength is what makes the two arms comparable, since any difference between them is then a difference in what the representation carries rather than in how it is fitted.
+for $a \in \{\mathrm{S}, \mathrm{C}\}$, with $\ell$ the logistic loss and $C$ fixed at the library default for both arms. Sharing the classifier family and regularisation strength is what makes the two arms comparable, since any difference is then in what the representation carries rather than how it is fitted.
 
 The quantity we report is the error of each arm on the held-out partition,
 \begin{equation}
@@ -73,7 +73,7 @@ and the separability gap between them,
 \label{eq:gap}
 \Delta  =  \varepsilon_{\mathrm{S}} - \varepsilon_{\mathrm{C}} .
 \end{equation}
-A gap near zero says orthography alone reaches the same accuracy as content alone on that corpus. A large positive gap says content carries what orthography does not. The surface arm's own error $\varepsilon_{\mathrm{S}}$ answers a second and more direct question, namely how much of the benchmark a detector could pass without reading language at all.
+A gap near zero says orthography alone reaches the same accuracy as content alone on that corpus. A large positive gap says content carries what orthography does not. The surface arm's own error answers a more direct question, how much of the benchmark a detector could pass without reading language at all.
 
 Two properties of $\Delta$ matter. It compares two specific arms rather than partitioning the total separability, since a richer surface featurisation would lower $\varepsilon_{\mathrm{S}}$ and a stronger content model would lower $\varepsilon_{\mathrm{C}}$, so it is a corpus-level comparison under a fixed pair of instruments, and it is not a claim that either corpus is clean. The \emph{full} arm is the fine-tuned transformer on raw text, differing from the other two in model family, parameter count and the amount of text it reads, so we report it as a reference point and draw no conclusion from a transformer-to-classical difference without first matching the text budget.
 
@@ -95,7 +95,7 @@ The 47 features cover punctuation-character rates, whitespace behaviour includin
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_surface_correlation.pdf}
-\caption{Spearman correlation among the 47 surface features on each test split, ordered by average-linkage clustering on $1-|\rho|$ so correlated blocks sit adjacent. Features the length control removes are outlined in green. Features with no variance have undefined correlation and are drawn as zero.}
+\caption{Spearman correlation among the 47 surface features on each test split, ordered by average-linkage clustering on $1-|\rho|$ so correlated blocks sit adjacent. The matrix is symmetric, so rows are labelled and columns are not. Features the length control removes are outlined in green. Features with no variance have undefined correlation and are drawn as zero.}
 \label{fig:corr}
 \end{figure*}
 

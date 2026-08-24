@@ -72,6 +72,26 @@ PUNCT_LABEL = {' ': 'space', '\\': 'backslash'}
 FEATURE_NAMES = BASE_NAMES + ["rate of '%s'" % PUNCT_LABEL.get(c, c) for c in PUNCT_CHARS]
 
 
+SHORT_NAMES = {
+    'space-before-punct (count)': 'space-pre-punct, n',
+    'space-before-punct (rate)': 'space-pre-punct, rate',
+    'mean sentence length': 'mean sent. length',
+    'capitalised-word %': 'capitalised %',
+    'uppercase-char %': 'uppercase %',
+    'ALLCAPS-word %': 'ALLCAPS %',
+    "rate of 'backslash'": "rate of '\\\\'",
+    'double-space rate': 'double-space',
+    'non-ASCII rate': 'non-ASCII',
+    'mean word length': 'mean word len',
+}
+
+
+def short(name):
+    """Shorter labels for the correlation panels, where a long name on the right
+    panel runs left past its own axis and lands on the left panel's matrix."""
+    return SHORT_NAMES.get(name, name)
+
+
 def load_surface_matrix(tag):
     """Surface features on the fixed train/test split, standardised on train."""
     df = pd.read_parquet(WORK / f'data_{tag}.parquet')
@@ -91,7 +111,8 @@ def load_surface_matrix(tag):
 # Figure 1: correlation matrix over the 47 surface features
 # --------------------------------------------------------------------------
 def fig_surface_correlation():
-    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.2))
+    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.05),
+                             gridspec_kw={'wspace': 0.42})
     recorded = {}
 
     for ax, (tag, name) in zip(axes, DATASETS.items()):
@@ -107,11 +128,13 @@ def fig_surface_correlation():
         R = rho[np.ix_(order, order)]
 
         im = ax.imshow(R, cmap='RdBu_r', vmin=-1, vmax=1, interpolation='nearest')
-        labels = [FEATURE_NAMES[i] for i in order]
-        ax.set_xticks(range(len(order)))
+        labels = [short(FEATURE_NAMES[i]) for i in order]
+        # The matrix is symmetric and the two axes carry the same 47 labels in the
+        # same order, so labelling rows alone identifies both. Rotated x labels at
+        # this many features collide with each other and with the caption.
         ax.set_yticks(range(len(order)))
-        ax.set_xticklabels(labels, rotation=90, fontsize=3.4)
-        ax.set_yticklabels(labels, fontsize=3.4)
+        ax.set_yticklabels(labels, fontsize=3.7)
+        ax.set_xticks([])
         ax.set_title(f'({"ab"[list(DATASETS).index(tag)]}) {name}')
 
         # Mark the five document-size features the length control removes.
@@ -119,7 +142,6 @@ def fig_surface_correlation():
             if orig in LENGTH_IDX:
                 ax.add_patch(Rectangle((j - .5, -.5), 1, len(order),
                                        fill=False, ec=CB['green'], lw=0.55))
-                ax.get_xticklabels()[j].set_color(CB['green'])
                 ax.get_yticklabels()[j].set_color(CB['green'])
 
         off = np.abs(R[np.triu_indices_from(R, k=1)])
@@ -243,8 +265,8 @@ def fig_dashboard():
 
     # (b) the decomposition, with and without the length channel
     arms = [('surface_only', 'surface'), ('content_only', 'content'),
-            ('surface_only_nolength', 'surface\nno length'),
-            ('content_only_l1norm_scaled', 'content\nlength-norm')]
+            ('surface_only_nolength', 'surface\nno len'),
+            ('content_only_l1norm_scaled', 'content\nlen-norm')]
 
     def arm_err(tag, key):
         ds = dec['datasets'][tag]
@@ -257,7 +279,7 @@ def fig_dashboard():
     b.bar(xx - 0.2, v1, 0.4, color=D1C, label='DAIGT V2')
     b.bar(xx + 0.2, v2, 0.4, color=D2C, label='HC3')
     b.set_xticks(xx)
-    b.set_xticklabels([l for _, l in arms], fontsize=5, rotation=30, ha='right')
+    b.set_xticklabels([l for _, l in arms], fontsize=4.8)
     b.set_ylabel('test error, %')
     b.set_title('(b) Surface against content')
     b.legend(frameon=False, fontsize=5.5)
@@ -290,8 +312,8 @@ def fig_dashboard():
     d.bar(xx - 0.2, [full1, bc1, tf1], 0.4, color=D1C, label='DAIGT V2')
     d.bar(xx + 0.2, [full2, bc2, tf2], 0.4, color=D2C, label='HC3')
     d.set_xticks(xx)
-    d.set_xticklabels(['best classical\nfull text', 'best classical\n128-token span',
-                       'BERT\n128 tokens'], fontsize=5, rotation=30, ha='right')
+    d.set_xticklabels(['classical\nfull text', 'classical\n128-tok', 'BERT\n128-tok'],
+                      fontsize=4.8)
     d.set_ylabel('test error, %')
     d.set_title('(d) Matched text budget')
     d.set_ylim(0, max(full1, full2, bc1, bc2, tf1, tf2) * 1.32)
@@ -312,7 +334,7 @@ def fig_dashboard():
           yerr=np.array(err), capsize=1.5,
           error_kw={'lw': 0.6, 'ecolor': '#444444'})
     e.set_xticks(xx)
-    e.set_xticklabels(lbl, fontsize=5, rotation=30, ha='right')
+    e.set_xticklabels([l.replace('DAIGT V2', 'DAIGT') for l in lbl], fontsize=4.8)
     e.set_ylim(0.6, 1.13)
     e.set_yticks([0.6, 0.7, 0.8, 0.9, 1.0])
     e.set_ylabel('weighted F1')
