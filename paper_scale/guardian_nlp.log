@@ -64,3 +64,13 @@
 [2026-08-23 12:15:01] NLPGUARD: GPU busy (2 proc(s) >500MiB) -- no GPU launch this tick
 [2026-08-23 12:25:02] NLPGUARD: GPU busy (2 proc(s) >500MiB) -- no GPU launch this tick
 [2026-08-23 12:35:01] NLPGUARD: GPU busy (2 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-23 21:55:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-23 22:05:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-23 22:15:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-23 22:25:02] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-23 22:35:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 19:45:02] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 20:25:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 22:55:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 23:05:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 23:15:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
