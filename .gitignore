@@ -55,3 +55,6 @@ paper/iccit/*.fls
 
 # Material belonging to a different project, dropped in here by hand
 All Outputs_Plot_from_another_project\ /
+
+# FUSE leaves these behind when a file is deleted while still open, e.g. by LibreOffice
+.fuse_hidden*
