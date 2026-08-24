@@ -91,7 +91,7 @@ def load_surface_matrix(tag):
 # Figure 1: correlation matrix over the 47 surface features
 # --------------------------------------------------------------------------
 def fig_surface_correlation():
-    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.75))
+    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.2))
     recorded = {}
 
     for ax, (tag, name) in zip(axes, DATASETS.items()):
@@ -151,7 +151,7 @@ def fig_surface_correlation():
 # --------------------------------------------------------------------------
 def fig_shap_beeswarm():
     import shap
-    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.5))
+    fig, axes = plt.subplots(1, 2, figsize=(DBL_W, 3.0))
     recorded = {}
     rng = np.random.default_rng(SEED)
 
@@ -220,7 +220,7 @@ def fig_dashboard():
     pcv = json.load(open(AUDIT / 'paper_claim_verification.json'))
     cross = pd.read_csv(TABLES / 'table_cross_dataset_generalization_3seed.csv')
 
-    fig, axes = plt.subplots(2, 3, figsize=(DBL_W, 5.0))
+    fig, axes = plt.subplots(2, 3, figsize=(DBL_W, 4.3))
     (a, b, c), (d, e, f) = axes
     D1C, D2C = CB['blue'], CB['red']
 

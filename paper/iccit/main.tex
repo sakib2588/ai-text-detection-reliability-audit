@@ -80,7 +80,9 @@ AI-generated text detection, benchmark evaluation, surface features, shortcut le
 \input{sections/02_methods.tex}
 \input{sections/03_results.tex}
 \input{sections/05_discussion_conclusion.tex}
-\input{sections/06_reproducibility.tex}
+
+\section*{Data and Code Availability}
+Both corpora are public. Every number in this paper is produced by a committed script that writes a JSON file, and no number was transcribed from a session log. The partition is built once by a script that asserts no duplicate-content group crosses a boundary, and is reused unchanged by every model and every training seed. A single notebook reproduces the preprocessing, both transformers at their deployed configurations and the ensemble, reading each configuration from the checkpoint record at runtime rather than from a value typed into the notebook. Code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
 
 \bibliographystyle{IEEEtran}
 \bibliography{bib/refs}

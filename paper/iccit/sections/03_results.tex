@@ -36,32 +36,12 @@ Table~\ref{tab:allmodels} reports every configuration on both datasets. The two 
 \label{fig:roczoom}
 \end{figure*}
 
-Fig.~\ref{fig:roczoom} gives the corresponding ROC curves in the region that matters for a deployed detector, where false positives are expensive because they are accusations. The visual separation on HC3 and the absence of it on DAIGT V2 restate the table without the compression that F1 imposes near the ceiling.
+Fig.~\ref{fig:roczoom} gives the corresponding ROC curves in the region that matters for a deployed detector, where false positives are expensive because they are accusations.
 
 Ranking by area does not reproduce ranking by F1. On DAIGT V2, BERT attains the higher area, 0.999641 against 0.999144, while DeBERTa attains the higher F1. Neither ordering is real, since the two models disagree on only 75 documents, 37 to 38, at $p=1.00$. On HC3 the pair separates cleanly at $p < 10^{-6}$. We report both measures for this reason, and we would draw no conclusion from either ordering on DAIGT V2.
 
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_roc.pdf}
-\caption{The same eight configurations over the full ROC range. At this scale every curve is close to the corner on both corpora, which is what a headline accuracy figure reports and what motivates the low-false-positive view in Fig.~\ref{fig:roczoom}. The figure is included because the compressed view is the one most often published, and the contrast between the two panels is the point.}
-\label{fig:roc}
-\end{figure*}
+Over the full ROC range, not shown, every curve on both corpora sits close to the corner and the two benchmarks look alike. The low-false-positive view is where they separate, which is itself a reason to prefer it.
 
-Fig.~\ref{fig:roc} shows the same curves unzoomed. The comparison between it and Fig.~\ref{fig:roczoom} is itself a small methodological observation, since at full scale the two corpora look alike and every model looks solved.
-
-\FloatBarrier
-\subsection{Error structure is one-directional on neither corpus}
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_confusion.pdf}
-\caption{Confusion matrices for the deployed BERT and DeBERTa checkpoints on both corpora, counts normalised within each true-label row. Errors are close to symmetric between the two directions on all four panels, so neither model is trading one error type for the other at its operating point. This matters for reading Section~\ref{sec:labelfree}, where the same models under perturbation produce a sharply one-directional matrix instead.}
-\label{fig:confusion}
-\end{figure*}
-
-Fig.~\ref{fig:confusion} shows where the remaining errors fall. On unperturbed test data the four deployed checkpoints distribute their errors roughly evenly between calling a human document machine-generated and the reverse. That symmetry is the baseline against which the perturbation result in Section~\ref{sec:labelfree} should be read, because the collapse reported there is not a uniform loss of accuracy but a wholesale movement of one class into the other.
-
-\FloatBarrier
 \subsection{The DAIGT V2 tie is a text budget, not an architecture result}
 \label{sec:budget}
 
@@ -85,13 +65,10 @@ HC3 & DeBERTa & 0.756 & 4.49 & 5.72 & 0.28 \\
 \end{tabular}
 \end{table}
 
-That DAIGT V2 tie is not a matched comparison, and reading it as a statement about architecture would be wrong. The classical models receive the whole document while the transformers receive 128 tokens, which is 33.5\% of a mean DAIGT V2 essay against 74.6\% of a mean HC3 answer. Table~\ref{tab:budget} reports what happens when the asymmetry is removed by refitting the classical grid on the exact span each checkpoint's own tokeniser kept.
+That DAIGT V2 tie is not a matched comparison, and reading it as a statement about architecture would be wrong. The classical models read the whole document while the transformers read 128 tokens, which is 33.5\% of a mean DAIGT V2 essay against 74.6\% of a mean HC3 answer. Table~\ref{tab:budget} refits the classical grid on the exact span each checkpoint's own tokeniser kept. The best DAIGT V2 configuration then rises from 0.90\% to 2.10\% error against BERT's 0.84\%, a difference of 1.257 points with interval $[+0.900, +1.629]$ at $p < 10^{-6}$, and the DeBERTa window returns the same 1.257. On HC3 the gap only widens, from 4.49\% to 5.66\%. Held to one text budget the transformers lead on both corpora.
 
-The best DAIGT V2 configuration then rises from 0.90\% to 2.10\% error against BERT's 0.84\%, a difference of 1.257 points with interval $[+0.900, +1.629]$ at $p < 10^{-6}$, and the DeBERTa window returns the same 1.257. On HC3 the gap only widens, from 4.49\% to 5.66\%. Held to one text budget the transformers lead on both corpora.
+What the unmatched comparison shows is narrower and still worth stating, namely that a bag-of-words model reading a whole essay matches a transformer reading its opening. That is a claim about information access, not architecture.
 
-What the unmatched comparison shows is narrower and still worth stating, namely that a bag-of-words model reading a whole essay matches a transformer reading its opening. That is a claim about information access rather than about architecture, and on a corpus of long documents it is arguably the more useful of the two.
-
-\FloatBarrier
 \subsection{On HC3, orthography alone matches content alone}
 \label{sec:decomp}
 
@@ -123,47 +100,14 @@ Table~\ref{tab:decomp} gives the decomposition. On HC3 the two arms are statisti
 
 On DAIGT V2 the same two arms separate by a factor of 7.9 in error, 7.86\% against 0.99\%, and there the separation is unambiguous, with 569 discordant documents split 44 to 525, $p < 10^{-6}$, and a difference of $+6.87$ points with interval $[+6.23, +7.52]$.
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{figures/fig_decomposition.pdf}
-\caption{The two primary arms and the transformer reference, per corpus. The HC3 pair is level and the DAIGT V2 pair is not, which is the paper's central observation in one view. The transformer bar is drawn in grey to mark that it is a reference point rather than a matched arm, since it differs from the other two in model family, parameter count and the amount of text it reads.}
-\label{fig:decomp}
-\end{figure}
-
-Fig.~\ref{fig:decomp} shows the same three arms per corpus. Surface form is informative on both benchmarks, since DAIGT V2's surface-only arm reaches 0.9214 weighted F1, far above the 0.50 a coin would give and far above the 0.333 a degenerate single-class predictor would give. The finding is not that one corpus is clean and the other is not. It is that only on HC3 does surface rise to parity with content.
+Surface form is informative on both benchmarks, since DAIGT V2's surface-only arm reaches 0.9214 weighted F1, far above the 0.50 a coin would give and far above the 0.333 a degenerate single-class predictor would give. The finding is not that one corpus is clean and the other is not. It is that only on HC3 does surface rise to parity with content.
 
 The content-only arm reaches 0.9901 on DAIGT V2 against the transformer's 0.9917, within 0.16 points of error, under the same unmatched text budget as Section~\ref{sec:budget}. On HC3 the transformer improves on either arm by roughly 0.03 weighted F1, which is consistent with it combining information neither arm holds alone.
 
-\FloatBarrier
 \subsection{One orthographic feature carries the HC3 result}
 \label{sec:shap}
 
-\begin{table}[!ht]
-\centering
-\caption{Top five surface features by mean absolute SHAP value, per corpus, with the sign of the fitted coefficient. On HC3 one feature leads the next by a factor of 2.3 and the top four all push toward the human class. On DAIGT V2 the leading features are document size and word shape and the largest is 2.8, a third of HC3's leader, with no comparable concentration.}
-\label{tab:shap}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}llcc@{}}
-\toprule
-Data & Feature & mean $|$SHAP$|$ & drives \\
-\midrule
-DAIGT V2 & length, characters & 2.77 & human \\
-DAIGT V2 & mean word length & 1.88 & machine \\
-DAIGT V2 & uppercase-char \% & 1.74 & human \\
-DAIGT V2 & length, words & 1.66 & machine \\
-DAIGT V2 & capitalised-word \% & 1.49 & machine \\
-\midrule
-HC3 & space-before-punct, rate & \textbf{7.81} & human \\
-HC3 & length, words & 3.35 & machine \\
-HC3 & length, characters & 1.97 & human \\
-HC3 & space-before-punct, count & 1.20 & human \\
-HC3 & rate of `)' & 1.01 & human \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The decomposition in Section~\ref{sec:decomp} says how much orthography carries. It does not say which orthographic property carries it, and the two corpora turn out to differ there as sharply as they differ in the aggregate. Table~\ref{tab:shap} lists the leading features by per-feature Shapley attribution~\cite{Lundberg2017unified} over the surface arm, and Fig.~\ref{fig:shap} shows the full distributions. Because the arm is a linear model, the attributions are computed exactly rather than sampled, so the ranking below carries no estimation error of its own.
+The decomposition in Section~\ref{sec:decomp} says how much orthography carries. It does not say which orthographic property carries it, and the two corpora turn out to differ there as sharply as they differ in the aggregate. Fig.~\ref{fig:shap} gives per-feature Shapley attributions~\cite{Lundberg2017unified} over the surface arm. Because the arm is a linear model, the attributions are exact rather than sampled, so the ranking carries no estimation error of its own.
 
 \begin{figure*}[!t]
 \centering
@@ -174,9 +118,8 @@ The decomposition in Section~\ref{sec:decomp} says how much orthography carries.
 
 On HC3 the single largest contributor is the rate of spaces preceding punctuation, at mean absolute SHAP 7.81 against 3.35 for the next feature, and its fitted coefficient is negative, so its presence drives the human label. That is the collection convention Tian et al.~\cite{Tian2023multiscale} identified, recovered here without being looked for and quantified against the rest of the feature set. Section~\ref{sec:tokenisation} then shows why its presence does not license the conclusion a reader would reach next.
 
-On DAIGT V2 the leading contributors are document length, mean word length and casing statistics, none of which exceeds 2.8 and none of which is a collection convention in the same sense. The surface arm on that corpus is reading a diffuse stylistic signal rather than a single artefact, which is consistent with its much weaker showing against the content arm.
+On DAIGT V2 the leading contributors are document length at 2.77, mean word length at 1.88 and casing statistics, none of which exceeds 2.8 and none of which is a collection convention in the same sense. The surface arm on that corpus is reading a diffuse stylistic signal rather than a single artefact, which is consistent with its much weaker showing against the content arm.
 
-\FloatBarrier
 \subsection{Neither result is an artefact of document length}
 \label{sec:length}
 
@@ -210,25 +153,19 @@ length-only & 24.31 (23.56--24.85) & 15.32 (15.23--15.49) \\
 \end{tabular}
 \end{table}
 
-A null on one partition is the kind of claim a single lucky split can manufacture, so the decomposition is repeated over five group-aware partitions of the same balanced sample. Table~\ref{tab:multisplit} reports the result. Seed 42 reproduces the single-split numbers exactly, which is the harness self-check that makes the other four readable.
+A null on one partition is the kind of claim a lucky split can manufacture, so the decomposition is repeated over five group-aware partitions of the same balanced sample. Table~\ref{tab:multisplit} reports the result, and seed 42 reproduces the single-split numbers exactly, which is the harness self-check that makes the other four readable. Content leads on DAIGT V2 on all five partitions, by 6.00 to 6.87 points, at $p < 10^{-6}$ throughout. On HC3 the surface-content difference is significant on none of the five, with $p$ equal to 0.81, 0.27, 0.34, 0.23 and 0.78, and the difference changes sign between partitions, ranging from $-0.30$ to $+0.27$ points. That sign instability is the strong form of the null, because an underpowered real difference keeps its sign while a genuine null does not. The length-free comparison, by contrast, is significant on all five and keeps its sign, from $-2.67$ to $-2.91$ points, so the advantage orthography gains once length is removed is not a partition effect either.
 
-Content leads on DAIGT V2 on all five partitions, by 6.00 to 6.87 points, at $p < 10^{-6}$ throughout. On HC3 the surface-content difference is significant on none of the five, with $p$ equal to 0.81, 0.27, 0.34, 0.23 and 0.78, and the difference changes sign between partitions, ranging from $-0.30$ to $+0.27$ points. That sign instability is the strong form of the null, because an underpowered real difference keeps its sign while a genuine null does not. The length-free comparison, by contrast, is significant on all five and keeps its sign, from $-2.67$ to $-2.91$ points, so the advantage orthography gains once length is removed is not a partition effect either.
-
-\FloatBarrier
 \subsection{A model that cannot represent the cue reaches 0.9916 anyway}
 \label{sec:tokenisation}
 
 The most-discussed HC3 artefact is a space preceding punctuation in human answers~\cite{Tian2023multiscale}, and Section~\ref{sec:shap} confirms it is the single strongest orthographic feature on that corpus. In our test split it appears 10.745 times per human document against 0.013 per machine one, and in 88.7\% of human documents against 0.3\% of machine ones. DAIGT V2 carries the same cue far more weakly, 0.548 against 0.004 per document, in 17.1\% against 0.2\% of documents.
 
-The natural next inference is that HC3-trained detectors exploit it. Tokenisation makes that inference testable rather than rhetorical, and the test does not support it.
-
-BERT's WordPiece tokeniser splits on punctuation irrespective of adjacent whitespace. For the strings \texttt{"the answer is simple ."} and \texttt{"the answer is simple."} it emits identical identifier sequences, in three of three pairs tested, while DeBERTa's SentencePiece encodes the leading whitespace and distinguishes all three. BERT cannot represent the cue at all and still reaches 0.9916 weighted F1 on HC3. The cue is therefore sufficient in isolation, since the surface arm that reads it reaches 0.9680, and unnecessary in practice, since a model blind to it reaches 0.9916.
+The natural next inference is that HC3-trained detectors exploit it. Tokenisation makes that testable rather than rhetorical, and the test does not support it. BERT's WordPiece tokeniser splits on punctuation irrespective of adjacent whitespace. For the strings \texttt{"the answer is simple ."} and \texttt{"the answer is simple."} it emits identical identifier sequences, in three of three pairs tested, while DeBERTa's SentencePiece encodes the leading whitespace and distinguishes all three. BERT cannot represent the cue at all and still reaches 0.9916 weighted F1 on HC3. The cue is therefore sufficient in isolation, since the surface arm that reads it reaches 0.9680, and unnecessary in practice, since a model blind to it reaches 0.9916.
 
 This is also why removing the cue changes nothing for BERT. Applying whitespace cleaning to HC3 yields predictions bit-identical to the uncleaned run, verified by SHA-256 over the saved probability arrays. Taken alone that would be indistinguishable from a cleaning step that never executed. The same pipeline applied to DAIGT V2, where it also removes emoji that WordPiece does represent, does change BERT's predictions. The pipeline fires, and the null is specific to whitespace.
 
-We do not attribute the BERT-to-DeBERTa difference on HC3 to this cue. The two models differ in tokeniser, architecture, pretraining corpus and parameter count, and this experiment separates none of those. What it establishes is narrower and, for anyone planning a cleaning ablation, more useful, namely that a null result from removing a cue is uninterpretable without checking whether the model could read the cue in the first place.
+We do not attribute the BERT-to-DeBERTa difference on HC3 to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count and this experiment separates none of those. What it establishes is narrower and, for anyone planning a cleaning ablation, more useful, namely that a null from removing a cue is uninterpretable without first checking the model could read the cue.
 
-\FloatBarrier
 \subsection{The adversarial collapse is not distinguishable from a degenerate response}
 \label{sec:labelfree}
 
@@ -250,36 +187,17 @@ HC3 DeBERTa & 100\% (0.98) & 100\% (1.00) & 100\% (0.99) \\
 \end{tabular}
 \end{table}
 
-Perturbing HC3 test text with character-level typos at 10\% of alphabetic characters drives DeBERTa from 0.9972 to 0.3644 weighted F1. The confusion matrix is one-directional, $[[5376, 1], [5207, 148]]$, with human documents still classified almost perfectly and machine documents reassigned to human. Compared against the symmetric error structure in Fig.~\ref{fig:confusion}, that looks like a targeted vulnerability. It is not what the control shows.
+Perturbing HC3 test text with character-level typos at 10\% of alphabetic characters drives DeBERTa from 0.9972 to 0.3644 weighted F1. The confusion matrix is one-directional, $[[5376, 1], [5207, 148]]$, with human documents still classified almost perfectly and machine documents reassigned to human. On unperturbed data the same checkpoints split their errors roughly evenly between the two directions, so against that baseline this looks like a targeted vulnerability. It is not what the control shows.
 
 Table~\ref{tab:labelfree} reports the label-free control. On inputs carrying no human-versus-machine information, the same model assigns the human label to uniform random character strings in 100\% of cases at mean confidence 0.98, and to token-shuffled and punctuation-only text likewise. All four checkpoints label the latter two conditions human between 94.8\% and 100\% of the time. The behaviour is specific to neither HC3 nor the attack.
 
 Three candidate mechanisms were tested and none survives. Majority-prior collapse is excluded by the training balance, which is 0.4981 against 0.5019 on DAIGT V2 and 0.4999 against 0.5001 on HC3. Cue injection is excluded because the perturbation does not create the whitespace artefact, moving the machine-side count only from 0.000 to 0.005. A learned association from disfluency to human authorship is unsupported, since subword fertility runs the wrong way, at 1.1192 for HC3 human text against 1.1980 for machine.
 
-We therefore decline to read our own perturbation numbers as robustness measurements, and we report them in Table~\ref{tab:adv} for completeness rather than as evidence. The experiment establishes a requirement on future work rather than a property of these benchmarks.
+We therefore decline to read our own perturbation numbers as robustness measurements. The experiment establishes a requirement on future work rather than a property of these benchmarks.
 
-\begin{table}[!ht]
-\centering
-\caption{Perturbation results for the deployed checkpoints, reported for completeness. In-domain figures are each checkpoint's own score, never a grid maximum. We do not interpret these as robustness measurements, for the reason Table~\ref{tab:labelfree} gives. Back-translation, which leaves text readable, degrades all four models only slightly, and it is the character-level attacks that produce the large falls.}
-\label{tab:adv}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}llccc@{}}
-\toprule
-Data & Model & typo 5\% & typo 10\% & back-tr. \\
-\midrule
-DAIGT V2 & BERT & 0.9106 & 0.7966 & 0.9856 \\
-DAIGT V2 & DeBERTa & 0.9836 & 0.9590 & 0.9767 \\
-HC3 & BERT & 0.4390 & 0.3746 & 0.9872 \\
-HC3 & DeBERTa & 0.5524 & 0.3644 & 0.9773 \\
-\bottomrule
-\end{tabular}
-\end{table}
+One contrast within the perturbation results is worth stating even so. Back-translation rewrites the text while leaving it readable and costs all four models between 0.004 and 0.020 weighted F1. Character-level corruption, which makes the text unreadable, is what produces the collapses, with HC3 BERT falling to 0.3746 and HC3 DeBERTa to 0.3644 under 10\% typos. That pattern is consistent with the label-free reading and not with a targeted cue-removal reading.
 
-The contrast within Table~\ref{tab:adv} is itself informative. Back-translation rewrites the text while leaving it readable and costs all four models between 0.004 and 0.020 weighted F1. Character-level corruption, which makes the text unreadable, is what produces the collapses. That pattern is consistent with the label-free reading and not with a targeted cue-removal reading.
-
-\FloatBarrier
-\subsection{Neither corpus transfers to the other}
+\subsection{Transfer and ensembling}
 
 \begin{table}[!ht]
 \centering
@@ -299,34 +217,10 @@ HC3 & DeBERTa & 0.9970 & 0.8512 (0.830--0.887) & 0.1458 \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:cross} reports transfer in both directions over three seeds. Every cell loses a large amount, between 0.0833 and 0.2019 mean weighted F1, which is the expected consequence if a substantial part of each corpus's separability is corpus-specific. DeBERTa's gap is roughly half BERT's in both directions at the mean level. We report that as a mean-level pattern that survives three-seed averaging rather than as a confirmed effect, because with three seeds per cell the observed ranges for BERT's two directions nearly touch, 0.182 to 0.222 against 0.140 to 0.182, and this project does not run parametric tests at that sample size.
+Table~\ref{tab:cross} reports transfer in both directions over three seeds, with each model trained on one corpus and evaluated on the other without adaptation. Every cell loses between 0.0833 and 0.2019 mean weighted F1, which is what should happen if a substantial part of each corpus's separability is corpus-specific. DeBERTa's gap is roughly half BERT's in both directions at the mean level. We report that as a mean-level pattern that survives three-seed averaging rather than as a confirmed effect, because the observed ranges for BERT's two directions nearly touch and this project runs no parametric tests at three seeds.
 
-\FloatBarrier
-\subsection{The ensemble does not reliably improve on its stronger member}
+A soft-vote ensemble over the two deployed checkpoints, with the mixing weight selected on validation and applied once to test, does not reliably improve on its stronger member. On DAIGT V2 an equal mix reaches 0.9936 against DeBERTa's 0.9917, but the exact McNemar test returns $p=0.085$ and the bootstrap interval on the error difference is $[-0.39, +0.01]$ percentage points, which contains zero. On HC3 the validation sweep places zero weight on BERT, so the ensemble is DeBERTa and reports DeBERTa's score. We record the degenerate weight rather than reporting that as an ensemble result, because a soft-vote ensemble whose selected weight has discarded one member is not an ensemble. Reporting either row as an improvement would be reading a difference in the fourth decimal place as a finding, and we treat the ensemble as a discussion point, consistent with Lai et al.~\cite{Lai2024adaptive}, who find ensembling preserves in-distribution accuracy without addressing the shift that actually degrades these models.
 
-\begin{table}[!ht]
-\centering
-\caption{Soft-vote ensemble of the two deployed checkpoints, with the mixing weight chosen on validation only and applied once to test. The DAIGT V2 mix scores higher than either member but its paired interval contains zero. On HC3 validation selection assigns zero weight to BERT, so the ensemble is DeBERTa and reports DeBERTa's score.}
-\label{tab:ensemble}
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}lccccc@{}}
-\toprule
-Data & $w_{\text{B}}$ & BERT & DeBERTa & ens. & 95\% CI (pp) \\
-\midrule
-DAIGT V2 & 0.50 & 0.9916 & 0.9917 & 0.9936 & $[-0.39, +0.01]$ \\
-HC3 & 0.00 & 0.9916 & 0.9972 & 0.9972 & $[0.00, 0.00]$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Table~\ref{tab:ensemble} reports a soft-vote ensemble over the two deployed checkpoints, with the mixing weight selected on validation weighted F1 and applied once to test. On DAIGT V2 an equal mix reaches 0.9936 against DeBERTa's 0.9917, which reads as an improvement until the comparison is made on the documents themselves. The two disagree in a way that gives an exact McNemar $p$ of 0.085 and a bootstrap interval on the error difference of $[-0.39, +0.01]$ percentage points, which contains zero.
-
-On HC3 the validation sweep places zero weight on BERT. The ensemble is DeBERTa, and its reported score is DeBERTa's score. We record the degenerate weight rather than reporting the number as an ensemble result, because a soft-vote ensemble whose selected weight has discarded one member is not an ensemble.
-
-Reporting either row as an improvement would be reading a difference in the fourth decimal place as a finding. We treat the ensemble as a discussion point, consistent with Lai et al.~\cite{Lai2024adaptive}, who find that ensembling preserves in-distribution accuracy without addressing the shift that actually degrades these models.
-
-\FloatBarrier
 \subsection{A consolidated view}
 
 \begin{figure*}[!t]
@@ -336,4 +230,4 @@ Reporting either row as an improvement would be reading a difference in the four
 \label{fig:dashboard}
 \end{figure*}
 
-Fig.~\ref{fig:dashboard} collects the results above. Panel (c) is the one worth reading closely, because it is where the paper's central claim is either supported or refuted. The DAIGT V2 series sits between six and seven points above zero on every partition. The HC3 series straddles zero and changes sign. Panel (f) shows the same distinction in interval form, where the grey intervals are those that contain zero, and the two of them are exactly the two comparisons this paper declines to call differences.
+Fig.~\ref{fig:dashboard} collects the results above. Panel (c) is where the paper's central claim is either supported or refuted. The DAIGT V2 series sits six to seven points above zero on every partition, and the HC3 series straddles zero and changes sign. Panel (f) shows the same distinction in interval form, where grey marks the intervals containing zero, and those are exactly the comparisons this paper declines to call differences.

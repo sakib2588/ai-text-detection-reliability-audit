@@ -9,7 +9,7 @@ pass() { printf '  \033[32mPASS\033[0m  %s\n' "$1"; }
 fail() { printf '  \033[31mFAIL\033[0m  %s\n' "$1"; FAIL=1; }
 info() { printf '  info  %s\n' "$1"; }
 
-TEX="main.tex sections/00_abstract.tex sections/01_introduction.tex sections/02_methods.tex sections/03_results.tex sections/04_related_work.tex sections/05_discussion_conclusion.tex sections/06_reproducibility.tex"
+TEX="main.tex sections/00_abstract.tex sections/01_introduction.tex sections/02_methods.tex sections/03_results.tex sections/04_related_work.tex sections/05_discussion_conclusion.tex"
 
 MANIFEST=".build-manifest"
 build_inputs() {
