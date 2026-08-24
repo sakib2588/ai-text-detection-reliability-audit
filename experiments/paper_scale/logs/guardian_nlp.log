@@ -74,3 +74,5 @@
 [2026-08-24 22:55:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
 [2026-08-24 23:05:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
 [2026-08-24 23:15:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 23:25:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
+[2026-08-24 23:35:01] NLPGUARD: GPU busy (1 proc(s) >500MiB) -- no GPU launch this tick
