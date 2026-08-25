@@ -116,6 +116,39 @@ On HC3 the single largest contributor is the rate of spaces preceding punctuatio
 
 On DAIGT V2 the leading contributors are document length at 2.77, mean word length at 1.88 and casing statistics, none of which exceeds 2.8 and none of which is a collection convention in the same sense. The surface arm on that corpus is reading a diffuse stylistic signal rather than a single artefact, which is consistent with its much weaker showing against the content arm.
 
+\subsection{The HC3 parity belongs to one sub-domain}
+\label{sec:subgroup}
+
+\begin{table}[!ht]
+\centering
+\caption{HC3 by source domain, each rebalanced to parity within train and test, on the same group-aware split restricted to the domain. The final columns give the share of documents carrying at least one space before punctuation. Domains below 200 test rows are marked, because a paired test there fails to separate for want of power rather than for want of an effect.}
+\label{tab:subgroup}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lrccrr@{}}
+\toprule
+& & surface & content & \multicolumn{2}{c}{cue present in} \\
+\cmidrule(lr){5-6}
+Domain & $n$ & err\,\% & err\,\% & human & machine \\
+\midrule
+reddit\_eli5 & 6,690 & \textbf{0.01} & 2.66 & 98.9\% & 0.3\% \\
+finance & 684 & 7.60 & \textbf{3.07} & 5.6\% & 0.1\% \\
+medicine & 250 & 4.00 & \textbf{0.40} & 17.0\% & 0.1\% \\
+open\_qa & 198 & 4.04 & 5.05 & 60.7\% & 0.4\% \\
+wiki\_csai & 168 & 5.36 & 11.90 & 1.6\% & 0.2\% \\
+\bottomrule
+\multicolumn{6}{@{}l}{\footnotesize open\_qa and wiki\_csai fall below 200 test rows.}
+\end{tabular}
+\end{table}
+
+Both corpora carry subgroup labels, and rejoining them to the existing splits recovers a source for every row. Running the same decomposition per sub-corpus rather than per corpus moves the HC3 result somewhere more specific.
+
+Table~\ref{tab:subgroup} gives it. On \texttt{reddit\_eli5} the surface arm reaches 0.01\% error, roughly one mistake in 6,690 documents, and beats content by 2.65 points. On the two other domains with enough test rows to support a claim the ordering reverses and content wins clearly, by 4.53 points on \texttt{finance} and 3.60 on \texttt{medicine}. Since \texttt{reddit\_eli5} is 74.8\% of the balanced corpus, the corpus-level parity reported in Section~\ref{sec:decomp} is substantially that one domain's result.
+
+The mechanism is the cue Section~\ref{sec:shap} identified, and it is concentrated in the same place. It appears in 98.9\% of \texttt{reddit\_eli5} human documents against 0.3\% of machine ones, and decays across the rest, 60.7\% on \texttt{open\_qa}, 17.0\% on \texttt{medicine}, 5.6\% on \texttt{finance} and 1.6\% on \texttt{wiki\_csai}. A single boolean rule, treating a document as human when the cue is present, scores 99.22\% accuracy on \texttt{reddit\_eli5} and 94.23\% on the whole corpus at document level. Tian et al.~\cite{Tian2023multiscale} report 82.12\% for the equivalent single-token rule at sentence level, and the gap between their figure and ours is the difference between a sentence and a document rather than a disagreement.
+
+The same treatment on DAIGT V2 pairs each machine generator against the shared human essay pool. Content wins on every generator, consistent with the corpus-level result, but the surface arm's error spans roughly fifteenfold across them, from 0.50\% to 15.54\%. Two pairs are the informative ones, because they are the same underlying model contributed by different people. Mistral-7B-Instruct appears at 1.09\% under one contributor and 4.44\% under another, and PaLM at 2.32\% and 5.38\%. Surface separability on that corpus therefore tracks collection provenance more closely than it tracks which model produced the text, which is the same conclusion the HC3 domain split reaches by a different route.
+
 \subsection{Neither result is an artefact of document length}
 \label{sec:length}
 
