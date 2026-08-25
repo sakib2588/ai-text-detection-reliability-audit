@@ -388,7 +388,8 @@ def build_text(R):
         f'On HC3 the best setting is {cfg("D2","DeBERTa")}, and this is where DeBERTa clearly separates from '
         f'BERT. It reaches {f("D2","DeBERTa"):.4f} on test after {d[("D2","DeBERTa")]["val"]["f1"]:.4f} on validation, '
         f'with confusion matrix {d[("D2","DeBERTa")]["test_confusion"]}, which is only 30 errors out of 10,732. '
-        f'BERT made 90 errors on the same documents, so DeBERTa removes two thirds of them.\n'
+        f'BERT made 90 errors on the same documents, so DeBERTa removes two thirds of them. Table 4 '
+        f'collects all four selected configurations with their test-set scores.\n'
         'The comparison between the two models is not the same on the two datasets, and that is the most '
         'useful thing this section shows. On DAIGT V2 the two are level, '
         f'{f("D1","BERT"):.4f} against {f("D1","DeBERTa"):.4f}, a difference of one ten-thousandth that we would not '
@@ -420,9 +421,9 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 4 brings everything together in the form the project specification asks for. Every row comes '
+        'Table 5 brings everything together in the form the project specification asks for. Every row comes '
         'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
-        'of the two text representations worked better on that dataset, which the Rep. column names. The '
+        'of the two text representations worked better on that dataset, which the Representation column names. The '
         'transformers read raw text, so no representation applies to them.\n'
         'Reading the table across, three conclusions hold. The first is that DeBERTa is the best single model '
         'on both datasets. The second is that the size of its advantage depends entirely on which dataset you '
@@ -559,17 +560,20 @@ def main():
     #      any remaining ones are appended after it, so paragraph breaks survive.
     def write_section(placeholder_needle, body):
         chunks = body.split('\n')
-        anchor = set_text(find_par(doc, placeholder_needle), chunks[0])
+        first = set_text(find_par(doc, placeholder_needle), chunks[0])
+        pars = [first]
+        anchor = first
         for c in chunks[1:]:
             anchor = para_after(anchor, c)
-        return anchor
+            pars.append(anchor)
+        return pars
 
-    end1 = write_section('Provide an overall summary of your work', T['intro'])
-    end2 = write_section('Take the resultant table from the experiments', T['midterm'])
-    end3 = write_section('Give reason behind selecting the BERT model. Additionally, based on your experimental results, select the BERT model', T['bert'])
-    end4 = write_section('select the BERT variant model', T['variant'])
-    end5 = write_section('Discuss your ensemble model', T['ensemble'])
-    end6 = write_section('Compare the overall results', T['overall'])
+    sec1 = write_section('Provide an overall summary of your work', T['intro'])
+    sec2 = write_section('Take the resultant table from the experiments', T['midterm'])
+    sec3 = write_section('Give reason behind selecting the BERT model. Additionally, based on your experimental results, select the BERT model', T['bert'])
+    sec4 = write_section('select the BERT variant model', T['variant'])
+    sec5 = write_section('Discuss your ensemble model', T['ensemble'])
+    sec6 = write_section('Compare the overall results', T['overall'])
     write_section('Discuss the limitations', T['limits'])
     write_section('Summarize your work in this section', T['conclusion'])
 
@@ -577,7 +581,7 @@ def main():
     sp = R['splits']
     tk = R['tok']
     da, ha, hc = R['daigt_audit'], R['hc3_audit'], R['hc3_counts']
-    cap0 = para_after(end1, 'Table 1. The two datasets as published and after preprocessing. Duplicate rows '
+    cap0 = para_after(sec1[-1], 'Table 1. The two datasets as published and after preprocessing. Duplicate rows '
                             'are exact matches after whitespace and case normalisation. Leakage is the share of '
                             'test documents whose text also appears in training or validation. Token counts use '
                             'the bert-base-uncased tokeniser on a 2,000-row sample per dataset.',
@@ -627,7 +631,7 @@ def main():
 
     # ---- Table 2, the classical models
 
-    cap1 = para_after(end2, 'Table 2. Classical models on the full balanced corpora, both text representations, '
+    cap1 = para_after(sec2[0], 'Table 2. Classical models on the full balanced corpora, both text representations, '
                             'evaluated on the same test split every other model in this report uses. Acc = Accuracy, Prec = Precision, Rec = Recall, F1 = F1 Score.',
                       size=10, justify=False)
     rows = [[''] * 10, ['', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
@@ -641,7 +645,7 @@ def main():
     merge_and_label(t1, 0, 2, 0, 5, 'Dataset 1 (DAIGT V2)')
     merge_and_label(t1, 0, 6, 0, 9, 'Dataset 2 (HC3)')
     merge_and_label(t1, 0, 0, 1, 0, 'Model')
-    merge_and_label(t1, 0, 1, 1, 1, 'Rep.')
+    merge_and_label(t1, 0, 1, 1, 1, 'Represen-\ntation')
     for i, name in enumerate(CLASSICAL):
         r0 = 2 + i * len(REPS)
         merge_and_label(t1, r0, 0, r0 + len(REPS) - 1, 0, name, bold=False)
@@ -649,7 +653,7 @@ def main():
     no_row_split(t1)
 
     # ---- Table 3, the full fine-tuning grid
-    cap2 = para_after(end3, 'Table 3. Final-term fine-tuning experiments. Eight configurations for each '
+    cap2 = para_after(sec3[2], 'Table 3. Final-term fine-tuning experiments. Eight configurations for each '
                             'model on each dataset, full balanced corpora, evaluated on the test split. '
                             'The ENSEMBLE row uses the weight chosen on validation.', size=10, justify=False)
     rows = [[''] * 12,
@@ -682,13 +686,39 @@ def main():
     no_row_split(t2)
 
     # ---- Table 3, the required final comparison
+    # ---- Table 4, the winning configuration per model and dataset
+    cap_best = para_after(sec4[8],
+        'Table 4. The configuration selected for each model on each dataset, chosen on '
+        'validation weighted F1 and then evaluated once on the test split. These are the '
+        'deployed checkpoints, so every transformer number elsewhere in this report comes '
+        'from one of these four runs.', size=10, justify=False)
+    keep_with_next(cap_best)
+    rows = [[''] * 9,
+            ['', '', 'Learning Rate', 'Batch Size', 'Weight Decay', 'Acc', 'Prec', 'Rec', 'F1']]
+    for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa\n(BERT variation)')):
+        for tag, dname in (('D1', 'DAIGT V2'), ('D2', 'HC3')):
+            i = R['deployed'][(tag, mk)]
+            t = i['test']
+            rows.append(['', dname, f"{i['lr']:.5f}", str(i['batch_size']), f"{i['weight_decay']:g}"]
+                        + [f"{t[k]:.4f}" for k in ('accuracy', 'precision', 'recall', 'f1')])
+    tb = table_after(doc, cap_best, rows, header_rows=2)
+    merge_and_label(tb, 0, 2, 0, 4, 'Selected hyperparameters')
+    merge_and_label(tb, 0, 5, 0, 8, 'Test-set performance')
+    merge_and_label(tb, 0, 0, 1, 0, 'Model')
+    merge_and_label(tb, 0, 1, 1, 1, 'Dataset')
+    merge_and_label(tb, 2, 0, 3, 0, 'BERT', bold=False)
+    merge_and_label(tb, 4, 0, 5, 0, 'DeBERTa (BERT variation)', bold=False)
+    repeat_header(tb, 2)
+    no_row_split(tb)
+
+    # ---- Table 5, the required final comparison
     def best_rep(tag, name):
         rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
         return rep, R['classical'][(tag, name, rep)]
 
-    cap3 = para_after(end6, 'Table 4. Final comparison. Every row comes from the full balanced corpora and '
+    cap3 = para_after(sec6[0], 'Table 5. Final comparison. Every row comes from the full balanced corpora and '
                             'the same fixed split. Each classical row is shown with whichever text '
-                            'representation performed better on that dataset, which the Rep. column names. The transformers read raw text, so no '
+                            'representation performed better on that dataset, which the Representation column names. The transformers read raw text, so no '
                             'representation applies to them. The ENSEMBLE row uses the weight chosen on '
                             'validation.', size=10, justify=False)
 
@@ -701,7 +731,7 @@ def main():
     # dataset and the other on the other, and a combined label like "TF-IDF / BoW" makes
     # the reader decode which half belongs to which dataset.
     rows = [[''] * 11,
-            ['', 'Rep.', 'Acc', 'Prec', 'Rec', 'F1', 'Rep.', 'Acc', 'Prec', 'Rec', 'F1']]
+            ['', 'Represen-\ntation', 'Acc', 'Prec', 'Rec', 'F1', 'Represen-\ntation', 'Acc', 'Prec', 'Rec', 'F1']]
     for name in CLASSICAL:
         r1, v1 = best_rep('D1', name)
         r2, v2 = best_rep('D2', name)
