@@ -102,6 +102,13 @@ The 47 features cover punctuation-character rates, whitespace behaviour includin
 \subsection{Metrics}
 
 We report weighted F1, which is what prior work on these corpora reports, alongside error rate, since F1 compresses at this ceiling and a change from 0.9916 to 0.9972 reads as small while the corresponding error rate falls threefold. For class $c$ with precision $P_c$, recall $R_c$, support $n_c$ and $N=\sum_c n_c$,
+\begin{equation}
+\label{eq:f1}
+\mathrm{F1}_c = \frac{2 P_c R_c}{P_c + R_c}, \quad
+\mathrm{F1}_{\mathrm{w}} = \sum_c \frac{n_c}{N}\mathrm{F1}_c, \quad
+\mathrm{F1}_{\mathrm{m}} = \frac{1}{|\mathcal{C}|}\sum_c \mathrm{F1}_c .
+\end{equation}
+Weighted and macro F1 coincide to four decimal places in every row we report, which is the check that no result here is produced by class skew. We also report the area under the ROC curve, since a threshold-free ranking measure can disagree with a thresholded one, and on DAIGT V2 it does.
 
 \subsection{Paired statistics}
 \label{sec:stats}
