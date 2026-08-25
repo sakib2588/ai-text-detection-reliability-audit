@@ -102,6 +102,26 @@ E.~Crothers, N.~Japkowicz, and H.~L. Viktor, ``Machine-generated text: A
   comprehensive survey of threat models and detection methods,'' \emph{IEEE
   Access}, vol.~11, pp. 70\,977--71\,002, 2023.
 
+\bibitem{Dugan2024raid}
+L.~Dugan, A.~Hwang, F.~Trhl{\'i}k, A.~Zhu, J.~M. Ludan, H.~Xu, D.~Ippolito, and
+  C.~Callison-Burch, ``{RAID}: A shared benchmark for robust evaluation of
+  machine-generated text detectors,'' in \emph{Proc. ACL}, 2024, pp.
+  12\,463--12\,492.
+
+\bibitem{Wang2024m4}
+Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun,
+  C.~Whitehouse, O.~Mohammed~Afzal, T.~Mahmoud, T.~Sasaki, T.~Arnold, A.~F.
+  Aji, N.~Habash, I.~Gurevych, and P.~Nakov, ``{M4}: Multi-generator,
+  multi-domain, and multi-lingual black-box machine-generated text detection,''
+  in \emph{Proc. EACL}, 2024, pp. 1369--1407.
+
+\bibitem{Wang2024semeval}
+Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
+  T.~Mahmoud, G.~Puccetti, T.~Arnold, A.~F. Aji, N.~Habash, I.~Gurevych, and
+  P.~Nakov, ``{SemEval}-2024 task 8: Multidomain, multimodel and multilingual
+  machine-generated text detection,'' in \emph{Proc. 18th Int. Workshop on
+  Semantic Evaluation (SemEval-2024)}, 2024, pp. 2057--2079.
+
 \bibitem{Biswas2024kaggle}
 \BIBentryALTinterwordspacing
 R.~Biswas \emph{et~al.}, ``{Kaggle} ``{LLM} -- detect {AI} generated text'',
@@ -152,6 +172,10 @@ T.~Niven and H.-Y. Kao, ``Probing neural network comprehension of natural
 R.~Geirhos, J.-H. Jacobsen, C.~Michaelis, R.~Zemel, W.~Brendel, M.~Bethge, and
   F.~A. Wichmann, ``Shortcut learning in deep neural networks,'' \emph{Nature
   Machine Intelligence}, vol.~2, no.~11, pp. 665--673, 2020.
+
+\bibitem{Feng2019misleading}
+S.~Feng, E.~Wallace, and J.~Boyd-Graber, ``Misleading failures of partial-input
+  baselines,'' in \emph{Proc. ACL}, 2019, pp. 5533--5538.
 
 \bibitem{Antoun2023towards}
 W.~Antoun, V.~Mouilleron, B.~Sagot, and D.~Seddah, ``Towards a robust detection
