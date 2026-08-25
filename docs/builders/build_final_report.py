@@ -421,7 +421,10 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 6 brings everything together in the form the project specification asks for. Every row comes '
+        'Table 6 repeats the full BERT and DeBERTa hyperparameter sweep alongside the ensemble, so every '
+        'configuration behind the headline comparison is visible in one place rather than split across the '
+        'two sections above. Table 7 then brings everything together in the form the project specification '
+        'asks for. Every row comes '
         'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
         'of the two text representations worked better on that dataset, which the Rep. column names. The '
         'transformers read raw text, so no representation applies to them.\n'
@@ -701,12 +704,41 @@ def main():
     t2c = table_after(doc, cap2c, rows, header_rows=1)
     no_row_split(t2c)
 
-    # ---- Table 6, the required final comparison
+    # ---- Table 6, the combined BERT + DeBERTa + ensemble grid, repeated in section 6 per the
+    #      course specification's own two-table layout for the Overall Result Analysis section
+    cap_grid6 = para_after(end6, 'Table 6. BERT, DeBERTa and ensemble results across the full hyperparameter '
+                                 'sweep, full balanced corpora, evaluated on the test split.',
+                           size=10, justify=False)
+    rows = [[''] * 12,
+            ['', '', '', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
+    for mk in ('BERT', 'DeBERTa'):
+        for lr, bs, wd in GRID:
+            a = R['grid'][('D1', mk, lr, bs, wd)]
+            b = R['grid'][('D2', mk, lr, bs, wd)]
+            rows.append(['', f'{lr:.5f}', str(bs), str(wd)]
+                        + [f'{v:.4f}' for v in a] + [f'{v:.4f}' for v in b])
+    rows.append(['ENSEMBLE', '', '', '']
+                + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
+                + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
+    keep_with_next(cap_grid6)
+    t_grid6 = table_after(doc, cap_grid6, rows, header_rows=2, size=6.5)
+    merge_and_label(t_grid6, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
+    merge_and_label(t_grid6, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
+    for c, lbl in enumerate(('Model', 'Learning Rate', 'Batch Size', 'Weight Decay')):
+        merge_and_label(t_grid6, 0, c, 1, c, lbl, size=6.5)
+    merge_and_label(t_grid6, 2, 0, 9, 0, 'BERT', size=6.5, bold=False)
+    merge_and_label(t_grid6, 10, 0, 17, 0, 'DeBERTa\n(BERT variation)', size=6.5, bold=False)
+    set_cell(t_grid6.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
+    merge_and_label(t_grid6, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
+    repeat_header(t_grid6, 2)
+    no_row_split(t_grid6)
+
+    # ---- Table 7, the required final comparison
     def best_rep(tag, name):
         rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
         return rep, R['classical'][(tag, name, rep)]
 
-    cap3 = para_after(end6, 'Table 6. Final comparison. Every row comes from the full balanced corpora and '
+    cap3 = para_after(t_grid6, 'Table 7. Final comparison. Every row comes from the full balanced corpora and '
                             'the same fixed split. Each classical row is shown with whichever text '
                             'representation performed better on that dataset, which the Rep. column names. The transformers read raw text, so no '
                             'representation applies to them. The ENSEMBLE row uses the weight chosen on '
@@ -767,7 +799,7 @@ def main():
 
     doc.save(str(OUT))
     print('wrote', OUT.name)
-    print(f'  sections filled 8, tables 6, code listings {len(code_listings())}')
+    print(f'  sections filled 8, tables 7, code listings {len(code_listings())}')
 
 
 if __name__ == '__main__':
