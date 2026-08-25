@@ -1,0 +1,73 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% ============================================================
+% SIX-PAGE ICCIT CUT. The full-length manuscript lives in ../iccit/.
+% This version keeps the decomposition, its localisation to one
+% sub-domain, and the two controls that change what the results mean.
+% Dropped for space, and recoverable from the long version: the ROC
+% analysis, the matched-text-budget refit, cross-corpus transfer, the
+% ensemble, the label-free perturbation control, the surface-feature
+% correlation matrix and the SHAP figure.
+% ============================================================
+
+\newif\ifblind
+\blindtrue
+
+\hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
+
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
+\renewcommand{\dbltopfraction}{0.85}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\dblfloatpagefraction}{0.7}
+
+\begin{document}
+
+\title{A Surface-Content Decomposition of AI-Generated Text\\Detection Benchmarks: Evidence from Five Models\\on DAIGT V2 and HC3}
+
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Author(s)}
+  \IEEEauthorblockA{Affiliation withheld for double-blind review}}
+\else
+  \author{\IEEEauthorblockN{Niloy Paul, Arnob Sarker Supta, Nazmus Sakib, Afnan Ur Rayan}
+  \IEEEauthorblockA{Department of Computer Science\\
+  Faculty of Science and Technology\\
+  American International University-Bangladesh (AIUB)\\
+  Dhaka, Bangladesh}}
+\fi
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation
+\end{IEEEkeywords}
+
+\input{sections/01_introduction.tex}
+\input{sections/04_related_work.tex}
+\input{sections/02_methods.tex}
+\input{sections/03_results.tex}
+\input{sections/05_discussion_conclusion.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib/refs}
+
+\end{document}
