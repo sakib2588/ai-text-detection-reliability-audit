@@ -381,7 +381,7 @@ def build_text(R):
         'not a guarantee, and we would not present it as one.\n'
         'We trained DeBERTa with exactly the same grid, the same split and the same harness as BERT, so any '
         'difference between the two is a difference between the models and not between two training setups. '
-        'Table 3 lists all eight runs per dataset alongside the BERT ones.\n'
+        "Table 4 lists all eight DeBERTa runs, evaluated the same way as BERT's Table 3.\n"
         f'On DAIGT V2 the best DeBERTa setting is {cfg("D1","DeBERTa")}, reaching {f("D1","DeBERTa"):.4f} weighted F1 '
         f'on test after {d[("D1","DeBERTa")]["val"]["f1"]:.4f} on validation, in '
         f'{d[("D1","DeBERTa")]["train_seconds"]/60:.1f} minutes. Its confusion matrix is {d[("D1","DeBERTa")]["test_confusion"]}.\n'
@@ -400,7 +400,8 @@ def build_text(R):
         'produce, which is usually called soft voting. Rather than fixing an equal average, we searched a '
         'weight w between 0 and 1 in steps of 0.05, forming w times the BERT probabilities plus one minus w '
         'times the DeBERTa probabilities. We chose w on the validation split and then applied it once to the '
-        'test split. Choosing the weight on test would have meant tuning on the data we report.\n'
+        'test split. Choosing the weight on test would have meant tuning on the data we report. Table 5 '
+        'summarises the chosen weight and the resulting score for both datasets.\n'
         f'On DAIGT V2 the search selected w = {e1["w"]:.2f}, an equal blend of the two models. The ensemble reaches '
         f'{e1["metrics"][3]:.4f} weighted F1, against {f("D1","BERT"):.4f} for BERT alone and {f("D1","DeBERTa"):.4f} for '
         'DeBERTa alone. That looks like a clear gain, and it is the point where it would be easy to overstate '
@@ -420,7 +421,7 @@ def build_text(R):
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
     T['overall'] = (
-        'Table 4 brings everything together in the form the project specification asks for. Every row comes '
+        'Table 6 brings everything together in the form the project specification asks for. Every row comes '
         'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
         'of the two text representations worked better on that dataset, which the Rep. column names. The '
         'transformers read raw text, so no representation applies to them.\n'
@@ -648,45 +649,64 @@ def main():
     repeat_header(t1, 2)
     no_row_split(t1)
 
-    # ---- Table 3, the full fine-tuning grid
-    cap2 = para_after(end3, 'Table 3. Final-term fine-tuning experiments. Eight configurations for each '
-                            'model on each dataset, full balanced corpora, evaluated on the test split. '
-                            'The ENSEMBLE row uses the weight chosen on validation.', size=10, justify=False)
-    rows = [[''] * 12,
-            ['', '', '', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
-    missing = []
-    for mk in ('BERT', 'DeBERTa'):
+    # ---- Table 3, the BERT-only fine-tuning grid
+    def grid_table(anchor, mk, caption):
+        cap = para_after(anchor, caption, size=10, justify=False)
+        rows = [[''] * 11,
+                ['Learning Rate', 'Batch Size', 'Weight Decay', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
+        missing = []
         for lr, bs, wd in GRID:
             a = R['grid'].get(('D1', mk, lr, bs, wd))
             b = R['grid'].get(('D2', mk, lr, bs, wd))
             if a is None or b is None:
                 missing.append((mk, lr, bs, wd))
-            rows.append(['', f'{lr:.5f}', str(bs), str(wd)]
+                continue
+            rows.append([f'{lr:.5f}', str(bs), str(wd)]
                         + [f'{v:.4f}' for v in a] + [f'{v:.4f}' for v in b])
-    if missing:
-        raise SystemExit('missing grid results, refusing to emit blank cells: %s' % missing)
-    rows.append([''] * 4
-                + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
-                + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
-    keep_with_next(cap2)
-    t2 = table_after(doc, cap2, rows, header_rows=2, size=6.5)
-    merge_and_label(t2, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
-    merge_and_label(t2, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
-    for c, lbl in enumerate(('Model', 'Learning Rate', 'Batch Size', 'Weight Decay')):
-        merge_and_label(t2, 0, c, 1, c, lbl, size=6.5)
-    merge_and_label(t2, 2, 0, 9, 0, 'BERT', size=6.5, bold=False)
-    merge_and_label(t2, 10, 0, 17, 0, 'DeBERTa\n(BERT variation)', size=6.5, bold=False)
-    set_cell(t2.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
-    merge_and_label(t2, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
-    repeat_header(t2, 2)
-    no_row_split(t2)
+        if missing:
+            raise SystemExit(f'missing {mk} grid results, refusing to emit blank cells: %s' % missing)
+        keep_with_next(cap)
+        t = table_after(doc, cap, rows, header_rows=2, size=7)
+        for c, lbl in enumerate(('Learning Rate', 'Batch Size', 'Weight Decay')):
+            merge_and_label(t, 0, c, 1, c, lbl, size=7)
+        merge_and_label(t, 0, 3, 0, 6, 'Dataset 1 (DAIGT V2)', size=7)
+        merge_and_label(t, 0, 7, 0, 10, 'Dataset 2 (HC3)', size=7)
+        repeat_header(t, 2)
+        no_row_split(t)
+        return t
 
-    # ---- Table 3, the required final comparison
+    grid_table(end3, 'BERT', 'Table 3. BERT fine-tuning experiments. Eight configurations, full balanced '
+                             'corpora, evaluated on the test split.')
+
+    # ---- Table 4, the DeBERTa-only fine-tuning grid
+    grid_table(end4, 'DeBERTa', 'Table 4. DeBERTa fine-tuning experiments. Eight configurations, full '
+                                'balanced corpora, evaluated on the test split, same grid and harness as '
+                                'Table 3.')
+
+    # ---- Table 5, the ensemble summary
+    cap2c = para_after(end5, 'Table 5. Ensemble weight and score on both datasets. The weight is the share '
+                             'given to BERT in the soft vote, chosen on validation.', size=10, justify=False)
+    rows = [
+        ['Dataset', 'Weight (BERT)', 'Weight (DeBERTa)', 'BERT F1', 'DeBERTa F1', 'Ensemble F1'],
+        ['DAIGT V2', f"{R['ensemble']['D1']['w']:.2f}", f"{1 - R['ensemble']['D1']['w']:.2f}",
+         f"{R['deployed'][('D1', 'BERT')]['test']['f1']:.4f}",
+         f"{R['deployed'][('D1', 'DeBERTa')]['test']['f1']:.4f}",
+         f"{R['ensemble']['D1']['metrics'][3]:.4f}"],
+        ['HC3', f"{R['ensemble']['D2']['w']:.2f}", f"{1 - R['ensemble']['D2']['w']:.2f}",
+         f"{R['deployed'][('D2', 'BERT')]['test']['f1']:.4f}",
+         f"{R['deployed'][('D2', 'DeBERTa')]['test']['f1']:.4f}",
+         f"{R['ensemble']['D2']['metrics'][3]:.4f}"],
+    ]
+    keep_with_next(cap2c)
+    t2c = table_after(doc, cap2c, rows, header_rows=1)
+    no_row_split(t2c)
+
+    # ---- Table 6, the required final comparison
     def best_rep(tag, name):
         rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
         return rep, R['classical'][(tag, name, rep)]
 
-    cap3 = para_after(end6, 'Table 4. Final comparison. Every row comes from the full balanced corpora and '
+    cap3 = para_after(end6, 'Table 6. Final comparison. Every row comes from the full balanced corpora and '
                             'the same fixed split. Each classical row is shown with whichever text '
                             'representation performed better on that dataset, which the Rep. column names. The transformers read raw text, so no '
                             'representation applies to them. The ENSEMBLE row uses the weight chosen on '
@@ -747,7 +767,7 @@ def main():
 
     doc.save(str(OUT))
     print('wrote', OUT.name)
-    print(f'  sections filled 8, tables 4, code listings {len(code_listings())}')
+    print(f'  sections filled 8, tables 6, code listings {len(code_listings())}')
 
 
 if __name__ == '__main__':
