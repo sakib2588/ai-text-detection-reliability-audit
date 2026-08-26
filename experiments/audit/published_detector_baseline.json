@@ -1,0 +1,32 @@
+{
+ "detector": "Hello-SimpleAI/chatgpt-detector-roberta",
+ "max_length": 512,
+ "inference_only": true,
+ "label_map": "model label 1 = ChatGPT = our label 1",
+ "datasets": {
+  "D1": {
+   "name": "DAIGT V2",
+   "n_test": 6998,
+   "contaminated": false,
+   "accuracy": 0.8245,
+   "precision": 0.8354,
+   "recall": 0.8245,
+   "weighted_f1": 0.823,
+   "error_rate": 0.1755,
+   "seconds": 89.2,
+   "note": "detector never saw this corpus, genuine out-of-domain evaluation"
+  },
+  "D2": {
+   "name": "HC3",
+   "n_test": 10732,
+   "contaminated": true,
+   "accuracy": 0.9952,
+   "precision": 0.9952,
+   "recall": 0.9952,
+   "weighted_f1": 0.9952,
+   "error_rate": 0.0048,
+   "seconds": 125.5,
+   "note": "detector was trained on this corpus, so this is an upper bound on a memorised task"
+  }
+ }
+}

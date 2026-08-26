@@ -5,7 +5,7 @@
 
 \begin{table}[!t]
 \centering
-\caption{Test error for all eight model configurations. Transformer rows are the deployed checkpoints, never a grid maximum. Bold marks the best classical and the best overall entry per column.}
+\caption{Test error for all eight configurations. Transformer rows are deployed checkpoints, never grid maxima. Bold marks the best classical and best overall entry per corpus.}
 \label{tab:models}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -34,7 +34,7 @@ Repeating the four deployed checkpoints at seeds 123 and 456 moves them very lit
 
 \begin{table}[!t]
 \centering
-\caption{Top, the decomposition on each corpus, with the lower rows closing the document-length channel both arms share. Bottom, HC3 split by source domain, each rebalanced to parity, with the share of documents carrying at least one space before punctuation. Domains below 200 test rows are marked, since a paired test there fails for want of power rather than of an effect.}
+\caption{Top, the decomposition on each corpus, with the lower rows closing the document-length channel both arms share. Bottom, HC3 by source domain, each rebalanced to parity, with the share of documents carrying a space before punctuation.}
 \label{tab:decomp}
 \footnotesize
 \setlength{\tabcolsep}{3.5pt}
