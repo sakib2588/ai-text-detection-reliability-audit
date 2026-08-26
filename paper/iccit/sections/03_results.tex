@@ -248,6 +248,13 @@ Table~\ref{tab:cross} reports transfer in both directions over three seeds, with
 
 A soft-vote ensemble over the two deployed checkpoints, its mixing weight chosen on validation and applied once to test, does not reliably beat its stronger member. On DAIGT V2 an equal mix reaches 0.9936 against DeBERTa's 0.9917, but McNemar returns $p=0.085$ and the interval on the error difference, $[-0.39, +0.01]$ points, contains zero. On HC3 the sweep places zero weight on BERT, so the ensemble is DeBERTa and reports DeBERTa's score. We record that degenerate weight rather than presenting it as an ensemble result. Reading either row as an improvement would be treating a fourth-decimal difference as a finding, which is consistent with Lai et al.~\cite{Lai2024adaptive}, who find ensembling preserves in-distribution accuracy without touching the shift that actually degrades these models.
 
+\subsection{A published detector on the same partitions}
+\label{sec:published}
+
+Every model above is one we trained. Hello-SimpleAI's RoBERTa detector, released with HC3 by that corpus's authors~\cite{HelloSimpleAI2023detector}, supplies an external one, and we ran it over the same test partitions without fine-tuning and with inputs truncated at 512 tokens. On HC3 it reaches 0.9952 weighted F1 at 0.48\% error. That figure is contaminated, because the detector was trained on HC3 and our test rows were almost certainly in its training data, so we read it as an upper bound on a memorised task rather than as evidence. On DAIGT V2, a corpus assembled after it and from other generators, the same detector reaches 0.8230 weighted F1 at 17.55\% error. Our DeBERTa checkpoint, trained on DAIGT V2, errs on 0.83\% of those documents.
+
+The two models are not equals, since one was trained on the corpus being scored and the other was not, so the twenty-one-fold error gap measures that asymmetry rather than architecture. The out-of-domain figure still bounds how far one published accuracy travels. The detector behind the 99.82 F1 quoted in Section~\ref{sec:related} keeps 0.9952 weighted F1 on the corpus it was built for and loses seventeen points on a benchmark built later from other generators. We report this as a reference point and not as a detector comparison, which would need matched training data on both corpora.
+
 \subsection{A consolidated view}
 
 \begin{figure*}[!t]

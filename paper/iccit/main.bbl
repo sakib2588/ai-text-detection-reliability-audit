@@ -284,4 +284,11 @@ S.~M. Lundberg and S.-I. Lee, ``A unified approach to interpreting model
   predictions,'' in \emph{Advances in Neural Information Processing Systems
   (NeurIPS)}, 2017, pp. 4765--4774.
 
+\bibitem{HelloSimpleAI2023detector}
+\BIBentryALTinterwordspacing
+``{ChatGPT} detector, {RoBERTa},'' Hugging Face Models, 2023. [Online].
+  Available:
+  \url{https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
