@@ -12,13 +12,14 @@ was re-verified against `experiments/audit/*.json` after the trim, 38 of 38 matc
 Recoverable in full from `../iccit/`.
 
 - ROC curves and the area-against-F1 rank reversal
-- The matched-text-budget refit, where classical models are refitted on the exact 128-token
-  span each transformer read
-- Cross-corpus transfer over three seeds
 - The soft-vote ensemble
 - The label-free perturbation control and the adversarial numbers
 - The surface-feature correlation matrix and the SHAP beeswarm figure
 - The per-generator DAIGT table, kept as one prose paragraph
+
+The matched-text-budget refit and cross-corpus transfer were restored on 2026-08-26 as
+prose, since the dashboard already carried their panels and the cut had shown the results
+without describing them.
 
 ## What was kept, and why
 

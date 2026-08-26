@@ -1,0 +1,87 @@
+{
+ "seed": 42,
+ "rule": "human when re.compile(r' +[.,;:!?]') matches at least once",
+ "note": "the paper quotes the balanced-corpus accuracy, so both populations are recorded",
+ "balanced_corpus": {
+  "all": {
+   "n": 53806,
+   "accuracy": 0.9423,
+   "weighted_f1": 0.9422,
+   "error_rate": 0.0577
+  },
+  "by_source": {
+   "finance": {
+    "n": 6294,
+    "accuracy": 0.7296,
+    "weighted_f1": 0.6308,
+    "error_rate": 0.2704
+   },
+   "medicine": {
+    "n": 1928,
+    "accuracy": 0.7417,
+    "weighted_f1": 0.6708,
+    "error_rate": 0.2583
+   },
+   "open_qa": {
+    "n": 4114,
+    "accuracy": 0.9443,
+    "weighted_f1": 0.9388,
+    "error_rate": 0.0557
+   },
+   "reddit_eli5": {
+    "n": 40263,
+    "accuracy": 0.9922,
+    "weighted_f1": 0.9922,
+    "error_rate": 0.0078
+   },
+   "wiki_csai": {
+    "n": 1207,
+    "accuracy": 0.7009,
+    "weighted_f1": 0.5839,
+    "error_rate": 0.2991
+   }
+  },
+  "unmapped_source_rows": 0
+ },
+ "test_split": {
+  "all": {
+   "n": 10732,
+   "accuracy": 0.9415,
+   "weighted_f1": 0.9413,
+   "error_rate": 0.0585
+  },
+  "by_source": {
+   "finance": {
+    "n": 1225,
+    "accuracy": 0.7322,
+    "weighted_f1": 0.6338,
+    "error_rate": 0.2678
+   },
+   "medicine": {
+    "n": 367,
+    "accuracy": 0.7003,
+    "weighted_f1": 0.6103,
+    "error_rate": 0.2997
+   },
+   "open_qa": {
+    "n": 815,
+    "accuracy": 0.9448,
+    "weighted_f1": 0.9399,
+    "error_rate": 0.0552
+   },
+   "reddit_eli5": {
+    "n": 8072,
+    "accuracy": 0.9926,
+    "weighted_f1": 0.9926,
+    "error_rate": 0.0074
+   },
+   "wiki_csai": {
+    "n": 253,
+    "accuracy": 0.664,
+    "weighted_f1": 0.5331,
+    "error_rate": 0.336
+   }
+  },
+  "unmapped_source_rows": 0
+ }
+}
