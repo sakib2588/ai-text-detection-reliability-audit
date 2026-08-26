@@ -7,7 +7,7 @@ DAIGT V2~\cite{Thedrcat2023daigtv2} contains 44,868 argumentative student essays
 
 \begin{table}[!ht]
 \centering
-\caption{Corpus statistics after balancing. Duplication is exact match on whitespace-normalised, lowercased text. Leakage is the share of test documents whose text also appears in training or validation, under each split rule.}
+\caption{Corpus statistics after balancing. Duplication is exact match on lowercased, whitespace-normalised text. Leakage is the share of test documents whose text also appears in training or validation.}
 \label{tab:corpora}
 \footnotesize
 \setlength{\tabcolsep}{3.5pt}
@@ -40,7 +40,7 @@ That duplication is why the split is group-aware. Documents are grouped by an MD
 
 \subsection{Models and configurations}
 
-Five model families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each run under bag-of-words and TF-IDF for six classical configurations per dataset. Earlier work at full scale reported only the winning representation per model, so we report the complete grid. Two are transformers, \texttt{bert-base-uncased}~\cite{Devlin2019bert} and \texttt{microsoft/deberta-v3-base}~\cite{He2023debertav3}, fine-tuned with AdamW over a grid of learning rate in $\{2\mathrm{e}{-5}, 3\mathrm{e}{-5}\}$, batch size in $\{16, 32\}$ and weight decay in $\{0.01, 0.1\}$, which is sixteen configurations per dataset, with the operating point selected on validation weighted F1 and early stopping at patience two.
+Five model families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each run under bag-of-words and TF-IDF for six classical configurations per dataset. Earlier work at full scale reported only the winning representation per model, so we report the complete grid. Two are transformers, \texttt{bert-base-uncased}~\cite{Devlin2019bert} and \texttt{microsoft/deberta-v3-base}~\cite{He2023debertav3}, fine-tuned with AdamW over a grid of learning rate in $\{2\mathrm{e}{-5}, 3\mathrm{e}{-5}\}$, batch size in $\{16, 32\}$ and weight decay in $\{0.01, 0.1\}$, which is a sixteen-run grid per dataset, eight per model, with the operating point selected on validation weighted F1 and early stopping at patience two.
 
 DeBERTa is the strongest encoder of its size on general language-understanding benchmarks, ahead of both BERT and RoBERTa at comparable parameter counts~\cite{He2023debertav3}, which is reason enough to include it. Two properties matter more for this study specifically. Its disentangled attention separates content from position, the relevant inductive bias when the question is how much of a corpus is separable by form, and its SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace whereas BERT's WordPiece does not, which makes the pair a controlled contrast on exactly the cue Section~\ref{sec:tokenisation} examines. Benchmark standing does not by itself predict the outcome here, since the two models are level on DAIGT V2 and separate only on HC3.
 
@@ -102,6 +102,13 @@ The 47 features cover punctuation-character rates, whitespace behaviour includin
 \subsection{Metrics}
 
 We report weighted F1, which is what prior work on these corpora reports, alongside error rate, since F1 compresses at this ceiling and a change from 0.9916 to 0.9972 reads as small while the corresponding error rate falls threefold. For class $c$ with precision $P_c$, recall $R_c$, support $n_c$ and $N=\sum_c n_c$,
+\begin{equation}
+\label{eq:f1}
+\mathrm{F1}_c = \frac{2 P_c R_c}{P_c + R_c}, \quad
+\mathrm{F1}_{\mathrm{w}} = \sum_c \frac{n_c}{N}\mathrm{F1}_c, \quad
+\mathrm{F1}_{\mathrm{m}} = \frac{1}{|\mathcal{C}|}\sum_c \mathrm{F1}_c .
+\end{equation}
+Weighted and macro F1 coincide to four decimal places in every row we report, which is the check that no result here is produced by class skew. We also report the area under the ROC curve, since a threshold-free ranking measure can disagree with a thresholded one, and on DAIGT V2 it does.
 
 \subsection{Paired statistics}
 \label{sec:stats}
