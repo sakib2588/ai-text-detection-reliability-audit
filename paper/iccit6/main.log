@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  26 AUG 2026 09:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  26 AUG 2026 20:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -484,13 +484,13 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2])
 (./sections/03_results.tex [3]
-<figures/fig_dashboard.pdf, id=152, 523.16573pt x 306.44637pt>
+<figures/fig_dashboard.pdf, id=156, 523.16573pt x 306.44637pt>
 File: figures/fig_dashboard.pdf Graphic file (type pdf)
 <use figures/fig_dashboard.pdf>
 Package pdftex.def Info: figures/fig_dashboard.pdf  used on input line 91.
 (pdftex.def)             Requested size: 516.0pt x 302.26994pt.
 ) (./sections/05_discussion_conclusion.tex)
-(./main.bbl [4])
+(./main.bbl [4] [5 <./figures/fig_dashboard.pdf>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -502,22 +502,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5 <./figures/fig_dashboard.pdf>] (./main.aux)
+[6
+
+] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B7769CE3D64B2FC81ECFE03BAD1225DA;2659.
+(rerunfilecheck)             Checksum: 5E74B4B8077548A646144733130B6747;2902.
  ) 
 Here is how much of TeX's memory you used:
- 10735 strings out of 476106
- 167788 string characters out of 5793933
+ 10741 strings out of 476106
+ 167896 string characters out of 5793933
  1949975 words of memory out of 5000000
- 32538 multiletter control sequences out of 15000+600000
+ 32541 multiletter control sequences out of 15000+600000
  598902 words of font info for 112 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,9n,79p,1426b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,1426b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
@@ -531,10 +533,10 @@ r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (5 pages, 259990 bytes).
+Output written on main.pdf (6 pages, 261234 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 276 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
