@@ -71,7 +71,7 @@ Arms 1 and 2 both use logistic regression, so they are directly comparable to ea
 
 ## 4. What you actually found
 
-**Current title:** *"A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks: Evidence from Five Models on DAIGT V2 and HC3"* (`paper/iccit/main.tex`, 6 pages, ICCIT format).
+**Current title:** *"A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks"* (`paper/iccit/main.tex`, 13 pages development draft; `paper/iccit6/main.tex`, the 6-page ICCIT cut).
 
 **Datasets and models.** DAIGT V2 (44,868 argumentative student essays, balanced to 34,994, test set 6,998) and HC3 (85,449 question-answer pairs, balanced to 53,806, test set 10,732). Five model families: Naive Bayes, logistic regression and linear SVM each under bag-of-words and TF-IDF (six classical configurations), plus fine-tuned BERT and DeBERTa. Eight configurations per dataset, sixteen total.
 

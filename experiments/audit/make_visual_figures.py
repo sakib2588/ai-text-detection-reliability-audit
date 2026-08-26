@@ -282,7 +282,9 @@ def fig_dashboard():
     b.set_xticklabels([l for _, l in arms], fontsize=4.8)
     b.set_ylabel('test error, %')
     b.set_title('(b) Surface against content')
-    b.legend(frameon=False, fontsize=5.5)
+    b.set_ylim(0, max(v1 + v2) * 1.22)
+    b.legend(frameon=False, fontsize=5.5, loc='upper right',
+             borderaxespad=0.1, handlelength=1.1, handletextpad=0.4)
 
     # (c) split-level variance, the evidence the HC3 parity claim rests on
     for tag, col, mk in (('D1', D1C, 'o'), ('D2', D2C, 's')):
