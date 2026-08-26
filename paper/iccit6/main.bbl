@@ -157,4 +157,11 @@ Q.~McNemar, ``Note on the sampling error of the difference between correlated
 B.~Efron, ``Bootstrap methods: Another look at the jackknife,'' \emph{The
   Annals of Statistics}, vol.~7, no.~1, pp. 1--26, 1979.
 
+\bibitem{HelloSimpleAI2023detector}
+\BIBentryALTinterwordspacing
+``{ChatGPT} detector, {RoBERTa},'' Hugging Face Models, 2023. [Online].
+  Available:
+  \url{https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
