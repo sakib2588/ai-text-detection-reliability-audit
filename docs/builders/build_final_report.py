@@ -29,7 +29,6 @@ TEMPLATE = ROOT / 'docs' / 'NLP Report Template with Cover Page - Final-term Sum
 OUT = ROOT / 'docs' / 'NLP Final Report - Group 02 Section B.docx'
 PS = ROOT / 'experiments' / 'paper_scale'
 AUDIT = ROOT / 'experiments' / 'audit'
-NB = ROOT / 'notebooks' / 'nlp_final_submission_code.ipynb'
 
 BODY_FONT, BODY_PT = 'Times New Roman', 12
 TABLE_PT, CODE_PT = 7.5, 7.5
@@ -257,6 +256,21 @@ def build_text(R):
 
     C = R['classical']
 
+    def bucket_stats(rows):
+        """rows: list of (label, f1). Returns (best_label, best_f1, worst_label, worst_f1, mean_f1)."""
+        best = max(rows, key=lambda r: r[1])
+        worst = min(rows, key=lambda r: r[1])
+        mean = sum(v for _, v in rows) / len(rows)
+        return best[0], best[1], worst[0], worst[1], mean
+
+    def grid_rows(tag, mk):
+        """(label, f1) for all 8 grid configs of one model on one dataset."""
+        out = []
+        for lr, bs, wd in GRID:
+            v = R['grid'][(tag, mk, lr, bs, wd)]
+            out.append((f'lr {lr:g}, bs {bs}, wd {wd:g}', v[3]))
+        return out
+
     def best_classical(tag, name):
         """Better of the two representations for this model on this dataset."""
         rep = max(REPS, key=lambda rp: C[(tag, name, rp)][3])
@@ -290,25 +304,32 @@ def build_text(R):
         'while an ordinary random split of the same data puts 570 of them there. Without the group-aware '
         'split, part of the score would be measuring memorisation rather than detection.\n'
         'Table 1 summarises both datasets as published and after every preprocessing step, so the '
-        'sizes every later table depends on are stated in one place.\n'
-        'On top of that data we trained five kinds of model. Three are classical and were introduced in the '
-        'midterm project, namely Naive Bayes, logistic regression and a linear support vector machine, each '
-        'under both bag-of-words and TF-IDF. Two are '
-        'transformers fine-tuned for this task, bert-base-uncased and microsoft/deberta-v3-base. We also '
-        'combined the two transformers into a soft-vote ensemble. Each transformer was trained over a grid '
-        'of eight settings per dataset, varying learning rate, batch size and weight decay, with the winner '
-        'chosen on validation score. Training ran on a single RTX 3060 Ti, and one run took between ten and '
-        'nineteen minutes.\n'
+        'sizes every later table depends on are stated in one place. Sections 2 through 6 give the model '
+        'details, grids and reasoning; this section states only the headline result.\n'
         f'The short version of the result is that DeBERTa is the best single model on both datasets, reaching '
         f'{f("D1","DeBERTa"):.4f} weighted F1 on DAIGT V2 and {f("D2","DeBERTa"):.4f} on HC3. The ensemble does not '
         'reliably beat it. We also found something less expected, which is that the two datasets are not '
         'equally hard for the same reasons, and Section 6 explains what we mean by that.')
+
+    d1_six = [(f'{n} ({r})', C[('D1', n, r)][3]) for n in CLASSICAL for r in REPS]
+    d2_six = [(f'{n} ({r})', C[('D2', n, r)][3]) for n in CLASSICAL for r in REPS]
+    d1_bl, d1_bf, d1_wl, d1_wf, d1_mf = bucket_stats(d1_six)
+    d2_bl, d2_bf, d2_wl, d2_wf, d2_mf = bucket_stats(d2_six)
 
     T['midterm'] = (
         'The midterm project compared three classical models on the same two datasets, each under two text '
         'representations, bag-of-words and TF-IDF. All six model and representation combinations were run on '
         'the full balanced corpora, using the same split the transformers use, so every number in this report '
         'comes from the same data. Table 2 gives the results.\n'
+        f'Across the six combinations, not one specific model but the whole set, the best on DAIGT V2 is '
+        f'{d1_bl} at {d1_bf:.4f} F1, the worst is {d1_wl} at {d1_wf:.4f}, and the mean across all six is '
+        f'{d1_mf:.4f}. On HC3 the best is {d2_bl} at {d2_bf:.4f}, the worst is {d2_wl} at {d2_wf:.4f}, and the '
+        f'mean is {d2_mf:.4f}. Naive Bayes sits at or near the worst position on both datasets because it '
+        'assumes every word is independent of every other, an assumption text does not satisfy, and the error '
+        'compounds with document length. The best position is held by whichever model and representation pairs '
+        'a strong decision boundary (logistic regression or the support vector machine) with the representation '
+        'that keeps the most usable signal for that dataset, which is why the winning representation differs '
+        'between the two datasets even though the winning model family does not.\n'
         f'The clearest pattern is that the two datasets are not equally difficult. On DAIGT V2 every classical '
         f'model does well, and the best of them, '
         f'{d1_best.lower()} with {d1_rep}, reaches {d1_vals[3]:.4f} F1. On HC3 the same models are noticeably '
@@ -328,6 +349,11 @@ def build_text(R):
         'to each other everywhere.\n'
         f'These results set the target for the transformers. To be worth their extra cost, a fine-tuned model '
         f'has to beat {d1_vals[3]:.4f} on DAIGT V2 and {d2_vals[3]:.4f} on HC3.')
+
+    b1_bl, b1_bf, b1_wl, b1_wf, b1_mf = bucket_stats(grid_rows('D1', 'BERT'))
+    b2_bl, b2_bf, b2_wl, b2_wf, b2_mf = bucket_stats(grid_rows('D2', 'BERT'))
+    dv1_bl, dv1_bf, dv1_wl, dv1_wf, dv1_mf = bucket_stats(grid_rows('D1', 'DeBERTa'))
+    dv2_bl, dv2_bf, dv2_wl, dv2_wf, dv2_mf = bucket_stats(grid_rows('D2', 'DeBERTa'))
 
     T['bert'] = (
         'We chose BERT as the base transformer for three practical reasons. It is the model the course '
@@ -349,10 +375,14 @@ def build_text(R):
         f'On HC3 the best setting is {cfg("D2","BERT")}, reaching {f("D2","BERT"):.4f} on test after '
         f'{d[("D2","BERT")]["val"]["f1"]:.4f} on validation, in {d[("D2","BERT")]["train_seconds"]/60:.1f} minutes. '
         f'Its confusion matrix is {d[("D2","BERT")]["test_confusion"]}, which is 90 errors out of 10,732.\n'
-        'It is worth noting how small the spread across the grid is. On DAIGT V2 the eight BERT runs span '
-        '0.9869 to 0.9954 in F1, a range of under one point, and on HC3 they span 0.9910 to 0.9945. In other '
-        'words, once the model and the data are fixed, the hyperparameters in this grid make very little '
-        'difference. We would not treat the difference between the best and second-best setting as meaningful.')
+        f'Table 3 above is the complete picture, all eight BERT configurations on both datasets, and it '
+        f'supports a best/average/worst reading. On DAIGT V2 the best of the eight is {b1_bl} at {b1_bf:.4f} '
+        f'F1, the worst is {b1_wl} at {b1_wf:.4f}, and the mean across all eight is {b1_mf:.4f}; the spread '
+        f'from worst to best is only {(b1_bf-b1_wf):.4f} F1. On HC3 the best is {b2_bl} at {b2_bf:.4f}, the '
+        f'worst is {b2_wl} at {b2_wf:.4f}, mean {b2_mf:.4f}, spread {(b2_bf-b2_wf):.4f}. In other words, once '
+        'the model and the data are fixed, the hyperparameters in this grid make very little difference. We '
+        'select the best-on-validation configuration because the specification requires a single deployed '
+        'model, not because the gap between best and worst is large enough to call meaningful.')
 
     T['variant'] = (
         'For the BERT variant we chose DeBERTa, specifically the microsoft/deberta-v3-base checkpoint. Four '
@@ -381,15 +411,27 @@ def build_text(R):
         'not a guarantee, and we would not present it as one.\n'
         'We trained DeBERTa with exactly the same grid, the same split and the same harness as BERT, so any '
         'difference between the two is a difference between the models and not between two training setups. '
-        'Table 3 lists all eight runs per dataset alongside the BERT ones.\n'
+        'Table 4 lists all eight DeBERTa runs per dataset.\n'
         f'On DAIGT V2 the best DeBERTa setting is {cfg("D1","DeBERTa")}, reaching {f("D1","DeBERTa"):.4f} weighted F1 '
         f'on test after {d[("D1","DeBERTa")]["val"]["f1"]:.4f} on validation, in '
         f'{d[("D1","DeBERTa")]["train_seconds"]/60:.1f} minutes. Its confusion matrix is {d[("D1","DeBERTa")]["test_confusion"]}.\n'
         f'On HC3 the best setting is {cfg("D2","DeBERTa")}, and this is where DeBERTa clearly separates from '
         f'BERT. It reaches {f("D2","DeBERTa"):.4f} on test after {d[("D2","DeBERTa")]["val"]["f1"]:.4f} on validation, '
         f'with confusion matrix {d[("D2","DeBERTa")]["test_confusion"]}, which is only 30 errors out of 10,732. '
-        f'BERT made 90 errors on the same documents, so DeBERTa removes two thirds of them. Table 4 '
-        f'collects all four selected configurations with their test-set scores.\n'
+        f'BERT made 90 errors on the same documents, so DeBERTa removes two thirds of them.\n'
+        f'Table 4 above is the complete eight-configuration DeBERTa grid on both datasets. On DAIGT V2 the '
+        f'best of the eight is {dv1_bl} at {dv1_bf:.4f} F1, the worst is {dv1_wl} at {dv1_wf:.4f}, mean '
+        f'{dv1_mf:.4f}, spread {(dv1_bf-dv1_wf):.4f}. On HC3 the best is {dv2_bl} at {dv2_bf:.4f}, the worst is '
+        f'{dv2_wl} at {dv2_wf:.4f}, mean {dv2_mf:.4f}, spread {(dv2_bf-dv2_wf):.4f}. As with BERT, the spread is '
+        'small next to the gap between models, which is why we select on validation F1 rather than treating '
+        'the best-vs-worst gap inside one model as meaningful.\n'
+        'The five fixed settings the instructor specified, five epochs with early stopping, a warmup ratio '
+        'of 0.1, a maximum sequence length of 128 tokens, dropout of 0.1, and the AdamW optimiser, are not an '
+        'alternative to our eight-point grid; they are the fixed part of the harness the grid runs inside. '
+        'Every one of the eight DeBERTa runs, and every one of the eight BERT runs in Section 3, used all '
+        'five exactly as specified. The eight-point grid is a separate axis, learning rate, batch size and '
+        'weight decay, layered on top of those five fixed settings because the specification also requires '
+        'a hyperparameter sweep, and five fixed values alone would not produce one.\n'
         'The comparison between the two models is not the same on the two datasets, and that is the most '
         'useful thing this section shows. On DAIGT V2 the two are level, '
         f'{f("D1","BERT"):.4f} against {f("D1","DeBERTa"):.4f}, a difference of one ten-thousandth that we would not '
@@ -397,11 +439,13 @@ def build_text(R):
         'better than BERT for detecting AI text" would be true for one of our datasets and false for the other.')
 
     T['ensemble'] = (
-        'Our ensemble combines the two fine-tuned transformers by averaging the class probabilities they '
-        'produce, which is usually called soft voting. Rather than fixing an equal average, we searched a '
+        'Our ensemble model combines bert-base-uncased and microsoft/deberta-v3-base (BERT variant), each at '
+        'its validation-selected best configuration from Sections 3 and 4, by averaging the class '
+        'probabilities they produce, which is usually called soft voting. Rather than fixing an equal average, we searched a '
         'weight w between 0 and 1 in steps of 0.05, forming w times the BERT probabilities plus one minus w '
         'times the DeBERTa probabilities. We chose w on the validation split and then applied it once to the '
-        'test split. Choosing the weight on test would have meant tuning on the data we report.\n'
+        'test split. Choosing the weight on test would have meant tuning on the data we report. Table 5 gives '
+        'the two ensemble rows, one per dataset, with the weight and the resulting metrics.\n'
         f'On DAIGT V2 the search selected w = {e1["w"]:.2f}, an equal blend of the two models. The ensemble reaches '
         f'{e1["metrics"][3]:.4f} weighted F1, against {f("D1","BERT"):.4f} for BERT alone and {f("D1","DeBERTa"):.4f} for '
         'DeBERTa alone. That looks like a clear gain, and it is the point where it would be easy to overstate '
@@ -420,12 +464,37 @@ def build_text(R):
         'outcome rather than a failure. Ensembles help most when their members make different kinds of '
         'mistakes, and on HC3 DeBERTa makes so few mistakes that BERT has little to add.')
 
+    def final6(tag):
+        rows = []
+        for name in CLASSICAL:
+            rep, vals = best_classical(tag, name)
+            rows.append((f'{name} [{rep}]', vals[3]))
+        rows.append(('BERT', f(tag, 'BERT')))
+        rows.append(('DeBERTa (BERT variant)', f(tag, 'DeBERTa')))
+        rows.append(('ENSEMBLE', R['ensemble'][tag]['metrics'][3]))
+        return rows
+
+    f6_d1 = final6('D1')
+    f6_d2 = final6('D2')
+    f6d1_bl, f6d1_bf, f6d1_wl, f6d1_wf, f6d1_mf = bucket_stats(f6_d1)
+    f6d2_bl, f6d2_bf, f6d2_wl, f6d2_wf, f6d2_mf = bucket_stats(f6_d2)
+
     T['overall'] = (
-        'Table 5 brings everything together in the form the project specification asks for. Every row comes '
-        'from the full balanced corpora and the same fixed split. Each classical row is shown with whichever '
-        'of the two text representations worked better on that dataset, which the Representation column names. The '
-        'transformers read raw text, so no representation applies to them.\n'
-        'Reading the table across, three conclusions hold. The first is that DeBERTa is the best single model '
+        'This section brings together sir\'s two required tables. Table 6 is the full sweep, all eight '
+        'configurations of BERT and DeBERTa on both datasets plus the ensemble, moved here from the per-model '
+        'sections so the whole grid can be read in one place. Table 7 below it is the final six-row comparison, '
+        'one row per model family at its best setting; each classical model name carries its winning '
+        'representation directly, for example "Naive Bayes [BoW]", instead of a separate Representation column, '
+        'since the representation choice differs between the two datasets and a shared column would force one '
+        'label to serve both.\n'
+        f'Across Table 7\'s six rows, the best on DAIGT V2 is {f6d1_bl} at {f6d1_bf:.4f} F1, the worst is '
+        f'{f6d1_wl} at {f6d1_wf:.4f}, mean {f6d1_mf:.4f}. On HC3 the best is {f6d2_bl} at {f6d2_bf:.4f}, the '
+        f'worst is {f6d2_wl} at {f6d2_wf:.4f}, mean {f6d2_mf:.4f}. DeBERTa is best on both because disentangled '
+        'attention and a replaced-token-detection pretraining objective give it a genuine edge on HC3\'s '
+        'formatting-carried signal, discussed below, while on DAIGT V2 it merely ties the classical ceiling '
+        'rather than beating it. Naive Bayes is worst on both for the same independence-assumption reason given '
+        'in Section 2, and it stays worst even after being allowed its better representation.\n'
+        'Reading the table across, three further conclusions hold. The first is that DeBERTa is the best single model '
         'on both datasets. The second is that the size of its advantage depends entirely on which dataset you '
         f'look at. On DAIGT V2 the best classical model reaches {d1_vals[3]:.4f} and DeBERTa reaches '
         f'{f("D1","DeBERTa"):.4f}, a difference of {abs(f("D1","DeBERTa")-d1_vals[3])*100:.2f} of a percentage point, so '
@@ -501,35 +570,6 @@ def build_text(R):
     return T
 
 
-# ---------------------------------------------------------------- code listings
-def code_listings():
-    """The four required listings, lifted from the submission notebook so the report
-    and the notebook cannot disagree."""
-    nb = json.load(open(NB))
-    src = [''.join(c['source']) for c in nb['cells'] if c['cell_type'] == 'code']
-    def find(*needles):
-        for s in src:
-            if all(n in s for n in needles):
-                return s.strip()
-        raise KeyError(needles)
-    return [
-        ('Data preprocessing code',
-         find('def group_split', 'def balance')),
-        ('Data preprocessing code, classical text pipeline',
-         find('def preprocess_classical')),
-        ('Data preprocessing code, tokenisation for the transformers',
-         find('def get_tokenized')),
-        ('BERT and BERT-variant training code (one harness, used for both)',
-         find('def train_one', 'TrainingArguments')),
-        ('BERT code where the best performance was achieved',
-         find('BERT_RESULT, BERT_CFG')),
-        ('BERT variant (DeBERTa) code where the best performance was achieved',
-         find('DEBERTA_RESULT, DEBERTA_CFG')),
-        ('Ensemble code',
-         find('WEIGHTS = np.round', 'ENSEMBLE')),
-    ]
-
-
 # ---------------------------------------------------------------- assembly
 def main():
     R = load_results()
@@ -572,6 +612,15 @@ def main():
     sec2 = write_section('Take the resultant table from the experiments', T['midterm'])
     sec3 = write_section('Give reason behind selecting the BERT model. Additionally, based on your experimental results, select the BERT model', T['bert'])
     sec4 = write_section('select the BERT variant model', T['variant'])
+    # Name the variant in the heading itself without disturbing the template's heading
+    # style (set_text would reset the run to plain body font/size).
+    h4 = find_par(doc, '4 Selecting the Best BERT variant model')
+    base_run = h4.runs[0] if h4.runs else None
+    tail = h4.add_run(' — DeBERTa')
+    if base_run is not None:
+        tail.font.name = base_run.font.name
+        tail.font.size = base_run.font.size
+        tail.font.bold = base_run.font.bold
     sec5 = write_section('Discuss your ensemble model', T['ensemble'])
     sec6 = write_section('Compare the overall results', T['overall'])
     write_section('Discuss the limitations', T['limits'])
@@ -652,10 +701,57 @@ def main():
     repeat_header(t1, 2)
     no_row_split(t1)
 
-    # ---- Table 3, the full fine-tuning grid
-    cap2 = para_after(sec3[2], 'Table 3. Final-term fine-tuning experiments. Eight configurations for each '
-                            'model on each dataset, full balanced corpora, evaluated on the test split. '
-                            'The ENSEMBLE row uses the weight chosen on validation.', size=10, justify=False)
+    # ---- Table 3 / Table 4, one model's own 8-row grid, isolated per the "just this
+    #      variant's models" instruction (no other model or the ensemble in these tables).
+    def single_model_grid_table(anchor, mk, label, table_no):
+        cap = para_after(anchor,
+            f'Table {table_no}. {label} fine-tuning experiments only. All eight configurations '
+            'of the sweep, full balanced corpora, evaluated on the test split.',
+            size=10, justify=False)
+        rows = [[''] * 11, ['Learning Rate', 'Batch Size', 'Weight Decay',
+                            'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
+        missing = []
+        for lr, bs, wd in GRID:
+            a = R['grid'].get(('D1', mk, lr, bs, wd))
+            b = R['grid'].get(('D2', mk, lr, bs, wd))
+            if a is None or b is None:
+                missing.append((mk, lr, bs, wd))
+                continue
+            rows.append([f'{lr:.5f}', str(bs), str(wd)]
+                        + [f'{v:.4f}' for v in a] + [f'{v:.4f}' for v in b])
+        if missing:
+            raise SystemExit('missing grid results, refusing to emit blank cells: %s' % missing)
+        keep_with_next(cap)
+        t = table_after(doc, cap, rows, header_rows=2)
+        merge_and_label(t, 0, 3, 0, 6, 'Dataset 1 (DAIGT V2)')
+        merge_and_label(t, 0, 7, 0, 10, 'Dataset 2 (HC3)')
+        for c, lbl in enumerate(('Learning Rate', 'Batch Size', 'Weight Decay')):
+            merge_and_label(t, 0, c, 1, c, lbl)
+        repeat_header(t, 2)
+        no_row_split(t)
+        return t
+
+    single_model_grid_table(sec3[1], 'BERT', 'BERT', 3)
+    single_model_grid_table(sec4[6], 'DeBERTa', 'DeBERTa (BERT variant)', 4)
+
+    # ---- Table 5, the ensemble only (two rows, one per dataset)
+    cap_ens = para_after(sec5[0], 'Table 5. Ensemble model only. The validation-selected mixing '
+                            'weight on BERT and the resulting test-set metrics, one row per dataset.',
+                          size=10, justify=False)
+    rows = [['Dataset', 'Weight on BERT', 'Acc', 'Prec', 'Rec', 'F1'],
+            ['DAIGT V2', f"{R['ensemble']['D1']['w']:.2f}"] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']],
+            ['HC3', f"{R['ensemble']['D2']['w']:.2f}"] + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']]]
+    keep_with_next(cap_ens)
+    t_ens = table_after(doc, cap_ens, rows, header_rows=1)
+    repeat_header(t_ens, 1)
+    no_row_split(t_ens)
+
+    # ---- Table 6, sir's full sweep table (all models + ensemble, moved here from the
+    #      per-model sections so Section 6 holds both of sir's required tables together)
+    cap6 = para_after(sec6[0], 'Table 6. Final-term fine-tuning experiments, all models. Eight configurations '
+                            'for each of BERT and DeBERTa on each dataset, full balanced corpora, evaluated on '
+                            'the test split. The ENSEMBLE row uses the weight chosen on validation.',
+                       size=10, justify=False)
     rows = [[''] * 12,
             ['', '', '', '', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
     missing = []
@@ -672,93 +768,57 @@ def main():
     rows.append([''] * 4
                 + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                 + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
-    keep_with_next(cap2)
-    t2 = table_after(doc, cap2, rows, header_rows=2, size=6.5)
-    merge_and_label(t2, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
-    merge_and_label(t2, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
+    keep_with_next(cap6)
+    t6 = table_after(doc, cap6, rows, header_rows=2, size=6.5)
+    merge_and_label(t6, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
+    merge_and_label(t6, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
     for c, lbl in enumerate(('Model', 'Learning Rate', 'Batch Size', 'Weight Decay')):
-        merge_and_label(t2, 0, c, 1, c, lbl, size=6.5)
-    merge_and_label(t2, 2, 0, 9, 0, 'BERT', size=6.5, bold=False)
-    merge_and_label(t2, 10, 0, 17, 0, 'DeBERTa\n(BERT variation)', size=6.5, bold=False)
-    set_cell(t2.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
-    merge_and_label(t2, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
-    repeat_header(t2, 2)
-    no_row_split(t2)
+        merge_and_label(t6, 0, c, 1, c, lbl, size=6.5)
+    merge_and_label(t6, 2, 0, 9, 0, 'BERT', size=6.5, bold=False)
+    merge_and_label(t6, 10, 0, 17, 0, 'DeBERTa\n(BERT variant)', size=6.5, bold=False)
+    set_cell(t6.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
+    merge_and_label(t6, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
+    repeat_header(t6, 2)
+    no_row_split(t6)
 
-    # ---- Table 3, the required final comparison
-    # ---- Table 4, the winning configuration per model and dataset
-    cap_best = para_after(sec4[8],
-        'Table 4. The configuration selected for each model on each dataset, chosen on '
-        'validation weighted F1 and then evaluated once on the test split. These are the '
-        'deployed checkpoints, so every transformer number elsewhere in this report comes '
-        'from one of these four runs.', size=10, justify=False)
-    keep_with_next(cap_best)
-    rows = [[''] * 9,
-            ['', '', 'Learning Rate', 'Batch Size', 'Weight Decay', 'Acc', 'Prec', 'Rec', 'F1']]
-    for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa\n(BERT variation)')):
-        for tag, dname in (('D1', 'DAIGT V2'), ('D2', 'HC3')):
-            i = R['deployed'][(tag, mk)]
-            t = i['test']
-            rows.append(['', dname, f"{i['lr']:.5f}", str(i['batch_size']), f"{i['weight_decay']:g}"]
-                        + [f"{t[k]:.4f}" for k in ('accuracy', 'precision', 'recall', 'f1')])
-    tb = table_after(doc, cap_best, rows, header_rows=2)
-    merge_and_label(tb, 0, 2, 0, 4, 'Selected hyperparameters')
-    merge_and_label(tb, 0, 5, 0, 8, 'Test-set performance')
-    merge_and_label(tb, 0, 0, 1, 0, 'Model')
-    merge_and_label(tb, 0, 1, 1, 1, 'Dataset')
-    merge_and_label(tb, 2, 0, 3, 0, 'BERT', bold=False)
-    merge_and_label(tb, 4, 0, 5, 0, 'DeBERTa (BERT variation)', bold=False)
-    repeat_header(tb, 2)
-    no_row_split(tb)
-
-    # ---- Table 5, the required final comparison
+    # ---- Table 7, sir's final comparison table. Six rows, one per model family, no
+    #      Representation column — the classical model name itself carries [BoW]/[TF-IDF].
     def best_rep(tag, name):
         rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
         return rep, R['classical'][(tag, name, rep)]
 
-    cap3 = para_after(sec6[0], 'Table 5. Final comparison. Every row comes from the full balanced corpora and '
-                            'the same fixed split. Each classical row is shown with whichever text '
-                            'representation performed better on that dataset, which the Representation column names. The transformers read raw text, so no '
-                            'representation applies to them. The ENSEMBLE row uses the weight chosen on '
+    cap7 = para_after(sec6[1], 'Table 7. Final comparison, six rows. Every row comes from the full balanced '
+                            'corpora and the same fixed split. Each classical model name carries its winning '
+                            'text representation directly, e.g. "Naive Bayes [BoW]", since the winning '
+                            'representation differs by dataset. The ENSEMBLE row uses the weight chosen on '
                             'validation.', size=10, justify=False)
-
-    def best_rep(tag, name):
-        rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
-        return rep, R['classical'][(tag, name, rep)]
-
-    # Eleven columns. The representation sits inside each dataset group rather than being
-    # packed into the model name, because a model can win with one representation on one
-    # dataset and the other on the other, and a combined label like "TF-IDF / BoW" makes
-    # the reader decode which half belongs to which dataset.
-    rows = [[''] * 11,
-            ['', 'Represen-\ntation', 'Acc', 'Prec', 'Rec', 'F1', 'Represen-\ntation', 'Acc', 'Prec', 'Rec', 'F1']]
+    rows = [[''] * 9,
+            ['Model', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
     for name in CLASSICAL:
         r1, v1 = best_rep('D1', name)
         r2, v2 = best_rep('D2', name)
-        rows.append([name, r1] + [f'{v:.4f}' for v in v1]
-                    + [r2] + [f'{v:.4f}' for v in v2])
-    for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa (BERT variation)')):
+        rows.append([f'{name} [D1: {r1} / D2: {r2}]']
+                    + [f'{v:.4f}' for v in v1] + [f'{v:.4f}' for v in v2])
+    for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa (BERT variant)')):
         a = R['deployed'][('D1', mk)]['test']
         b = R['deployed'][('D2', mk)]['test']
-        rows.append([label, 'raw'] + [f'{a[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
-                    + ['raw'] + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
-    rows.append(['ENSEMBLE', 'raw'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
-                + ['raw'] + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
-    keep_with_next(cap3)
-    t3 = table_after(doc, cap3, rows, header_rows=2, size=7)
-    merge_and_label(t3, 0, 1, 0, 5, 'Dataset 1 (DAIGT V2)', size=7)
-    merge_and_label(t3, 0, 6, 0, 10, 'Dataset 2 (HC3)', size=7)
-    merge_and_label(t3, 0, 0, 1, 0, 'Model', size=7)
-    repeat_header(t3, 2)
-    no_row_split(t3)
+        rows.append([label] + [f'{a[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')]
+                    + [f'{b[k]:.4f}' for k in ('accuracy', 'precision', 'recall', 'f1')])
+    rows.append(['ENSEMBLE'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
+                + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
+    keep_with_next(cap7)
+    t7 = table_after(doc, cap7, rows, header_rows=2, size=7)
+    merge_and_label(t7, 0, 1, 0, 4, 'Dataset 1 (DAIGT V2)', size=7)
+    merge_and_label(t7, 0, 5, 0, 8, 'Dataset 2 (HC3)', size=7)
+    merge_and_label(t7, 0, 0, 1, 0, 'Model', size=7)
+    repeat_header(t7, 2)
+    no_row_split(t7)
 
-    # ---- code appendix
-    anchor = find_par(doc, 'Give the entire code of your project here')
-    set_text(anchor, 'The complete project code is reproduced below in the order the specification asks '
-                     'for. It is the code in notebooks/nlp_final_submission_code.ipynb, which runs '
-                     'end to end. Configuration values are read from each saved checkpoint at runtime '
-                     'rather than typed in, so the listings and the results above cannot disagree.')
-    for needle in ('Data preprocessing code if there is any',
+    # ---- code appendix intentionally omitted from the docx. The reorganized notebook is
+    #      exported to its own PDF instead (docs/nlp_final_submission_code.pdf); see
+    #      docs/superpowers/plans/2026-08-28-final-report-restructure.md, Tasks 9-10.
+    for needle in ('Give the entire code of your project here',
+                   'Data preprocessing code if there is any',
                    'BERT code where you achieved the best performance',
                    'BERT Variant code where you achieved the best performance',
                    'Ensemble code'):
@@ -767,17 +827,10 @@ def main():
             p._element.getparent().remove(p._element)
         except KeyError:
             pass
-    for title, code in code_listings():
-        anchor = para_after(anchor, title, size=11, bold=True, justify=False)
-        for line in code.split('\n'):
-            anchor = para_after(anchor, line if line.strip() else ' ',
-                                size=CODE_PT, font='Courier New', justify=False)
-            anchor.paragraph_format.space_before = Pt(0)
-            anchor.paragraph_format.space_after = Pt(0)
 
     doc.save(str(OUT))
     print('wrote', OUT.name)
-    print(f'  sections filled 8, tables 4, code listings {len(code_listings())}')
+    print('  sections filled 8, tables 7 (3 dataset/classical, 3 per BERT/BERT variant, 1 dataset-diagnostic)')
 
 
 if __name__ == '__main__':
