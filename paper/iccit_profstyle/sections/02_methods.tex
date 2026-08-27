@@ -43,7 +43,7 @@ That duplication is why the split is group-aware. Documents are grouped by an MD
 
 \subsection{Models and configurations}
 
-Five model families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each run under bag-of-words and TF-IDF for six classical configurations per dataset. Earlier work at full scale reported only the winning representation per model, so we report the complete grid. Two are transformers, \texttt{bert-base-uncased}~\cite{Devlin2019bert} and \texttt{microsoft/deberta-v3-base}~\cite{He2023debertav3}, fine-tuned with AdamW over a grid of learning rate in $\{2\mathrm{e}{-5}, 3\mathrm{e}{-5}\}$, batch size in $\{16, 32\}$ and weight decay in $\{0.01, 0.1\}$, which is a sixteen-run grid per dataset, eight per model, with the operating point selected on validation weighted F1 and early stopping at patience two.
+Five model families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each run under bag-of-words and TF-IDF for six classical configurations per dataset. Earlier work at full scale reported only the winning representation per model, so we report the complete grid. Two are transformers, bert-base-uncased~\cite{Devlin2019bert} and microsoft/deberta-v3-base~\cite{He2023debertav3}, fine-tuned with AdamW over a grid of learning rate in $\{2\mathrm{e}{-5}, 3\mathrm{e}{-5}\}$, batch size in $\{16, 32\}$ and weight decay in $\{0.01, 0.1\}$, which is a sixteen-run grid per dataset, eight per model, with the operating point selected on validation weighted F1 and early stopping at patience two.
 
 DeBERTa is the strongest encoder of its size on general language-understanding benchmarks, ahead of both BERT and RoBERTa at comparable parameter counts~\cite{He2023debertav3}, which is reason enough to include it. Two properties matter more for this study specifically. Its disentangled attention separates content from position, the relevant inductive bias when the question is how much of a corpus is separable by form, and its SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace whereas BERT's WordPiece does not, which makes the pair a controlled contrast on exactly the cue Section~\ref{sec:tokenisation} examines. Benchmark standing does not by itself predict the outcome here, since the two models are level on DAIGT V2 and separate only on HC3.
 
@@ -79,6 +79,15 @@ and the separability gap between them,
 A gap near zero says orthography alone reaches the same accuracy as content alone on that corpus. A large positive gap says content carries what orthography does not. The surface arm's own error answers a more direct question, how much of the benchmark a detector could pass without reading language at all.
 
 Two properties of $\Delta$ matter. It compares two specific arms rather than partitioning the total separability, since a richer surface featurisation would lower $\varepsilon_{\mathrm{S}}$ and a stronger content model would lower $\varepsilon_{\mathrm{C}}$, so it is a corpus-level comparison under a fixed pair of instruments, and it is not a claim that either corpus is clean. The \emph{full} arm is the fine-tuned transformer on raw text, differing from the other two in model family, parameter count and the amount of text it reads, so we report it as a reference point and draw no conclusion from a transformer-to-classical difference without first matching the text budget.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.82\textwidth]{figures/fig_pipeline.pdf}
+\caption{The measurement pipeline. The surface and content arms read disjoint views of every document and share one classifier family. The transformer is a reference, not a matched arm.}
+\label{fig:pipeline}
+\end{figure*}
+
+Figure~\ref{fig:pipeline} lays out the pipeline end to end, from the balanced, group-aware split through the three arms to the paired significance test each comparison in Section~\ref{sec:results} is drawn from.
 
 \subsection{The length channel and how it is closed}
 \label{sec:lengthdef}
