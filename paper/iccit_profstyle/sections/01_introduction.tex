@@ -1,0 +1,36 @@
+% Reference (supervisor's Introduction structure, condensed),
+% ICCIT_2026___Surface_Content___Arnob__Niloy/main.tex, inert.
+% Opens with a scoped motivating paragraph, states a gap, then
+%   "The key contributions of this study are as follows."
+%   \begin{enumerate}
+%       \item ...
+%       \item ...
+%   \end{enumerate}
+% and closes with a roadmap paragraph naming every following section by
+% number, e.g.
+%   The remainder of this paper is organized as follows. Section
+%   \ref{sec:RW} reviews prior work. Section \ref{sec:PS} details the
+%   proposed method. Section \ref{sec:ERD} analyzes model performance.
+%   Section \ref{SEC: limF} discusses limitations. Section \ref{sec:con}
+%   concludes the study.
+\section{Introduction}
+
+Detectors of machine-generated text report accuracy at or above 97\% on the benchmarks the field uses most, and frequently above 99\%~\cite{Guo2023close,Su2023plus,Zhou2024exploiting,Ansary2026multirepresentation}. Read directly, those numbers say the task is close to solved on the domains these corpora represent. Read carefully, they say something weaker, because a benchmark score measures the separability of a particular corpus and not the capability a reader infers from it.
+
+The difference matters because separability has more than one source. A detector can reach a high score by modelling how machine-generated language differs from human language, or by modelling how one corpus was assembled, punctuated and encoded. Both produce the same headline figure. Individual instances of the second have been documented, including a whitespace convention in HC3~\cite{Tian2023multiscale}, a length confound in the same corpus~\cite{Baidya2026detecting}, punctuation inconsistencies requiring standardisation before comparison~\cite{Ardeshirifar2025comparing}, and prompt-specific collection shortcuts~\cite{Park2024investigating}. Each of those is a report of one artefact. What is missing is a way to ask how much, in total, a given benchmark's separability owes to surface form rather than content, and to place two benchmarks on the same axis so they can be compared.
+
+This paper proposes that measurement and applies it. We compare three arms on identical splits. A \emph{surface-only} model reads 47 orthographic features and never sees a word. A \emph{content-only} model reads text after punctuation, casing and non-ASCII characters have been stripped away. A \emph{full} model is a fine-tuned transformer on raw text. The gap between the first two bounds how much of a benchmark a detector could pass without reading language at all. Because the first two arms share a classifier family, they are directly comparable to each other, and the third is reported as a reference point rather than as a matched arm.
+
+Applied to DAIGT V2 and HC3 across five model families, the answer differs sharply between the two corpora. On HC3 the surface-only and content-only arms are indistinguishable, 3.20\% against 3.26\% test error, and a paired test over 10,732 documents cannot separate them, while on DAIGT V2 content is stronger by a factor of 7.9. Splitting each corpus by its own subgroup labels then shows the HC3 tie is not a property of the benchmark. It belongs to the Reddit sub-corpus that makes up three quarters of it, and reverses on the other domains. The same contrast appears in the model comparison, where the best classical configuration falls 0.0007 weighted F1 short of the best transformer on DAIGT V2 and short by an error-rate factor of 16 on HC3. That tie is a statement about text budget rather than architecture, since refitting the classical grid on the exact span each transformer's tokeniser kept removes it and the transformer then leads on both corpora.
+
+We also report two negative results, each correcting a claim an uncontrolled version of this analysis had reached. The whitespace cue that dominates discussion of HC3 is sufficient in isolation yet unnecessary in practice, since BERT's tokeniser provably cannot represent it and BERT still reaches 0.9916 weighted F1 there. And a character-level perturbation that drives DeBERTa from 0.9972 to 0.3644 weighted F1 looks like a targeted vulnerability but is not distinguishable from one, because the same model labels uniform random strings as human in 100\% of cases at 0.98 mean confidence.
+
+The key contributions of this study are as follows.
+\begin{enumerate}
+    \item The decomposition itself, stated formally in Section~\ref{sec:decomp-def} as a reusable measurement over any human-versus-machine corpus, with the length control that stops its two arms sharing a channel.
+    \item Its application to two widely used benchmarks, with a complete eight-configuration model comparison, cross-corpus transfer over three seeds, and a per-feature SHAP attribution that locates which orthographic property carries the asymmetry.
+    \item A set of three controls, on tokenisation, pipeline execution and label-free inputs, each of which overturns a conclusion the uncontrolled version of this study had reached.
+    \item A paired statistical treatment, exact-binomial McNemar with a paired bootstrap interval, applied uniformly so that no comparison rests on a difference in the fourth decimal place.
+\end{enumerate}
+
+The remainder of this paper is organised as follows. Section~\ref{sec:related} reviews prior work on benchmark separability and shortcut learning. Section~\ref{sec:method} details the decomposition, the corpora, the models and the paired statistics. Section~\ref{sec:results} reports the model comparison, the subgroup analysis, the three controls, and discusses what the decomposition does and does not license. Section~\ref{sec:limitations} states the limits every number above is bound by. Section~\ref{sec:conclusion} concludes the study and lists future work.

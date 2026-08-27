@@ -52,9 +52,21 @@ paper/iccit/*.out
 paper/iccit/*.blg
 paper/iccit/*.fdb_latexmk
 paper/iccit/*.fls
+paper/iccit_profstyle/*.aux
+paper/iccit_profstyle/*.log
+paper/iccit_profstyle/*.out
+paper/iccit_profstyle/*.blg
+paper/iccit_profstyle/*.fdb_latexmk
+paper/iccit_profstyle/*.fls
+paper/iccit_profstyle/.build-manifest
 
 # Material belonging to a different project, dropped in here by hand
 All Outputs_Plot_from_another_project\ /
+
+# Supervisor's own reference paper (style template only) -- not our IP,
+# contains other students' names/emails/IDs, never publish this.
+ICCIT_2026___Surface_Content___Arnob__Niloy/
+ICCIT_2026___Surface_Content___Arnob__Niloy.zip
 
 # FUSE leaves these behind when a file is deleted while still open, e.g. by LibreOffice
 .fuse_hidden*
