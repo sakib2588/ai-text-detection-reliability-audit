@@ -42,6 +42,20 @@ Table~\ref{tab:allmodels} reports every configuration on both datasets, and the 
 
 Figure~\ref{fig:roczoom} gives the corresponding ROC curves in the region that matters for a deployed detector, where a false positive is an accusation. Over the full range both corpora look alike, every curve close to the corner, and only this view separates them.
 
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_roc.pdf}
+\caption{The same eight configurations, full-range ROC. Legend values are area under the curve. Every series sits near the corner over the full axis, which is why Figure~\ref{fig:roczoom} restricts to the low-false-positive region instead.}
+\label{fig:roc}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_confusion.pdf}
+\caption{Confusion matrices for the five models Table~\ref{tab:allmodels} reports on directly, both corpora, cell counts and row percentages. NB/BoW misses 53 of 3519 human and 233 of 3479 machine DAIGT V2 documents, and 634 of 5377 human and 747 of 5355 machine HC3 documents. DeBERTa's HC3 errors fall to 17 human and 13 machine, out of 30 total.}
+\label{fig:confusion}
+\end{figure*}
+
 Every transformer figure above is the seed-42 checkpoint. Repeating each of the four at seeds 123 and 456 moves them very little. DAIGT V2 BERT averages 0.9921 over a range of 0.0011 and DeBERTa 0.9930 over 0.0024, so the two overlap and the tie is not a seed accident. HC3 BERT averages 0.9930 over 0.0036 and DeBERTa 0.9970 over 0.0005, and those two ranges are disjoint, so the separation that matters to this paper survives reseeding while the tie that also matters survives it in the other direction.
 
 Ranking by area does not reproduce ranking by F1. BERT takes the higher area on DAIGT V2, 0.999641 against 0.999144, while DeBERTa takes the higher F1, and neither ordering survives contact with the predictions, which disagree on 75 documents split 37 to 38 at $p=1.00$. On HC3 the pair separates cleanly. We report both measures because of this, and read neither ordering on DAIGT V2 as a result.
