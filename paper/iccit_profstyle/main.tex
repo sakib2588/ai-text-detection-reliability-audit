@@ -1,0 +1,539 @@
+
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+%\DeclareUnicodeCharacter{2212}{\textminus}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+
+%avoid caption and subcaptions, it changes table captions, rather use minipage for subfigures
+%\usepackage{caption} 
+%\usepackage{subcaption} 
+
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+%\usepackage{cite} % REMOVE or KEEP COMMENTED - conflicts with natbib
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{flushend}
+
+\usepackage{soul}
+% \sethlcolor{green!20} 
+% \setstcolor{red} %to set \st{} line color
+
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{afterpage}
+\usepackage{stfloats}
+\usepackage{booktabs}
+\usepackage{balance}
+\usepackage{gensymb}
+\usepackage{makecell}
+\usepackage{siunitx}
+\newcolumntype{R}[1]{S[table-format=#1]}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+% \title{Accurate Anemia Disease Detection Using Eye Conjunctiva Features with Improved YOLOv9 (\hl{Note: A typical paper title should not be more than 13 words}) }
+\title{A Surface-Content Decomposition of\\AI-Generated Text Detection Benchmarks}
+
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+% \author{\IEEEauthorblockN{Fname Lname} %1\textsuperscript{st}
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% 24-93522-3@student.aiub.edu}
+% \and
+% \IEEEauthorblockN{Fname Lname} %2\textsuperscript{nd} 
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% 24-93521-3@student.aiub.edu}
+% \linebreakand
+% \IEEEauthorblockN{Fname Lname} %3\textsuperscript{rd} 
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% 24-93520-3@student.aiub.edu}
+% \and
+% \IEEEauthorblockN{Fname Lname} %4\textsuperscript{th} 
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% 24-93526-3@student.aiub.edu}
+% \linebreakand
+% \IEEEauthorblockN{Fname Lname} %5\textsuperscript{th} 
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% 24-12345-3@student.aiub.edu}
+% \and
+% \IEEEauthorblockN{Kamruddin Nur} %6\textsuperscript{th} 
+% \IEEEauthorblockA{\textit{Department of Computer Science} \\
+% \textit{American International University-Bangladesh}\\
+% Dhaka, Bangladesh \\
+% kamruddin@aiub.edu}
+% }
+\newif\ifblind
+\blindtrue
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Author(s)}
+  \IEEEauthorblockA{Affiliation withheld for double-blind review}}
+\else
+  \author{\IEEEauthorblockN{Niloy Paul, Arnob Sarker Supta, Nazmus Sakib, Afnan Ur Rayan}
+  \IEEEauthorblockA{Department of Computer Science\\
+  Faculty of Science and Technology\\
+  American International University-Bangladesh (AIUB)\\
+  Dhaka, Bangladesh}}
+\fi
+
+% % Configure header and footer
+% \fancypagestyle{firstpage}{
+%     \fancyhf{} % Clear all header and footer fields
+%     % Header
+%     \fancyhead[L]{2025 International Conference on \ldots , date of conference, place of conference, city, country}
+%     % Footer
+%     \fancyfoot[L]{979-8-3503-5750-9/25/\$31.00 ©2025 IEEE}
+%     \renewcommand{\headrulewidth}{0pt} % Remove header line
+%     \renewcommand{\footrulewidth}{0pt} % Remove footer line
+% }
+
+\maketitle
+%\thispagestyle{firstpage}
+
+% \begin{abstract}
+% Anemia is a widespread global health issue affecting billions, demands early and accurate detection to mitigate severe complications. Traditional diagnostic methods are often invasive, time-consuming, and resource-intensive. This study presents a non-invasive, real-time anemia detection application using conjunctiva eye images, leveraging an improved YOLOv9 deep learning model. A custom dataset of 2,606 images was created using traditional augmentation and pre-processing to improve model robustness across diverse imaging conditions. We compared several YOLO variants, spanning YOLOv8 through YOLOv12, to determine their effectiveness in classifying anemia signs. Among these, the proposed model demonstrated superior performance, achieving an impressive F1-score of 1.00 and a mAP@50 of 0.995, showcasing exceptional accuracy and robustness across diverse imaging conditions. The proposed model outperformed existing studies, achieving 98.2\% accuracy.
+
+% \hl{(Note: Abstract length should be 150-170 words)}
+% \end{abstract}
+\begin{abstract}
+\input{sections/00_abstract.tex}
+\end{abstract}
+
+% \begin{IEEEkeywords}
+% anemia detection, deep learning, YOLOv9, conjunctiva features, computer vision \hl{(5 to 6 keywords, all small letters except acronym and keywords are comma separated)}
+% \end{IEEEkeywords}
+\begin{IEEEkeywords}
+AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, SHAP
+\end{IEEEkeywords}
+
+% \section{Introduction}
+% Anemia continues to pose a critical public health concern worldwide, silently affecting countless individuals' health, growth, and productivity. It is defined by a reduced concentration of hemoglobin or a lower number of red blood cells, impairing the blood’s ability to carry oxygen throughout the body \cite{bib1, 7320922}. According to the WHO, anemia is the most common blood disorder, affecting 1.9 billion people worldwide, particularly children under five and women of reproductive age (15–49) \cite{WHO}. Symptoms include fatigue, dizziness, and pale skin, with severe cases leading to cognitive and immune impairments \cite{inbook}. Low- and middle-income countries bear the heaviest burden, with 40\% of preschool children in Africa and South Asia affected. Without intervention, global cases could exceed 700 million by 2050 \cite{bib3, 11013964}. 
+
+% Traditional diagnostic methods rely on blood tests and laboratory analysis, which, although accurate, are often invasive, time-consuming, and impractical in resource-limited or rural settings due to the need for sterile equipment, trained personnel, and centralized testing facilities. The common practice for clinicians is to visually inspect the conjunctiva, tongue, nailbeds, and palms to check for pallor, but this is only accurate to a certain extent. This creates a critical need for alternative screening approaches that are affordable, scalable, and easy to deploy, especially in regions lacking access to modern healthcare infrastructure \cite{10534530}.
+ 
+% Recent advances in artificial intelligence (AI) and computer vision offer promising results to overcome these challenges. In particular, deep learning models have demonstrated significant potential in medical imaging tasks, enabling automatic analysis with high accuracy and minimal manual effort. The human eye, specifically the paleness of the conjunctiva, has long been used by clinicians as a visual indicator of anemia. Leveraging this physiological cue, computer vision models can be trained to detect anemia-related features in conjunctival images. 
+
+% The key contributions of this study are as follows:
+% \begin{enumerate}
+%     \item Proposed a deep learning based application for detecting anemia signs from eye conjunctiva images using improved YOLOv9.
+%     \item Replaced AConv with standard Conv in layers 3, 5, and 9 of the backbone and layer 19 of the neck, reducing layers and parameters. This led to improved inference speed compared to the default YOLOv9s. 
+%     \item Compared the proposed YOLOv9 model performance with YOLOv8 through YOLOv12 and achieved the highest F1-score of 1.00 and mAP@50 of 0.995, supporting real-time anemia detection. 
+% \end{enumerate}
+
+% The remainder of this paper is organized as follows. Section \ref{sec:RW} reviews prior work on non-invasive anemia detection. Section \ref{sec:PS} details the proposed method, including data collection, preprocessing, and augmentation. Section \ref{sec:ERD} analyzes model performance. Section \ref{SEC: limF} discusses limitations and future work.
+% Finally, Section \ref{sec:con} concludes the study. 
+\input{sections/01_introduction.tex}
+
+% \section{Related Works} \label{sec:RW}
+
+% Deep learning, particularly CNNs and advanced models like ResNet and VGG, has proven effective in non-invasive anemia detection using conjunctival images. Recently, real-time object detection models like YOLO have gained attention for their suitability in mobile and low-resource healthcare settings \cite{Bijit}.
+
+% \begin{figure*} [ht]
+% 	\centering
+% 	\includegraphics[width=0.8\linewidth]{Model.png}
+% 	\caption{Workflow of the proposed model training, validation, and testing on the dataset.}
+% 	\label{ProposedModel}
+% \end{figure*}
+
+%\citeauthor{bib5} \cite{bib5} 
+% \citet{bib5}  proposed an automated method for anemia detection using non-invasive images of the palpebral conjunctiva. They evaluated the approach using three CNN architectures: AlexNet, ResNet-50, and MobileNetV2. Among them, ResNet-50 achieved the highest accuracy of 97.94\%, followed by MobileNetV2 with 97.19\%, and AlexNet with 89.93\%. \citet{bib6} proposed a smartphone-based anemia detection model using palpebral conjunctiva images. They expanded a dataset of 764 images to 4,315 using DCGAN for augmentation. Multiple machine learning (SVM, KNN, Naïve Bayes, Decision Tree) and deep learning models (GoogLeNet, VGG16, ResNet-50) were tested, along with ensemble techniques. The stacking ensemble model achieved the best results, with 89.48\% accuracy, 88\% precision, and 0.97 AUC. \citet{bib8} proposed a non-invasive method for anemia detection using smartphone images analyzed through MATLAB. Tested on 19 patients, it achieved 78.9\% accuracy, offering a low-cost solution. \citet{10534530} introduced UNBCSM, a U-Net-based model with a ResNet-34 backbone for offline anemia screening using smartphone eye images. Trained on 135 manually annotated samples, the model was optimized with fewer max-pooling layers, achieving a mean IoU of 96\% (training) and 85.7\% (validation). \citet{Khan2024} proposed a deep learning approach for anemia detection using retinal fundus images from 2,265 participants. InceptionV3 achieved 98.6\% accuracy and an AUC of 0.98, while VGG16 and ResNet50 showed comparable performance. Combining clinical metadata further improved hemoglobin prediction. \citet{Ramzan2024} investigated machine learning approaches for noninvasive anemia detection using multi-modal data (textual and image). Traditional models like logistic regression, decision trees, and SVMs were compared with advanced models incorporating spatial attention mechanisms. Their proposed AlexNet with Multiple Spatial Attention achieved a remarkable 99.58\% accuracy.
+
+% The summary of the related works is presented in Table~\ref{tab:related_work}. 
+
+% \begin{table*}[!b]
+% \centering
+% \caption{Summary of related studies on software defect prediction}
+% \label{tab:related_work}
+% \resizebox{\textwidth}{!}{%
+% \begin{tabular}{c c p{4.2cm} p{3.6cm} p{3.2cm} p{4.6cm}}
+% \toprule
+% \textbf{Ref.} & \textbf{Year} & \textbf{Method / Algorithm} & \textbf{Dataset} & \textbf{Results} & \textbf{Limitations} \\
+% \midrule
+
+% {\cite{bib1}} &
+% 2025 &
+% RF, SVM, Gradient Boosting with Deep Learning; SMOTE &
+% Synthetic dataset (5,000 samples) &
+% Accuracy: 94.7\%; Precision: 93.2\%; Recall: 96.1\%; AUC: 0.978 &
+% Synthetic dataset; limited real-world validation \\
+
+% {\cite{bib2}} &
+% 2024 &
+% MLP with SMOTE; SHAP-based interpretation &
+% ApacheJIT (106,674 commits) &
+% 82.08\% &
+% High computational cost; single dataset \\
+
+% {\cite{bib3}} &
+% 2024 &
+% ML, DL, and LSTM comparison. &
+% LSTM outperforms ML and DL baselines on unified defect data. &
+% LSTM: 87\%. &
+% No feature selection; limited tuning; single dataset. \\
+
+% {\cite{bib4}} &
+% 2023 &
+% Feature selection, K-means, SVM, RF, NB, PSO-based ensembles &
+% NASA CM1 &
+% SVM: 99\%; SVM-PSO: 99.80\% &
+% Small dataset; limited generalization \\
+
+% {\cite{bib5}} &
+% 2023 &
+% Random Forest, AdaBoost, Bagging, SVM &
+% Multiple NASA datasets (JM1, PC2, etc.) &
+% JM1: 89.80\%;
+% PC2: 99.64\% &
+% Computational complexity; scalability concerns \\
+
+% {\cite{bib6}} &
+% 2023 &
+% SVM, Logistic Regression, MLP, 1D CNN &
+% NASA JM1 &
+% CNN: 97.38\%; MLP: 93.47\% &
+% Single dataset; no cross-project validation \\
+
+% \bottomrule
+% \end{tabular}}
+% \end{table*}
+\input{sections/04_related_work.tex}
+
+% \section{Methodology}\label{sec:PS}
+% The workflow of the proposed model is presented in Figure \ref{ProposedModel}, 
+% which consists of six parts: i) image acquisition, ii) dataset preparation and annotation, iii) dataset splitting and preprocessing, iv) data augmentation, v) deep learning model construction, and vi) performance analysis.
+
+% \subsection{Image Acquisition}
+% The image acquisition is the first foundational step in building an effective anemia detection model. For this study, we utilized open-source datasets available on Roboflow to construct a comprehensive dataset focused on the conjunctiva region of the eye \cite{pallor-detection_dataset} \footnote{https://universe.roboflow.com/md-nawshin-navin/pallor-detection}. The initial dataset labeled under a single class, ``Conjunctiva\_Pallor'', which visually represents signs of anemia. To balance the dataset and ensure reliable classification, we integrated an additional dataset under the class ``Normal\_Conjunctiva''. Both datasets were forked and combined to form a custom binary-class dataset for this study.
+
+% \subsection{Dataset Preparation and Annotation}
+% This subsection outlines the essential steps involved in preparing the dataset, including data annotation, preprocessing, and augmentation. We used the Roboflow platform, which offers a variety of functions, such as data annotation, data preprocessing, model training, as well as deployment. Each image was manually annotated to define the region of interest (ROI)—specifically the palpebral conjunctiva—to ensure consistent labeling across the dataset. Accurate ROI selection is critical for improving the model's ability to focus on clinically relevant features. Data preprocessing is a crucial step to enhance image quality and standardize the input for deep learning analysis, and it requires large volumes of data to learn complex patterns effectively. 
+
+% \subsection{Dataset Splitting and Preprocessing}
+
+% In this phase, we initially split the annotated dataset into 87\% for training (777 images), 6\% for validation (168 images), and 6\% for testing (166 images). This distribution was chosen to maximize the model’s learning efficiency while ensuring a fair and reliable evaluation of its performance. Data preprocessing, a crucial step in deep learning workflows, involved standard techniques such as noise reduction, contrast enhancement, and image resizing. Specifically, we applied auto-orientation, resized all images to 640 × 640 pixels, and adjusted image contrast to enhance visual quality and consistency across the dataset.
+
+% \subsection{Data Augmentation}
+% The augmentation phase is essential for expanding the dataset and mitigating overfitting, particularly due to the limited number of original images. To enhance the robustness and generalization capability of the detection model, we applied a variety of data augmentation techniques to the training set. These included rotation, horizontal and vertical flipping, brightness and contrast adjustments, zooming, and scaling—each simulating diverse real-world imaging conditions. Labeling eye conjunctiva images presents significant challenges due to variations in lighting, age, gender, and viewing angles, all of which can impact model accuracy. To address these issues, data augmentation was employed to increase dataset diversity and improve the model's ability to generalize across different conditions. Following augmentation, the training dataset was expanded to 2,272 images, ensuring a more comprehensive and representative sample for model training. Table \ref{tab1} presents the summary statistics of the anemia disease detection dataset, which consists of two binary classes: ``Conjunctiva\_Pallor'' (indicating potential anemia) and ``Normal\_Conjunctiva'' (healthy cases).
+
+% \begin{table}[ht]
+% \caption{Anemia disease detection dataset statistics}
+% \label{tab1}
+% \centering
+% \begin{tabular*}{\textwidth}{
+% p{3.6cm}
+% >{\centering\arraybackslash}p{0.8cm}
+% >{\centering\arraybackslash}p{1cm}
+% >{\centering\arraybackslash}p{0.6cm}
+% >{\centering\arraybackslash}p{0.5cm}
+% } 
+% \cline{1-5}
+% Image Categories& Training Count  & Validation Count & Test Count & Total \\
+% \cline{1-5}
+% Conjunctiva\_Pallor (Original) & 395  & 59& 110 & \multirow{2}{*}{1111} \\
+% \cline{1-4}
+% Normal\_Conjunctiva (Original)& 382  &  109 & 56 & \\
+% \cline{1-5}
+% Augmented 3x (Training) & 2272  & 168 & 166 &  2606\\
+% \cline{1-5}
+% \end{tabular*}
+% \end{table}
+% \vspace{-8.5pt}
+% \subsection{Deep Learning Model YOLOv9}
+% This paper presents an improved YOLOv9 deep learning model for anemia detection and classification, featuring a novel architecture with fewer parameters (Param), reduced calculations (FLOPs), and improved performance. The model consists of four key components: the information bottleneck concept, reversible functions, programmable gradient information (PGI), and the generalized efficient layer aggregate network (GELAN) \cite{bib22}. We selected YOLOv9 rather than later YOLO versions for its efficient PGI and lightweight design, making it ideal for edge devices. In addition, YOLOv10, v11 and v12 deos not produce better results for our purpose.  
+
+% The proposed improved YOLOv9 model is designed to address the key challenges in object identification, particularly network architecture efficiency and information loss. We modified the default YOLOv9s architecture by replacing all AConv (Adaptive Convolution) layers in the backbone (specifically at layers 3, 5, and 7) and the neck (layer 19) with standard Conv layers. While AConv is designed to adaptively model complex spatial relationships, it often introduces computational overhead. In contrast, standard Conv layers are not only faster but also highly effective at extracting foundational features such as edges, textures, and fine-grained patterns, making them better suited for real-time applications. Table \ref{comparison} summarizes a comparative analysis between the default and proposed YOLOv9s models, detailing changes in model architecture, GFLOPs, number of parameters, and inference time. %This comparison highlights the effectiveness of the proposed changes in making the model more suitable for real-time Anemia detection and classification using eye conjunctiva images.
+% \begin{table}[ht]
+% \begin{center}
+% \caption{Comparison of default and modified YOLOv9s Model's architecture}
+% \label{comparison}
+% \setlength{\tabcolsep}{3pt}
+% \begin{tabular}{p{65pt} 
+% >{\centering\arraybackslash}p{43pt} 
+% >{\centering\arraybackslash}p{34pt} 
+% >{\centering\arraybackslash}p{26pt} 
+% >{\centering\arraybackslash}p{49pt}}
+% \cline{1-5}
+% Model & No. of layers & Parameters & GFLOps & Inference (ms)\\
+% \hline
+% Default YOLOv9 & 544 & 7,288,182 & 27.4 & 6.1  \\ %\cline{1-5}
+% \textbf{Proposed YOLOv9} & \textbf{320} & \textbf{5,976,566} & \textbf{23.1} & \textbf{5.3} \\
+% \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+% \vspace{-8.5pt}
+% \subsection{Performance Evaluation} 
+% The model's performance was evaluated using precision (P), recall (R), mean average precision (mAP), and F1-score. Precision measures the accuracy of predicted classes, which is denoted by Eq. \eqref{eq4}, while recall assesses how well true classes are identified by Eq. \eqref{eq5}. The mAP evaluates overall prediction accuracy by Eq. \eqref{eq6}, and the F1-score represents the harmonic mean of precision and recall denoted by Eq. \eqref{eq7}.
+
+% \begin{equation}
+%     P = \left(\frac{T_{P}}{T_{P}+F_{P}}  \right)\times 100
+%     \label{eq4}
+% \end{equation}
+% \begin{equation}
+%     R = \left(\frac{T_P}{T_P+F_N} \right) \times 100
+%     \label{eq5}
+% \end{equation}
+% \begin{equation}
+%     mAP=\frac{ \sum_{i=1}^{Q}\left(AP_i \right)}{Q}
+%     \label{eq6}
+% \end{equation}
+
+% \begin{equation}
+%     F1-score =2\times \frac{\left(P \times R\right)}{\left(P+R\right)}
+%     \label{eq7}
+% \end{equation}
+% \begin{comment}
+% \begin{equation}
+%     AP_i = \left(\frac{\frac{T_P}{T_P+F_P}}{N} \right)*100
+%     \label{eq8}
+% \end{equation}
+% \end{comment}
+\input{sections/02_methods.tex}
+
+% \section{Results and Discussions } \label{sec:ERD}
+% This section presents the scientific findings of the proposed system with clear interpretations. It begins with a description of the system configurations, followed by an analysis of the simulation results. %The proposed model compares with other YOLO series.
+% \begin{figure*}[htp]
+% 	\centering
+% 	\includegraphics[width=0.85\linewidth]{results.png}
+% 	\caption{Training graphs of the proposed model of anemia disease identification.}
+% 	\label{traininggraph}
+% \end{figure*}
+
+
+% \begin{figure*}[htp]
+% \centering
+%        \begin{minipage}[t]{0.45\linewidth}
+%             \centering
+%             \includegraphics[width=3.3in]{F1_curve.png} \\\footnotesize{(a)}\vspace{5pt}
+%             \label{subfig: 6A}      
+%        \end{minipage}
+%        \hspace{1em}%
+%        \begin{minipage}[t]{0.45\linewidth}
+%             \centering
+%             \includegraphics[width=3.3in]{PR_curve.png} \\\footnotesize{(b)}\vspace{5pt}
+%             \label{subfig: 6B}      
+%        \end{minipage}
+%        \hfill
+%        \begin{minipage}[t]{0.45\linewidth}
+%             \centering
+%             \includegraphics[width=3.3in]{confusion_matrix.png} 
+%             \\\footnotesize{(c)}
+%             \label{subfig: 6C}      
+%        \end{minipage}
+%        \hspace{1em}%
+%        \begin{minipage}[t]{0.45\linewidth}
+%             \centering            
+%             \includegraphics[width=3.3in]{confusion_matrix_normalized.png} 
+%             \\\footnotesize{(d)}
+%             \label{subfig: 6D}      
+%        \end{minipage}
+%     \caption{Proposed model performance metrics curves: (a) F1-score, (b) mAP@50, (c) Confusion matrix with instances, and (d) Normalized Confusion Matrix.}
+%     \label{fig:fig6}
+% \end{figure*}
+
+% \subsection{System Configuration} 
+% The proposed YOLOv9 model was utilized to detect anemia disease. To optimize and accelerate the training process, we leveraged a powerful NVIDIA L4 GPU with 12.75GB of RAM and 22700MiB capacity. The setup employed Python 3.10.12 runtime and CUDA 12.2.
+
+% \subsection{Hyperparameters}
+% The real-time detection of anemia using the proposed YOLOv9 model involves a set of training configurations and hyperparameters to ensure optimal performance. Table \ref{hyparam} summarizes the key training settings. Training was performed over 100 epochs using the Stochastic Gradient Descent (SGD) optimizer, chosen for its efficiency and stability when working with large-scale image datasets. A batch size of 32 was selected which provided a balance between memory efficiency. To reduce overfitting, a weight decay of 0.0005 was applied to prevent the model from relying on large parameter values.
+
+% \begin{table}[ht]
+% \begin{center}
+% \caption{Key training hyperparameters of the proposed model}
+% \label{hyparam}
+% \setlength{\tabcolsep}{3pt}
+% \begin{tabular}{p{75pt} 
+% >{\centering\arraybackslash}p{40pt} p{65pt} >{\centering\arraybackslash}p{40pt}}
+% \hline
+% Hyperparameters & Values & Hyperparameters & Values\\
+% \hline
+% Initial Learning Rate & 0.01  &Optimizer & SGD                     \\ %\cline{1-4}
+% Momentum& 0.937     & Batch size& 32                   \\ %\cline{1-4}
+% Weight Decay & 0.0005   & Image Size & 640          \\  \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+% \vspace{-9.5pt}
+
+
+% \subsection{Simulation Results} 
+%We trained the dataset using the proposed model.  
+% The proposed model is the finest for real-time object detection in a variety of activities due to its speed, accuracy, and versatility. During the training period, we obtained the best result after 100 epochs. Figure \ref{traininggraph} shows the model training performance—followings were analyzed: mAP@50, mAP@50-95 (for the IoU and the thresholds of 50\%, 55\%,..., 95\%), Speed, and computations (GFLOPS). Table \ref{albumentation} displays the metrices, precision, recall, mAP@50, and mAP[50-95] after 100 epochs of training execution.
+
+% \begin{table}[ht]
+% \caption{Albumentations training results of the proposed model after executing 100 epochs}
+% \label{albumentation}
+% \begin{tabular*}{\textwidth}{
+% p{2.2cm}
+% >{\centering\arraybackslash}p{0.8cm}
+% >{\centering\arraybackslash}p{0.5cm}
+% >{\centering\arraybackslash}p{0.5cm}
+% >{\centering\arraybackslash}p{0.7cm}
+% >{\centering\arraybackslash}p{1.5cm}
+% } 
+% \cline{1-6}
+% Class & Instances  & P & R & mAP50 & mAP[50-95]\\
+% \cline{1-6}
+% Normal\_Conjunctiva & 110 & 0.999 & 0.995    &  0.995     & 0.865 \\ \cline{1-6}
+% Conjunctiva\_Pallor & 59    &  0.999     &     1   &   0.995  &    0.867 \\
+% \cline{1-6}
+% \end{tabular*}
+% \end{table}
+
+
+% The relationship between the accuracy of the model and the confidence level for each prediction is illustrated in Figure \ref{fig:fig6}, offering a complete evaluation of the reliability of the model. Figure \ref{subfig: 6A} presents the F1-score, which identifies the optimal confidence threshold that balances precision and recall. A maximum F1-score of 1.00 was achieved at a confidence level of 0.713, indicating perfect harmonic mean performance at this threshold. Figure \ref{subfig: 6B} displays the mAP at an IoU threshold of 0.50 (mAP@50), where the model achieved a high value of 0.995, confirming its precise localization and classification capabilities. Figures \ref{subfig: 6C} and \ref{subfig: 6D} provide confusion matrices that detail classification accuracy across the two classes: Normal\_Conjunctiva and Conjunctiva\_Pallor. Diagonal entries indicate correct classifications, demonstrating the model's robust prediction performance. Notably, the model achieved flawless detection for the Conjunctiva\_Pallor class, while only a single instance from the Normal\_Conjunctiva class was misclassified. %This suggests a slight bias toward detecting pathological cases more confidently—an advantageous trait in medical diagnostics, where false negatives could have serious implications. 
+% These visualizations collectively affirm the YOLOv9 model’s reliability, precision, and clinical applicability in anemia detection using conjunctival images.
+
+% To demonstrate the effectiveness of the trained model, the study projected anemia diseases from the test dataset. All tests were performed using the same environments and parameters. Figure \ref{fig:fig8} shows the observable outcomes of these assessments using the proposed model, displaying accurate detections. Figure \ref{subfig: 10A}–\ref{subfig: 10D} illustrates how well the suggested method identifies and classifies normal and conjunctival classes, however, the maximum detection confidence is approximately close to 0.98. The proposed model also demonstrates high efficiency, with an average preprocessing time of 0.3 ms and an inference time of 5.3 ms per image.
+
+% \begin{figure*}[ht]
+%    \centering    
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r1.jpg}
+%             \\\footnotesize{(a)}\vspace{5pt}
+%             \label{subfig: 10A}      
+%        \end{minipage}
+%        \hfill
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r5.jpg}
+%             \\\footnotesize{(b)}\vspace{5pt}
+%             \label{subfig: 10B}      
+%        \end{minipage}
+%        \hfill
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r2.jpg}
+%             \\\footnotesize{(c)}
+%             \label{subfig: 10C}      
+%        \end{minipage}
+%        \hfill
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r3.jpg}
+%             \\\footnotesize{(d)}
+%             \label{subfig: 10D}      
+%        \end{minipage}
+%        \caption{The prediction results - (a) Correct prediction, (b) \dots, (c) \dots (d) \dots .}
+%        \label{fig:fig8}
+% \end{figure*}
+
+
+% \begin{figure*}[ht]
+%    \centering    
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r1.jpg}
+%             \\\footnotesize{(a)}\vspace{5pt}
+%             \label{subfig: 10A}      
+%        \end{minipage}
+%        \hfill
+%        \begin{minipage}[t]{0.48\linewidth}
+%             \centering
+%             \includegraphics[width=0.7\textwidth]{r5.jpg}
+%             \\\footnotesize{(b)}\vspace{5pt}
+%             \label{subfig: 10B}      
+%        \end{minipage}
+%        \caption{The prediction results - (a) Correct prediction, (b) \dots, (c) \dots (d) \dots .}
+%        \label{fig:fig8}
+% \end{figure*}
+
+% To validate the effectiveness of the proposed YOLOv9 model, we conducted a performance comparison with other YOLO versions, including YOLOv8 through YOLOv12, based on the benchmark metrics mAP@50 and F1-score. As shown in Table \ref{modelCompare}, the proposed model, trained with the SGD optimizer, achieved superior results, attaining the highest mAP@50 and F1-score and Table \ref{existstudies} compares our model with existing methods, acheived 98.2\% enhanced accuracy, confirming the robustness in anemia detection. \hl{\textit{(Just a comment!)}}
+
+% \begin{table}[ht]
+% \caption{Comparing the proposed YOLOv9 performance with other YOLO models}
+% \label{modelCompare}
+% \begin{tabular*}{\textwidth}{
+% p{3cm}
+% >{\centering\arraybackslash}p{1.2cm}
+% >{\centering\arraybackslash}p{1.2cm}
+% >{\centering\arraybackslash}p{1.5cm}
+% }
+% \cline{1-4}
+% Model    & Optimizer & mAP@50 & F1-score\\
+% \cline{1-4}
+% YOLOv8s &  SGD  &  0.994 &  0.995 \\ 
+% YOLOv9s (Default) &  SGD  &  0.993 &  0.996 \\ 
+% YOLOv10s &  SGD  &  0.985 & 0.993 \\ 
+% YOLOv11s &  SGD  &  0.994 & 0.993 \\ 
+% YOLOv12s &  SGD  &  0.992 & 0.991 \\ 
+% \textbf{Proposed YOLOv9s}
+% & \textbf{SGD}   & \textbf{0.995}   & \textbf{1.00}   \\ 
+% \cline{1-4}
+% \end{tabular*}
+% \end{table}
+
+% \begin{table}[ht]
+% \caption{Comparing the proposed model performance with existing studies}
+% \label{existstudies}
+% \begin{tabular*}{\textwidth}{
+% p{2.1cm}|
+% p{1.4cm}|
+% p{2cm}|
+% >{\centering\arraybackslash}p{1.6cm}
+% }
+% \cline{1-4}
+% Reference     & Model     & Dataset & Accuracy (\%) \\ \cline{1-4}
+% \citeauthor{bib5} \cite{bib5} & Res-Net50 & \multirow{2}{*}{Eyes-defy-anemia}   & 97.4     \\ \cline{1-2} \cline{4-4} 
+% \textbf{Proposed}   & \textbf{YOLOv9}    &        & \textbf{98.2}  \\  \cline{1-4} 
+% \end{tabular*}
+% \end{table}
+\input{sections/03_results.tex}
+\input{sections/05_discussion_conclusion.tex}
+
+% \section{Limitations} \label{SEC: limF}
+% While results are promising, challenges like variable lighting, skin tones, and device heterogeneity remain the limitations of the proposed work. \ldots.. \hl{3/4 lines}
+
+% \section{Conclusion and Future Works}\label{sec:con}
+
+% This study proposed a non-invasive anemia detection method using improved YOLOv9 to analyze palpebral conjunctiva images. A custom-labeled dataset of palpebral conjunctiva was prepared, incorporating extensive preprocessing and augmentation techniques to enhance model robustness. The proposed model achieved approximately 99\% accuracy, an mAP@50 of 0.995, and an F1-score of 1.00, demonstrates high precision in detecting conjunctival pallor, offering a reliable tool for early anemia screening—particularly beneficial in low-resource or remote settings by reducing dependence on lab tests. 
+
+% The future can be focused on (1) integrating multimodal data (e.g., symptoms, clinical history) for improved accuracy, (2) optimizing the model for diverse  demographic groups, and (3) deploying the system in real-time diagnostic platforms to enhance global healthcare accessibility. 
+
+% \section*{Acknowledgment}
+% The authors express their sincere gratitude to the Ubiquitous, Cloud, and Human-Computer Interaction (UCH) Research Group, Department of Computer Science, American International University-Bangladesh for supporting this research.
+
+\section*{Data and Code Availability}
+Both corpora are public. Every number in this paper is produced by a committed script that writes a JSON file, and no number was transcribed from a session log. The partition is built once by a script that asserts no duplicate-content group crosses a boundary, and is reused unchanged by every model and every training seed. A single notebook reproduces the preprocessing, both transformers at their deployed configurations and the ensemble, reading each configuration from the checkpoint record at runtime rather than from a value typed into the notebook. Code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
+
+% \bibliographystyle{IEEEtranN}
+% \bibliography{refs}
+% \balance
+\balance
+\bibliographystyle{IEEEtranN}
+\bibliography{bib/refs}
+
+\end{document}
