@@ -276,6 +276,12 @@ def build_text(R):
         rep = max(REPS, key=lambda rp: C[(tag, name, rp)][3])
         return rep, C[(tag, name, rep)]
 
+    def combined_rep(name):
+        """One representation per model, chosen by summed F1 across both datasets,
+        so a model is never shown at a different representation on each dataset."""
+        rep = max(REPS, key=lambda rp: C[('D1', name, rp)][3] + C[('D2', name, rp)][3])
+        return rep, C[('D1', name, rep)], C[('D2', name, rep)]
+
     d1_best = max(CLASSICAL, key=lambda n: best_classical('D1', n)[1][3])
     d2_best = max(CLASSICAL, key=lambda n: best_classical('D2', n)[1][3])
     d1_rep, d1_vals = best_classical('D1', d1_best)
@@ -467,7 +473,8 @@ def build_text(R):
     def final6(tag):
         rows = []
         for name in CLASSICAL:
-            rep, vals = best_classical(tag, name)
+            rep, v1, v2 = combined_rep(name)
+            vals = v1 if tag == 'D1' else v2
             rows.append((f'{name} [{rep}]', vals[3]))
         rows.append(('BERT', f(tag, 'BERT')))
         rows.append(('DeBERTa (BERT variant)', f(tag, 'DeBERTa')))
@@ -484,9 +491,13 @@ def build_text(R):
         'configurations of BERT and DeBERTa on both datasets plus the ensemble, moved here from the per-model '
         'sections so the whole grid can be read in one place. Table 7 below it is the final six-row comparison, '
         'one row per model family at its best setting; each classical model name carries its winning '
-        'representation directly, for example "Naive Bayes [BoW]", instead of a separate Representation column, '
-        'since the representation choice differs between the two datasets and a shared column would force one '
-        'label to serve both.\n'
+        'representation directly, for example "Naive Bayes [BoW]", instead of a separate Representation column. '
+        'Each classical model uses the same representation on both datasets, chosen by summed F1 across the '
+        'two, so a model is never shown at one representation on DAIGT V2 and a different one on HC3. Naive '
+        'Bayes and Logistic Regression both land on BoW under this rule, unchanged from picking per dataset. '
+        'The Support Vector Machine does not, per dataset TF-IDF wins on DAIGT V2 and BoW wins on HC3, and '
+        'summed F1 favours TF-IDF by 0.0014, so the SVM row uses TF-IDF on both datasets, 0.0026 F1 short of '
+        'BoW\'s HC3 score rather than at BoW\'s HC3 best.\n'
         f'Across Table 7\'s six rows, the best on DAIGT V2 is {f6d1_bl} at {f6d1_bf:.4f} F1, the worst is '
         f'{f6d1_wl} at {f6d1_wf:.4f}, mean {f6d1_mf:.4f}. On HC3 the best is {f6d2_bl} at {f6d2_bf:.4f}, the '
         f'worst is {f6d2_wl} at {f6d2_wf:.4f}, mean {f6d2_mf:.4f}. DeBERTa is best on both because disentangled '
@@ -783,21 +794,23 @@ def main():
 
     # ---- Table 7, sir's final comparison table. Six rows, one per model family, no
     #      Representation column — the classical model name itself carries [BoW]/[TF-IDF].
-    def best_rep(tag, name):
-        rep = max(REPS, key=lambda rp: R['classical'][(tag, name, rp)][3])
-        return rep, R['classical'][(tag, name, rep)]
+    #      One representation per model, chosen by summed F1 across both datasets, so a
+    #      model never shows a different representation on each dataset (per sir's note).
+    def combined_rep_main(name):
+        rep = max(REPS, key=lambda rp: R['classical'][('D1', name, rp)][3]
+                                       + R['classical'][('D2', name, rp)][3])
+        return rep, R['classical'][('D1', name, rep)], R['classical'][('D2', name, rep)]
 
     cap7 = para_after(sec6[1], 'Table 7. Final comparison, six rows. Every row comes from the full balanced '
-                            'corpora and the same fixed split. Each classical model name carries its winning '
-                            'text representation directly, e.g. "Naive Bayes [BoW]", since the winning '
-                            'representation differs by dataset. The ENSEMBLE row uses the weight chosen on '
-                            'validation.', size=10, justify=False)
+                            'corpora and the same fixed split. Each classical model name carries the text '
+                            'representation it uses, e.g. "Naive Bayes [BoW]", the same representation on '
+                            'both datasets for that model, chosen by summed F1 across the two. The ENSEMBLE '
+                            'row uses the weight chosen on validation.', size=10, justify=False)
     rows = [[''] * 9,
             ['Model', 'Acc', 'Prec', 'Rec', 'F1', 'Acc', 'Prec', 'Rec', 'F1']]
     for name in CLASSICAL:
-        r1, v1 = best_rep('D1', name)
-        r2, v2 = best_rep('D2', name)
-        rows.append([f'{name} [D1: {r1} / D2: {r2}]']
+        rep, v1, v2 = combined_rep_main(name)
+        rows.append([f'{name} [{rep}]']
                     + [f'{v:.4f}' for v in v1] + [f'{v:.4f}' for v in v2])
     for mk, label in (('BERT', 'BERT'), ('DeBERTa', 'DeBERTa (BERT variant)')):
         a = R['deployed'][('D1', mk)]['test']
