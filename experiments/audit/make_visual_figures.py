@@ -420,64 +420,78 @@ def fig_pipeline():
     n_nolen = dec['datasets']['D1']['length_controlled']['surface_only_nolength']['n_features']
     n_content = {t: dec['datasets'][t]['content_only']['n_features'] for t in DATASETS}
 
-    fig, ax = plt.subplots(figsize=(DBL_W, 2.55))
+    fig, ax = plt.subplots(figsize=(DBL_W, 4.1))
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 42)
+    ax.set_ylim(-14, 53)
     ax.axis('off')
 
-    def box(x, y, w, h, text, fc, ec, fs=5.6):
+    def box(x, y, w, h, header, detail, fc, ec, header_fs=7.3, detail_fs=6.4):
         ax.add_patch(FancyBboxPatch((x, y), w, h,
-                                    boxstyle='round,pad=0.6,rounding_size=1.2',
-                                    fc=fc, ec=ec, lw=0.7))
-        ax.text(x + w / 2, y + h / 2, text, ha='center', va='center', fontsize=fs)
+                                    boxstyle='round,pad=0.7,rounding_size=1.4',
+                                    fc=fc, ec=ec, lw=0.9))
+        cx = x + w / 2
+        n_header_lines = header.count('\n') + 1
+        header_top = y + h - 1.9
+        ax.text(cx, header_top, header, ha='center', va='top',
+                fontsize=header_fs, fontweight='bold', color='#1a1a1a',
+                linespacing=1.4)
+        detail_top = header_top - n_header_lines * 2.9 - 1.1
+        ax.text(cx, detail_top, detail, ha='center', va='top',
+                fontsize=detail_fs, color='#333333', linespacing=1.65)
 
-    def arrow(x1, y1, x2, y2):
+    def arrow(x1, y1, x2, y2, lw=0.9):
         ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2),
-                                     arrowstyle='-|>', mutation_scale=6,
-                                     lw=0.7, color='#555555',
-                                     shrinkA=1, shrinkB=1))
+                                     arrowstyle='-|>', mutation_scale=7,
+                                     lw=lw, color='#666666',
+                                     shrinkA=2, shrinkB=2,
+                                     connectionstyle='arc3,rad=0.0'))
 
-    box(1, 16, 15, 10,
-        'Raw corpus\n\nDAIGT V2  %s\nHC3  %s' % (
+    # Stage 1: data in, vertically centred on the middle (content) arm.
+    box(1, 17, 17, 12, 'Raw corpus',
+        'DAIGT V2   %s\nHC3   %s' % (
             f"{sum(n['D1'].values()):,}", f"{sum(n['D2'].values()):,}"),
         '#F4F4F4', '#888888')
 
-    box(19, 16, 15, 10,
-        'Balance,\nhash by content,\ngroup-aware split\n72 / 8 / 20',
+    box(21, 17, 17, 12, 'Balanced, grouped split',
+        'hash by content\ngroup-aware, 72 / 8 / 20',
         '#F4F4F4', '#888888')
 
-    box(38, 29, 26, 11,
-        'Surface arm  (%d features)\npunctuation, whitespace, casing,\nlength, non-ASCII, digits\nno word identity is ever read'
+    # Stage 2: the three arms, colour-coded and clearly separated with real gaps.
+    box(41, 33, 28, 17, 'Surface arm',
+        '%d orthographic features\npunctuation, whitespace, casing,\nlength, non-ASCII'
+        '\nnever reads word identity'
         % n_surface, '#DCE7F2', CB['blue'])
 
-    box(38, 15.5, 26, 11,
-        'Content arm  (%s / %s terms)\nlowercase, strip [^a-z ],\nbag-of-words, raw counts\nno punctuation, casing or non-ASCII'
+    box(41, 15.5, 28, 15, 'Content arm',
+        '%s / %s bag-of-words terms\nlowercase, ASCII letters only\n'
+        'no punctuation, casing or non-ASCII'
         % (f"{n_content['D1']:,}", f"{n_content['D2']:,}"), '#F7DEDE', CB['red'])
 
-    box(38, 2, 26, 11,
-        'Full arm  (reference)\nBERT and DeBERTa-v3,\nraw text, 128 tokens\nreported, not matched',
-        '#F4F4F4', '#888888')
+    box(41, -1, 28, 14, 'Full arm (reference)',
+        'BERT and DeBERTa-v3, raw text\n128 tokens, reported not matched',
+        '#F0F0F0', '#888888')
 
-    box(68, 22.5, 15, 10,
-        'Logistic\nregression\n(shared family)', '#FFFFFF', '#555555')
+    # Stage 3: shared classifier and shared paired test.
+    box(73, 25, 15, 15, 'Logistic\nregression', 'shared family\none per arm',
+        '#FFFFFF', '#555555', header_fs=7.1, detail_fs=6.1)
 
-    box(86, 15, 13, 12,
-        'Paired\nMcNemar\n+ bootstrap\n95% CI', '#FFFFFF', '#555555')
+    box(90, 13, 9, 19, 'Paired\ntest', 'McNemar +\nbootstrap\n95% CI',
+        '#FFFFFF', '#555555', header_fs=7.0, detail_fs=6.2)
 
-    box(6, -8, 90, 7,
-        'Length control    surface arm drops %d document-size features,    '
-        'content arm rows L1-normalised then rescaled'
-        % (n_surface - n_nolen), '#F0F0F0', '#999999', fs=5.2)
-    ax.set_ylim(-9.5, 42)
+    # Footnote strip: the length control, set apart visually from the pipeline itself.
+    box(6, -13, 88, 9, 'Length control',
+        'surface arm drops %d document-size features   |   '
+        'content arm rows are L1-normalised then rescaled'
+        % (n_surface - n_nolen), '#FBFBFB', '#BBBBBB', header_fs=6.6, detail_fs=6.1)
 
-    arrow(16, 21, 19, 21)
-    arrow(34, 21, 38, 34.5)
-    arrow(34, 21, 38, 21)
-    arrow(34, 21, 38, 7.5)
-    arrow(64, 34.5, 68, 29)
-    arrow(64, 21, 68, 26)
-    arrow(83, 27.5, 86, 23)
-    arrow(64, 7.5, 86, 17)
+    arrow(18, 23, 21, 23)
+    arrow(38, 23, 41, 41.5)
+    arrow(38, 23, 41, 23)
+    arrow(38, 23, 41, 6)
+    arrow(69, 41.5, 73, 35)
+    arrow(69, 23, 73, 30)
+    arrow(88, 30, 90, 26)
+    arrow(69, 6, 90, 17)
 
     fig.savefig(FIGS / 'fig_pipeline.pdf')
     plt.close(fig)

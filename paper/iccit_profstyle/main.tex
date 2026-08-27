@@ -47,6 +47,24 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
+% Explicit, viewer-independent link colours (bare \usepackage{hyperref} falls
+% back to unstyled border-box annotations that most modern PDF viewers
+% silently suppress, so citations/cross-references/DOI links can look
+% entirely unstyled with no visual distinction at all). Colours reuse this
+% paper's own colourblind-safe palette (fig_pipeline.pdf, fig_dashboard.pdf,
+% etc.): green for \cite, a muted red for internal \ref (Section/Table/
+% Figure/equation), blue for \url (DOI links in the bibliography).
+\definecolor{citegreen}{HTML}{1A7A1A}
+\definecolor{refred}{HTML}{A0282E}
+\definecolor{urlblue}{HTML}{1A4E8A}
+\hypersetup{
+  colorlinks=true,
+  citecolor=citegreen,
+  linkcolor=refred,
+  urlcolor=urlblue,
+  pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}
+}
+
 \begin{document}
 % \title{Accurate Anemia Disease Detection Using Eye Conjunctiva Features with Improved YOLOv9 (\hl{Note: A typical paper title should not be more than 13 words}) }
 \title{A Surface-Content Decomposition of\\AI-Generated Text Detection Benchmarks}
@@ -525,6 +543,9 @@ AI-generated text detection, benchmark evaluation, surface features, shortcut le
 
 % \section*{Acknowledgment}
 % The authors express their sincere gratitude to the Ubiquitous, Cloud, and Human-Computer Interaction (UCH) Research Group, Department of Computer Science, American International University-Bangladesh for supporting this research.
+
+\section*{Acknowledgment}
+The authors express their sincere gratitude to the Ubiquitous, Cloud, and Human-Computer Interaction (UCH) Research Group, Department of Computer Science, American International University-Bangladesh for supporting this research.
 
 \section*{Data and Code Availability}
 Both corpora are public. Every number in this paper is produced by a committed script that writes a JSON file, and no number was transcribed from a session log. The partition is built once by a script that asserts no duplicate-content group crosses a boundary, and is reused unchanged by every model and every training seed. A single notebook reproduces the preprocessing, both transformers at their deployed configurations and the ensemble, reading each configuration from the checkpoint record at runtime rather than from a value typed into the notebook. Code is released for reproduction.\ifblind{} The link is withheld for blind review.\fi
