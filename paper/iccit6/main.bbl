@@ -54,6 +54,30 @@ C.~Park, H.~J. Kim, J.~Kim, Y.~Kim, T.~Kim, H.~Cho, H.~Jo, S.~goo Lee, and
   K.~M. Yoo, ``Investigating the influence of prompt-specific shortcuts in {AI}
   generated text detection,'' arXiv, 2024, preprint, arXiv:2406.16275.
 
+\bibitem{Dugan2024raid}
+L.~Dugan, A.~Hwang, F.~Trhl{\'i}k, A.~Zhu, J.~M. Ludan, H.~Xu, D.~Ippolito, and
+  C.~Callison-Burch, ``{RAID}: A shared benchmark for robust evaluation of
+  machine-generated text detectors,'' in \emph{Proc. ACL}, 2024, pp.
+  12\,463--12\,492.
+
+\bibitem{Wang2024m4}
+Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun,
+  C.~Whitehouse, O.~Mohammed~Afzal, T.~Mahmoud, T.~Sasaki, T.~Arnold, A.~F.
+  Aji, N.~Habash, I.~Gurevych, and P.~Nakov, ``{M4}: Multi-generator,
+  multi-domain, and multi-lingual black-box machine-generated text detection,''
+  in \emph{Proc. EACL}, 2024, pp. 1369--1407.
+
+\bibitem{Gururangan2018annotation}
+S.~Gururangan, S.~Swayamdipta, O.~Levy, R.~Schwartz, S.~R. Bowman, and N.~A.
+  Smith, ``Annotation artifacts in natural language inference data,'' in
+  \emph{Proc. NAACL-HLT}, 2018, pp. 107--112.
+
+\bibitem{Poliak2018hypothesis}
+A.~Poliak, J.~Naradowsky, A.~Haldar, R.~Rudinger, and B.~Van~Durme,
+  ``Hypothesis only baselines in natural language inference,'' in \emph{Proc.
+  Joint Conf. on Lexical and Computational Semantics (*SEM)}, 2018, pp.
+  180--191.
+
 \bibitem{Yadagiri2025aigenerated}
 \BIBentryALTinterwordspacing
 A.~Yadagiri, S.~Sai~Teja, P.~Pakray, and C.~Chunka, ``{AI}-generated text
@@ -71,19 +95,6 @@ G.~Z. Socolof and R.~Kacholia, ``Fast, interpretable {AI}-generated text
   \url{https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/GiuliaZoeSocolofRitikaKacholia.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Dugan2024raid}
-L.~Dugan, A.~Hwang, F.~Trhl{\'i}k, A.~Zhu, J.~M. Ludan, H.~Xu, D.~Ippolito, and
-  C.~Callison-Burch, ``{RAID}: A shared benchmark for robust evaluation of
-  machine-generated text detectors,'' in \emph{Proc. ACL}, 2024, pp.
-  12\,463--12\,492.
-
-\bibitem{Wang2024m4}
-Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun,
-  C.~Whitehouse, O.~Mohammed~Afzal, T.~Mahmoud, T.~Sasaki, T.~Arnold, A.~F.
-  Aji, N.~Habash, I.~Gurevych, and P.~Nakov, ``{M4}: Multi-generator,
-  multi-domain, and multi-lingual black-box machine-generated text detection,''
-  in \emph{Proc. EACL}, 2024, pp. 1369--1407.
-
 \bibitem{Wang2024semeval}
 Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
   T.~Mahmoud, G.~Puccetti, T.~Arnold, A.~F. Aji, N.~Habash, I.~Gurevych, and
@@ -95,17 +106,6 @@ Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
 A.~Torralba and A.~A. Efros, ``Unbiased look at dataset bias,'' in \emph{Proc.
   IEEE Conf. Computer Vision and Pattern Recognition (CVPR)}, 2011, pp.
   1521--1528.
-
-\bibitem{Gururangan2018annotation}
-S.~Gururangan, S.~Swayamdipta, O.~Levy, R.~Schwartz, S.~R. Bowman, and N.~A.
-  Smith, ``Annotation artifacts in natural language inference data,'' in
-  \emph{Proc. NAACL-HLT}, 2018, pp. 107--112.
-
-\bibitem{Poliak2018hypothesis}
-A.~Poliak, J.~Naradowsky, A.~Haldar, R.~Rudinger, and B.~Van~Durme,
-  ``Hypothesis only baselines in natural language inference,'' in \emph{Proc.
-  Joint Conf. on Lexical and Computational Semantics (*SEM)}, 2018, pp.
-  180--191.
 
 \bibitem{Geirhos2020shortcut}
 R.~Geirhos, J.-H. Jacobsen, C.~Michaelis, R.~Zemel, W.~Brendel, M.~Bethge, and
