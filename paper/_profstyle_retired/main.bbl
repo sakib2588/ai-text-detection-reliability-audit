@@ -24,13 +24,19 @@
 
 \bibitem[Guo et~al.(2023)Guo, Zhang, Wang, Jiang, Nie, Ding, Yue, and
   Wu]{Guo2023close}
+\BIBentryALTinterwordspacing
 B.~Guo, X.~Zhang, Z.~Wang, M.~Jiang, J.~Nie, Y.~Ding, J.~Yue, and Y.~Wu, ``How
   close is chatgpt to human experts? comparison corpus, evaluation, and
-  detection,'' 2023, preprint.
+  detection,'' 2023, preprint. [Online]. Available:
+  \url{https://www.semanticscholar.org/paper/cb29cf52f0f7d2e4324c68690a55b22890f2212d}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Su et~al.(2023)Su, Wu, Zhou, Ma, and Hu]{Su2023plus}
+\BIBentryALTinterwordspacing
 Z.~Su, X.~Wu, W.~Zhou, G.~Ma, and S.~Hu, ``Hc3 plus: A semantic-invariant human
-  chatgpt comparison corpus,'' 2023, preprint.
+  chatgpt comparison corpus,'' 2023, preprint. [Online]. Available:
+  \url{https://www.semanticscholar.org/paper/ff7ee54876220ccf425050a14f14bb9893849f05}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Zhou(2024)]{Zhou2024exploiting}
 \BIBentryALTinterwordspacing
@@ -72,9 +78,12 @@ R.~Ardeshirifar, ``Comparing hand-crafted and deep learning approaches for
 
 \bibitem[Park et~al.(2024)Park, Kim, Kim, Kim, Kim, Cho, Jo, goo Lee, and
   Yoo]{Park2024investigating}
+\BIBentryALTinterwordspacing
 C.~Park, H.~J. Kim, J.~Kim, Y.~Kim, T.~Kim, H.~Cho, H.~Jo, S.~goo Lee, and
   K.~M. Yoo, ``Investigating the influence of prompt-specific shortcuts in {AI}
-  generated text detection,'' 2024, preprint.
+  generated text detection,'' 2024, preprint. [Online]. Available:
+  \url{https://www.semanticscholar.org/paper/c860cd15c192b54bc94ac927ba99e0f3d562bd86}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Kubrusly et~al.(2025)Kubrusly, dos Santos, and
   Pelegrino]{Kubrusly2025detecting}
@@ -228,8 +237,12 @@ G.~Huang, Y.~Zhang, Z.~Li, Y.~You, M.~Wang, and Z.~Yang, ``Are {AI}-generated
 \BIBentrySTDinterwordspacing
 
 \bibitem[Lai et~al.(2024)Lai, Zhang, and Chen]{Lai2024adaptive}
+\BIBentryALTinterwordspacing
 Z.~Lai, X.~Zhang, and S.~Chen, ``Adaptive ensembles of fine-tuned transformers
-  for llm-generated text detection,'' 2024, preprint.
+  for {LLM}-generated text detection,'' in \emph{Proc. Int. Joint Conf. Neural
+  Networks (IJCNN)}, 2024, pp. 1--7. [Online]. Available:
+  \url{https://ieeexplore.ieee.org/document/10651296}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Zhang et~al.(2024)Zhang, Song, Yang, Li, Han, and
   Tan]{Zhang2024detecting}
@@ -324,9 +337,12 @@ T.~Kudo and J.~Richardson, ``{SentencePiece}: A simple and language independent
 
 \bibitem[Dodge et~al.(2020)Dodge, Ilharco, Schwartz, Farhadi, Hajishirzi, and
   Smith]{Dodge2020fine}
+\BIBentryALTinterwordspacing
 J.~Dodge, G.~Ilharco, R.~Schwartz, A.~Farhadi, H.~Hajishirzi, and N.~Smith,
   ``Fine-tuning pretrained language models: Weight initializations, data
-  orders, and early stopping,'' 2020, preprint.
+  orders, and early stopping,'' 2020, preprint. [Online]. Available:
+  \url{https://www.semanticscholar.org/paper/baf60d13c98916b77b09bc525ede1cd610ed1db5}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Mosbach et~al.(2021)Mosbach, Andriushchenko, and
   Klakow]{Mosbach2020stability}
