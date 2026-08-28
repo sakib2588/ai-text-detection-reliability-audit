@@ -312,7 +312,7 @@ The workflow of this study is presented in Figure~\ref{fig:pipeline} and consist
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{fig_pipeline.pdf}
-\caption{The complete study pipeline. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. Counts on the diagram are read from the committed result tables.}
+\caption{The study pipeline, numbered by the five stages named in the text. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. In stage 4 each chip is one fitted configuration, coloured by the representation it was fitted on, so the 38 classical configurations divide into 12 on TF-IDF, 9 on bag-of-words, 9 on character n-grams and 8 on the reduced TF-IDF, and the 16 fine-tuning runs into eight per transformer. Every count on the diagram is read from the committed result tables.}
 \label{fig:pipeline}
 \end{figure*}
 
