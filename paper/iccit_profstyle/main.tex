@@ -324,14 +324,7 @@ Table~\ref{tab:corpora} gives the duplication audit. DAIGT V2 is essentially fre
 
 \subsection{Class balance}
 
-Both corpora were class-balanced by downsampling the majority class, giving 34,994 and 53,806 rows. Figure~\ref{fig:balance} shows the result, an exact minority-to-majority ratio of 1.0000 on both. The check matters for two reasons. It fixes a degenerate single-class predictor at 0.333 weighted F1 rather than something respectable, which is what makes the label-free control in Section~\ref{sec:labelfree} readable, and it settles the question of whether any resampling scheme is required, since after downsampling none is. Training partitions balance to within 0.002 of parity.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=0.82\textwidth]{class_balance.pdf}
-\caption{Class balance after downsampling the majority class. Both corpora sit at an exact minority-to-majority ratio of 1.0000, so no synthetic resampling is applied anywhere in this study.}
-\label{fig:balance}
-\end{figure*}
+Both corpora were class-balanced by downsampling the majority class, giving 34,994 and 53,806 rows and an exact minority-to-majority ratio of 1.0000 on both. The check matters for two reasons. It fixes a degenerate single-class predictor at 0.333 weighted F1 rather than something respectable, which is what makes the label-free control in Section~\ref{sec:labelfree} readable, and it settles the question of whether any resampling scheme is required, since after downsampling none is. Training partitions balance to within 0.002 of parity.
 
 \subsection{Partitioning}
 
@@ -346,17 +339,6 @@ Length is the one property both corpora encode in every representation, so it is
 \includegraphics[width=\textwidth]{length_distributions.pdf}
 \caption{Document length by class, clipped at the 99th percentile. The human tail is the long one on DAIGT V2, while on HC3 the machine distribution sits to the right of the human one.}
 \label{fig:lengths}
-\end{figure*}
-
-\subsection{Vocabulary}
-
-Figure~\ref{fig:wordclouds} shows the most frequent vocabulary per class after cleaning. The DAIGT V2 panels are dominated by the shared essay topics, so human and machine essays draw on much the same nouns, and the visible difference is one of proportion rather than of subject. The HC3 panels differ more visibly, with contracted forms concentrated on the human side and hedging and discourse words on the machine side. Frequency alone does not separate the classes, which is why the analysis in Section~\ref{sec:terms} moves to log-odds and to fitted coefficients rather than to raw counts.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\textwidth]{wordclouds.pdf}
-\caption{Most frequent vocabulary by class and corpus after cleaning. Size is frequency within the class. The two DAIGT V2 panels share their topical vocabulary almost entirely.}
-\label{fig:wordclouds}
 \end{figure*}
 
 \subsection{Text representations}
@@ -512,14 +494,7 @@ DecisionTree [entropy] & TF-IDF-s & 0.9044 & 0.9044 & 0.9044 & 0.0915 & TF-IDF-s
 \end{tabular}
 \end{table*}
 
-Table~\ref{tab:families} reports the best configuration of every classical family on both corpora, and Figure~\ref{fig:ranking} draws the same ranking. Three things in it matter for the rest of the paper.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\textwidth]{model_ranking.pdf}
-\caption{Best configuration per model family, ranked by weighted F1 within each corpus, with the winning representation printed beside each bar. The ordering is not shared between the two corpora.}
-\label{fig:ranking}
-\end{figure*}
+Table~\ref{tab:families} reports the best configuration of every classical family on both corpora. Three things in it matter for the rest of the paper.
 
 First, the winning representation on both corpora is the character n-gram view, which is the only classical representation fitted on raw text. It wins outright on DAIGT V2 for the top two families and on HC3 for eight of the twenty. Second, the spread across families is wide, from 0.9941 down to 0.9044 on DAIGT V2 and from 0.9890 down to 0.8545 on HC3, so a paper reporting one classical baseline is reporting a point on a range rather than a property of classical models. Third, the ordering does not transfer between corpora. LightGBM is third on DAIGT V2 and eighth on HC3, the multilayer perceptron under Adam is fifth on DAIGT V2 and fifteenth on HC3, while the Naive Bayes family moves the other way.
 
@@ -642,20 +617,6 @@ Figures~\ref{fig:coeflinear} and~\ref{fig:coeflgbm} confirm the pattern from two
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\columnwidth]{DAIGT_mean_absolute_shap_value.pdf}
-\caption{DAIGT V2 mean absolute SHAP value per term over the LightGBM model. The leading terms are ordinary essay vocabulary and no single term dominates.}
-\label{fig:shapbardaigt}
-\end{figure}
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{HC3_mean_absolute_shap_value.pdf}
-\caption{HC3 mean absolute SHAP value per term over the LightGBM model. The distribution is far more concentrated, with \texttt{important} carrying roughly 1.6 times the weight of the second term.}
-\label{fig:shapbarhc3}
-\end{figure}
-
-\begin{figure}[!ht]
-\centering
 \includegraphics[width=\columnwidth]{DAIGT_shap_value_distribution.pdf}
 \caption{DAIGT V2 per-document SHAP values, coloured by feature value. High counts of \texttt{would} and \texttt{conclusion} push a document towards the machine class.}
 \label{fig:shapswarmdaigt}
@@ -668,9 +629,9 @@ Figures~\ref{fig:coeflinear} and~\ref{fig:coeflgbm} confirm the pattern from two
 \label{fig:shapswarmhc3}
 \end{figure}
 
-Shapley attribution~\cite{Lundberg2017unified} over the fitted LightGBM models gives the per-document view. Figures~\ref{fig:shapbardaigt} and~\ref{fig:shapbarhc3} rank terms by mean absolute contribution, and the shapes of the two rankings differ as much as their contents. DAIGT V2 declines gradually from \texttt{would} at 0.86 through a long tail of essay vocabulary, so no term dominates. HC3 is led by \texttt{important} at 0.77 with \texttt{help} and \texttt{url} close behind, and the decline after those is much steeper.
+Shapley attribution~\cite{Lundberg2017unified} over the fitted LightGBM models gives the per-document view, and the two corpora differ in how concentrated that attribution is. Ranked by mean absolute contribution, DAIGT V2 declines gradually from \texttt{would} at 0.86 through a long tail of essay vocabulary, so no term dominates, while HC3 is led by \texttt{important} at 0.77 with \texttt{help} and \texttt{url} close behind and falls away far more steeply after them.
 
-Figures~\ref{fig:shapswarmdaigt} and~\ref{fig:shapswarmhc3} show the same attributions per document. The HC3 panel is the informative one, since the \texttt{url} row carries a long negative tail reaching below $-4$, meaning that a document containing the placeholder token is pushed hard towards the human label. No DAIGT V2 feature produces a tail of that shape. A single collection token acting as near-decisive evidence for one class is precisely the phenomenon the decomposition below quantifies without needing to name the feature in advance.
+Figures~\ref{fig:shapswarmdaigt} and~\ref{fig:shapswarmhc3} give those attributions per document. The HC3 panel is the informative one, since the \texttt{url} row carries a long negative tail reaching below $-4$, meaning that a document containing the placeholder token is pushed hard towards the human label. No DAIGT V2 feature produces a tail of that shape. A single collection token acting as near-decisive evidence for one class is precisely the phenomenon the decomposition below quantifies without needing to name the feature in advance.
 
 \subsection{The transformer grid}
 
@@ -803,7 +764,7 @@ Surface form is informative on both benchmarks, since DAIGT V2's surface-only ar
 
 The decomposition says how much orthography carries, not which orthographic property carries it, and the two corpora differ there as sharply as in the aggregate. Per-feature Shapley attributions~\cite{Lundberg2017unified} over the surface arm, computed exactly rather than sampled because the arm is linear, put the rate of spaces preceding punctuation first on HC3, at mean absolute SHAP 7.81 against 3.35 for the next feature, and its fitted coefficient is negative, so its presence drives the human label. That is the collection convention Tian et al.~\cite{Tian2023multiscale} identified, recovered here without being looked for and quantified against the rest of the feature set. Section~\ref{sec:tokenisation} then shows why its presence does not license the conclusion a reader would reach next.
 
-On DAIGT V2 the leading contributors are document length at 2.77, mean word length at 1.88 and casing statistics, none of which exceeds 2.8 and none of which is a collection convention in the same sense. The surface arm on that corpus is reading a diffuse stylistic signal rather than a single artefact, which is consistent with its much weaker showing against the content arm and with the diffuse term-level attribution in Figure~\ref{fig:shapbardaigt}.
+On DAIGT V2 the leading contributors are document length at 2.77, mean word length at 1.88 and casing statistics, none of which exceeds 2.8 and none of which is a collection convention in the same sense. The surface arm on that corpus is reading a diffuse stylistic signal rather than a single artefact, which is consistent with its much weaker showing against the content arm and with the diffuse term-level attribution in Figure~\ref{fig:shapswarmdaigt}.
 
 \subsection{The HC3 parity belongs to one sub-domain}
 \label{sec:subgroup}
@@ -909,7 +870,7 @@ Perturbing HC3 test text with character-level typos at 10\% of alphabetic charac
 
 Table~\ref{tab:labelfree} reports the label-free control. On inputs carrying no human-versus-machine information the same model assigns the human label to uniform random character strings in 100\% of cases at mean confidence 0.98, and all four checkpoints label token-shuffled and punctuation-only text human between 94.8\% and 100\% of the time. The behaviour is specific to neither HC3 nor the attack.
 
-Three candidate mechanisms were tested and none survives. Majority-prior collapse is excluded by the training balance shown in Figure~\ref{fig:balance}, 0.4981 against 0.5019 on DAIGT V2 and 0.4999 against 0.5001 on HC3. Cue injection is excluded because the perturbation does not create the whitespace artefact, moving the machine-side count only from 0.000 to 0.005. And a learned association from disfluency to human authorship is unsupported, since subword fertility runs the wrong way, 1.1192 for HC3 human text against 1.1980 for machine.
+Three candidate mechanisms were tested and none survives. Majority-prior collapse is excluded by the training balance, 0.4981 against 0.5019 on DAIGT V2 and 0.4999 against 0.5001 on HC3. Cue injection is excluded because the perturbation does not create the whitespace artefact, moving the machine-side count only from 0.000 to 0.005. And a learned association from disfluency to human authorship is unsupported, since subword fertility runs the wrong way, 1.1192 for HC3 human text against 1.1980 for machine.
 
 We therefore decline to read our own perturbation numbers as robustness measurements, since the experiment establishes a requirement on future work rather than a property of these benchmarks. One contrast within them is worth stating even so. Back-translation rewrites the text while leaving it readable and costs all four models between 0.004 and 0.020 weighted F1, whereas character-level corruption, which makes the text unreadable, produces the collapses, with HC3 BERT falling to 0.3746 and HC3 DeBERTa to 0.3644 under 10\% typos. That pattern fits the label-free reading and not a targeted cue-removal one.
 

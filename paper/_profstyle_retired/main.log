@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  28 AUG 2026 12:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  28 AUG 2026 12:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -852,183 +852,111 @@ Underfull \hbox (badness 1975) in paragraph at lines 258--258
 []|\OT1/ptm/m/n/7 DAIGT, HC3, M4,
  []
 
-<fig_pipeline.pdf, id=287, 410.9405pt x 336.77818pt>
+<fig_pipeline.pdf, id=283, 410.9405pt x 336.77818pt>
 File: fig_pipeline.pdf Graphic file (type pdf)
 <use fig_pipeline.pdf>
 Package pdftex.def Info: fig_pipeline.pdf  used on input line 287.
 (pdftex.def)             Requested size: 516.0pt x 422.87819pt.
-<class_balance.pdf, id=296, 783.04704pt x 272.09706pt>
-File: class_balance.pdf Graphic file (type pdf)
-<use class_balance.pdf>
-Package pdftex.def Info: class_balance.pdf  used on input line 331.
-(pdftex.def)             Requested size: 423.12378pt x 147.02986pt.
 [3]
-<length_distributions.pdf, id=323, 855.31715pt x 480.23505pt>
+<length_distributions.pdf, id=316, 855.31715pt x 480.23505pt>
 File: length_distributions.pdf Graphic file (type pdf)
 <use length_distributions.pdf>
-Package pdftex.def Info: length_distributions.pdf  used on input line 346.
+Package pdftex.def Info: length_distributions.pdf  used on input line 339.
 (pdftex.def)             Requested size: 516.0pt x 289.71872pt.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3
+46.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<wordclouds.pdf, id=326, 779.79477pt x 443.73871pt>
-File: wordclouds.pdf Graphic file (type pdf)
-<use wordclouds.pdf>
-Package pdftex.def Info: wordclouds.pdf  used on input line 357.
-(pdftex.def)             Requested size: 516.0pt x 293.64034pt.
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3
-64.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [4]
-
-LaTeX Warning: Text page 5 contains only floats.
-
-
-Overfull \vbox (3.3721pt too high) has occurred while \output is active []
-
-
-
-LaTeX Warning: Text page 5 contains only floats.
-
-
-Overfull \vbox (3.3721pt too high) has occurred while \output is active []
-
-
-[5 <./fig_pipeline.pdf> <./class_balance.pdf>]
-
-LaTeX Warning: Text page 6 contains only floats.
-
-
-Overfull \vbox (16.8231pt too high) has occurred while \output is active []
-
-
-
-LaTeX Warning: Text page 6 contains only floats.
-
-
-Overfull \vbox (16.8231pt too high) has occurred while \output is active []
-
-
-[6 <./length_distributions.pdf> <./wordclouds.pdf>] [7] [8]
-<model_ranking.pdf, id=434, 936.25964pt x 475.53758pt>
-File: model_ranking.pdf Graphic file (type pdf)
-<use model_ranking.pdf>
-Package pdftex.def Info: model_ranking.pdf  used on input line 519.
-(pdftex.def)             Requested size: 516.0pt x 262.08344pt.
-<classical_vs_transformer.pdf, id=435, 929.75548pt x 439.04117pt>
+ [5 <./fig_pipeline.pdf>] [6 <./length_distributions.pdf>] [7]
+<classical_vs_transformer.pdf, id=414, 929.75548pt x 439.04117pt>
 File: classical_vs_transformer.pdf Graphic file (type pdf)
 <use classical_vs_transformer.pdf>
-Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 528.
+Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 503.
 (pdftex.def)             Requested size: 516.0pt x 243.65732pt.
- [9]
-<roc_pr_curves.pdf, id=448, 856.03983pt x 621.52318pt>
+ [8]
+<roc_pr_curves.pdf, id=426, 856.03983pt x 621.52318pt>
 File: roc_pr_curves.pdf Graphic file (type pdf)
 <use roc_pr_curves.pdf>
-Package pdftex.def Info: roc_pr_curves.pdf  used on input line 568.
+Package pdftex.def Info: roc_pr_curves.pdf  used on input line 543.
 (pdftex.def)             Requested size: 516.0pt x 374.65228pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 2865) has occurred while \output is active []
-
- [10 <./model_ranking.pdf> <./classical_vs_transformer.pdf>]
-<DAIGT_confusion_matrix.pdf, id=460, 783.40843pt x 480.5965pt>
+<DAIGT_confusion_matrix.pdf, id=429, 783.40843pt x 480.5965pt>
 File: DAIGT_confusion_matrix.pdf Graphic file (type pdf)
 <use DAIGT_confusion_matrix.pdf>
-Package pdftex.def Info: DAIGT_confusion_matrix.pdf  used on input line 579.
+Package pdftex.def Info: DAIGT_confusion_matrix.pdf  used on input line 554.
 (pdftex.def)             Requested size: 516.0pt x 316.55666pt.
-<HC3_confusion_matrix.pdf, id=461, 783.40843pt x 480.5965pt>
+<HC3_confusion_matrix.pdf, id=430, 783.40843pt x 480.5965pt>
 File: HC3_confusion_matrix.pdf Graphic file (type pdf)
 <use HC3_confusion_matrix.pdf>
-Package pdftex.def Info: HC3_confusion_matrix.pdf  used on input line 586.
+Package pdftex.def Info: HC3_confusion_matrix.pdf  used on input line 561.
 (pdftex.def)             Requested size: 516.0pt x 316.55666pt.
-<overfitting_gap.pdf, id=465, 929.75548pt x 439.4025pt>
+<overfitting_gap.pdf, id=434, 929.75548pt x 439.4025pt>
 File: overfitting_gap.pdf Graphic file (type pdf)
 <use overfitting_gap.pdf>
-Package pdftex.def Info: overfitting_gap.pdf  used on input line 597.
+Package pdftex.def Info: overfitting_gap.pdf  used on input line 572.
 (pdftex.def)             Requested size: 516.0pt x 243.85785pt.
-<learning_curves.pdf, id=468, 855.6785pt x 306.06404pt>
+<learning_curves.pdf, id=437, 855.6785pt x 306.06404pt>
 File: learning_curves.pdf Graphic file (type pdf)
 <use learning_curves.pdf>
-Package pdftex.def Info: learning_curves.pdf  used on input line 606.
+Package pdftex.def Info: learning_curves.pdf  used on input line 581.
 (pdftex.def)             Requested size: 516.0pt x 184.57387pt.
- [11 <./roc_pr_curves.pdf>]
-<discriminative_terms.pdf, id=481, 855.6785pt x 349.42615pt>
+ [9 <./classical_vs_transformer.pdf>]
+<discriminative_terms.pdf, id=450, 855.6785pt x 349.42615pt>
 File: discriminative_terms.pdf Graphic file (type pdf)
 <use discriminative_terms.pdf>
-Package pdftex.def Info: discriminative_terms.pdf  used on input line 618.
+Package pdftex.def Info: discriminative_terms.pdf  used on input line 593.
 (pdftex.def)             Requested size: 516.0pt x 210.72365pt.
-<feature_importance_linear.pdf, id=484, 892.17496pt x 385.56125pt>
+<feature_importance_linear.pdf, id=453, 892.17496pt x 385.56125pt>
 File: feature_importance_linear.pdf Graphic file (type pdf)
 <use feature_importance_linear.pdf>
-Package pdftex.def Info: feature_importance_linear.pdf  used on input line 627.
+Package pdftex.def Info: feature_importance_linear.pdf  used on input line 602.
 
 (pdftex.def)             Requested size: 516.0pt x 223.00206pt.
-<feature_importance_lgbm.pdf, id=485, 892.17496pt x 349.42615pt>
+<feature_importance_lgbm.pdf, id=454, 892.17496pt x 349.42615pt>
 File: feature_importance_lgbm.pdf Graphic file (type pdf)
 <use feature_importance_lgbm.pdf>
-Package pdftex.def Info: feature_importance_lgbm.pdf  used on input line 634.
+Package pdftex.def Info: feature_importance_lgbm.pdf  used on input line 609.
 (pdftex.def)             Requested size: 516.0pt x 202.10213pt.
-<DAIGT_mean_absolute_shap_value.pdf, id=488, 636.33853pt x 349.78752pt>
-File: DAIGT_mean_absolute_shap_value.pdf Graphic file (type pdf)
-<use DAIGT_mean_absolute_shap_value.pdf>
-Package pdftex.def Info: DAIGT_mean_absolute_shap_value.pdf  used on input line
- 645.
-(pdftex.def)             Requested size: 252.0pt x 138.51949pt.
-<HC3_mean_absolute_shap_value.pdf, id=489, 638.1454pt x 349.78752pt>
-File: HC3_mean_absolute_shap_value.pdf Graphic file (type pdf)
-<use HC3_mean_absolute_shap_value.pdf>
-Package pdftex.def Info: HC3_mean_absolute_shap_value.pdf  used on input line 6
-52.
-(pdftex.def)             Requested size: 252.0pt x 138.12453pt.
-<DAIGT_shap_value_distribution.pdf, id=490, 603.09435pt x 349.78752pt>
+<DAIGT_shap_value_distribution.pdf, id=457, 603.09435pt x 349.78752pt>
 File: DAIGT_shap_value_distribution.pdf Graphic file (type pdf)
 <use DAIGT_shap_value_distribution.pdf>
 Package pdftex.def Info: DAIGT_shap_value_distribution.pdf  used on input line 
-659.
+620.
 (pdftex.def)             Requested size: 252.0pt x 146.1572pt.
-<HC3_shap_value_distribution.pdf, id=491, 602.733pt x 349.78752pt>
+<HC3_shap_value_distribution.pdf, id=458, 602.733pt x 349.78752pt>
 File: HC3_shap_value_distribution.pdf Graphic file (type pdf)
 <use HC3_shap_value_distribution.pdf>
-Package pdftex.def Info: HC3_shap_value_distribution.pdf  used on input line 66
-6.
+Package pdftex.def Info: HC3_shap_value_distribution.pdf  used on input line 62
+7.
 (pdftex.def)             Requested size: 252.0pt x 146.24258pt.
-
-[12 <./DAIGT_confusion_matrix.pdf>]
+ [10 <./roc_pr_curves.pdf>] [11 <./DAIGT_confusion_matrix.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13 <./HC3_confusion_matrix.pdf> <./overfitting_gap.pdf>]
-Underfull \vbox (badness 4647) has occurred while \output is active []
-
- [14 <./learning_curves.pdf> <./discriminative_terms.pdf>]
+ [12 <./HC3_confusion_matrix.pdf> <./overfitting_gap.pdf>] [13 <./learning_curv
+es.pdf> <./discriminative_terms.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15 <./feature_importance_linear.pdf> <./feature_importance_lgbm.pdf>] [16 <./
-DAIGT_mean_absolute_shap_value.pdf> <./HC3_mean_absolute_shap_value.pdf> <./DAI
-GT_shap_value_distribution.pdf> <./HC3_shap_value_distribution.pdf>] [17] [18]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14 <./feature_importance_linear.pdf> <./feature_importance_lgbm.pdf>] [15 <./
+DAIGT_shap_value_distribution.pdf> <./HC3_shap_value_distribution.pdf>] [16]
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/it' instead on input line 892.
+(Font)              using `OT1/ptm/m/it' instead on input line 853.
 
-[19] [20] (./main.bbl
-
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
-
-[21]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \vbox (0.91754pt too high) has occurred while \output is active []
-
-
-[22])
+[17] [18] [19] (./main.bbl [20])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1040,50 +968,42 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
-[leftcolumn badness]: 1000000 on 9.83508pt
-[rightcolumn badness]: 1000000 on 9.83508pt
+[leftcolumn badness]: 1000000 on 21.83508pt
+[rightcolumn badness]: 1000000 on 21.83508pt
+[leftcolumn badness]: 1000000 on 21.83508pt
+[rightcolumn badness]: 1000000 on 21.83508pt
 - LAST -
-Extra skip:14.06494pt
-Left:348.0pt/2.06494pt
-Right:333.83508pt/2.16492pt
-Split: 348.91754pt
-Output:348.91754pt
+Extra skip:2.06494pt
+Left:612.0pt/2.06494pt
+Right:609.83508pt/2.16492pt
+Split: 612.91754pt
+Output:612.91754pt
 Pageshrink: 0.0pt
 Pagestretch: 0.0pt
 @colht:1344.0pt
-FLUSHEND [output]: 348.91754pt
+FLUSHEND [output]: 612.91754pt
 FLUSHEND [leftcolumn badness]: 10000
 FUSHEND [rightcolumn badness]: 10000
-[23] (./main.aux)
+[21] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E348F7A5821FD106A8D1076F54A0D432;8110.
+(rerunfilecheck)             Checksum: A3E52157303C0DC64993203A6E0EAF47;8001.
  ) 
 Here is how much of TeX's memory you used:
- 17145 strings out of 476106
- 328133 string characters out of 5793933
- 1960975 words of memory out of 5000000
- 38758 multiletter control sequences out of 15000+600000
+ 17096 strings out of 476106
+ 326808 string characters out of 5793933
+ 1978975 words of memory out of 5000000
+ 38717 multiletter control sequences out of 15000+600000
  603926 words of font info for 126 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,11n,79p,1772b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,1772b,1050s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -1100,10 +1020,10 @@ are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on main.pdf (23 pages, 9958818 bytes).
+Output written on main.pdf (21 pages, 6725955 bytes).
 PDF statistics:
- 778 PDF objects out of 1000 (max. 8388607)
- 636 compressed objects within 7 object streams
- 153 named destinations out of 1000 (max. 500000)
- 403 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 738 PDF objects out of 1000 (max. 8388607)
+ 608 compressed objects within 7 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 370 words of extra memory for PDF output out of 10000 (max. 10000000)
 
