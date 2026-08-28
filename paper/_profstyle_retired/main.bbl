@@ -50,9 +50,12 @@ M.~S. Ansary, ``A multirepresentation stacked ensemble for {AI}‐generated
 
 \bibitem[Tian et~al.(2024)Tian, Chen, Wang, Bai, Zhang, Li, Xu, and
   Wang]{Tian2023multiscale}
+\BIBentryALTinterwordspacing
 Y.~Tian, H.~Chen, X.~Wang, Z.~Bai, Q.~Zhang, R.~Li, C.~Xu, and Y.~Wang,
   ``Multiscale positive-unlabeled detection of {AI}-generated texts,'' in
-  \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2024.
+  \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2024. [Online].
+  Available: \url{https://openreview.net/forum?id=5Lp6qU9hzV}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Baidya et~al.(2026)Baidya, Baidya, and Chawla]{Baidya2026detecting}
 M.~S. Baidya, S.~S. Baidya, and C.~Chawla, ``Detecting the machine: A
@@ -85,9 +88,14 @@ J.~Kubrusly, E.~D. dos Santos, and L.~S. Pelegrino, ``Detecting {AI}-generated
 
 \bibitem[Lamsiyah et~al.(2025)Lamsiyah, Ezzini, Mahdaouy, Alami, Benlahbib,
   Amrany, Chafik, and Hammouchi]{Lamsiyah2025daigt}
+\BIBentryALTinterwordspacing
 S.~Lamsiyah, S.~Ezzini, A.~E. Mahdaouy, H.~Alami, A.~Benlahbib, S.~E. Amrany,
-  S.~Chafik, and H.~Hammouchi, ``M-daigt: A shared task on multi-domain
-  detection of {AI}-generated text,'' 2025, preprint.
+  S.~Chafik, and H.~Hammouchi, ``{M-DAIGT}: A shared task on multi-domain
+  detection of {AI}-generated text,'' in \emph{Proc. Shared Task on
+  Multi-Domain Detection of AI-Generated Text, RANLP}.\hskip 1em plus 0.5em
+  minus 0.4em\relax Varna, Bulgaria: INCOMA Ltd., 2025, pp. 1--9. [Online].
+  Available: \url{https://aclanthology.org/2025.ranlp-mdaigt.1/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Annepaka et~al.(2026)Annepaka, Kumar, Poddar, Pakray, and
   Chunka]{Annepaka2026synergizing}
@@ -141,9 +149,14 @@ Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
   Available: \url{https://doi.org/10.18653/v1/2024.semeval-1.279}
 \BIBentrySTDinterwordspacing
 
-\bibitem[Zain et~al.(2025)Zain, Farooqui, and Rafi]{Zain2025multi}
-A.~Zain, S.~Farooqui, and M.~Rafi, ``A multi-strategy approach for
-  {AI}-generated text detection,'' 2025, preprint.
+\bibitem[Farooqui et~al.(2025)Farooqui, Zain, and Rafi]{Zain2025multi}
+\BIBentryALTinterwordspacing
+S.~Farooqui, A.~Zain, and M.~Rafi, ``Shared task on multi-domain detection of
+  {AI}-generated text ({M-DAIGT}),'' in \emph{Proc. Shared Task on Multi-Domain
+  Detection of AI-Generated Text, RANLP}.\hskip 1em plus 0.5em minus
+  0.4em\relax Varna, Bulgaria: INCOMA Ltd., 2025, pp. 15--19. [Online].
+  Available: \url{https://aclanthology.org/2025.ranlp-mdaigt.3/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Torralba and Efros(2011)]{Torralba2011unbiased}
 \BIBentryALTinterwordspacing
@@ -220,10 +233,13 @@ Z.~Lai, X.~Zhang, and S.~Chen, ``Adaptive ensembles of fine-tuned transformers
 
 \bibitem[Zhang et~al.(2024)Zhang, Song, Yang, Li, Han, and
   Tan]{Zhang2024detecting}
+\BIBentryALTinterwordspacing
 S.~Zhang, Y.~Song, J.~Yang, Y.~Li, B.~Han, and M.~Tan, ``Detecting
   machine-generated texts by multi-population aware optimization for maximum
   mean discrepancy,'' in \emph{Proc. Int. Conf. Learning Representations
-  (ICLR)}, 2024.
+  (ICLR)}, 2024. [Online]. Available:
+  \url{https://openreview.net/forum?id=3fEKavFsnv}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Borile and Abrate(2025)]{Borile2025generalize}
 \BIBentryALTinterwordspacing
@@ -247,9 +263,12 @@ A.~Alikhanov, A.~Amangeldi, D.~Demeubay, D.~Akhmetzhan, N.~Moldakhmetov,
   O.~Polat, and G.~Zharas, ``{AI} generated text detection,'' 2026, preprint.
 
 \bibitem[Lu et~al.(2024)Lu, Liu, He, Wang, Ong, and Tang]{Lu2023large}
+\BIBentryALTinterwordspacing
 N.~Lu, S.~Liu, R.~He, Q.~Wang, Y.-S. Ong, and K.~Tang, ``Large language models
   can be guided to evade {AI}-generated text detection,'' \emph{Transactions on
-  Machine Learning Research}, 2024.
+  Machine Learning Research}, 2024. [Online]. Available:
+  \url{https://openreview.net/forum?id=lLE0mWzUrr}
+\BIBentrySTDinterwordspacing
 
 \bibitem[thedrcat(2023)]{Thedrcat2023daigtv2}
 \BIBentryALTinterwordspacing
@@ -288,9 +307,12 @@ J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``{BERT}: Pre-training of
 \BIBentrySTDinterwordspacing
 
 \bibitem[He et~al.(2023)He, Gao, and Chen]{He2023debertav3}
+\BIBentryALTinterwordspacing
 P.~He, J.~Gao, and W.~Chen, ``{DeBERTaV3}: Improving {DeBERTa} using
   {ELECTRA}-style pre-training with gradient-disentangled embedding sharing,''
-  in \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2023.
+  in \emph{Proc. Int. Conf. Learning Representations (ICLR)}, 2023. [Online].
+  Available: \url{https://openreview.net/forum?id=sE7-XhLxHA}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Kudo and Richardson(2018)]{Kudo2018sentencepiece}
 \BIBentryALTinterwordspacing
@@ -308,9 +330,12 @@ J.~Dodge, G.~Ilharco, R.~Schwartz, A.~Farhadi, H.~Hajishirzi, and N.~Smith,
 
 \bibitem[Mosbach et~al.(2021)Mosbach, Andriushchenko, and
   Klakow]{Mosbach2020stability}
+\BIBentryALTinterwordspacing
 M.~Mosbach, M.~Andriushchenko, and D.~Klakow, ``On the stability of fine-tuning
   {BERT}: Misconceptions, explanations, and strong baselines,'' in \emph{Proc.
-  Int. Conf. Learning Representations (ICLR)}, 2021.
+  Int. Conf. Learning Representations (ICLR)}, 2021. [Online]. Available:
+  \url{https://openreview.net/forum?id=nzpLWnVAyah}
+\BIBentrySTDinterwordspacing
 
 \bibitem[McNemar(1947)]{McNemar1947note}
 \BIBentryALTinterwordspacing
@@ -327,9 +352,12 @@ B.~Efron, ``Bootstrap methods: Another look at the jackknife,'' \emph{The
 \BIBentrySTDinterwordspacing
 
 \bibitem[Lundberg and Lee(2017)]{Lundberg2017unified}
+\BIBentryALTinterwordspacing
 S.~M. Lundberg and S.-I. Lee, ``A unified approach to interpreting model
   predictions,'' in \emph{Advances in Neural Information Processing Systems
-  (NeurIPS)}, 2017, pp. 4765--4774.
+  (NeurIPS)}, 2017, pp. 4765--4774. [Online]. Available:
+  \url{https://proceedings.neurips.cc/paper_files/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Hel(2023{\natexlab{b}})]{HelloSimpleAI2023detector}
 \BIBentryALTinterwordspacing
