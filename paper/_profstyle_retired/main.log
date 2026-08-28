@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  28 AUG 2026 13:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  28 AUG 2026 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -616,9 +616,9 @@ Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
 \l__siunitx_unit_position_int=\count331
 \l__siunitx_unit_total_int=\count332
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 60.
+Package hyperref Info: Option `colorlinks' set `true' on input line 80.
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 62.
+h' as default language. on input line 82.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
@@ -628,24 +628,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
 
 -- Lines per column: 56 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -670,7 +670,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 62.
+Package hyperref Info: Link coloring ON on input line 82.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -678,15 +678,15 @@ Package hyperref Info: Link coloring ON on input line 62.
 
 \symgns@font=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
-(Font)                  TS1/ptm/m/n --> TS1/ptm/b/n on input line 62.
-Package gensymb Info: Math companion symbols declared on input line 62.
-LaTeX Info: Redefining \degree on input line 62.
-LaTeX Info: Redefining \celsius on input line 62.
+(Font)                  TS1/ptm/m/n --> TS1/ptm/b/n on input line 82.
+Package gensymb Info: Math companion symbols declared on input line 82.
+LaTeX Info: Redefining \degree on input line 82.
+LaTeX Info: Redefining \celsius on input line 82.
 Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
-erthousand on input line 62.
-LaTeX Info: Redefining \ohm on input line 62.
-Package gensymb Info: Using \textohm for \ohm on input line 62.
-Package gensymb Info: Using \textmu for \micro on input line 62.
+erthousand on input line 82.
+LaTeX Info: Redefining \ohm on input line 82.
+Package gensymb Info: Using \textohm for \ohm on input line 82.
+Package gensymb Info: Using \textmu for \micro on input line 82.
 
 (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictio
 nary-english.trsl
@@ -694,262 +694,304 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 62.
+or `english'. on input line 82.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
 -dist/fonts/enc/dvips/base/8r.enc}
 
 
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 224
+] [2]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 271
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 224
+LaTeX Font Info:    Trying to load font information for U+msb on input line 271
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-24.
+71.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [2]
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+)
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 GLTR and fine-tuned
  []
 
 
-Underfull \hbox (badness 5592) in paragraph at lines 258--258
+Underfull \hbox (badness 5592) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Tk-Instruct de-tec-tor on
  []
 
 
-Underfull \hbox (badness 6910) in paragraph at lines 258--258
+Underfull \hbox (badness 6910) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Task dif-fi-culty var-ied,
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 258--258
+Underfull \hbox (badness 2285) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 cor-pus sep-a-ra-bil-ity not
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 TF-IDF with Naive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 and Cat-Boost ma-jor-ity
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 258--258
+Underfull \hbox (badness 1418) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 No ex-pla-na-tion of-fered
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Multiscale positive-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 single-token whites-pace
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 258--258
+Underfull \hbox (badness 3557) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 cue ex-hib-ited but not
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 RoBERTa, ELEC-TRA
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 and XLM-R un-der
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 mis-spelling and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 HC3 En-glish and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 No label-free
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 degenerate-response
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 HC3, Truth-fulQA
  []
 
 
-Underfull \hbox (badness 8038) in paragraph at lines 258--258
+Underfull \hbox (badness 8038) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 col-lapse mag-ni-tude is
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Not de-com-posed into
  []
 
 
-Underfull \hbox (badness 1735) in paragraph at lines 258--258
+Underfull \hbox (badness 1735) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 a merged topic-held-out
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 HC3 and DAIGT
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 DistilBERT com-bined
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Channels com-bined
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 Multi-representation
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 258--258
+Underfull \hbox (badness 1502) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 In-distribution only, no
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 305--305
 \OT1/ptm/m/n/7 SVM, and a multi-
  []
 
 
-Underfull \hbox (badness 1975) in paragraph at lines 258--258
+Underfull \hbox (badness 1975) in paragraph at lines 305--305
 []|\OT1/ptm/m/n/7 DAIGT, HC3, M4,
  []
 
-<fig_pipeline.pdf, id=283, 585.38701pt x 244.95917pt>
+
+
+pdfTeX warning: pdflatex (file ./fig_pipeline.pdf): PDF inclusion: found PDF ve
+rsion <1.7>, but at most version <1.5> allowed
+<fig_pipeline.pdf, id=277, 544.07263pt x 232.56888pt>
 File: fig_pipeline.pdf Graphic file (type pdf)
 <use fig_pipeline.pdf>
-Package pdftex.def Info: fig_pipeline.pdf  used on input line 287.
-(pdftex.def)             Requested size: 516.0pt x 215.92729pt.
+Package pdftex.def Info: fig_pipeline.pdf  used on input line 334.
+(pdftex.def)             Requested size: 516.0pt x 220.5701pt.
 [3]
-<length_distributions.pdf, id=316, 855.31715pt x 480.23505pt>
+
+LaTeX Warning: Text page 4 contains only floats.
+
+
+Overfull \vbox (12.41191pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 4 contains only floats.
+
+
+Overfull \vbox (12.41191pt too high) has occurred while \output is active []
+
+
+[4 <./fig_pipeline.pdf>]
+
+pdfTeX warning: pdflatex (file ./length_distributions.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<length_distributions.pdf, id=355, 843.40094pt x 469.2732pt>
 File: length_distributions.pdf Graphic file (type pdf)
 <use length_distributions.pdf>
-Package pdftex.def Info: length_distributions.pdf  used on input line 339.
-(pdftex.def)             Requested size: 516.0pt x 289.71872pt.
+Package pdftex.def Info: length_distributions.pdf  used on input line 386.
+(pdftex.def)             Requested size: 516.0pt x 287.10834pt.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3
-46.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+93.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+) [5] [6 <./length_distributions.pdf>] [7]
 
- [4]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <./fig_pipeline.pdf> <./length_distributions.pdf>] [6]
-<classical_vs_transformer.pdf, id=394, 929.75548pt x 439.04117pt>
+pdfTeX warning: pdflatex (file ./classical_vs_transformer.pdf): PDF inclusion: 
+found PDF version <1.7>, but at most version <1.5> allowed
+<classical_vs_transformer.pdf, id=414, 918.3108pt x 427.60754pt>
 File: classical_vs_transformer.pdf Graphic file (type pdf)
 <use classical_vs_transformer.pdf>
-Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 503.
-(pdftex.def)             Requested size: 516.0pt x 243.65732pt.
- [7]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 550.
+(pdftex.def)             Requested size: 516.0pt x 240.28723pt.
+[8]
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8 <./classical_vs_transformer.pdf>]
-<roc_pr_curves.pdf, id=420, 856.03983pt x 621.52318pt>
+pdfTeX warning: pdflatex (file ./roc_pr_curves.pdf): PDF inclusion: found PDF v
+ersion <1.7>, but at most version <1.5> allowed
+<roc_pr_curves.pdf, id=426, 844.11362pt x 607.68027pt>
 File: roc_pr_curves.pdf Graphic file (type pdf)
 <use roc_pr_curves.pdf>
-Package pdftex.def Info: roc_pr_curves.pdf  used on input line 543.
-(pdftex.def)             Requested size: 516.0pt x 374.65228pt.
-<DAIGT_confusion_matrix.pdf, id=423, 783.40843pt x 480.5965pt>
+Package pdftex.def Info: roc_pr_curves.pdf  used on input line 590.
+(pdftex.def)             Requested size: 516.0pt x 371.49112pt.
+
+
+pdfTeX warning: pdflatex (file ./DAIGT_confusion_matrix.pdf): PDF inclusion: fo
+und PDF version <1.7>, but at most version <1.5> allowed
+<DAIGT_confusion_matrix.pdf, id=429, 771.0105pt x 469.1628pt>
 File: DAIGT_confusion_matrix.pdf Graphic file (type pdf)
 <use DAIGT_confusion_matrix.pdf>
-Package pdftex.def Info: DAIGT_confusion_matrix.pdf  used on input line 554.
-(pdftex.def)             Requested size: 516.0pt x 316.55666pt.
-<HC3_confusion_matrix.pdf, id=424, 783.40843pt x 480.5965pt>
+Package pdftex.def Info: DAIGT_confusion_matrix.pdf  used on input line 601.
+(pdftex.def)             Requested size: 516.0pt x 313.98666pt.
+
+
+pdfTeX warning: pdflatex (file ./HC3_confusion_matrix.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<HC3_confusion_matrix.pdf, id=430, 771.0105pt x 469.1628pt>
 File: HC3_confusion_matrix.pdf Graphic file (type pdf)
 <use HC3_confusion_matrix.pdf>
-Package pdftex.def Info: HC3_confusion_matrix.pdf  used on input line 561.
-(pdftex.def)             Requested size: 516.0pt x 316.55666pt.
-<overfitting_gap.pdf, id=428, 929.75548pt x 439.4025pt>
+Package pdftex.def Info: HC3_confusion_matrix.pdf  used on input line 608.
+(pdftex.def)             Requested size: 516.0pt x 313.98666pt.
+
+
+pdfTeX warning: pdflatex (file ./overfitting_gap.pdf): PDF inclusion: found PDF
+ version <1.7>, but at most version <1.5> allowed
+<overfitting_gap.pdf, id=434, 918.3108pt x 427.97893pt>
 File: overfitting_gap.pdf Graphic file (type pdf)
 <use overfitting_gap.pdf>
-Package pdftex.def Info: overfitting_gap.pdf  used on input line 572.
-(pdftex.def)             Requested size: 516.0pt x 243.85785pt.
-<learning_curves.pdf, id=431, 855.6785pt x 306.06404pt>
+Package pdftex.def Info: overfitting_gap.pdf  used on input line 619.
+(pdftex.def)             Requested size: 516.0pt x 240.49593pt.
+
+
+pdfTeX warning: pdflatex (file ./learning_curves.pdf): PDF inclusion: found PDF
+ version <1.7>, but at most version <1.5> allowed
+<learning_curves.pdf, id=437, 845.68951pt x 295.12256pt>
 File: learning_curves.pdf Graphic file (type pdf)
 <use learning_curves.pdf>
-Package pdftex.def Info: learning_curves.pdf  used on input line 581.
-(pdftex.def)             Requested size: 516.0pt x 184.57387pt.
-<discriminative_terms.pdf, id=434, 855.6785pt x 349.42615pt>
+Package pdftex.def Info: learning_curves.pdf  used on input line 628.
+(pdftex.def)             Requested size: 516.0pt x 180.08302pt.
+
+
+pdfTeX warning: pdflatex (file ./discriminative_terms.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<discriminative_terms.pdf, id=440, 845.20767pt x 336.55736pt>
 File: discriminative_terms.pdf Graphic file (type pdf)
 <use discriminative_terms.pdf>
-Package pdftex.def Info: discriminative_terms.pdf  used on input line 593.
-(pdftex.def)             Requested size: 516.0pt x 210.72365pt.
-<feature_importance_linear.pdf, id=437, 892.17496pt x 385.56125pt>
+Package pdftex.def Info: discriminative_terms.pdf  used on input line 640.
+(pdftex.def)             Requested size: 516.0pt x 205.46915pt.
+[9 <./classical_vs_transformer.pdf>]
+
+pdfTeX warning: pdflatex (file ./feature_importance_linear.pdf): PDF inclusion:
+ found PDF version <1.7>, but at most version <1.5> allowed
+<feature_importance_linear.pdf, id=455, 881.69403pt x 369.80159pt>
 File: feature_importance_linear.pdf Graphic file (type pdf)
 <use feature_importance_linear.pdf>
-Package pdftex.def Info: feature_importance_linear.pdf  used on input line 602.
+Package pdftex.def Info: feature_importance_linear.pdf  used on input line 649.
 
-(pdftex.def)             Requested size: 516.0pt x 223.00206pt.
-<feature_importance_lgbm.pdf, id=438, 892.17496pt x 349.42615pt>
+(pdftex.def)             Requested size: 516.0pt x 216.42052pt.
+
+
+pdfTeX warning: pdflatex (file ./feature_importance_lgbm.pdf): PDF inclusion: f
+ound PDF version <1.7>, but at most version <1.5> allowed
+<feature_importance_lgbm.pdf, id=456, 881.69403pt x 338.00276pt>
 File: feature_importance_lgbm.pdf Graphic file (type pdf)
 <use feature_importance_lgbm.pdf>
-Package pdftex.def Info: feature_importance_lgbm.pdf  used on input line 609.
-(pdftex.def)             Requested size: 516.0pt x 202.10213pt.
- [9]
-<DAIGT_shap_value_distribution.pdf, id=454, 603.09435pt x 349.78752pt>
+Package pdftex.def Info: feature_importance_lgbm.pdf  used on input line 656.
+(pdftex.def)             Requested size: 516.0pt x 197.81076pt.
+
+
+pdfTeX warning: pdflatex (file ./DAIGT_shap_value_distribution.pdf): PDF inclus
+ion: found PDF version <1.7>, but at most version <1.5> allowed
+<DAIGT_shap_value_distribution.pdf, id=459, 588.27782pt x 338.36414pt>
 File: DAIGT_shap_value_distribution.pdf Graphic file (type pdf)
 <use DAIGT_shap_value_distribution.pdf>
 Package pdftex.def Info: DAIGT_shap_value_distribution.pdf  used on input line 
-620.
-(pdftex.def)             Requested size: 252.0pt x 146.1572pt.
-<HC3_shap_value_distribution.pdf, id=455, 602.733pt x 349.78752pt>
+667.
+(pdftex.def)             Requested size: 252.0pt x 144.94646pt.
+
+
+pdfTeX warning: pdflatex (file ./HC3_shap_value_distribution.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<HC3_shap_value_distribution.pdf, id=460, 587.45474pt x 338.36414pt>
 File: HC3_shap_value_distribution.pdf Graphic file (type pdf)
 <use HC3_shap_value_distribution.pdf>
-Package pdftex.def Info: HC3_shap_value_distribution.pdf  used on input line 62
-7.
-(pdftex.def)             Requested size: 252.0pt x 146.24258pt.
- [10 <./roc_pr_curves.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11 <./DAIGT_confusion_matrix.pdf>]
+Package pdftex.def Info: HC3_shap_value_distribution.pdf  used on input line 67
+4.
+(pdftex.def)             Requested size: 252.0pt x 145.14781pt.
+[10 <./roc_pr_curves.pdf>] [11 <./DAIGT_confusion_matrix.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -957,22 +999,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12 <./HC3_confusion_matrix.pdf> <./overfitting_gap.pdf>] [13 <./learning_curv
 es.pdf> <./discriminative_terms.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2600) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14 <./feature_importance_linear.pdf> <./feature_importance_lgbm.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15 <./DAIGT_shap_value_distribution.pdf> <./HC3_shap_value_distribution.pdf>]
- [16]
+ [14 <./feature_importance_linear.pdf> <./feature_importance_lgbm.pdf>] [15 <./
+DAIGT_shap_value_distribution.pdf> <./HC3_shap_value_distribution.pdf>] [16]
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/it' instead on input line 853.
+(Font)              using `OT1/ptm/m/it' instead on input line 900.
 
 [17]
-Underfull \vbox (badness 1314) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
 (./main.bbl
@@ -983,14 +1019,7 @@ Package balance Warning: You have called \balance in second column
 [19]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Overfull \vbox (1.24738pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (0.91754pt too high) has occurred while \output is active []
-
-
-[20]
+ [20]
 Underfull \hbox (badness 10000) in paragraph at lines 372--377
 \OT1/ptm/m/n/10 / / proceedings . neurips . cc / paper[]^^Lles / paper / 2017 /
  hash /
@@ -1026,14 +1055,14 @@ Before submitting the final camera ready copy, remember to:
 [rightcolumn badness]: 1000000 on 9.83508pt
 - LAST -
 Extra skip:14.16492pt
-Left:564.0pt/2.16492pt
-Right:549.83508pt/2.16492pt
-Split: 564.91754pt
-Output:564.91754pt
+Left:480.0pt/2.16492pt
+Right:465.83508pt/2.16492pt
+Split: 480.91754pt
+Output:480.91754pt
 Pageshrink: 0.0pt
 Pagestretch: 0.0pt
 @colht:1344.0pt
-FLUSHEND [output]: 564.91754pt
+FLUSHEND [output]: 480.91754pt
 FLUSHEND [leftcolumn badness]: 10000
 FUSHEND [rightcolumn badness]: 10000
 [21] (./main.aux)
@@ -1047,11 +1076,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  17096 strings out of 476106
  326808 string characters out of 5793933
- 1974975 words of memory out of 5000000
+ 1968975 words of memory out of 5000000
  38717 multiletter control sequences out of 15000+600000
  603926 words of font info for 126 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,11n,79p,1772b,1058s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,1772b,1062s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -1068,10 +1097,10 @@ are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on main.pdf (21 pages, 6724281 bytes).
+Output written on main.pdf (21 pages, 6719848 bytes).
 PDF statistics:
- 752 PDF objects out of 1000 (max. 8388607)
- 625 compressed objects within 7 object streams
+ 759 PDF objects out of 1000 (max. 8388607)
+ 628 compressed objects within 7 object streams
  145 named destinations out of 1000 (max. 500000)
  370 words of extra memory for PDF output out of 10000 (max. 10000000)
 
