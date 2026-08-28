@@ -67,138 +67,131 @@
 \newlabel{tab:relatedwork}{{I}{4}{Prior work on these benchmarks, with the full set of results each study reports and what is missing relative to the surface-content axis}{table.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Corpus statistics after balancing. Duplication is exact match on lowercased, whitespace-normalised text. Leakage is the share of test documents whose text also appears in training or validation.}}{4}{table.2}\protected@file@percent }
 \newlabel{tab:corpora}{{II}{4}{Corpus statistics after balancing. Duplication is exact match on lowercased, whitespace-normalised text. Leakage is the share of test documents whose text also appears in training or validation}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Vocabulary}{4}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Text representations}{4}{subsection.3.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The complete study pipeline. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. Counts on the diagram are read from the committed result tables.}}{5}{figure.1}\protected@file@percent }
-\newlabel{fig:pipeline}{{1}{5}{The complete study pipeline. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. Counts on the diagram are read from the committed result tables}{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Class balance after downsampling the majority class. Both corpora sit at an exact minority-to-majority ratio of 1.0000, so no synthetic resampling is applied anywhere in this study.}}{5}{figure.2}\protected@file@percent }
-\newlabel{fig:balance}{{2}{5}{Class balance after downsampling the majority class. Both corpora sit at an exact minority-to-majority ratio of 1.0000, so no synthetic resampling is applied anywhere in this study}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Document length by class, clipped at the 99th percentile. The human tail is the long one on DAIGT V2, while on HC3 the machine distribution sits to the right of the human one.}}{6}{figure.3}\protected@file@percent }
-\newlabel{fig:lengths}{{3}{6}{Document length by class, clipped at the 99th percentile. The human tail is the long one on DAIGT V2, while on HC3 the machine distribution sits to the right of the human one}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Most frequent vocabulary by class and corpus after cleaning. Size is frequency within the class. The two DAIGT V2 panels share their topical vocabulary almost entirely.}}{6}{figure.4}\protected@file@percent }
-\newlabel{fig:wordclouds}{{4}{6}{Most frequent vocabulary by class and corpus after cleaning. Size is frequency within the class. The two DAIGT V2 panels share their topical vocabulary almost entirely}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Text representations}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Models and configurations}{4}{subsection.3.6}\protected@file@percent }
 \citation{Devlin2019bert}
 \citation{He2023debertav3}
 \citation{He2023debertav3}
 \citation{Kudo2018sentencepiece}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The complete study pipeline. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. Counts on the diagram are read from the committed result tables.}}{5}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{5}{The complete study pipeline. Cleaned word features and raw character n-grams feed the classical sweep, raw subwords feed the transformers, and the analysis layer sits on top of the fitted models rather than replacing them. Counts on the diagram are read from the committed result tables}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Document length by class, clipped at the 99th percentile. The human tail is the long one on DAIGT V2, while on HC3 the machine distribution sits to the right of the human one.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:lengths}{{2}{6}{Document length by class, clipped at the 99th percentile. The human tail is the long one on DAIGT V2, while on HC3 the machine distribution sits to the right of the human one}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-G}}The surface-content decomposition}{6}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:decomp-def}{{\mbox  {III-G}}{6}{The surface-content decomposition}{subsection.3.7}{}}
+\newlabel{eq:norm}{{1}{6}{The surface-content decomposition}{equation.3.1}{}}
+\newlabel{eq:arm}{{2}{6}{The surface-content decomposition}{equation.3.2}{}}
+\newlabel{eq:err}{{3}{6}{The surface-content decomposition}{equation.3.3}{}}
+\newlabel{eq:gap}{{4}{6}{The surface-content decomposition}{equation.3.4}{}}
 \citation{Baidya2026detecting}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-G}}Models and configurations}{7}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-H}}The surface-content decomposition}{7}{subsection.3.8}\protected@file@percent }
-\newlabel{sec:decomp-def}{{\mbox  {III-H}}{7}{The surface-content decomposition}{subsection.3.8}{}}
-\newlabel{eq:norm}{{1}{7}{The surface-content decomposition}{equation.3.1}{}}
-\newlabel{eq:arm}{{2}{7}{The surface-content decomposition}{equation.3.2}{}}
-\newlabel{eq:err}{{3}{7}{The surface-content decomposition}{equation.3.3}{}}
-\newlabel{eq:gap}{{4}{7}{The surface-content decomposition}{equation.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-I}}The length channel and how it is closed}{7}{subsection.3.9}\protected@file@percent }
-\newlabel{sec:lengthdef}{{\mbox  {III-I}}{7}{The length channel and how it is closed}{subsection.3.9}{}}
 \citation{Dodge2020fine,Mosbach2020stability}
 \citation{McNemar1947note}
 \citation{Efron1979bootstrap}
-\newlabel{eq:l1}{{5}{8}{The length channel and how it is closed}{equation.3.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-J}}The surface feature set}{8}{subsection.3.10}\protected@file@percent }
-\newlabel{sec:features}{{\mbox  {III-J}}{8}{The surface feature set}{subsection.3.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-K}}Metrics}{8}{subsection.3.11}\protected@file@percent }
-\newlabel{eq:f1}{{6}{8}{Metrics}{equation.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-L}}Paired statistics}{8}{subsection.3.12}\protected@file@percent }
-\newlabel{sec:stats}{{\mbox  {III-L}}{8}{Paired statistics}{subsection.3.12}{}}
-\newlabel{eq:mcnemar}{{7}{8}{Paired statistics}{equation.3.7}{}}
-\newlabel{eq:boot}{{8}{8}{Paired statistics}{equation.3.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-M}}Controls}{8}{subsection.3.13}\protected@file@percent }
-\newlabel{sec:controls}{{\mbox  {III-M}}{8}{Controls}{subsection.3.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Best configuration per model family on each corpus, ranked by DAIGT V2 weighted F1. Twenty families, 38 classical configurations per corpus, with the winning representation shown beside each score. FPR is the false-positive rate, the share of human documents called machine.}}{9}{table.3}\protected@file@percent }
-\newlabel{tab:families}{{III}{9}{Best configuration per model family on each corpus, ranked by DAIGT V2 weighted F1. Twenty families, 38 classical configurations per corpus, with the winning representation shown beside each score. FPR is the false-positive rate, the share of human documents called machine}{table.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Discussions}{9}{section.4}\protected@file@percent }
-\newlabel{sec:results}{{IV}{9}{Results and Discussions}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}The full model sweep}{9}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:sweep}{{\mbox  {IV-A}}{9}{The full model sweep}{subsection.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Which optimiser suits a classical detector}{9}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:solvers}{{\mbox  {IV-B}}{9}{Which optimiser suits a classical detector}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-H}}The length channel and how it is closed}{7}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:lengthdef}{{\mbox  {III-H}}{7}{The length channel and how it is closed}{subsection.3.8}{}}
+\newlabel{eq:l1}{{5}{7}{The length channel and how it is closed}{equation.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-I}}The surface feature set}{7}{subsection.3.9}\protected@file@percent }
+\newlabel{sec:features}{{\mbox  {III-I}}{7}{The surface feature set}{subsection.3.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-J}}Metrics}{7}{subsection.3.10}\protected@file@percent }
+\newlabel{eq:f1}{{6}{7}{Metrics}{equation.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-K}}Paired statistics}{7}{subsection.3.11}\protected@file@percent }
+\newlabel{sec:stats}{{\mbox  {III-K}}{7}{Paired statistics}{subsection.3.11}{}}
+\newlabel{eq:mcnemar}{{7}{7}{Paired statistics}{equation.3.7}{}}
+\newlabel{eq:boot}{{8}{7}{Paired statistics}{equation.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-L}}Controls}{7}{subsection.3.12}\protected@file@percent }
+\newlabel{sec:controls}{{\mbox  {III-L}}{7}{Controls}{subsection.3.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Best configuration per model family on each corpus, ranked by DAIGT V2 weighted F1. Twenty families, 38 classical configurations per corpus, with the winning representation shown beside each score. FPR is the false-positive rate, the share of human documents called machine.}}{8}{table.3}\protected@file@percent }
+\newlabel{tab:families}{{III}{8}{Best configuration per model family on each corpus, ranked by DAIGT V2 weighted F1. Twenty families, 38 classical configurations per corpus, with the winning representation shown beside each score. FPR is the false-positive rate, the share of human documents called machine}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Discussions}{8}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{IV}{8}{Results and Discussions}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}The full model sweep}{8}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:sweep}{{\mbox  {IV-A}}{8}{The full model sweep}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Which optimiser suits a classical detector}{8}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:solvers}{{\mbox  {IV-B}}{8}{Which optimiser suits a classical detector}{subsection.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces All twenty classical families against the two fine-tuned transformers on the same partitions. The two corpora place the transformers differently, at the top on HC3 and inside the classical field on DAIGT V2.}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:classicalvstransformer}{{3}{9}{All twenty classical families against the two fine-tuned transformers on the same partitions. The two corpora place the transformers differently, at the top on HC3 and inside the classical field on DAIGT V2}{figure.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Families that expose a choice of solver or splitting criterion. Spread is the weighted-F1 range across the options within that family on that corpus.}}{9}{table.4}\protected@file@percent }
 \newlabel{tab:solvers}{{IV}{9}{Families that expose a choice of solver or splitting criterion. Spread is the weighted-F1 range across the options within that family on that corpus}{table.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Best configuration per model family, ranked by weighted F1 within each corpus, with the winning representation printed beside each bar. The ordering is not shared between the two corpora.}}{10}{figure.5}\protected@file@percent }
-\newlabel{fig:ranking}{{5}{10}{Best configuration per model family, ranked by weighted F1 within each corpus, with the winning representation printed beside each bar. The ordering is not shared between the two corpora}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces All twenty classical families against the two fine-tuned transformers on the same partitions. The two corpora place the transformers differently, at the top on HC3 and inside the classical field on DAIGT V2.}}{10}{figure.6}\protected@file@percent }
-\newlabel{fig:classicalvstransformer}{{6}{10}{All twenty classical families against the two fine-tuned transformers on the same partitions. The two corpora place the transformers differently, at the top on HC3 and inside the classical field on DAIGT V2}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Threshold-free ranking and the operating region}{10}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces ROC and precision-recall curves for the six strongest families per corpus, with areas in the legend. The ROC axes are restricted to the low-false-positive region, since over the full range every curve sits against the corner.}}{11}{figure.7}\protected@file@percent }
-\newlabel{fig:rocpr}{{7}{11}{ROC and precision-recall curves for the six strongest families per corpus, with areas in the legend. The ROC axes are restricted to the low-false-positive region, since over the full range every curve sits against the corner}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Where the errors fall}{11}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Overfitting and data scaling}{11}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Threshold-free ranking and the operating region}{9}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Where the errors fall}{9}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Overfitting and data scaling}{9}{subsection.4.5}\protected@file@percent }
 \citation{Lundberg2017unified}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces DAIGT V2 confusion matrices for the six strongest families, cell counts with row percentages. Errors are concentrated on the machine side, with 38 to 50 machine essays called human against 3 to 21 human essays called machine.}}{12}{figure.8}\protected@file@percent }
-\newlabel{fig:cmdaigt}{{8}{12}{DAIGT V2 confusion matrices for the six strongest families, cell counts with row percentages. Errors are concentrated on the machine side, with 38 to 50 machine essays called human against 3 to 21 human essays called machine}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Which words carry the content signal}{12}{subsection.4.6}\protected@file@percent }
-\newlabel{sec:terms}{{\mbox  {IV-F}}{12}{Which words carry the content signal}{subsection.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Attribution over the fitted models}{12}{subsection.4.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces HC3 confusion matrices for the six strongest families, cell counts with row percentages. The asymmetry reverses relative to DAIGT V2, with 91 to 229 human answers called machine against 14 to 35 machine answers called human.}}{13}{figure.9}\protected@file@percent }
-\newlabel{fig:cmhc3}{{9}{13}{HC3 confusion matrices for the six strongest families, cell counts with row percentages. The asymmetry reverses relative to DAIGT V2, with 91 to 229 human answers called machine against 14 to 35 machine answers called human}{figure.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Train minus test weighted F1 per family, best configuration each. Bars above the 0.02 threshold are drawn in orange. Only the two decision-tree configurations cross it on DAIGT V2, while eight families cross it on HC3.}}{13}{figure.10}\protected@file@percent }
-\newlabel{fig:overfit}{{10}{13}{Train minus test weighted F1 per family, best configuration each. Bars above the 0.02 threshold are drawn in orange. Only the two decision-tree configurations cross it on DAIGT V2, while eight families cross it on HC3}{figure.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Learning curves for logistic regression over TF-IDF, shaded by cross-validation spread. DAIGT V2 converges by roughly 6,000 training documents, while the HC3 validation curve is still climbing at 26,000.}}{14}{figure.11}\protected@file@percent }
-\newlabel{fig:learningcurves}{{11}{14}{Learning curves for logistic regression over TF-IDF, shaded by cross-validation spread. DAIGT V2 converges by roughly 6,000 training documents, while the HC3 validation curve is still climbing at 26,000}{figure.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Terms with the largest class log-odds ratio per corpus. HC3's human side is dominated by tokens produced by the corpus encoding itself, such as \texttt  {nthe}, \texttt  {nin} and \texttt  {url\_0}, rather than by vocabulary choices.}}{14}{figure.12}\protected@file@percent }
-\newlabel{fig:terms}{{12}{14}{Terms with the largest class log-odds ratio per corpus. HC3's human side is dominated by tokens produced by the corpus encoding itself, such as \texttt {nthe}, \texttt {nin} and \texttt {url\_0}, rather than by vocabulary choices}{figure.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}The transformer grid}{14}{subsection.4.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-I}}The word-level subset used for the paired tests}{14}{subsection.4.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Fitted logistic-regression coefficients under the liblinear solver. HC3 places its largest human-side weights on \texttt  {url}, \texttt  {etc} and \texttt  {ca}, artefacts of collection rather than of authorship.}}{15}{figure.13}\protected@file@percent }
-\newlabel{fig:coeflinear}{{13}{15}{Fitted logistic-regression coefficients under the liblinear solver. HC3 places its largest human-side weights on \texttt {url}, \texttt {etc} and \texttt {ca}, artefacts of collection rather than of authorship}{figure.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces LightGBM gain importance over the reduced TF-IDF representation. The DAIGT V2 ranking is topical, led by \texttt  {student}, \texttt  {car} and \texttt  {school}, while the HC3 ranking is led by \texttt  {url} and \texttt  {etc}.}}{15}{figure.14}\protected@file@percent }
-\newlabel{fig:coeflgbm}{{14}{15}{LightGBM gain importance over the reduced TF-IDF representation. The DAIGT V2 ranking is topical, led by \texttt {student}, \texttt {car} and \texttt {school}, while the HC3 ranking is led by \texttt {url} and \texttt {etc}}{figure.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-J}}The DAIGT V2 tie is a text budget, not an architecture result}{15}{subsection.4.10}\protected@file@percent }
-\newlabel{sec:budget}{{\mbox  {IV-J}}{15}{The DAIGT V2 tie is a text budget, not an architecture result}{subsection.4.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Every fine-tuning run, sixteen per corpus. Accuracy, weighted precision, weighted recall and weighted F1 on the held-out test partition. The deployed checkpoints are the two rows selected on validation, not the maxima of these columns.}}{16}{table.5}\protected@file@percent }
-\newlabel{tab:transformers}{{V}{16}{Every fine-tuning run, sixteen per corpus. Accuracy, weighted precision, weighted recall and weighted F1 on the held-out test partition. The deployed checkpoints are the two rows selected on validation, not the maxima of these columns}{table.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces DAIGT V2 mean absolute SHAP value per term over the LightGBM model. The leading terms are ordinary essay vocabulary and no single term dominates.}}{16}{figure.15}\protected@file@percent }
-\newlabel{fig:shapbardaigt}{{15}{16}{DAIGT V2 mean absolute SHAP value per term over the LightGBM model. The leading terms are ordinary essay vocabulary and no single term dominates}{figure.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces HC3 mean absolute SHAP value per term over the LightGBM model. The distribution is far more concentrated, with \texttt  {important} carrying roughly 1.6 times the weight of the second term.}}{16}{figure.16}\protected@file@percent }
-\newlabel{fig:shapbarhc3}{{16}{16}{HC3 mean absolute SHAP value per term over the LightGBM model. The distribution is far more concentrated, with \texttt {important} carrying roughly 1.6 times the weight of the second term}{figure.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces DAIGT V2 per-document SHAP values, coloured by feature value. High counts of \texttt  {would} and \texttt  {conclusion} push a document towards the machine class.}}{16}{figure.17}\protected@file@percent }
-\newlabel{fig:shapswarmdaigt}{{17}{16}{DAIGT V2 per-document SHAP values, coloured by feature value. High counts of \texttt {would} and \texttt {conclusion} push a document towards the machine class}{figure.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces HC3 per-document SHAP values, coloured by feature value. The presence of \texttt  {url} drives a document strongly towards the human class, the single longest negative tail in either corpus.}}{16}{figure.18}\protected@file@percent }
-\newlabel{fig:shapswarmhc3}{{18}{16}{HC3 per-document SHAP values, coloured by feature value. The presence of \texttt {url} drives a document strongly towards the human class, the single longest negative tail in either corpus}{figure.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-K}}On HC3, orthography alone matches content alone}{16}{subsection.4.11}\protected@file@percent }
-\newlabel{sec:decomp}{{\mbox  {IV-K}}{16}{On HC3, orthography alone matches content alone}{subsection.4.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces ROC and precision-recall curves for the six strongest families per corpus, with areas in the legend. The ROC axes are restricted to the low-false-positive region, since over the full range every curve sits against the corner.}}{10}{figure.4}\protected@file@percent }
+\newlabel{fig:rocpr}{{4}{10}{ROC and precision-recall curves for the six strongest families per corpus, with areas in the legend. The ROC axes are restricted to the low-false-positive region, since over the full range every curve sits against the corner}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Which words carry the content signal}{10}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:terms}{{\mbox  {IV-F}}{10}{Which words carry the content signal}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Attribution over the fitted models}{10}{subsection.4.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces DAIGT V2 confusion matrices for the six strongest families, cell counts with row percentages. Errors are concentrated on the machine side, with 38 to 50 machine essays called human against 3 to 21 human essays called machine.}}{11}{figure.5}\protected@file@percent }
+\newlabel{fig:cmdaigt}{{5}{11}{DAIGT V2 confusion matrices for the six strongest families, cell counts with row percentages. Errors are concentrated on the machine side, with 38 to 50 machine essays called human against 3 to 21 human essays called machine}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}The transformer grid}{11}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-I}}The word-level subset used for the paired tests}{11}{subsection.4.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces HC3 confusion matrices for the six strongest families, cell counts with row percentages. The asymmetry reverses relative to DAIGT V2, with 91 to 229 human answers called machine against 14 to 35 machine answers called human.}}{12}{figure.6}\protected@file@percent }
+\newlabel{fig:cmhc3}{{6}{12}{HC3 confusion matrices for the six strongest families, cell counts with row percentages. The asymmetry reverses relative to DAIGT V2, with 91 to 229 human answers called machine against 14 to 35 machine answers called human}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Train minus test weighted F1 per family, best configuration each. Bars above the 0.02 threshold are drawn in orange. Only the two decision-tree configurations cross it on DAIGT V2, while eight families cross it on HC3.}}{12}{figure.7}\protected@file@percent }
+\newlabel{fig:overfit}{{7}{12}{Train minus test weighted F1 per family, best configuration each. Bars above the 0.02 threshold are drawn in orange. Only the two decision-tree configurations cross it on DAIGT V2, while eight families cross it on HC3}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Learning curves for logistic regression over TF-IDF, shaded by cross-validation spread. DAIGT V2 converges by roughly 6,000 training documents, while the HC3 validation curve is still climbing at 26,000.}}{13}{figure.8}\protected@file@percent }
+\newlabel{fig:learningcurves}{{8}{13}{Learning curves for logistic regression over TF-IDF, shaded by cross-validation spread. DAIGT V2 converges by roughly 6,000 training documents, while the HC3 validation curve is still climbing at 26,000}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Terms with the largest class log-odds ratio per corpus. HC3's human side is dominated by tokens produced by the corpus encoding itself, such as \texttt  {nthe}, \texttt  {nin} and \texttt  {url\_0}, rather than by vocabulary choices.}}{13}{figure.9}\protected@file@percent }
+\newlabel{fig:terms}{{9}{13}{Terms with the largest class log-odds ratio per corpus. HC3's human side is dominated by tokens produced by the corpus encoding itself, such as \texttt {nthe}, \texttt {nin} and \texttt {url\_0}, rather than by vocabulary choices}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-J}}The DAIGT V2 tie is a text budget, not an architecture result}{13}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:budget}{{\mbox  {IV-J}}{13}{The DAIGT V2 tie is a text budget, not an architecture result}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-K}}On HC3, orthography alone matches content alone}{13}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:decomp}{{\mbox  {IV-K}}{13}{On HC3, orthography alone matches content alone}{subsection.4.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Fitted logistic-regression coefficients under the liblinear solver. HC3 places its largest human-side weights on \texttt  {url}, \texttt  {etc} and \texttt  {ca}, artefacts of collection rather than of authorship.}}{14}{figure.10}\protected@file@percent }
+\newlabel{fig:coeflinear}{{10}{14}{Fitted logistic-regression coefficients under the liblinear solver. HC3 places its largest human-side weights on \texttt {url}, \texttt {etc} and \texttt {ca}, artefacts of collection rather than of authorship}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces LightGBM gain importance over the reduced TF-IDF representation. The DAIGT V2 ranking is topical, led by \texttt  {student}, \texttt  {car} and \texttt  {school}, while the HC3 ranking is led by \texttt  {url} and \texttt  {etc}.}}{14}{figure.11}\protected@file@percent }
+\newlabel{fig:coeflgbm}{{11}{14}{LightGBM gain importance over the reduced TF-IDF representation. The DAIGT V2 ranking is topical, led by \texttt {student}, \texttt {car} and \texttt {school}, while the HC3 ranking is led by \texttt {url} and \texttt {etc}}{figure.11}{}}
 \citation{Lundberg2017unified}
 \citation{Tian2023multiscale}
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces The word-level subset on which every paired test below is computed, six classical configurations plus the two deployed checkpoints. The character n-gram view is excluded here by construction, since it mixes the two channels the decomposition holds apart.}}{17}{table.6}\protected@file@percent }
-\newlabel{tab:allmodels}{{VI}{17}{The word-level subset on which every paired test below is computed, six classical configurations plus the two deployed checkpoints. The character n-gram view is excluded here by construction, since it mixes the two channels the decomposition holds apart}{table.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Classical models refitted on the exact character span each transformer's tokeniser kept, so both sides read the same text. The window comes from offset mapping, with no decode round-trip.}}{17}{table.7}\protected@file@percent }
-\newlabel{tab:budget}{{VII}{17}{Classical models refitted on the exact character span each transformer's tokeniser kept, so both sides read the same text. The window comes from offset mapping, with no decode round-trip}{table.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces The surface arm reads 47 orthographic features and never a word. The content arm is bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the length channel both arms share.}}{17}{table.8}\protected@file@percent }
-\newlabel{tab:decomp}{{VIII}{17}{The surface arm reads 47 orthographic features and never a word. The content arm is bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the length channel both arms share}{table.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-L}}One orthographic feature carries the HC3 result}{17}{subsection.4.12}\protected@file@percent }
-\newlabel{sec:shap}{{\mbox  {IV-L}}{17}{One orthographic feature carries the HC3 result}{subsection.4.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-M}}The HC3 parity belongs to one sub-domain}{17}{subsection.4.13}\protected@file@percent }
-\newlabel{sec:subgroup}{{\mbox  {IV-M}}{17}{The HC3 parity belongs to one sub-domain}{subsection.4.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces HC3 by source domain, each rebalanced to parity on a group-aware split restricted to that domain. The last two columns give the share of documents carrying a space before punctuation.}}{17}{table.9}\protected@file@percent }
-\newlabel{tab:subgroup}{{IX}{17}{HC3 by source domain, each rebalanced to parity on a group-aware split restricted to that domain. The last two columns give the share of documents carrying a space before punctuation}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Every fine-tuning run, sixteen per corpus. Accuracy, weighted precision, weighted recall and weighted F1 on the held-out test partition. The deployed checkpoints are the two rows selected on validation, not the maxima of these columns.}}{15}{table.5}\protected@file@percent }
+\newlabel{tab:transformers}{{V}{15}{Every fine-tuning run, sixteen per corpus. Accuracy, weighted precision, weighted recall and weighted F1 on the held-out test partition. The deployed checkpoints are the two rows selected on validation, not the maxima of these columns}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces DAIGT V2 per-document SHAP values, coloured by feature value. High counts of \texttt  {would} and \texttt  {conclusion} push a document towards the machine class.}}{15}{figure.12}\protected@file@percent }
+\newlabel{fig:shapswarmdaigt}{{12}{15}{DAIGT V2 per-document SHAP values, coloured by feature value. High counts of \texttt {would} and \texttt {conclusion} push a document towards the machine class}{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces HC3 per-document SHAP values, coloured by feature value. The presence of \texttt  {url} drives a document strongly towards the human class, the single longest negative tail in either corpus.}}{15}{figure.13}\protected@file@percent }
+\newlabel{fig:shapswarmhc3}{{13}{15}{HC3 per-document SHAP values, coloured by feature value. The presence of \texttt {url} drives a document strongly towards the human class, the single longest negative tail in either corpus}{figure.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces The word-level subset on which every paired test below is computed, six classical configurations plus the two deployed checkpoints. The character n-gram view is excluded here by construction, since it mixes the two channels the decomposition holds apart.}}{15}{table.6}\protected@file@percent }
+\newlabel{tab:allmodels}{{VI}{15}{The word-level subset on which every paired test below is computed, six classical configurations plus the two deployed checkpoints. The character n-gram view is excluded here by construction, since it mixes the two channels the decomposition holds apart}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Classical models refitted on the exact character span each transformer's tokeniser kept, so both sides read the same text. The window comes from offset mapping, with no decode round-trip.}}{15}{table.7}\protected@file@percent }
+\newlabel{tab:budget}{{VII}{15}{Classical models refitted on the exact character span each transformer's tokeniser kept, so both sides read the same text. The window comes from offset mapping, with no decode round-trip}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-L}}One orthographic feature carries the HC3 result}{15}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:shap}{{\mbox  {IV-L}}{15}{One orthographic feature carries the HC3 result}{subsection.4.12}{}}
 \citation{Tian2023multiscale}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces The surface arm reads 47 orthographic features and never a word. The content arm is bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the length channel both arms share.}}{16}{table.8}\protected@file@percent }
+\newlabel{tab:decomp}{{VIII}{16}{The surface arm reads 47 orthographic features and never a word. The content arm is bag-of-words after punctuation, casing and non-ASCII are stripped. The lower block closes the length channel both arms share}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-M}}The HC3 parity belongs to one sub-domain}{16}{subsection.4.13}\protected@file@percent }
+\newlabel{sec:subgroup}{{\mbox  {IV-M}}{16}{The HC3 parity belongs to one sub-domain}{subsection.4.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces HC3 by source domain, each rebalanced to parity on a group-aware split restricted to that domain. The last two columns give the share of documents carrying a space before punctuation.}}{16}{table.9}\protected@file@percent }
+\newlabel{tab:subgroup}{{IX}{16}{HC3 by source domain, each rebalanced to parity on a group-aware split restricted to that domain. The last two columns give the share of documents carrying a space before punctuation}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-N}}Neither result is an artefact of document length}{16}{subsection.4.14}\protected@file@percent }
+\newlabel{sec:length}{{\mbox  {IV-N}}{16}{Neither result is an artefact of document length}{subsection.4.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-O}}The HC3 null survives repartitioning}{16}{subsection.4.15}\protected@file@percent }
+\newlabel{sec:multisplit}{{\mbox  {IV-O}}{16}{The HC3 null survives repartitioning}{subsection.4.15}{}}
 \citation{Tian2023multiscale}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-N}}Neither result is an artefact of document length}{18}{subsection.4.14}\protected@file@percent }
-\newlabel{sec:length}{{\mbox  {IV-N}}{18}{Neither result is an artefact of document length}{subsection.4.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-O}}The HC3 null survives repartitioning}{18}{subsection.4.15}\protected@file@percent }
-\newlabel{sec:multisplit}{{\mbox  {IV-O}}{18}{The HC3 null survives repartitioning}{subsection.4.15}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces The decomposition over five group-aware partitions of the same balanced sample, varying only the split seed. Split variance runs 0.17 to 1.29 percentage points.}}{18}{table.10}\protected@file@percent }
-\newlabel{tab:multisplit}{{X}{18}{The decomposition over five group-aware partitions of the same balanced sample, varying only the split seed. Split variance runs 0.17 to 1.29 percentage points}{table.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-P}}A model that cannot represent the cue reaches 0.9916 anyway}{18}{subsection.4.16}\protected@file@percent }
-\newlabel{sec:tokenisation}{{\mbox  {IV-P}}{18}{A model that cannot represent the cue reaches 0.9916 anyway}{subsection.4.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces The decomposition over five group-aware partitions of the same balanced sample, varying only the split seed. Split variance runs 0.17 to 1.29 percentage points.}}{17}{table.10}\protected@file@percent }
+\newlabel{tab:multisplit}{{X}{17}{The decomposition over five group-aware partitions of the same balanced sample, varying only the split seed. Split variance runs 0.17 to 1.29 percentage points}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-P}}A model that cannot represent the cue reaches 0.9916 anyway}{17}{subsection.4.16}\protected@file@percent }
+\newlabel{sec:tokenisation}{{\mbox  {IV-P}}{17}{A model that cannot represent the cue reaches 0.9916 anyway}{subsection.4.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-Q}}The adversarial collapse is not distinguishable from a degenerate response}{17}{subsection.4.17}\protected@file@percent }
+\newlabel{sec:labelfree}{{\mbox  {IV-Q}}{17}{The adversarial collapse is not distinguishable from a degenerate response}{subsection.4.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Label-free control. Share of inputs assigned the \emph  {human} label (mean max softmax in parentheses), 400 inputs per condition, none carrying human-versus-machine information.}}{17}{table.11}\protected@file@percent }
+\newlabel{tab:labelfree}{{XI}{17}{Label-free control. Share of inputs assigned the \emph {human} label (mean max softmax in parentheses), 400 inputs per condition, none carrying human-versus-machine information}{table.11}{}}
 \citation{Lai2024adaptive}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-Q}}The adversarial collapse is not distinguishable from a degenerate response}{19}{subsection.4.17}\protected@file@percent }
-\newlabel{sec:labelfree}{{\mbox  {IV-Q}}{19}{The adversarial collapse is not distinguishable from a degenerate response}{subsection.4.17}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Label-free control. Share of inputs assigned the \emph  {human} label (mean max softmax in parentheses), 400 inputs per condition, none carrying human-versus-machine information.}}{19}{table.11}\protected@file@percent }
-\newlabel{tab:labelfree}{{XI}{19}{Label-free control. Share of inputs assigned the \emph {human} label (mean max softmax in parentheses), 400 inputs per condition, none carrying human-versus-machine information}{table.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-R}}Transfer and ensembling}{19}{subsection.4.18}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Cross-corpus transfer, three seeds per cell, trained on one corpus and tested on the other. Ranges are observed minima and maxima, not confidence intervals.}}{19}{table.12}\protected@file@percent }
-\newlabel{tab:cross}{{XII}{19}{Cross-corpus transfer, three seeds per cell, trained on one corpus and tested on the other. Ranges are observed minima and maxima, not confidence intervals}{table.12}{}}
 \citation{HelloSimpleAI2023detector}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-R}}Transfer and ensembling}{18}{subsection.4.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {XII}{\ignorespaces Cross-corpus transfer, three seeds per cell, trained on one corpus and tested on the other. Ranges are observed minima and maxima, not confidence intervals.}}{18}{table.12}\protected@file@percent }
+\newlabel{tab:cross}{{XII}{18}{Cross-corpus transfer, three seeds per cell, trained on one corpus and tested on the other. Ranges are observed minima and maxima, not confidence intervals}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {XIII}{\ignorespaces Final comparison of the model families reported across both corpora, including the soft-vote ensemble over the two deployed checkpoints.}}{18}{table.13}\protected@file@percent }
+\newlabel{tab:final}{{XIII}{18}{Final comparison of the model families reported across both corpora, including the soft-vote ensemble over the two deployed checkpoints}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-S}}A published detector on the same partitions}{18}{subsection.4.19}\protected@file@percent }
+\newlabel{sec:published}{{\mbox  {IV-S}}{18}{A published detector on the same partitions}{subsection.4.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-T}}Discussion}{18}{subsection.4.20}\protected@file@percent }
+\newlabel{sec:discussion}{{\mbox  {IV-T}}{18}{Discussion}{subsection.4.20}{}}
 \citation{Liang2023gpt}
-\@writefile{lot}{\contentsline {table}{\numberline {XIII}{\ignorespaces Final comparison of the model families reported across both corpora, including the soft-vote ensemble over the two deployed checkpoints.}}{20}{table.13}\protected@file@percent }
-\newlabel{tab:final}{{XIII}{20}{Final comparison of the model families reported across both corpora, including the soft-vote ensemble over the two deployed checkpoints}{table.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-S}}A published detector on the same partitions}{20}{subsection.4.19}\protected@file@percent }
-\newlabel{sec:published}{{\mbox  {IV-S}}{20}{A published detector on the same partitions}{subsection.4.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-T}}Discussion}{20}{subsection.4.20}\protected@file@percent }
-\newlabel{sec:discussion}{{\mbox  {IV-T}}{20}{Discussion}{subsection.4.20}{}}
 \citation{Poliak2018hypothesis}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Limitations}{19}{section.5}\protected@file@percent }
+\newlabel{sec:limitations}{{V}{19}{Limitations}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion and Future Works}{19}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{VI}{19}{Conclusion and Future Works}{section.6}{}}
 \bibstyle{IEEEtranN}
 \bibdata{refs}
 \bibcite{Guo2023close}{{1}{2023}{{Guo et~al.}}{{Guo, Zhang, Wang, Jiang, Nie, Ding, Yue, and Wu}}}
@@ -209,10 +202,6 @@
 \bibcite{Baidya2026detecting}{{6}{2026}{{Baidya et~al.}}{{Baidya, Baidya, and Chawla}}}
 \bibcite{Ardeshirifar2025comparing}{{7}{2025}{{Ardeshirifar}}{{}}}
 \bibcite{Park2024investigating}{{8}{2024}{{Park et~al.}}{{Park, Kim, Kim, Kim, Kim, Cho, Jo, goo Lee, and Yoo}}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Limitations}{21}{section.5}\protected@file@percent }
-\newlabel{sec:limitations}{{V}{21}{Limitations}{section.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion and Future Works}{21}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{VI}{21}{Conclusion and Future Works}{section.6}{}}
 \bibcite{Kubrusly2025detecting}{{9}{2025}{{Kubrusly et~al.}}{{Kubrusly, dos Santos, and Pelegrino}}}
 \bibcite{Lamsiyah2025daigt}{{10}{2025}{{Lamsiyah et~al.}}{{Lamsiyah, Ezzini, Mahdaouy, Alami, Benlahbib, Amrany, Chafik, and Hammouchi}}}
 \bibcite{Annepaka2026synergizing}{{11}{2026}{{Annepaka et~al.}}{{Annepaka, Kumar, Poddar, Pakray, and Chunka}}}
@@ -248,4 +237,4 @@
 \bibcite{Efron1979bootstrap}{{41}{1979}{{Efron}}{{}}}
 \bibcite{Lundberg2017unified}{{42}{2017}{{Lundberg and Lee}}{{}}}
 \bibcite{HelloSimpleAI2023detector}{{43}{2023{}}{{Hel}}{{}}}
-\gdef \@abspage@last{23}
+\gdef \@abspage@last{21}
