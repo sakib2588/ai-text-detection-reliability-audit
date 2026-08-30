@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 00:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 01:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -473,54 +473,55 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-<fig_pipeline_compact.pdf, id=146, 403.91702pt x 111.4042pt>
+<fig_pipeline_compact.pdf, id=152, 403.91702pt x 111.4042pt>
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
-Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 121.
+Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 142.
 (pdftex.def)             Requested size: 402.47937pt x 111.00954pt.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-34.
+55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 3291) in paragraph at lines 134--135
+Underfull \hbox (badness 3291) in paragraph at lines 155--156
 \OT1/ptm/m/n/10 Bayes, lo-gis-tic re-gres-sion and a lin-ear sup-port vec-tor
  []
 
 
-Underfull \hbox (badness 5908) in paragraph at lines 134--135
+Underfull \hbox (badness 5908) in paragraph at lines 155--156
 \OT1/ptm/m/n/10 ma-chine, each un-der bag-of-words and TF-IDF. Two
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 \OT1/ptm/m/n/10 are trans-form-ers, \OT1/pcr/m/n/10 bert-base-uncased \OT1/ptm/
 m/n/10 [[]] and
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 134--135
+Underfull \hbox (badness 6608) in paragraph at lines 155--156
 \OT1/ptm/m/n/10 on val-i-da-tion weighted F1. De-BERTa's Sen-ten-ce-Piece
  []
 
 
-Underfull \hbox (badness 2302) in paragraph at lines 134--135
+Underfull \hbox (badness 2302) in paragraph at lines 155--156
 \OT1/ptm/m/n/10 to-keniser [[]] en-codes lead-ing whites-pace and BERT's
  []
 
 [2] [3 <./fig_pipeline_compact.pdf>]
-Underfull \hbox (badness 1371) in paragraph at lines 268--269
+Underfull \hbox (badness 1371) in paragraph at lines 289--290
 \OT1/ptm/m/n/10 cue ap-pears in 98.9% of \OT1/pcr/m/n/10 reddit_eli5 \OT1/ptm/m
 /n/10 hu-man doc-u-
  []
 
-<fig_decomp_2panel.pdf, id=229, 248.45314pt x 100.42801pt>
+[4]
+<fig_decomp_2panel.pdf, id=243, 248.45314pt x 100.42801pt>
 File: fig_decomp_2panel.pdf Graphic file (type pdf)
 <use fig_decomp_2panel.pdf>
-Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 277.
+Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 298.
 (pdftex.def)             Requested size: 252.0pt x 101.86667pt.
-[4] [5 <./fig_decomp_2panel.pdf>] (./main.bbl)
+ [5 <./fig_decomp_2panel.pdf>] (./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -541,13 +542,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 35F744BE626E75F2D4975762ECEB021A;3909.
  ) 
 Here is how much of TeX's memory you used:
- 11148 strings out of 476106
- 172918 string characters out of 5793933
+ 11150 strings out of 476106
+ 172976 string characters out of 5793933
  1957975 words of memory out of 5000000
- 32952 multiletter control sequences out of 15000+600000
+ 32954 multiletter control sequences out of 15000+600000
  599980 words of font info for 113 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,9n,79p,1567b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1567b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
@@ -562,10 +563,10 @@ ymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
 e/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 253546 bytes).
+Output written on main.pdf (6 pages, 253734 bytes).
 PDF statistics:
- 402 PDF objects out of 1000 (max. 8388607)
- 336 compressed objects within 4 object streams
+ 405 PDF objects out of 1000 (max. 8388607)
+ 339 compressed objects within 4 object streams
  62 named destinations out of 1000 (max. 500000)
  171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
