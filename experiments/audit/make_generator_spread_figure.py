@@ -67,6 +67,13 @@ def main() -> None:
                     ha="center", va="bottom", fontsize=6.0, color="#666666",
                     arrowprops=dict(arrowstyle="-", lw=0.5, color="#AAAAAA"))
 
+    import statistics as st
+    for y, key, colour in ((1, "surface_err", SURF), (0, "content_err", CONT)):
+        med = st.median(v[key] * 100 for v in g.values())
+        ax.plot([med, med], [y - 0.30, y + 0.30], "--", lw=0.9, color=colour, zorder=1)
+        ax.annotate(f"med {med:.1f}", (med, y - 0.30), textcoords="offset points",
+                    xytext=(3, -1), ha="left", va="top", fontsize=5.6, color=colour)
+
     ax.set_yticks([1, 0])
     ax.set_yticklabels(["surface", "content"])
     ax.set_ylim(-0.45, 1.75)
@@ -79,8 +86,11 @@ def main() -> None:
                           label="$n\\geq200$"),
                plt.Line2D([], [], marker="o", ls="", ms=4.2, color="#555555",
                           mfc="white", mew=0.9, label="$n<200$")]
-    ax.legend(handles=handles, frameon=False, loc="lower right",
-              handlelength=0.8, borderaxespad=0.1, ncol=2, columnspacing=0.9)
+    leg = ax.legend(handles=handles, loc="lower right", handlelength=0.8,
+                    borderaxespad=0.2, ncol=2, columnspacing=0.9,
+                    frameon=True, fancybox=False, framealpha=1.0)
+    leg.get_frame().set_linewidth(0.5)
+    leg.get_frame().set_edgecolor("#CCCCCC")
 
     fig.tight_layout(pad=0.25)
     OUT.mkdir(parents=True, exist_ok=True)
