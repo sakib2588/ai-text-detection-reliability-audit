@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 01:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 01:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -511,11 +511,11 @@ Underfull \hbox (badness 1371) in paragraph at lines 289--290
 /n/10 hu-man doc-u-
  []
 
-<fig_generator_spread.pdf, id=245, 248.5273pt x 90.64641pt>
+<fig_generator_spread.pdf, id=245, 248.76382pt x 89.82684pt>
 File: fig_generator_spread.pdf Graphic file (type pdf)
 <use fig_generator_spread.pdf>
 Package pdftex.def Info: fig_generator_spread.pdf  used on input line 293.
-(pdftex.def)             Requested size: 252.0pt x 91.9159pt.
+(pdftex.def)             Requested size: 252.0pt x 90.99988pt.
 [4 <./fig_generator_spread.pdf>]
 <fig_decomp_2panel.pdf, id=277, 248.45314pt x 100.42801pt>
 File: fig_decomp_2panel.pdf Graphic file (type pdf)
@@ -564,7 +564,7 @@ ymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
 e/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 273928 bytes).
+Output written on main.pdf (6 pages, 273411 bytes).
 PDF statistics:
  440 PDF objects out of 1000 (max. 8388607)
  364 compressed objects within 4 object streams

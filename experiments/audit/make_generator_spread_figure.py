@@ -60,25 +60,16 @@ def main() -> None:
                     mfc=colour if powered else "white",
                     mew=0.8 if powered else 1.4, zorder=3)
 
-    for (a, b), top in zip(PAIRS, (1.42, 1.18)):
-        if a in g and b in g:
-            xa, xb = g[a]["surface_err"] * 100, g[b]["surface_err"] * 100
-            ax.plot([xa, xb], [top, top], "-", lw=0.8, color=LINK, zorder=2)
-            for x in (xa, xb):
-                ax.plot([x, x], [1.06, top], "-", lw=0.6, color=LINK, zorder=2)
-            ax.annotate(f"{max(xa, xb) / min(xa, xb):.1f}$\\times$",
-                        ((xa + xb) / 2, top), textcoords="offset points",
-                        xytext=(0, 1.5), ha="center", fontsize=6.2, color="#666666")
-
     worst = sorted(g.items(), key=lambda kv: -kv[1]["surface_err"])[:2]
     for name, v in worst:
-        ax.annotate(name.split("/")[-1].replace("_", " "),
-                    (v["surface_err"] * 100, 1), textcoords="offset points",
-                    xytext=(0, 8), ha="right", fontsize=5.8, color="#666666")
+        x = v["surface_err"] * 100
+        ax.annotate(name.split("/")[-1].replace("_", " "), (x, 1.10), (x, 1.40),
+                    ha="center", va="bottom", fontsize=6.0, color="#666666",
+                    arrowprops=dict(arrowstyle="-", lw=0.5, color="#AAAAAA"))
 
     ax.set_yticks([1, 0])
     ax.set_yticklabels(["surface", "content"])
-    ax.set_ylim(-0.45, 1.55)
+    ax.set_ylim(-0.45, 1.75)
     ax.set_xlabel("test error per generator, %")
     ax.tick_params(axis="y", length=0)
     ax.grid(axis="x", lw=0.4, color="#DDDDDD", zorder=0)
