@@ -80,12 +80,12 @@ Separability has more than one source. A detector can reach a high score by mode
 Three lines of prior work come close and each stops short. Shared benchmarks~\cite{Dugan2024raid,Wang2024m4} make detectors comparable across conditions but do not ask what any condition is separable by. Cleaning kits remove a single known cue~\cite{Tian2023multiscale}, yet a null after cleaning says nothing unless the detector could read that cue. Partial-input baselines expose artefacts in natural language inference~\cite{Gururangan2018annotation,Poliak2018hypothesis} but have not been moved to detection.
 
 This paper proposes that measurement and compares three arms on identical splits. A \emph{surface-only} model reads 47 orthographic features and never sees a word, a \emph{content-only} model reads text stripped of punctuation, casing and non-ASCII characters, and a \emph{full} model is a fine-tuned transformer on raw text. The first two share a classifier family and are directly comparable, the third is a reference point, and the object of measurement is a corpus rather than a detector. On HC3 the two arms are indistinguishable, while on DAIGT V2 content is stronger 7.9-fold, and subgroup labels place the HC3 tie in the Reddit sub-corpus. The main contributions are the following.
-\begin{itemize}
+\begin{enumerate}
 \item A surface-content decomposition, stated formally in Section~\secref{sec:decomp-def} as a reusable measurement over any human-versus-machine corpus, with the length control that stops its two arms sharing a channel.
 \item Its application to two benchmarks and their twenty sub-corpora (Sections~\secref{sec:decomp} and~\secref{sec:subgroup}), locating the HC3 result in one collection convention in one dominant domain, where removing that convention costs the surface arm ten points.
 \item A tokenisation control (Section~\secref{sec:tok}) establishing that the most-discussed cue in HC3 is sufficient in isolation yet unnecessary in practice, since BERT cannot represent it and still reaches 0.9916 weighted F1 there.
 \item A label-free control (Section~\secref{sec:labelfree}) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
-\end{itemize}
+\end{enumerate}
 
 The rest of this paper is organised as follows. Section~\secref{sec:related} reviews detection on these benchmarks, shortcut learning and robustness. Section~\secref{sec:method} states the problem setting, the corpora, the decomposition and the controls. Section~\secref{sec:results} reports the measurements. Section~\secref{sec:limits} discusses what they license, Section~\secref{sec:limitations} states the limits and Section~\secref{sec:conclusion} concludes.
 
@@ -97,7 +97,7 @@ The rest of this paper is organised as follows. Section~\secref{sec:related} rev
 \setlength{\tabcolsep}{10pt}
 \begin{tabular}{@{}llllp{4.7cm}@{}}
 \toprule
-Ref. & Method & Corpus & Reported result & Limitation \\
+Ref. & Method & Dataset & Reported result & Limitation \\
 \midrule
 \cite{Guo2023close} & fine-tuned RoBERTa & HC3 & 99.82 F1 & which property of the text carries the score \\
 \cite{Tian2023multiscale} & one-token whitespace rule & HC3 & 82.12 F1, per sentence & how much surface form carries in total \\
