@@ -222,19 +222,19 @@ B.~Efron, ``Bootstrap methods: Another look at the jackknife,'' \emph{The
   \url{https://doi.org/10.1214/aos/1176344552}
 \BIBentrySTDinterwordspacing
 
+\bibitem{HelloSimpleAI2023detector}
+\BIBentryALTinterwordspacing
+``{ChatGPT} detector, {RoBERTa},'' Hugging Face Models, 2023. [Online].
+  Available:
+  \url{https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Borile2025generalize}
 \BIBentryALTinterwordspacing
 C.~Borile and C.~Abrate, ``How to generalize the detection of {AI}-generated
   text: Confounding neurons,'' in \emph{Findings of the Association for
   Computational Linguistics: EMNLP 2025}, 2025, pp. 25\,461--25\,476. [Online].
   Available: \url{https://aclanthology.org/2025.findings-emnlp.1388.pdf}
-\BIBentrySTDinterwordspacing
-
-\bibitem{HelloSimpleAI2023detector}
-\BIBentryALTinterwordspacing
-``{ChatGPT} detector, {RoBERTa},'' Hugging Face Models, 2023. [Online].
-  Available:
-  \url{https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
