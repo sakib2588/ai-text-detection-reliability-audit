@@ -11,7 +11,7 @@
 
 | paper                                        | pp | body words | sent | sec | tab | fig | med w/sent |
 |----------------------------------------------|----|------------|------|-----|-----|-----|------------|
-| OURS 00_OURS_iccit6                          | 6  | 3436       | 166  | 7   | 5   | 3   | 20.0       |
+| OURS 00_OURS_iccit6                          | 6  | 3434       | 170  | 7   | 5   | 3   | 19.0       |
 | AlvarezMelis2018_robustness-interpretability | 6  | 2464       | 126  | 4   | 0   | 8   | 18.0       |
 | Anon2025_uav-vlrr-nmpc                       | 6  | 2654       | 140  | 8   | 3   | 7   | 19.0       |
 | Batool2026_humandiffusion-sar                | 5  | 1873       | 102  | 6   | 0   | 4   | 18.0       |
@@ -31,19 +31,19 @@
 
 | metric                   | ours | min  | median | max  | pct | flag |
 |--------------------------|------|------|--------|------|-----|------|
-| body words               | 3436 | 1873 | 2744   | 3671 | 91  | high |
-| sentences                | 166  | 102  | 137    | 181  | 91  | high |
-| mean words / sentence    | 20.7 | 18.2 | 19.6   | 24.4 | 82  | -    |
-| median words / sentence  | 20.0 | 17.5 | 18.0   | 21   | 91  | high |
-| % sentences over 35w     | 11.4 | 1.9  | 8.0    | 16.2 | 73  | -    |
+| body words               | 3434 | 1873 | 2744   | 3671 | 91  | high |
+| sentences                | 170  | 102  | 137    | 181  | 91  | high |
+| mean words / sentence    | 20.2 | 18.2 | 19.6   | 24.4 | 64  | -    |
+| median words / sentence  | 19.0 | 17.5 | 18.0   | 21   | 73  | -    |
+| % sentences over 35w     | 10.6 | 1.9  | 8.0    | 16.2 | 73  | -    |
 | longest sentence         | 52   | 38   | 53     | 103  | 45  | -    |
-| paragraphs               | 61   | 37   | 49     | 94   | 73  | -    |
-| mean words / paragraph   | 56.3 | 30.6 | 50.6   | 90.3 | 64  | -    |
+| paragraphs               | 64   | 37   | 49     | 94   | 82  | -    |
+| mean words / paragraph   | 53.7 | 30.6 | 50.6   | 90.3 | 55  | -    |
 | citations per 1k         | 12.5 | 0.0  | 10.6   | 18.2 | 73  | -    |
 | first person per 1k      | 4.4  | 0.0  | 3.0    | 16.2 | 55  | -    |
 | passive per 1k [proxy]   | 9.3  | 8.5  | 15.7   | 30.0 | 9   | low  |
-| % sentences past [proxy] | 6.0  | 0.6  | 12.3   | 30.4 | 27  | -    |
-| % no tense anchor        | 36.1 | 17.7 | 38.4   | 54.0 | 36  | -    |
+| % sentences past [proxy] | 5.9  | 0.6  | 12.3   | 30.4 | 27  | -    |
+| % no tense anchor        | 35.9 | 17.7 | 38.4   | 54.0 | 36  | -    |
 | sections                 | 7    | 4    | 6      | 9    | 82  | -    |
 | sections (numbered)      | 7    | 4    | 5      | 8    | 91  | high |
 | tables (total)           | 5    | 0    | 3      | 6    | 91  | high |
@@ -59,7 +59,7 @@
 | related_work | 5        | 459    | 342 | 372    | 725  | in band, median 372                                |
 | threat_model | 2        | ABSENT | 287 | 822    | 1357 | no band, only 2 of 11 papers                       |
 | method       | 4        | 770    | 532 | 743    | 973  | in band, median 743                                |
-| evaluation   | 10       | 1173   | 462 | 874    | 1575 | in band, median 874                                |
+| evaluation   | 10       | 1171   | 462 | 874    | 1575 | in band, median 874                                |
 | discussion   | 2        | 410    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
 | conclusion   | 9        | 110    | 74  | 121    | 325  | in band, median 121                                |
 
@@ -84,7 +84,7 @@
 
 | paper                                    | 1-10 | 11-20 | 21-30 | 31-40 | 41-50 | 51+ |
 |------------------------------------------|------|-------|-------|-------|-------|-----|
-| OURS 00_OURS_iccit6                      | 18%  | 36%   | 28%   | 12%   | 5%    | 1%  |
+| OURS 00_OURS_iccit6                      | 20%  | 36%   | 28%   | 12%   | 4%    | 1%  |
 | AlvarezMelis2018_robustness-interpretabi | 19%  | 43%   | 21%   | 13%   | 2%    | 2%  |
 | Anon2025_uav-vlrr-nmpc                   | 19%  | 41%   | 30%   | 8%    | 1%    | 1%  |
 | Batool2026_humandiffusion-sar            | 20%  | 40%   | 31%   | 8%    | 1%    | 0%  |

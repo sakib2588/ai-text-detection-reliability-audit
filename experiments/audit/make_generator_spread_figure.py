@@ -26,11 +26,12 @@ FLOOR = 200
 SURF, CONT = "#EE6677", "#4477AA"
 
 plt.rcParams.update({
-    "font.size": 7.0, "axes.labelsize": 7.0, "xtick.labelsize": 6.6,
-    "ytick.labelsize": 6.6, "legend.fontsize": 6.6,
+    "font.size": 8.0, "axes.labelsize": 8.0, "xtick.labelsize": 7.0,
+    "ytick.labelsize": 7.0, "legend.fontsize": 7.0,
     "figure.dpi": 400, "savefig.dpi": 400, "savefig.bbox": "tight",
     "savefig.pad_inches": 0.02, "pdf.fonttype": 42,
-    "font.family": "serif", "font.serif": ["DejaVu Serif"],
+    "font.family": "serif", "font.serif": ["Nimbus Roman", "DejaVu Serif"],
+    "mathtext.fontset": "stix",
     "axes.spines.top": False, "axes.spines.right": False,
 })
 

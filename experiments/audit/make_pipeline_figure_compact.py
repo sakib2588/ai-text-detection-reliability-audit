@@ -26,20 +26,21 @@ FILL = {"data": "#E4EDF6", "surf": "#FBE7E9", "cont": "#E4EDF6", "ref": "#F2E9F5
         "out": "#E6F2E8", "grey": "#EFEFEF"}
 
 plt.rcParams.update({
-    "font.size": 7.4, "figure.dpi": 400, "savefig.dpi": 400,
+    "font.size": 8.0, "figure.dpi": 400, "savefig.dpi": 400,
     "savefig.bbox": "tight", "savefig.pad_inches": 0.02, "pdf.fonttype": 42,
-    "font.family": "serif", "font.serif": ["DejaVu Serif"],
+    "font.family": "serif", "font.serif": ["Nimbus Roman", "DejaVu Serif"],
+    "mathtext.fontset": "stix",
 })
 
 
-def box(ax, x, y, w, h, title, sub, kind, title_size=7.8):
+def box(ax, x, y, w, h, title, sub, kind, title_size=8.0):
     ax.add_patch(FancyBboxPatch(
         (x, y), w, h, boxstyle="round,pad=0.012,rounding_size=0.02",
         linewidth=0.9, edgecolor=CB[kind], facecolor=FILL[kind], zorder=2))
     ax.text(x + w / 2, y + h * 0.68, title, ha="center", va="center",
             fontsize=title_size, fontweight="bold", color="#111111", zorder=3)
     ax.text(x + w / 2, y + h * 0.27, sub, ha="center", va="center",
-            fontsize=6.1, color="#333333", zorder=3, linespacing=1.25)
+            fontsize=7.0, color="#333333", zorder=3, linespacing=1.25)
 
 
 def arrow(ax, x1, y1, x2, y2):
@@ -59,16 +60,16 @@ def main() -> None:
     box(ax, 0.185, 0.38, 0.155, 0.26, "Split",
         "72 / 8 / 20\ngroup-aware", "data")
 
-    box(ax, 0.375, 0.72, 0.225, 0.24, "Surface view",
+    box(ax, 0.370, 0.72, 0.250, 0.24, "Surface view",
         "47 orthographic features", "surf")
-    box(ax, 0.375, 0.38, 0.225, 0.24, "Content view",
+    box(ax, 0.370, 0.38, 0.250, 0.24, "Content view",
         "bag of words, no marks", "cont")
-    box(ax, 0.375, 0.04, 0.225, 0.24, "Raw view",
+    box(ax, 0.370, 0.04, 0.250, 0.24, "Raw view",
         "128 subword tokens", "ref")
 
-    box(ax, 0.635, 0.55, 0.175, 0.24, "Logistic reg.",
+    box(ax, 0.650, 0.55, 0.185, 0.24, "Logistic reg.",
         "one per arm", "grey")
-    box(ax, 0.635, 0.11, 0.175, 0.24, "Fine-tuning",
+    box(ax, 0.650, 0.11, 0.185, 0.24, "Fine-tuning",
         "BERT, DeBERTa", "grey")
 
     box(ax, 0.845, 0.38, 0.155, 0.26, "Comparison",
@@ -76,12 +77,12 @@ def main() -> None:
 
     arrow(ax, 0.155, 0.51, 0.185, 0.51)
     for y in (0.84, 0.50, 0.16):
-        arrow(ax, 0.340, 0.51, 0.375, y)
-    arrow(ax, 0.600, 0.84, 0.635, 0.72)
-    arrow(ax, 0.600, 0.50, 0.635, 0.64)
-    arrow(ax, 0.600, 0.16, 0.635, 0.20)
-    arrow(ax, 0.810, 0.67, 0.845, 0.56)
-    arrow(ax, 0.810, 0.23, 0.845, 0.46)
+        arrow(ax, 0.340, 0.51, 0.370, y)
+    arrow(ax, 0.620, 0.84, 0.650, 0.72)
+    arrow(ax, 0.620, 0.50, 0.650, 0.64)
+    arrow(ax, 0.620, 0.16, 0.650, 0.20)
+    arrow(ax, 0.835, 0.67, 0.845, 0.56)
+    arrow(ax, 0.835, 0.23, 0.845, 0.46)
 
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / "fig_pipeline_compact.pdf")
