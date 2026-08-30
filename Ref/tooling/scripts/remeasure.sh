@@ -4,7 +4,7 @@
 set -u
 cd "$(dirname "$0")/.."           # Ref/tooling
 ROOT="$(cd ../.. && pwd)"
-PAPER="$ROOT/paper/iccit6"
+PAPER="$ROOT/paper/${PAPER_DIR:-iccit6}"   # PAPER_DIR=iccit6_profstyle to measure the prof-style cut
 MARKER=/media/filwel/MLProject1/research_project/ids-compression-benchmark/.venv/bin/marker_single
 export PYTORCH_ALLOC_CONF=expandable_segments:True
 

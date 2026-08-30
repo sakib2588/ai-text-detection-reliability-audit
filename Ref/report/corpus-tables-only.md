@@ -11,7 +11,7 @@
 
 | paper                                        | pp | body words | sent | sec | tab | fig | med w/sent |
 |----------------------------------------------|----|------------|------|-----|-----|-----|------------|
-| OURS 00_OURS_iccit6                          | 6  | 3566       | 176  | 6   | 4   | 4   | 20.0       |
+| OURS 00_OURS_iccit6                          | 6  | 3616       | 172  | 6   | 4   | 2   | 20.0       |
 | AlvarezMelis2018_robustness-interpretability | 6  | 2464       | 126  | 4   | 0   | 8   | 18.0       |
 | Anon2025_uav-vlrr-nmpc                       | 6  | 2654       | 140  | 8   | 3   | 7   | 19.0       |
 | Batool2026_humandiffusion-sar                | 5  | 1873       | 102  | 6   | 0   | 4   | 18.0       |
@@ -31,37 +31,37 @@
 
 | metric                   | ours | min  | median | max  | pct | flag |
 |--------------------------|------|------|--------|------|-----|------|
-| body words               | 3566 | 1873 | 2744   | 3671 | 91  | high |
-| sentences                | 176  | 102  | 137    | 181  | 91  | high |
-| mean words / sentence    | 20.3 | 18.2 | 19.6   | 24.4 | 82  | -    |
+| body words               | 3616 | 1873 | 2744   | 3671 | 91  | high |
+| sentences                | 172  | 102  | 137    | 181  | 91  | high |
+| mean words / sentence    | 21.0 | 18.2 | 19.6   | 24.4 | 82  | -    |
 | median words / sentence  | 20.0 | 17.5 | 18.0   | 21   | 91  | high |
-| % sentences over 35w     | 5.7  | 1.9  | 8.0    | 16.2 | 36  | -    |
-| longest sentence         | 54   | 38   | 53     | 103  | 55  | -    |
-| paragraphs               | 53   | 37   | 49     | 94   | 64  | -    |
-| mean words / paragraph   | 67.3 | 30.6 | 50.6   | 90.3 | 82  | -    |
-| citations per 1k         | 11.8 | 0.0  | 10.6   | 18.2 | 73  | -    |
-| first person per 1k      | 3.4  | 0.0  | 3.0    | 16.2 | 55  | -    |
-| passive per 1k [proxy]   | 9.5  | 8.5  | 15.7   | 30.0 | 9   | low  |
-| % sentences past [proxy] | 9.7  | 0.6  | 12.3   | 30.4 | 36  | -    |
-| % no tense anchor        | 32.4 | 17.7 | 38.4   | 54.0 | 27  | -    |
+| % sentences over 35w     | 7.0  | 1.9  | 8.0    | 16.2 | 45  | -    |
+| longest sentence         | 57   | 38   | 53     | 103  | 64  | -    |
+| paragraphs               | 56   | 37   | 49     | 94   | 64  | -    |
+| mean words / paragraph   | 64.6 | 30.6 | 50.6   | 90.3 | 82  | -    |
+| citations per 1k         | 11.6 | 0.0  | 10.6   | 18.2 | 73  | -    |
+| first person per 1k      | 4.4  | 0.0  | 3.0    | 16.2 | 55  | -    |
+| passive per 1k [proxy]   | 10.2 | 8.5  | 15.7   | 30.0 | 9   | low  |
+| % sentences past [proxy] | 8.1  | 0.6  | 12.3   | 30.4 | 36  | -    |
+| % no tense anchor        | 34.3 | 17.7 | 38.4   | 54.0 | 36  | -    |
 | sections                 | 6    | 4    | 6      | 9    | 82  | -    |
 | sections (numbered)      | 6    | 4    | 5      | 8    | 82  | -    |
 | tables (total)           | 4    | 0    | 3      | 6    | 91  | high |
-| figures (total)          | 4    | 2    | 4      | 8    | 64  | -    |
+| figures (total)          | 2    | 2    | 4      | 8    | 9   | low  |
 
 
 ## 3. Per-section word budget
 
 | role         | n papers | ours   | min | median | max  | verdict                                            |
 |--------------|----------|--------|-----|--------|------|----------------------------------------------------|
-| introduction | 11       | 486    | 301 | 493    | 671  | in band, median 493                                |
+| introduction | 11       | 519    | 301 | 493    | 671  | in band, median 493                                |
 | background   | 1        | ABSENT | 818 | 818    | 818  | no band, only 1 of 11 papers                       |
-| related_work | 5        | 505    | 342 | 372    | 725  | in band, median 372                                |
+| related_work | 5        | 567    | 342 | 372    | 725  | in band, median 372                                |
 | threat_model | 2        | ABSENT | 287 | 822    | 1357 | no band, only 2 of 11 papers                       |
-| method       | 4        | 817    | 532 | 743    | 973  | in band, median 743                                |
-| evaluation   | 10       | 1150   | 462 | 874    | 1575 | in band, median 874                                |
-| discussion   | 2        | 452    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
-| conclusion   | 9        | 156    | 74  | 121    | 325  | in band, median 121                                |
+| method       | 4        | 825    | 532 | 743    | 973  | in band, median 743                                |
+| evaluation   | 10       | 1041   | 462 | 874    | 1575 | in band, median 874                                |
+| discussion   | 2        | 528    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
+| conclusion   | 9        | 136    | 74  | 121    | 325  | in band, median 121                                |
 
 **A role carried by fewer than three of the eleven papers has no band.** Background appears in one reference paper and a threat model in two, so neither is a convention this corpus can be said to have, and their absence from our draft is not a violation. Every role that can be banded, and every role our draft carries, is inside its band.
 
@@ -75,7 +75,7 @@
 | convention                            | corpus | ours |
 |---------------------------------------|--------|------|
 | Related Work as its own section       | 5/11   | yes  |
-| roadmap paragraph in the introduction | 2/11   | no   |
+| roadmap paragraph in the introduction | 2/11   | yes  |
 | any back matter before REFERENCES     | 5/11   | no   |
 | marker page anchors present           | 9/11   | yes  |
 
@@ -84,7 +84,7 @@
 
 | paper                                    | 1-10 | 11-20 | 21-30 | 31-40 | 41-50 | 51+ |
 |------------------------------------------|------|-------|-------|-------|-------|-----|
-| OURS 00_OURS_iccit6                      | 16%  | 39%   | 31%   | 13%   | 1%    | 1%  |
+| OURS 00_OURS_iccit6                      | 15%  | 36%   | 31%   | 15%   | 2%    | 1%  |
 | AlvarezMelis2018_robustness-interpretabi | 19%  | 43%   | 21%   | 13%   | 2%    | 2%  |
 | Anon2025_uav-vlrr-nmpc                   | 19%  | 41%   | 30%   | 8%    | 1%    | 1%  |
 | Batool2026_humandiffusion-sar            | 20%  | 40%   | 31%   | 8%    | 1%    | 0%  |
