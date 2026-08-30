@@ -62,53 +62,53 @@
  "_calibration": null,
  "papers": {
   "00_OURS_iccit6": {
-   "sha256": "247a73cbd2adb6c1c6e2449c41174fb1a4bd7d93f348442e4622e8258ce898f1",
+   "sha256": "38cad792c5acb2effb141ce1bee9615ac2d4fa7b1a3f749c723be4f5151a2930",
    "source_pdf_sha256": null,
-   "lines": 236,
+   "lines": 239,
    "refs_heading_line": 209,
    "body_start_line": 9,
    "notes": [],
    "body": {
-    "n_first_person": 16,
-    "n_passive": 37,
-    "n_be_verbs": 125,
-    "words": 3626,
-    "sentences": 173,
-    "mean_words_per_sentence": 21.0,
-    "median_words_per_sentence": 20,
+    "n_first_person": 17,
+    "n_passive": 31,
+    "n_be_verbs": 118,
+    "words": 3608,
+    "sentences": 174,
+    "mean_words_per_sentence": 20.7,
+    "median_words_per_sentence": 20.0,
     "p90_words_per_sentence": 34,
     "max_words_per_sentence": 57,
-    "pct_over_35w": 6.9,
-    "n_over_35w": 12,
+    "pct_over_35w": 6.3,
+    "n_over_35w": 11,
     "sentence_length_histogram": {
-     "1-10": 26,
-     "11-20": 63,
-     "21-30": 53,
-     "31-40": 26,
-     "41-50": 4,
+     "1-10": 33,
+     "11-20": 58,
+     "21-30": 54,
+     "31-40": 23,
+     "41-50": 5,
      "51+": 1
     },
-    "paragraphs": 56,
-    "mean_words_per_paragraph": 64.8,
-    "median_words_per_paragraph": 65.0,
-    "citations": 42,
-    "citations_per_1k": 11.6,
-    "first_person_per_1k": 4.4,
-    "past_anchors_per_1k": 4.1,
-    "present_anchors_per_1k": 46.3,
-    "future_anchors_per_1k": 0.0,
-    "modal_anchors_per_1k": 6.3,
-    "pct_sentences_past": 8.1,
-    "pct_sentences_present": 63.6,
-    "pct_sentences_future": 0.0,
-    "pct_sentences_no_tense_anchor": 34.1,
-    "passive_per_1k_words": 10.2,
-    "pct_sentences_with_passive": 19.1,
-    "be_verbs_per_1k": 34.5,
+    "paragraphs": 57,
+    "mean_words_per_paragraph": 63.3,
+    "median_words_per_paragraph": 65,
+    "citations": 43,
+    "citations_per_1k": 11.9,
+    "first_person_per_1k": 4.7,
+    "past_anchors_per_1k": 3.6,
+    "present_anchors_per_1k": 46.0,
+    "future_anchors_per_1k": 0.3,
+    "modal_anchors_per_1k": 6.1,
+    "pct_sentences_past": 6.9,
+    "pct_sentences_present": 62.1,
+    "pct_sentences_future": 0.6,
+    "pct_sentences_no_tense_anchor": 36.2,
+    "passive_per_1k_words": 8.6,
+    "pct_sentences_with_passive": 15.5,
+    "be_verbs_per_1k": 32.7,
     "passive_top_participles": [
      [
       "reported",
-      6
+      3
      ],
      [
       "documented",
@@ -119,23 +119,7 @@
       2
      ],
      [
-      "collected",
-      2
-     ],
-     [
-      "scored",
-      2
-     ],
-     [
       "evaluated",
-      2
-     ],
-     [
-      "repeated",
-      2
-     ],
-     [
-      "cleaned",
       2
      ],
      [
@@ -145,52 +129,68 @@
      [
       "moved",
       1
+     ],
+     [
+      "stripped",
+      1
+     ],
+     [
+      "organised",
+      1
+     ],
+     [
+      "collected",
+      1
+     ],
+     [
+      "needed",
+      1
      ]
     ],
-    "n_tables": 4,
+    "n_tables": 3,
     "n_figures": 2
    },
    "body_ex_backmatter": {
-    "n_first_person": 16,
-    "n_passive": 37,
-    "n_be_verbs": 125,
-    "words": 3626,
-    "sentences": 173,
-    "mean_words_per_sentence": 21.0,
-    "median_words_per_sentence": 20,
+    "n_first_person": 17,
+    "n_passive": 31,
+    "n_be_verbs": 118,
+    "words": 3608,
+    "sentences": 174,
+    "mean_words_per_sentence": 20.7,
+    "median_words_per_sentence": 20.0,
     "p90_words_per_sentence": 34,
     "max_words_per_sentence": 57,
-    "pct_over_35w": 6.9,
-    "n_over_35w": 12,
+    "pct_over_35w": 6.3,
+    "n_over_35w": 11,
     "sentence_length_histogram": {
-     "1-10": 26,
-     "11-20": 63,
-     "21-30": 53,
-     "31-40": 26,
-     "41-50": 4,
+     "1-10": 33,
+     "11-20": 58,
+     "21-30": 54,
+     "31-40": 23,
+     "41-50": 5,
      "51+": 1
     },
-    "paragraphs": 56,
-    "mean_words_per_paragraph": 64.8,
-    "median_words_per_paragraph": 65.0,
-    "citations": 42,
-    "citations_per_1k": 11.6,
-    "first_person_per_1k": 4.4,
-    "past_anchors_per_1k": 4.1,
-    "present_anchors_per_1k": 46.3,
-    "future_anchors_per_1k": 0.0,
-    "modal_anchors_per_1k": 6.3,
-    "pct_sentences_past": 8.1,
-    "pct_sentences_present": 63.6,
-    "pct_sentences_future": 0.0,
-    "pct_sentences_no_tense_anchor": 34.1,
-    "passive_per_1k_words": 10.2,
-    "pct_sentences_with_passive": 19.1,
-    "be_verbs_per_1k": 34.5,
+    "paragraphs": 57,
+    "mean_words_per_paragraph": 63.3,
+    "median_words_per_paragraph": 65,
+    "citations": 43,
+    "citations_per_1k": 11.9,
+    "first_person_per_1k": 4.7,
+    "past_anchors_per_1k": 3.6,
+    "present_anchors_per_1k": 46.0,
+    "future_anchors_per_1k": 0.3,
+    "modal_anchors_per_1k": 6.1,
+    "pct_sentences_past": 6.9,
+    "pct_sentences_present": 62.1,
+    "pct_sentences_future": 0.6,
+    "pct_sentences_no_tense_anchor": 36.2,
+    "passive_per_1k_words": 8.6,
+    "pct_sentences_with_passive": 15.5,
+    "be_verbs_per_1k": 32.7,
     "passive_top_participles": [
      [
       "reported",
-      6
+      3
      ],
      [
       "documented",
@@ -201,23 +201,7 @@
       2
      ],
      [
-      "collected",
-      2
-     ],
-     [
-      "scored",
-      2
-     ],
-     [
       "evaluated",
-      2
-     ],
-     [
-      "repeated",
-      2
-     ],
-     [
-      "cleaned",
       2
      ],
      [
@@ -227,9 +211,25 @@
      [
       "moved",
       1
+     ],
+     [
+      "stripped",
+      1
+     ],
+     [
+      "organised",
+      1
+     ],
+     [
+      "collected",
+      1
+     ],
+     [
+      "needed",
+      1
      ]
     ],
-    "n_tables": 4,
+    "n_tables": 3,
     "n_figures": 2
    },
    "structure": {
@@ -244,14 +244,14 @@
      "V",
      "VI"
     ],
-    "n_tables_body": 4,
-    "n_tables_total": 4,
+    "n_tables_body": 3,
+    "n_tables_total": 3,
     "n_figures_body": 2,
     "n_figures_total": 2,
     "table_numeral_gaps": [],
     "figure_numeral_gaps": [],
     "n_images": 0,
-    "n_page_anchors": 40,
+    "n_page_anchors": 42,
     "has_page_spans": true,
     "has_roadmap_paragraph": true,
     "has_related_work_section": true,
@@ -332,49 +332,45 @@
      "pages": null
     },
     {
-     "n_first_person": 3,
-     "n_passive": 8,
-     "n_be_verbs": 21,
-     "words": 567,
-     "sentences": 26,
-     "mean_words_per_sentence": 21.8,
-     "median_words_per_sentence": 19.0,
-     "p90_words_per_sentence": 33,
-     "max_words_per_sentence": 41,
-     "pct_over_35w": 11.5,
-     "n_over_35w": 3,
+     "n_first_person": 4,
+     "n_passive": 6,
+     "n_be_verbs": 19,
+     "words": 569,
+     "sentences": 25,
+     "mean_words_per_sentence": 22.8,
+     "median_words_per_sentence": 20,
+     "p90_words_per_sentence": 36,
+     "max_words_per_sentence": 46,
+     "pct_over_35w": 16.0,
+     "n_over_35w": 4,
      "sentence_length_histogram": {
       "1-10": 0,
-      "11-20": 15,
-      "21-30": 7,
-      "31-40": 3,
-      "41-50": 1,
+      "11-20": 13,
+      "21-30": 8,
+      "31-40": 2,
+      "41-50": 2,
       "51+": 0
      },
      "paragraphs": 7,
-     "mean_words_per_paragraph": 81,
-     "median_words_per_paragraph": 83,
-     "citations": 19,
-     "citations_per_1k": 33.5,
-     "first_person_per_1k": 5.3,
+     "mean_words_per_paragraph": 81.3,
+     "median_words_per_paragraph": 90,
+     "citations": 20,
+     "citations_per_1k": 35.1,
+     "first_person_per_1k": 7.0,
      "past_anchors_per_1k": 5.3,
-     "present_anchors_per_1k": 38.8,
+     "present_anchors_per_1k": 35.1,
      "future_anchors_per_1k": 0.0,
      "modal_anchors_per_1k": 3.5,
-     "pct_sentences_past": 11.5,
-     "pct_sentences_present": 53.8,
+     "pct_sentences_past": 12.0,
+     "pct_sentences_present": 52.0,
      "pct_sentences_future": 0.0,
-     "pct_sentences_no_tense_anchor": 46.2,
-     "passive_per_1k_words": 14.1,
-     "pct_sentences_with_passive": 26.9,
-     "be_verbs_per_1k": 37.0,
+     "pct_sentences_no_tense_anchor": 48.0,
+     "passive_per_1k_words": 10.5,
+     "pct_sentences_with_passive": 20.0,
+     "be_verbs_per_1k": 33.4,
      "passive_top_participles": [
       [
        "carried",
-       2
-      ],
-      [
-       "reported",
        2
       ],
       [
@@ -382,11 +378,11 @@
        1
       ],
       [
-       "needed",
+       "reported",
        1
       ],
       [
-       "scored",
+       "needed",
        1
       ],
       [
@@ -410,40 +406,40 @@
     {
      "n_first_person": 4,
      "n_passive": 9,
-     "n_be_verbs": 26,
-     "words": 825,
-     "sentences": 39,
-     "mean_words_per_sentence": 21.2,
-     "median_words_per_sentence": 20,
-     "p90_words_per_sentence": 34,
+     "n_be_verbs": 28,
+     "words": 858,
+     "sentences": 42,
+     "mean_words_per_sentence": 20.4,
+     "median_words_per_sentence": 20.5,
+     "p90_words_per_sentence": 32,
      "max_words_per_sentence": 57,
-     "pct_over_35w": 5.1,
+     "pct_over_35w": 4.8,
      "n_over_35w": 2,
      "sentence_length_histogram": {
-      "1-10": 7,
-      "11-20": 13,
-      "21-30": 11,
+      "1-10": 11,
+      "11-20": 10,
+      "21-30": 13,
       "31-40": 7,
       "41-50": 0,
       "51+": 1
      },
-     "paragraphs": 13,
-     "mean_words_per_paragraph": 63.5,
-     "median_words_per_paragraph": 67,
+     "paragraphs": 14,
+     "mean_words_per_paragraph": 61.3,
+     "median_words_per_paragraph": 68.5,
      "citations": 8,
-     "citations_per_1k": 9.7,
-     "first_person_per_1k": 4.8,
-     "past_anchors_per_1k": 3.6,
-     "present_anchors_per_1k": 41.2,
-     "future_anchors_per_1k": 0.0,
-     "modal_anchors_per_1k": 6.1,
-     "pct_sentences_past": 7.7,
-     "pct_sentences_present": 59.0,
-     "pct_sentences_future": 0.0,
-     "pct_sentences_no_tense_anchor": 35.9,
-     "passive_per_1k_words": 10.9,
-     "pct_sentences_with_passive": 17.9,
-     "be_verbs_per_1k": 31.5,
+     "citations_per_1k": 9.3,
+     "first_person_per_1k": 4.7,
+     "past_anchors_per_1k": 3.5,
+     "present_anchors_per_1k": 42.0,
+     "future_anchors_per_1k": 1.2,
+     "modal_anchors_per_1k": 7.0,
+     "pct_sentences_past": 7.1,
+     "pct_sentences_present": 57.1,
+     "pct_sentences_future": 2.4,
+     "pct_sentences_no_tense_anchor": 38.1,
+     "passive_per_1k_words": 10.5,
+     "pct_sentences_with_passive": 16.7,
+     "be_verbs_per_1k": 32.6,
      "passive_top_participles": [
       [
        "evaluated",
@@ -462,10 +458,6 @@
        1
       ],
       [
-       "paired",
-       1
-      ],
-      [
        "preserved",
        1
       ],
@@ -480,9 +472,13 @@
       [
        "retrained",
        1
+      ],
+      [
+       "released",
+       1
       ]
      ],
-     "n_tables": 0,
+     "n_tables": 1,
      "n_figures": 1,
      "index": 3,
      "numeral": "III",
@@ -490,49 +486,53 @@
      "role": "method",
      "hand_mapped": false,
      "start_line": 41,
-     "end_line": 85,
+     "end_line": 99,
      "page_start": 0,
      "page_end": 2,
      "pages": null
     },
     {
      "n_first_person": 5,
-     "n_passive": 6,
-     "n_be_verbs": 29,
-     "words": 1051,
-     "sentences": 57,
-     "mean_words_per_sentence": 18.4,
-     "median_words_per_sentence": 18,
-     "p90_words_per_sentence": 30,
-     "max_words_per_sentence": 40,
-     "pct_over_35w": 3.5,
+     "n_passive": 7,
+     "n_be_verbs": 30,
+     "words": 1069,
+     "sentences": 56,
+     "mean_words_per_sentence": 19.1,
+     "median_words_per_sentence": 18.5,
+     "p90_words_per_sentence": 32,
+     "max_words_per_sentence": 44,
+     "pct_over_35w": 3.6,
      "n_over_35w": 2,
      "sentence_length_histogram": {
-      "1-10": 12,
-      "11-20": 23,
-      "21-30": 16,
+      "1-10": 13,
+      "11-20": 21,
+      "21-30": 15,
       "31-40": 6,
-      "41-50": 0,
+      "41-50": 1,
       "51+": 0
      },
      "paragraphs": 20,
-     "mean_words_per_paragraph": 52.5,
+     "mean_words_per_paragraph": 53.5,
      "median_words_per_paragraph": 55.5,
-     "citations": 2,
-     "citations_per_1k": 1.9,
-     "first_person_per_1k": 4.8,
-     "past_anchors_per_1k": 4.8,
-     "present_anchors_per_1k": 44.7,
+     "citations": 3,
+     "citations_per_1k": 2.8,
+     "first_person_per_1k": 4.7,
+     "past_anchors_per_1k": 4.7,
+     "present_anchors_per_1k": 45.8,
      "future_anchors_per_1k": 0.0,
-     "modal_anchors_per_1k": 1.9,
-     "pct_sentences_past": 7.0,
-     "pct_sentences_present": 61.4,
+     "modal_anchors_per_1k": 0.9,
+     "pct_sentences_past": 7.1,
+     "pct_sentences_present": 62.5,
      "pct_sentences_future": 0.0,
-     "pct_sentences_no_tense_anchor": 38.6,
-     "passive_per_1k_words": 5.7,
-     "pct_sentences_with_passive": 8.8,
-     "be_verbs_per_1k": 27.6,
+     "pct_sentences_no_tense_anchor": 37.5,
+     "passive_per_1k_words": 6.5,
+     "pct_sentences_with_passive": 10.7,
+     "be_verbs_per_1k": 28.1,
      "passive_top_participles": [
+      [
+       "matched",
+       1
+      ],
       [
        "unfiltered",
        1
@@ -558,14 +558,14 @@
        1
       ]
      ],
-     "n_tables": 4,
+     "n_tables": 2,
      "n_figures": 1,
      "index": 4,
      "numeral": "IV",
      "title": "RESULTS AND ANALYSIS",
      "role": "evaluation",
      "hand_mapped": false,
-     "start_line": 86,
+     "start_line": 100,
      "end_line": 188,
      "page_start": 2,
      "page_end": 4,
@@ -573,56 +573,48 @@
     },
     {
      "n_first_person": 3,
-     "n_passive": 8,
-     "n_be_verbs": 26,
-     "words": 528,
-     "sentences": 18,
-     "mean_words_per_sentence": 29.3,
-     "median_words_per_sentence": 32.0,
-     "p90_words_per_sentence": 42,
-     "max_words_per_sentence": 48,
-     "pct_over_35w": 27.8,
-     "n_over_35w": 5,
+     "n_passive": 4,
+     "n_be_verbs": 19,
+     "words": 472,
+     "sentences": 17,
+     "mean_words_per_sentence": 27.8,
+     "median_words_per_sentence": 29,
+     "p90_words_per_sentence": 36,
+     "max_words_per_sentence": 45,
+     "pct_over_35w": 17.6,
+     "n_over_35w": 3,
      "sentence_length_histogram": {
       "1-10": 1,
-      "11-20": 3,
-      "21-30": 4,
-      "31-40": 7,
-      "41-50": 3,
+      "11-20": 4,
+      "21-30": 5,
+      "31-40": 5,
+      "41-50": 2,
       "51+": 0
      },
-     "paragraphs": 7,
-     "mean_words_per_paragraph": 75.6,
-     "median_words_per_paragraph": 61,
+     "paragraphs": 6,
+     "mean_words_per_paragraph": 78.7,
+     "median_words_per_paragraph": 75.0,
      "citations": 1,
-     "citations_per_1k": 1.9,
-     "first_person_per_1k": 5.7,
-     "past_anchors_per_1k": 5.7,
-     "present_anchors_per_1k": 56.8,
+     "citations_per_1k": 2.1,
+     "first_person_per_1k": 6.4,
+     "past_anchors_per_1k": 2.1,
+     "present_anchors_per_1k": 57.2,
      "future_anchors_per_1k": 0.0,
-     "modal_anchors_per_1k": 13.3,
-     "pct_sentences_past": 16.7,
-     "pct_sentences_present": 83.3,
+     "modal_anchors_per_1k": 14.8,
+     "pct_sentences_past": 5.9,
+     "pct_sentences_present": 82.4,
      "pct_sentences_future": 0.0,
-     "pct_sentences_no_tense_anchor": 11.1,
-     "passive_per_1k_words": 15.2,
-     "pct_sentences_with_passive": 44.4,
-     "be_verbs_per_1k": 49.2,
+     "pct_sentences_no_tense_anchor": 17.6,
+     "passive_per_1k_words": 8.5,
+     "pct_sentences_with_passive": 23.5,
+     "be_verbs_per_1k": 40.3,
      "passive_top_participles": [
       [
        "cleaned",
-       2
-      ],
-      [
-       "reported",
-       2
-      ],
-      [
-       "given",
        1
       ],
       [
-       "collected",
+       "given",
        1
       ],
       [
@@ -630,7 +622,7 @@
        1
       ],
       [
-       "repeated",
+       "reported",
        1
       ]
      ],
@@ -642,54 +634,49 @@
      "role": "discussion",
      "hand_mapped": false,
      "start_line": 189,
-     "end_line": 204,
+     "end_line": 202,
      "page_start": 4,
      "page_end": 4,
      "pages": 1
     },
     {
      "n_first_person": 0,
-     "n_passive": 1,
-     "n_be_verbs": 5,
-     "words": 136,
-     "sentences": 7,
-     "mean_words_per_sentence": 19.4,
-     "median_words_per_sentence": 21,
-     "p90_words_per_sentence": 24,
+     "n_passive": 0,
+     "n_be_verbs": 4,
+     "words": 121,
+     "sentences": 8,
+     "mean_words_per_sentence": 15.1,
+     "median_words_per_sentence": 16.0,
+     "p90_words_per_sentence": 21,
      "max_words_per_sentence": 29,
      "pct_over_35w": 0.0,
      "n_over_35w": 0,
      "sentence_length_histogram": {
-      "1-10": 1,
-      "11-20": 2,
-      "21-30": 4,
+      "1-10": 3,
+      "11-20": 3,
+      "21-30": 2,
       "31-40": 0,
       "41-50": 0,
       "51+": 0
      },
-     "paragraphs": 1,
-     "mean_words_per_paragraph": 136,
-     "median_words_per_paragraph": 136,
-     "citations": 1,
-     "citations_per_1k": 7.4,
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 60.5,
+     "median_words_per_paragraph": 60.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
      "first_person_per_1k": 0.0,
      "past_anchors_per_1k": 0.0,
-     "present_anchors_per_1k": 66.2,
+     "present_anchors_per_1k": 66.1,
      "future_anchors_per_1k": 0.0,
-     "modal_anchors_per_1k": 22.1,
+     "modal_anchors_per_1k": 16.5,
      "pct_sentences_past": 0.0,
-     "pct_sentences_present": 100.0,
+     "pct_sentences_present": 75.0,
      "pct_sentences_future": 0.0,
-     "pct_sentences_no_tense_anchor": 0.0,
-     "passive_per_1k_words": 7.4,
-     "pct_sentences_with_passive": 14.3,
-     "be_verbs_per_1k": 36.8,
-     "passive_top_participles": [
-      [
-       "reported",
-       1
-      ]
-     ],
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 33.1,
+     "passive_top_participles": [],
      "n_tables": 0,
      "n_figures": 0,
      "index": 6,
@@ -697,11 +684,11 @@
      "title": "CONCLUSION",
      "role": "conclusion",
      "hand_mapped": false,
-     "start_line": 205,
+     "start_line": 203,
      "end_line": 208,
      "page_start": 4,
-     "page_end": 5,
-     "pages": 2
+     "page_end": 4,
+     "pages": 1
     }
    ]
   },
@@ -7660,7 +7647,7 @@
    "min": 1873,
    "median": 2744,
    "max": 3671,
-   "ours": 3626,
+   "ours": 3608,
    "in_band": true,
    "percentile": 91,
    "gated": false
@@ -7670,7 +7657,7 @@
    "min": 1860,
    "median": 2719,
    "max": 3647,
-   "ours": 3626,
+   "ours": 3608,
    "in_band": true,
    "percentile": 91,
    "gated": false
@@ -7690,7 +7677,7 @@
    "min": 102,
    "median": 137,
    "max": 181,
-   "ours": 173,
+   "ours": 174,
    "in_band": true,
    "percentile": 91,
    "gated": false
@@ -7700,7 +7687,7 @@
    "min": 18.2,
    "median": 19.6,
    "max": 24.4,
-   "ours": 21.0,
+   "ours": 20.7,
    "in_band": true,
    "percentile": 82,
    "gated": true
@@ -7710,7 +7697,7 @@
    "min": 17.5,
    "median": 18.0,
    "max": 21,
-   "ours": 20,
+   "ours": 20.0,
    "in_band": true,
    "percentile": 91,
    "gated": false
@@ -7720,7 +7707,7 @@
    "min": 1.9,
    "median": 8.0,
    "max": 16.2,
-   "ours": 6.9,
+   "ours": 6.3,
    "in_band": true,
    "percentile": 45,
    "gated": true
@@ -7740,9 +7727,9 @@
    "min": 37,
    "median": 49,
    "max": 94,
-   "ours": 56,
+   "ours": 57,
    "in_band": true,
-   "percentile": 64,
+   "percentile": 73,
    "gated": false
   },
   "body.mean_words_per_paragraph": {
@@ -7750,7 +7737,7 @@
    "min": 30.6,
    "median": 50.6,
    "max": 90.3,
-   "ours": 64.8,
+   "ours": 63.3,
    "in_band": true,
    "percentile": 82,
    "gated": true
@@ -7760,7 +7747,7 @@
    "min": 0.0,
    "median": 10.6,
    "max": 18.2,
-   "ours": 11.6,
+   "ours": 11.9,
    "in_band": true,
    "percentile": 73,
    "gated": false
@@ -7770,7 +7757,7 @@
    "min": 0.0,
    "median": 3.0,
    "max": 16.2,
-   "ours": 4.4,
+   "ours": 4.7,
    "in_band": true,
    "percentile": 55,
    "gated": false
@@ -7780,7 +7767,7 @@
    "min": 8.5,
    "median": 15.7,
    "max": 30.0,
-   "ours": 10.2,
+   "ours": 8.6,
    "in_band": true,
    "percentile": 9,
    "gated": false
@@ -7790,7 +7777,7 @@
    "min": 0.6,
    "median": 12.3,
    "max": 30.4,
-   "ours": 8.1,
+   "ours": 6.9,
    "in_band": true,
    "percentile": 36,
    "gated": false
@@ -7800,7 +7787,7 @@
    "min": 0.0,
    "median": 0.9,
    "max": 4.4,
-   "ours": 0.0,
+   "ours": 0.6,
    "in_band": true,
    "percentile": 36,
    "gated": false
@@ -7810,7 +7797,7 @@
    "min": 17.7,
    "median": 38.4,
    "max": 54.0,
-   "ours": 34.1,
+   "ours": 36.2,
    "in_band": true,
    "percentile": 36,
    "gated": false
@@ -7840,9 +7827,9 @@
    "min": 0,
    "median": 3,
    "max": 6,
-   "ours": 4,
+   "ours": 3,
    "in_band": true,
-   "percentile": 91,
+   "percentile": 73,
    "gated": false
   },
   "structure.n_figures_total": {

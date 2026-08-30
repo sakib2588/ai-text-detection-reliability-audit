@@ -18,7 +18,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-OUT = Path(__file__).resolve().parents[2] / "paper" / "iccit6_profstyle" / "figures"
+OUT = Path(__file__).resolve().parents[2] / "paper" / "iccit6_profstyle"
 
 CB = {"data": "#4477AA", "surf": "#EE6677", "cont": "#4477AA", "ref": "#AA3377",
       "out": "#228833", "grey": "#555555"}
@@ -49,7 +49,7 @@ def arrow(ax, x1, y1, x2, y2):
 
 
 def main() -> None:
-    fig, ax = plt.subplots(figsize=(7.16, 2.25))
+    fig, ax = plt.subplots(figsize=(7.16, 1.95))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")

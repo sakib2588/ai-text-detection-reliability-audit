@@ -120,6 +120,14 @@ Y.~Annepaka, P.~Kumar, Y.~Poddar, P.~Pakray, and C.~Chunka, ``Synergizing
   [Online]. Available: \url{https://doi.org/10.1007/s10115-025-02637-6}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Ardeshirifar2025comparing}
+\BIBentryALTinterwordspacing
+R.~Ardeshirifar, ``Comparing hand-crafted and deep learning approaches for
+  detecting {AI}-generated text: performance, generalization, and linguistic
+  insights,'' \emph{AI and Ethics}, vol.~5, no.~4, pp. 4197--4209, 2025.
+  [Online]. Available: \url{https://doi.org/10.1007/s43681-025-00699-4}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Wang2024semeval}
 \BIBentryALTinterwordspacing
 Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
@@ -212,6 +220,14 @@ Q.~McNemar, ``Note on the sampling error of the difference between correlated
 B.~Efron, ``Bootstrap methods: Another look at the jackknife,'' \emph{The
   Annals of Statistics}, vol.~7, no.~1, pp. 1--26, 1979. [Online]. Available:
   \url{https://doi.org/10.1214/aos/1176344552}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Borile2025generalize}
+\BIBentryALTinterwordspacing
+C.~Borile and C.~Abrate, ``How to generalize the detection of {AI}-generated
+  text: Confounding neurons,'' in \emph{Findings of the Association for
+  Computational Linguistics: EMNLP 2025}, 2025, pp. 25\,461--25\,476. [Online].
+  Available: \url{https://aclanthology.org/2025.findings-emnlp.1388.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{HelloSimpleAI2023detector}
