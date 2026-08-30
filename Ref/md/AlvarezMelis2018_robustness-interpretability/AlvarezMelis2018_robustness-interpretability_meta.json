@@ -1,0 +1,595 @@
+{
+  "table_of_contents": [
+    {
+      "title": "On the Robustness of Interpretability Methods",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          155.390625,
+          89.9119873046875
+        ],
+        [
+          441.3587341308594,
+          89.9119873046875
+        ],
+        [
+          441.3587341308594,
+          104.2581787109375
+        ],
+        [
+          155.390625,
+          104.2581787109375
+        ]
+      ]
+    },
+    {
+      "title": "David Alvarez-Melis 1 Tommi S. Jaakkola 1",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          204.3984375,
+          141.5390625
+        ],
+        [
+          390.44189453125,
+          141.5390625
+        ],
+        [
+          390.44189453125,
+          152.96612548828125
+        ],
+        [
+          204.3984375,
+          152.96612548828125
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          149.4140625,
+          174.97021484375
+        ],
+        [
+          194.8359375,
+          174.97021484375
+        ],
+        [
+          194.8359375,
+          186.9254150390625
+        ],
+        [
+          149.4140625,
+          186.9254150390625
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          54.984375,
+          306.66796875
+        ],
+        [
+          132.2760467529297,
+          306.66796875
+        ],
+        [
+          132.2760467529297,
+          318.81048583984375
+        ],
+        [
+          54.984375,
+          318.81048583984375
+        ]
+      ]
+    },
+    {
+      "title": "2. Robustness",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          307.44000244140625,
+          561.90234375
+        ],
+        [
+          376.9475402832031,
+          561.90234375
+        ],
+        [
+          376.9475402832031,
+          574.1451568603516
+        ],
+        [
+          307.44000244140625,
+          574.1451568603516
+        ]
+      ]
+    },
+    {
+      "title": "3. Experiments",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          54.685546875,
+          220.04296875
+        ],
+        [
+          132.47930908203125,
+          220.04296875
+        ],
+        [
+          132.47930908203125,
+          232.00933837890625
+        ],
+        [
+          54.685546875,
+          232.00933837890625
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Methods and Datasets",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.7890625,
+          238.9921875
+        ],
+        [
+          166.9613494873047,
+          238.9921875
+        ],
+        [
+          166.9613494873047,
+          250.92010498046875
+        ],
+        [
+          53.7890625,
+          250.92010498046875
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Benchmark Classification and Regression Datasets",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.7890625,
+          575.1923065185547
+        ],
+        [
+          288.0703125,
+          575.1923065185547
+        ],
+        [
+          288.0703125,
+          585.87890625
+        ],
+        [
+          53.7890625,
+          585.87890625
+        ]
+      ]
+    },
+    {
+      "title": "3.3. Explaining Digit Predictions",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          54.685546875,
+          569.2105255126953
+        ],
+        [
+          193.37217712402344,
+          569.2105255126953
+        ],
+        [
+          193.37217712402344,
+          579.69140625
+        ],
+        [
+          54.685546875,
+          579.69140625
+        ]
+      ]
+    },
+    {
+      "title": "3.4. Explaining Image Classification",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          306.298828125,
+          518.58984375
+        ],
+        [
+          459.9474792480469,
+          518.58984375
+        ],
+        [
+          459.9474792480469,
+          528.6930236816406
+        ],
+        [
+          306.298828125,
+          528.6930236816406
+        ]
+      ]
+    },
+    {
+      "title": "4. Discussion",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          55.283203125,
+          549.0271606445312
+        ],
+        [
+          121.623046875,
+          549.0271606445312
+        ],
+        [
+          121.623046875,
+          560.9823608398438
+        ],
+        [
+          55.283203125,
+          560.9823608398438
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          55.283203125,
+          67.67578125
+        ],
+        [
+          110.9838638305664,
+          67.67578125
+        ],
+        [
+          110.9838638305664,
+          79.80230712890625
+        ],
+        [
+          55.283203125,
+          79.80230712890625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          198
+        ],
+        [
+          "Line",
+          87
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          94
+        ],
+        [
+          "Span",
+          69
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Equation",
+          4
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          1045
+        ],
+        [
+          "Line",
+          292
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "FigureGroup",
+          3
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          293
+        ],
+        [
+          "Line",
+          60
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          175
+        ],
+        [
+          "Line",
+          64
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          249
+        ],
+        [
+          "Line",
+          93
+        ],
+        [
+          "ListItem",
+          19
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/AlvarezMelis2018_robustness-interpretability"
+}

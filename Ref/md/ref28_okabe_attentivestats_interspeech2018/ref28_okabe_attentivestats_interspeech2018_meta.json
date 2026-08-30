@@ -1,0 +1,647 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Attentive Statistics Pooling for Deep Speaker Embedding",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          123.18359375,
+          82.87750244140625
+        ],
+        [
+          472.7718505859375,
+          82.87750244140625
+        ],
+        [
+          472.7718505859375,
+          97.22369384765625
+        ],
+        [
+          123.18359375,
+          97.22369384765625
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          148.45947265625,
+          192.41015625
+        ],
+        [
+          193.22108459472656,
+          192.41015625
+        ],
+        [
+          193.22108459472656,
+          205.0364990234375
+        ],
+        [
+          148.45947265625,
+          205.0364990234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          130.439697265625,
+          369.197265625
+        ],
+        [
+          211.36708068847656,
+          369.197265625
+        ],
+        [
+          211.36708068847656,
+          382.3959655761719
+        ],
+        [
+          130.439697265625,
+          382.3959655761719
+        ]
+      ]
+    },
+    {
+      "title": "2. Deep speaker embedding",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          353.57177734375,
+          596.8783874511719
+        ],
+        [
+          497.97772216796875,
+          596.8783874511719
+        ],
+        [
+          497.97772216796875,
+          608.8335876464844
+        ],
+        [
+          353.57177734375,
+          608.8335876464844
+        ]
+      ]
+    },
+    {
+      "title": "3. Higher-order pooling with attention",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          70.888671875,
+          492.1202697753906
+        ],
+        [
+          270.771484375,
+          492.1202697753906
+        ],
+        [
+          270.771484375,
+          504.0754699707031
+        ],
+        [
+          70.888671875,
+          504.0754699707031
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Statistics pooling",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          56.65283203125,
+          583.1052551269531
+        ],
+        [
+          142.06787109375,
+          583.1052551269531
+        ],
+        [
+          142.06787109375,
+          593.2646484375
+        ],
+        [
+          56.65283203125,
+          593.2646484375
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Attention mechanism",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          312.0263671875,
+          180.4873046875
+        ],
+        [
+          413.54827880859375,
+          180.4873046875
+        ],
+        [
+          413.54827880859375,
+          191.03173828125
+        ],
+        [
+          312.0263671875,
+          191.03173828125
+        ]
+      ]
+    },
+    {
+      "title": "3.3. Attentive statistics pooling",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.15478515625,
+          501.14593505859375
+        ],
+        [
+          432.59521484375,
+          501.14593505859375
+        ],
+        [
+          432.59521484375,
+          511.0380859375
+        ],
+        [
+          311.15478515625,
+          511.0380859375
+        ]
+      ]
+    },
+    {
+      "title": "4. Experiments",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          129.86572265625,
+          282.12109375
+        ],
+        [
+          211.79443359375,
+          282.12109375
+        ],
+        [
+          211.79443359375,
+          294.0762939453125
+        ],
+        [
+          129.86572265625,
+          294.0762939453125
+        ]
+      ]
+    },
+    {
+      "title": "4.1. Experimental settings",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          56.943359375,
+          300.126953125
+        ],
+        [
+          159.8479766845703,
+          300.126953125
+        ],
+        [
+          159.8479766845703,
+          309.3524169921875
+        ],
+        [
+          56.943359375,
+          309.3524169921875
+        ]
+      ]
+    },
+    {
+      "title": "4.1.1. i-vector system",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          55.78125,
+          389.3427734375
+        ],
+        [
+          137.15394592285156,
+          389.3427734375
+        ],
+        [
+          137.15394592285156,
+          398.66583251953125
+        ],
+        [
+          55.78125,
+          398.66583251953125
+        ]
+      ]
+    },
+    {
+      "title": "4.1.2. Deep speaker embedding system",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          56.07177734375,
+          530.93896484375
+        ],
+        [
+          199.79421997070312,
+          530.93896484375
+        ],
+        [
+          199.79421997070312,
+          540.6396484375
+        ],
+        [
+          56.07177734375,
+          540.6396484375
+        ]
+      ]
+    },
+    {
+      "title": "4.1.3. Training and evaluation data",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.15478515625,
+          224.45831298828125
+        ],
+        [
+          442.84344482421875,
+          224.45831298828125
+        ],
+        [
+          442.84344482421875,
+          233.4246826171875
+        ],
+        [
+          311.15478515625,
+          233.4246826171875
+        ]
+      ]
+    },
+    {
+      "title": "4.2. Results",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          312.71966552734375,
+          544.4647216796875
+        ],
+        [
+          360.54443359375,
+          544.4647216796875
+        ],
+        [
+          360.54443359375,
+          553.7958984375
+        ],
+        [
+          312.71966552734375,
+          553.7958984375
+        ]
+      ]
+    },
+    {
+      "title": "4.2.1. NIST SRE 2012",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.73583984375,
+          557.9072265625
+        ],
+        [
+          394.82666015625,
+          557.9072265625
+        ],
+        [
+          394.82666015625,
+          569.5439453125
+        ],
+        [
+          311.73583984375,
+          569.5439453125
+        ]
+      ]
+    },
+    {
+      "title": "4.2.2. VoxCeleb",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          57.23388671875,
+          574.3525390625
+        ],
+        [
+          117.08251953125,
+          574.3525390625
+        ],
+        [
+          117.08251953125,
+          584.78515625
+        ],
+        [
+          57.23388671875,
+          584.78515625
+        ]
+      ]
+    },
+    {
+      "title": "5. Summary and Future Work",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          345.7275390625,
+          204.744140625
+        ],
+        [
+          505.60748291015625,
+          204.744140625
+        ],
+        [
+          505.60748291015625,
+          216.79638671875
+        ],
+        [
+          345.7275390625,
+          216.79638671875
+        ]
+      ]
+    },
+    {
+      "title": "6. References",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          390.23968505859375,
+          409.8994140625
+        ],
+        [
+          461.7303771972656,
+          409.8994140625
+        ],
+        [
+          461.7303771972656,
+          422.7154235839844
+        ],
+        [
+          390.23968505859375,
+          422.7154235839844
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          246
+        ],
+        [
+          "Line",
+          108
+        ],
+        [
+          "Text",
+          16
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          431
+        ],
+        [
+          "Line",
+          126
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "Reference",
+          7
+        ],
+        [
+          "Equation",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          272
+        ],
+        [
+          "Line",
+          111
+        ],
+        [
+          "Text",
+          14
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          309
+        ],
+        [
+          "Line",
+          108
+        ],
+        [
+          "TableCell",
+          55
+        ],
+        [
+          "Reference",
+          13
+        ],
+        [
+          "ListItem",
+          10
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          109
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Reference",
+          11
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/ref28_okabe_attentivestats_interspeech2018"
+}

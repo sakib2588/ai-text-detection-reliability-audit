@@ -1,0 +1,718 @@
+{
+  "table_of_contents": [
+    {
+      "title": "A Lightweight Approach for Network Intrusion\nDetection based on Self-Knowledge Distillation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          61.5,
+          53.3671875
+        ],
+        [
+          540.75,
+          53.3671875
+        ],
+        [
+          540.75,
+          104.4140625
+        ],
+        [
+          61.5,
+          104.4140625
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          133.27734375,
+          384.01171875
+        ],
+        [
+          213.75,
+          384.01171875
+        ],
+        [
+          213.75,
+          393.75
+        ],
+        [
+          133.27734375,
+          393.75
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORK",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          130.2890625,
+          382.46484375
+        ],
+        [
+          217.5,
+          382.46484375
+        ],
+        [
+          217.5,
+          391.5
+        ],
+        [
+          130.2890625,
+          391.5
+        ]
+      ]
+    },
+    {
+      "title": "III. THE PROPOSED APPROACH",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          369.75,
+          238.5
+        ],
+        [
+          504.0,
+          238.5
+        ],
+        [
+          504.0,
+          247.5
+        ],
+        [
+          369.75,
+          247.5
+        ]
+      ]
+    },
+    {
+      "title": "A. Preliminary",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          309.75,
+          394.5
+        ],
+        [
+          374.25,
+          394.5
+        ],
+        [
+          374.25,
+          403.5
+        ],
+        [
+          309.75,
+          403.5
+        ]
+      ]
+    },
+    {
+      "title": "B. LNet",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          310.18359375,
+          549.0
+        ],
+        [
+          345.75,
+          549.0
+        ],
+        [
+          345.75,
+          558.03515625
+        ],
+        [
+          310.18359375,
+          558.03515625
+        ]
+      ]
+    },
+    {
+      "title": "C. Complexity analysis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          48.0,
+          656.25
+        ],
+        [
+          144.75,
+          656.25
+        ],
+        [
+          144.75,
+          666.31640625
+        ],
+        [
+          48.0,
+          666.31640625
+        ]
+      ]
+    },
+    {
+      "title": "D. Self-Knowledge Distillation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          310.5,
+          472.18359375
+        ],
+        [
+          438.978515625,
+          472.18359375
+        ],
+        [
+          438.978515625,
+          481.5
+        ],
+        [
+          310.5,
+          481.5
+        ]
+      ]
+    },
+    {
+      "title": "IV. EXPERIMENTAL RESULTS",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          110.865234375,
+          614.49609375
+        ],
+        [
+          237.6248779296875,
+          614.49609375
+        ],
+        [
+          237.6248779296875,
+          625.3450469970703
+        ],
+        [
+          110.865234375,
+          625.3450469970703
+        ]
+      ]
+    },
+    {
+      "title": "A. Dataset",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          311.9765625,
+          349.20703125
+        ],
+        [
+          357.3984375,
+          349.20703125
+        ],
+        [
+          357.3984375,
+          359.56158447265625
+        ],
+        [
+          311.9765625,
+          359.56158447265625
+        ]
+      ]
+    },
+    {
+      "title": "B. Evaluation Metrics",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          309.884765625,
+          621.9468688964844
+        ],
+        [
+          403.1855773925781,
+          621.9468688964844
+        ],
+        [
+          403.1855773925781,
+          632.28515625
+        ],
+        [
+          309.884765625,
+          632.28515625
+        ]
+      ]
+    },
+    {
+      "title": "C. Ablation w.r.t. Hyper-parameters",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          48.111328125,
+          358.6650085449219
+        ],
+        [
+          196.4403839111328,
+          358.6650085449219
+        ],
+        [
+          196.4403839111328,
+          368.6275939941406
+        ],
+        [
+          48.111328125,
+          368.6275939941406
+        ]
+      ]
+    },
+    {
+      "title": "D. Ablation w.r.t. LNet-SKD",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          48.111328125,
+          549.52734375
+        ],
+        [
+          165.849609375,
+          549.52734375
+        ],
+        [
+          165.849609375,
+          559.5274963378906
+        ],
+        [
+          48.111328125,
+          559.5274963378906
+        ]
+      ]
+    },
+    {
+      "title": "E. Visualization",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          311.677734375,
+          450.52734375
+        ],
+        [
+          377.3924865722656,
+          450.52734375
+        ],
+        [
+          377.3924865722656,
+          461.7054443359375
+        ],
+        [
+          311.677734375,
+          461.7054443359375
+        ]
+      ]
+    },
+    {
+      "title": "F. Compared with other methods",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          311.97802734375,
+          583.55859375
+        ],
+        [
+          447.943359375,
+          583.55859375
+        ],
+        [
+          447.943359375,
+          594.8864135742188
+        ],
+        [
+          311.97802734375,
+          594.8864135742188
+        ]
+      ]
+    },
+    {
+      "title": "V. CONCLUSION",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          138.05859375,
+          282.69140625
+        ],
+        [
+          210.24749755859375,
+          282.69140625
+        ],
+        [
+          210.24749755859375,
+          293.3080749511719
+        ],
+        [
+          138.05859375,
+          293.3080749511719
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          145.828125,
+          459.80859375
+        ],
+        [
+          202.39846801757812,
+          459.80859375
+        ],
+        [
+          202.39846801757812,
+          470.77392578125
+        ],
+        [
+          145.828125,
+          470.77392578125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          120
+        ],
+        [
+          "Span",
+          40
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          137
+        ],
+        [
+          "Span",
+          80
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          89
+        ],
+        [
+          "Span",
+          53
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Equation",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          452
+        ],
+        [
+          "Line",
+          137
+        ],
+        [
+          "TableCell",
+          26
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "Reference",
+          6
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "Equation",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          797
+        ],
+        [
+          "Line",
+          289
+        ],
+        [
+          "TableCell",
+          108
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          490
+        ],
+        [
+          "TableCell",
+          124
+        ],
+        [
+          "Line",
+          115
+        ],
+        [
+          "ListItem",
+          23
+        ],
+        [
+          "Reference",
+          22
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/ref32_yang_lnetskd_arxiv2023"
+}

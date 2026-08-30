@@ -70,3 +70,11 @@ ICCIT_2026___Surface_Content___Arnob__Niloy.zip
 
 # FUSE leaves these behind when a file is deleted while still open, e.g. by LibreOffice
 .fuse_hidden*
+
+# ---------------------------------------------------------------------------
+# Ref/ holds the six-page conference corpus. The source PDFs are copies of
+# other projects' reference folders (28 MB of third-party papers) and stay out
+# of git; the marker markdown, the tooling and the report are tracked, so the
+# study can be rerun from the same md without the PDFs.
+# ---------------------------------------------------------------------------
+Ref/*.pdf

@@ -1,0 +1,751 @@
+{
+  "table_of_contents": [
+    {
+      "title": "A Surface-Content Decomposition of\nAI-Generated Text Detection Benchmarks",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          91.9609375,
+          52.2138671875
+        ],
+        [
+          503.0527648925781,
+          52.2138671875
+        ],
+        [
+          503.0527648925781,
+          105.0140380859375
+        ],
+        [
+          91.9609375,
+          105.0140380859375
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          126.009765625,
+          429.6337890625
+        ],
+        [
+          205.00982666015625,
+          429.6337890625
+        ],
+        [
+          205.00982666015625,
+          441.0582275390625
+        ],
+        [
+          126.009765625,
+          441.0582275390625
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORK",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          385.595703125,
+          548.0400390625
+        ],
+        [
+          472.0951232910156,
+          548.0400390625
+        ],
+        [
+          472.0951232910156,
+          560.3690185546875
+        ],
+        [
+          385.595703125,
+          560.3690185546875
+        ]
+      ]
+    },
+    {
+      "title": "III. METHOD",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          135.61328125,
+          584.2197265625
+        ],
+        [
+          195.16372795969772,
+          584.2197265625
+        ],
+        [
+          195.16372795969772,
+          593.8236865538735
+        ],
+        [
+          135.61328125,
+          593.8236865538735
+        ]
+      ]
+    },
+    {
+      "title": "A. Problem setting",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          38.705078125,
+          606.5699020480855
+        ],
+        [
+          118.59949622166246,
+          606.5699020480855
+        ],
+        [
+          118.59949622166246,
+          616.2880859375
+        ],
+        [
+          38.705078125,
+          616.2880859375
+        ]
+      ]
+    },
+    {
+      "title": "B. Corpora and partitioning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          301.4921875,
+          51.3916015625
+        ],
+        [
+          421.10327455919395,
+          51.3916015625
+        ],
+        [
+          421.10327455919395,
+          60.73196794300979
+        ],
+        [
+          301.4921875,
+          60.73196794300979
+        ]
+      ]
+    },
+    {
+      "title": "C. Models",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          303.2544080604534,
+          292.3154296875
+        ],
+        [
+          347.763671875,
+          292.3154296875
+        ],
+        [
+          347.763671875,
+          301.41050756901154
+        ],
+        [
+          303.2544080604534,
+          301.41050756901154
+        ]
+      ]
+    },
+    {
+      "title": "D. The decomposition",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          302.50377833753146,
+          449.1166518254675
+        ],
+        [
+          395.58186397984883,
+          449.1166518254675
+        ],
+        [
+          395.58186397984883,
+          458.86375779162955
+        ],
+        [
+          302.50377833753146,
+          458.86375779162955
+        ]
+      ]
+    },
+    {
+      "title": "E. Statistics and controls",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          39.032745591939545,
+          331.7841796875
+        ],
+        [
+          144.87153652392948,
+          331.7841796875
+        ],
+        [
+          144.87153652392948,
+          340.3989314336598
+        ],
+        [
+          39.032745591939545,
+          340.3989314336598
+        ]
+      ]
+    },
+    {
+      "title": "F. Reproducibility",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          39.032745591939545,
+          580.9306640625
+        ],
+        [
+          115.5969773299748,
+          580.9306640625
+        ],
+        [
+          115.5969773299748,
+          590.8245770258237
+        ],
+        [
+          39.032745591939545,
+          590.8245770258237
+        ]
+      ]
+    },
+    {
+      "title": "IV. RESULTS",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          399.564453125,
+          534.8837890625
+        ],
+        [
+          458.63476070528964,
+          534.8837890625
+        ],
+        [
+          458.63476070528964,
+          545.0881567230632
+        ],
+        [
+          399.564453125,
+          545.0881567230632
+        ]
+      ]
+    },
+    {
+      "title": "A. A classical model matches a transformer on DAIGT V2 until the text budget is matched",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          301.7531486146096,
+          557.8343722172751
+        ],
+        [
+          556.2166246851385,
+          557.8343722172751
+        ],
+        [
+          556.2166246851385,
+          579.697265625
+        ],
+        [
+          301.7531486146096,
+          579.697265625
+        ]
+      ]
+    },
+    {
+      "title": "B. On HC3, orthography alone matches content alone",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          39.032745591939545,
+          550.3365983971505
+        ],
+        [
+          265.7229219143577,
+          550.3365983971505
+        ],
+        [
+          265.7229219143577,
+          560.3740234375
+        ],
+        [
+          39.032745591939545,
+          560.3740234375
+        ]
+      ]
+    },
+    {
+      "title": "C. The parity belongs to one sub-domain and one cue",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          301.4921875,
+          333.65093499554763
+        ],
+        [
+          528.4433249370277,
+          333.65093499554763
+        ],
+        [
+          528.4433249370277,
+          343.2958984375
+        ],
+        [
+          301.4921875,
+          343.2958984375
+        ]
+      ]
+    },
+    {
+      "title": "D. A model that cannot represent the cue reaches 0.9916 anyway",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          39.032745591939545,
+          255.3134765625
+        ],
+        [
+          295.08984375,
+          255.3134765625
+        ],
+        [
+          295.08984375,
+          277.5146484375
+        ],
+        [
+          39.032745591939545,
+          277.5146484375
+        ]
+      ]
+    },
+    {
+      "title": "E. Neither corpus transfers to the other",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          38.99609375,
+          571.0634765625
+        ],
+        [
+          206.42317380352642,
+          571.0634765625
+        ],
+        [
+          206.42317380352642,
+          581.0774710596615
+        ],
+        [
+          38.99609375,
+          581.0774710596615
+        ]
+      ]
+    },
+    {
+      "title": "F. A published detector out of domain",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          301.00251889168766,
+          255.6740872662511
+        ],
+        [
+          462.3879093198992,
+          255.6740872662511
+        ],
+        [
+          462.3879093198992,
+          266.0029296875
+        ],
+        [
+          301.00251889168766,
+          266.0029296875
+        ]
+      ]
+    },
+    {
+      "title": "V. DISCUSSION",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          394.8312342569269,
+          413.1884765625
+        ],
+        [
+          463.13853904282115,
+          413.1884765625
+        ],
+        [
+          463.13853904282115,
+          424.3739982190561
+        ],
+        [
+          394.8312342569269,
+          424.3739982190561
+        ]
+      ]
+    },
+    {
+      "title": "VI. CONCLUSION",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          126.8828125,
+          361.3857421875
+        ],
+        [
+          204.43548583984375,
+          361.3857421875
+        ],
+        [
+          204.43548583984375,
+          372.3153076171875
+        ],
+        [
+          126.8828125,
+          372.3153076171875
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          137.068359375,
+          580.9306640625
+        ],
+        [
+          194.03646850585938,
+          580.9306640625
+        ],
+        [
+          194.03646850585938,
+          592.713134765625
+        ],
+        [
+          137.068359375,
+          592.713134765625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          252
+        ],
+        [
+          "Line",
+          98
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          121
+        ],
+        [
+          "Span",
+          35
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          96
+        ],
+        [
+          "TableCell",
+          75
+        ],
+        [
+          "Span",
+          34
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          94
+        ],
+        [
+          "Span",
+          73
+        ],
+        [
+          "TableCell",
+          73
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          112
+        ],
+        [
+          "Span",
+          23
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          363
+        ],
+        [
+          "Line",
+          130
+        ],
+        [
+          "ListItem",
+          25
+        ],
+        [
+          "Reference",
+          25
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/00_OURS_iccit6"
+}
