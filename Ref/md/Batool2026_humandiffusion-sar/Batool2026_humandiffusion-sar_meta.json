@@ -1,0 +1,728 @@
+{
+  "table_of_contents": [
+    {
+      "title": "HumanDiffusion: A Vision-Based Diffusion Trajectory Planner\nwith Human-Conditioned Goals for Search and Rescue UAV",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          62.46200180053711,
+          82.76910400390625
+        ],
+        [
+          549.8990478515625,
+          82.76910400390625
+        ],
+        [
+          549.8990478515625,
+          119.90948486328125
+        ],
+        [
+          62.46200180053711,
+          119.90948486328125
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.79800033569336,
+          549.52734375
+        ],
+        [
+          95.923828125,
+          549.52734375
+        ],
+        [
+          95.923828125,
+          562.1466522216797
+        ],
+        [
+          53.79800033569336,
+          562.1466522216797
+        ]
+      ]
+    },
+    {
+      "title": "CCS Concepts",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          53.490234375,
+          85.4066162109375
+        ],
+        [
+          123.07078552246094,
+          85.4066162109375
+        ],
+        [
+          123.07078552246094,
+          96.31573486328125
+        ],
+        [
+          53.490234375,
+          96.31573486328125
+        ]
+      ]
+    },
+    {
+      "title": "Keywords",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          52.59375,
+          147.14752197265625
+        ],
+        [
+          102.87804412841797,
+          147.14752197265625
+        ],
+        [
+          102.87804412841797,
+          158.056640625
+        ],
+        [
+          52.59375,
+          158.056640625
+        ]
+      ]
+    },
+    {
+      "title": "1 Introduction",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          53.79800033569336,
+          211.1484375
+        ],
+        [
+          133.3798828125,
+          211.1484375
+        ],
+        [
+          133.3798828125,
+          222.40869140625
+        ],
+        [
+          53.79800033569336,
+          222.40869140625
+        ]
+      ]
+    },
+    {
+      "title": "2 Related Works",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          53.19140625,
+          651.234375
+        ],
+        [
+          143.05625915527344,
+          651.234375
+        ],
+        [
+          143.05625915527344,
+          663.4386749267578
+        ],
+        [
+          53.19140625,
+          663.4386749267578
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Human-Centered UAV Navigation for\nSearch and Rescue",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.35546875,
+          85.40655517578125
+        ],
+        [
+          528.92578125,
+          85.40655517578125
+        ],
+        [
+          528.92578125,
+          109.26666259765625
+        ],
+        [
+          317.35546875,
+          109.26666259765625
+        ]
+      ]
+    },
+    {
+      "title": "2.2 UAV Navigation and Planning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.35546875,
+          233.19140625
+        ],
+        [
+          490.67578125,
+          233.19140625
+        ],
+        [
+          490.67578125,
+          245.0697021484375
+        ],
+        [
+          317.35546875,
+          245.0697021484375
+        ]
+      ]
+    },
+    {
+      "title": "2.3 Diffusion Models for Trajectory Planning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.35546875,
+          358.48828125
+        ],
+        [
+          548.05078125,
+          358.48828125
+        ],
+        [
+          548.05078125,
+          369.9146728515625
+        ],
+        [
+          317.35546875,
+          369.9146728515625
+        ]
+      ]
+    },
+    {
+      "title": "2.4 Vision\u2013Language Models for UAV Reasoning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          316.16015625,
+          472.89056396484375
+        ],
+        [
+          558.80859375,
+          472.89056396484375
+        ],
+        [
+          558.80859375,
+          483.7996826171875
+        ],
+        [
+          316.16015625,
+          483.7996826171875
+        ]
+      ]
+    },
+    {
+      "title": "3 System Architecture",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          316.458984375,
+          663.4885711669922
+        ],
+        [
+          435.08599853515625,
+          663.4885711669922
+        ],
+        [
+          435.08599853515625,
+          674.3976745605469
+        ],
+        [
+          316.458984375,
+          674.3976745605469
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Perception and Human Goal Inference",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.19140625,
+          118.5
+        ],
+        [
+          269.54296875,
+          118.5
+        ],
+        [
+          269.54296875,
+          128.77734375
+        ],
+        [
+          53.19140625,
+          128.77734375
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Diffusion-Based Trajectory Generator",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.7890625,
+          208.44140625
+        ],
+        [
+          266.5546875,
+          208.44140625
+        ],
+        [
+          266.5546875,
+          218.49609375
+        ],
+        [
+          53.7890625,
+          218.49609375
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Training Pipeline and Dataset Generation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          316.7578125,
+          156.62109375
+        ],
+        [
+          549.75,
+          156.62109375
+        ],
+        [
+          549.75,
+          166.67578125
+        ],
+        [
+          316.7578125,
+          166.67578125
+        ]
+      ]
+    },
+    {
+      "title": "4 Experimental Evaluation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          316.5,
+          263.25
+        ],
+        [
+          459.0,
+          263.25
+        ],
+        [
+          459.0,
+          274.18359375
+        ],
+        [
+          316.5,
+          274.18359375
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Results and Failure Analysis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          316.16015625,
+          435.05859375
+        ],
+        [
+          483.75,
+          435.05859375
+        ],
+        [
+          483.75,
+          445.5
+        ],
+        [
+          316.16015625,
+          445.5
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Evaluation on Test Dataset",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          316.16015625,
+          619.5
+        ],
+        [
+          475.5,
+          619.5
+        ],
+        [
+          475.5,
+          629.19140625
+        ],
+        [
+          316.16015625,
+          629.19140625
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Evaluation on Real Indoor Scenarios",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          53.19140625,
+          259.1015625
+        ],
+        [
+          258.6163330078125,
+          259.1015625
+        ],
+        [
+          258.6163330078125,
+          271.39666748046875
+        ],
+        [
+          53.19140625,
+          271.39666748046875
+        ]
+      ]
+    },
+    {
+      "title": "5 Conclusion and Future Work",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          53.19140625,
+          595.93359375
+        ],
+        [
+          213.7581329345703,
+          595.93359375
+        ],
+        [
+          213.7581329345703,
+          608.6446685791016
+        ],
+        [
+          53.19140625,
+          608.6446685791016
+        ]
+      ]
+    },
+    {
+      "title": "Acknowledgment",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          316.458984375,
+          504.3575744628906
+        ],
+        [
+          405.509765625,
+          504.3575744628906
+        ],
+        [
+          405.509765625,
+          515.2666625976562
+        ],
+        [
+          316.458984375,
+          515.2666625976562
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          317.654296875,
+          552.62109375
+        ],
+        [
+          372.3041076660156,
+          552.62109375
+        ],
+        [
+          372.3041076660156,
+          563.8126678466797
+        ],
+        [
+          317.654296875,
+          563.8126678466797
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          137
+        ],
+        [
+          "Line",
+          66
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          278
+        ],
+        [
+          "Line",
+          102
+        ],
+        [
+          "SectionHeader",
+          9
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          116
+        ],
+        [
+          "Span",
+          86
+        ],
+        [
+          "Text",
+          17
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Equation",
+          5
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          197
+        ],
+        [
+          "Line",
+          79
+        ],
+        [
+          "Reference",
+          8
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          311
+        ],
+        [
+          "Line",
+          94
+        ],
+        [
+          "ListItem",
+          28
+        ],
+        [
+          "Reference",
+          28
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Batool2026_humandiffusion-sar"
+}

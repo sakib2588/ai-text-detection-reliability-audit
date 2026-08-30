@@ -1,0 +1,264 @@
+# A Surface-Content Decomposition of AI-Generated Text Detection Benchmarks
+
+Anonymous Author(s) Affiliation withheld for double-blind review
+
+*Abstract*—Benchmarks for machine-generated text detection report accuracy above 99%, and a detector scoring that high may have learned how machine language differs from human language, or only how one corpus was punctuated. The headline number does not separate the two, and to our knowledge no existing method reports how much of a benchmark's separability rests on surface form. This paper proposes the surface-content decomposition, fitting two matched classifiers over disjoint views of every document, one reading 47 orthographic features and never a word, the other reading text stripped of punctuation and casing, with a fine-tuned transformer as reference. On HC3 the two arms are indistinguishable under a paired test at 3.20% against 3.26% error, and the null survives five of five partitions with the sign changing between them, while on DAIGT V2 content is stronger 7.9-fold. Subgroup analysis localises the tie rather than confirming it, since the surface arm reaches 0.01% error on the Reddit sub-corpus that is 74.8% of HC3, and removing the cue responsible costs that arm 10.03 points. Two controls then bound what such results license. A tokenisation control shows the cue is unnecessary in practice, because BERT cannot represent it and still reaches 0.9916 weighted F1, and a label-free control shows an apparent adversarial collapse is not distinguished from a degenerate response to unreadable input. Reporting the decomposition beside a headline score tells a reader how much of a benchmark a model could pass without reading the language.
+
+*Index Terms*—AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, label-free control
+
+## I. INTRODUCTION
+
+Detectors of machine-generated text report accuracy at or above 97% on the benchmarks the field uses most, and often above 99% [\[1\]](#page-5-0), [\[2\]](#page-5-1), [\[3\]](#page-5-2). Read directly those numbers say the task is close to solved, and read carefully they say something weaker. A benchmark score measures the separability of a particular corpus rather than the capability a reader infers from it.
+
+Separability has more than one source. A detector can reach a high score by modelling how machine-generated language differs from human language, or by modelling how one corpus was assembled, punctuated and encoded. Instances of the second kind are documented, and they include a whitespace convention in HC3 [\[4\]](#page-5-3), a length confound in the same corpus [\[5\]](#page-5-4) and prompt-specific collection shortcuts [\[6\]](#page-5-5). What is missing is a way to ask how much of a benchmark's separability owes to surface form rather than content, and to place two benchmarks on that one axis.
+
+Three lines of prior work come close and each stops short. Shared benchmarks [\[7\]](#page-5-6), [\[8\]](#page-5-7) make detectors comparable across conditions but do not ask what any condition is separable by. Cleaning kits remove a single known cue [\[4\]](#page-5-3), yet a null after cleaning says nothing unless the detector could read that cue. Partial-input baselines expose artefacts in natural language inference [\[9\]](#page-5-8), [\[10\]](#page-5-9) but have not been moved to detection.
+
+This paper proposes that measurement and compares three arms on identical splits. A *surface-only* model reads 47 orthographic features and never sees a word, a *content-only* model reads text stripped of punctuation, casing and non-ASCII characters, and a *full* model is a fine-tuned transformer on raw text. The first two share a classifier family and are directly comparable, the third is a reference point, and the object of measurement is a corpus rather than a detector. On HC3 the two arms are indistinguishable, while on DAIGT V2 content is stronger 7.9-fold, and subgroup labels place the HC3 tie in the Reddit sub-corpus. The main contributions are the following.
+
+- 1) A surface-content decomposition, stated formally in Section [III-D](#page-1-0) as a reusable measurement over any humanversus-machine corpus, with the length control that stops its two arms sharing a channel.
+- 2) Its application to two benchmarks and their twenty subcorpora (Sections [IV-B](#page-3-0) and [IV-C\)](#page-3-1), locating the HC3 result in one collection convention in one dominant domain, where removing that convention costs the surface arm ten points.
+- 3) A tokenisation control (Section [IV-D\)](#page-4-0) establishing that the most-discussed cue in HC3 is sufficient in isolation yet unnecessary in practice, since BERT cannot represent it and still reaches 0.9916 weighted F1 there.
+- 4) A label-free control (Section [IV-E\)](#page-4-1) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
+
+The rest of this paper is organised as follows. Section [II](#page-0-0) reviews detection on these benchmarks, shortcut learning and robustness. Section [III](#page-1-1) states the problem setting, the corpora, the decomposition and the controls. Section [IV](#page-2-0) reports the measurements. Section [V](#page-4-2) discusses what they license, Section [VI](#page-4-3) states the limits and Section [VII](#page-5-10) concludes.
+
+### II. RELATED WORK
+
+<span id="page-0-0"></span>Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
+
+TABLE I PRIOR WORK ON THESE BENCHMARKS, BY METHOD, RESULT AND THE LIMITATION THAT BEARS ON OUR CLAIM.
+
+<span id="page-1-2"></span>
+
+| Ref. | Method                            | Dataset    | Reported result               | Limitation                                   |
+|------|-----------------------------------|------------|-------------------------------|----------------------------------------------|
+| [1]  | fine-tuned RoBERTa                | HC3        | 99.82 F1                      | which property of the text carries the score |
+| [4]  | one-token whitespace rule         | HC3        | 82.12 F1, per sentence        | how much surface form carries in total       |
+| [3]  | character n-grams, no transformer | DAIGT      | competitive with transformers | what the n-grams are reading                 |
+| [11] | misspelling, homoglyph attack     | HC3        | 99.88 F1 falls to 33.57%      | a label-free control on the collapse         |
+| [12] | released RoBERTa, run by us       | HC3, DAIGT | 0.9952 and 0.8230 wtd. F1     | contaminated on HC3, unseen on DAIGT         |
+| ours | surface-content decomposition     | HC3, DAIGT | 0.9972 and 0.9917 wtd. F1     | reports the arms, per sub-corpus             |
+
+The corpus that set the current accuracy regime [\[1\]](#page-5-0) asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 questionanswer rows from five sources with a RoBERTa classifier finetuned on it, later narrowed to roughly 91.7% under semanticinvariant tasks [\[2\]](#page-5-1). Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
+
+The closest prior result [\[4\]](#page-5-3) addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix carries the experiment we build on, a detector made from a single test for one token identifier, above the 81.89 quoted there for a fine-tuned RoBERTa. It removes one cue already known, so it bounds neither the separability carried by surface form in total nor how that total compares across corpora.
+
+A third line [\[3\]](#page-5-2) asked whether a transformer is needed on the competition-era essay benchmarks at all, replacing finetuning with classical classifiers over character n-gram features on DAIGT V2, consistent with our own tie. It is a score rather than a decomposition, so what the n-grams read is left open, as it is for work pairing stylometry with DeBERTa [\[13\]](#page-5-13) or transformer networks [\[14\]](#page-5-14), and the hand-crafted-versus-deeplearning comparison in [\[15\]](#page-5-15).
+
+The shared-benchmark line [\[7\]](#page-5-6), [\[8\]](#page-5-7), [\[16\]](#page-5-16) makes detector results comparable when generators, domains and attacks vary at once, scoring per condition rather than in aggregate. None of them ask what any one condition is separable by, which is the axis added here. The same blind spot is documented for vision datasets [\[17\]](#page-5-17) and for inference models reading only the hypothesis [\[9\]](#page-5-8), [\[10\]](#page-5-9), [\[18\]](#page-5-18), under the caveat [\[19\]](#page-5-19) that a high partial-input score shows a dataset is cheatable while a low one does not.
+
+The robustness line [\[11\]](#page-5-11) tested how far a reported accuracy survives a hostile writer, perturbing inputs and re-scoring HC3 trained detectors without retraining, while deployed detectors flag non-native English writing as machine-generated at high rates [\[20\]](#page-5-20). Both report the fragility without locating what the detector relied on.
+
+Table [I](#page-1-2) sets these side by side against what each reports. None of this work measures how much of a benchmark's separability is carried by surface form. Unlike [\[4\]](#page-5-3), which removes one cue, and [\[7\]](#page-5-6), [\[8\]](#page-5-7), which compare detectors across conditions, this paper measures each corpus with two matched arms, locates the result per sub-corpus, and checks whether the detector can read the cue at all.
+
+## III. METHODOLOGY
+
+## <span id="page-1-1"></span>*A. Problem setting*
+
+This is a measurement contribution rather than a detector, so no baseline shares its evaluation object and the comparison is arm against arm. Given a human-versus-machine benchmark we ask how much of its separability a model could obtain without reading the language. The instruments are two matched classifiers over disjoint views of each document, plus a finetuned transformer as reference (Fig. [1\)](#page-2-1). We assume balanced classes, English text and a 128-token budget, and make no claim about which detector is best.
+
+## *B. Corpora and partitioning*
+
+DAIGT V2 [\[21\]](#page-5-21) contains 44,868 argumentative student essays, 27,371 human-written and 17,497 machine-generated by 2023-era systems. HC3 [\[1\]](#page-5-0) contains 85,449 questionanswer rows from five English sources, contrasting human answers with GPT-3.5-Turbo. The two differ in nearly every respect that matters, DAIGT V2 having many generators, one genre and long documents where HC3 has one generator, five domains and short ones. Both were class-balanced by downsampling to 34,994 and 53,806 rows, which fixes a degenerate single-class predictor at 0.333 weighted F1.
+
+HC3 carries 6,118 duplicate rows, 7.16% of the corpus, so the split is group-aware, grouping documents by an MD5 hash of their whitespace-normalised lowercased text and sending whole groups to one side of a 72/8/20 division. That rule leaks 0 of 10,732 HC3 test documents against 570, or 5.30%, for a plain stratified split.
+
+### *C. Models*
+
+Five families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased [\[22\]](#page-5-22) and microsoft/deberta-v3-base [\[23\]](#page-5-23), fine-tuned over a sixteen-run grid per dataset, learning rate ∈ {2, 3} × 10<sup>−</sup><sup>5</sup> , batch size ∈ {16, 32}, weight decay ∈ {0.01, 0.1}, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser [\[24\]](#page-5-24) encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section [IV-D](#page-4-0) examines.
+
+## <span id="page-1-0"></span>*D. The decomposition*
+
+Write x for a document and y ∈ {0, 1} for its label, with 1 denoting machine-generated. The surface map ϕ<sup>S</sup> sends a
+
+![](_page_2_Figure_0.jpeg)
+
+<span id="page-2-1"></span>Fig. 1. The measurement pipeline and its three disjoint views.
+
+document to R <sup>47</sup>, orthographic statistics covering punctuation, whitespace including spaces before punctuation, casing, length, non-ASCII and digit rates, reading no word identity. The content map ϕ<sup>C</sup> lowercases, replaces every character outside the lowercase Latin alphabet and whitespace with a space, collapses whitespace runs, then takes raw bag-of-words counts, so punctuation, casing and non-ASCII cannot enter it.
+
+Each arm fits one logistic regression on the same training partition,
+
+$$h_a = \arg\min_{h} \sum_{(x,y)\in\mathcal{D}_{tr}} \ell(h(\phi_a(x)), y) + \frac{1}{2C} ||h||_2^2,$$
+ (1)
+
+for a ∈ {S, C}, with C = 1.0, scikit-learn's default, for both. Sharing the classifier family and the regularisation is what makes the two arms comparable. We report the held-out error ε<sup>a</sup> of each arm and the gap ∆ = ε<sup>S</sup> − εC, where a gap near zero says orthography alone reaches the accuracy of content alone. The comparison is between two specific arms rather than a partition of the total separability.
+
+One channel reaches both arms, since the surface arm reads size counts directly and raw bag-of-words rows sum to document length. Length is a documented confound on both corpora [\[5\]](#page-5-4), so we drop the five size-scaling surface features and normalise content rows to unit total before rescaling by the mean training document length, which stops the arm collapsing for reasons of scale rather than length.
+
+## *E. Evaluation metrics*
+
+Models are scored by weighted F1 and by test error, which move together because the corpora are balanced by construction, and weighted F1 keeps our numbers comparable with the published detectors of Section [II.](#page-0-0) The decomposition is read from the gap between two error rates rather than from either alone.
+
+## *F. Statistics and controls*
+
+Transformer baselines are read from the deployed checkpoint's own record rather than from a grid maximum, with paired comparisons on the same test set. Writing b and c for the discordant counts, we report the exact two-sided binomial p-value [\[25\]](#page-5-25) with a paired bootstrap 95% interval on the error difference over 10,000 resamples [\[26\]](#page-5-26), resampling document indices so the pairing is preserved. A bootstrap says nothing about how the corpus was partitioned and the central claim here is a null, so the decomposition is repeated over five
+
+<span id="page-2-2"></span>TABLE II TEST ERROR FOR ALL EIGHT CONFIGURATIONS. BOLD MARKS THE BEST PER CORPUS.
+
+| Model         | Rep.   | DAIGT V2 err % | HC3 err % |
+|---------------|--------|----------------|-----------|
+| Naive Bayes   | BoW    | 4.09           | 12.87     |
+| Naive Bayes   | TF-IDF | 4.23           | 13.28     |
+| Logistic Reg. | BoW    | 1.07           | 4.49      |
+| Logistic Reg. | TF-IDF | 1.43           | 6.35      |
+| SVM           | BoW    | 1.30           | 5.25      |
+| SVM           | TF-IDF | 0.90           | 5.51      |
+| BERT          | raw    | 0.84           | 0.84      |
+| DeBERTa       | raw    | 0.83           | 0.28      |
+
+group-aware partitions varying only the split seed. We run no parametric tests at n ≤ 30.
+
+Three controls guard the claims below, on tokenisation, on whether a cleaning pipeline fired, and on inputs carrying no label information at all. Each is described where it is used.
+
+## *G. Reproducibility*
+
+Partitions are built once at split seed 42 and reused by every model and training seed, so only initialisation and batch order vary. The four deployed checkpoints were retrained at seeds 123 and 456. Fine-tuning ran three epochs at a 128 token budget on one 8 GiB NVIDIA GeForce RTX 3060 Ti, the longest run taking 1,111 seconds, under PyTorch 2.11, Transformers 4.57 and scikit-learn 1.9. That seed, the grid above and this hardware are the reproducibility record available under double-blind review, and code and per-run logs follow at camera-ready.
+
+## IV. RESULTS AND ANALYSIS
+
+<span id="page-2-0"></span>Every number below comes from the group-aware split of Section [III,](#page-1-1) reused by every model. To the best of our knowledge this is the first surface-content decomposition reported for either corpus, so Table [I](#page-1-2) places our detectors beside the published numbers instead.
+
+*A. A classical model matches a transformer on DAIGT V2 until the text budget is matched*
+
+Table [II](#page-2-2) reports every configuration, and the two benchmarks part company. On DAIGT V2 the best classical configuration sits 0.07 points above the best transformer, the two disagree on 99 documents split 47 to 52, and McNemar returns p = 0.69 with a paired interval of [−0.21, +0.34]. On HC3 the same comparison gives 484 discordant cases split 16 to 468 at p < 10<sup>−</sup><sup>6</sup> , an error difference of +4.21 points. Reseeding at 123 and 456 moves the checkpoints by 0.0005 to 0.0036
+
+TABLE III THE MATCHED TEXT BUDGET. ERRORS ARE PERCENTAGES.
+
+<span id="page-3-2"></span>
+
+| Corpus   | Window  | kept  | full | window | transf. | difference        |
+|----------|---------|-------|------|--------|---------|-------------------|
+| DAIGT V2 | BERT    | 33.5% | 0.90 | 2.10   | 0.84    | +1.26 (0.90–1.63) |
+| DAIGT V2 | DeBERTa | 34.1% | 0.90 | 2.09   | 0.83    | +1.26 (0.90–1.61) |
+| HC3      | BERT    | 74.6% | 4.49 | 5.66   | 0.84    | +4.82 (4.37–5.26) |
+| HC3      | DeBERTa | 75.6% | 4.49 | 5.72   | 0.28    | +5.44 (5.01–5.89) |
+
+<span id="page-3-3"></span>TABLE IV DECOMPOSITION PER CORPUS, THEN HC3 BY DOMAIN. BOLD MARKS THE LOWER ERROR.
+
+| Arm                        | DAIGT V2 err % | HC3 err % |
+|----------------------------|----------------|-----------|
+| surface-only               | 7.86           | 3.20      |
+| content-only               | 0.99           | 3.26      |
+| full transformer           | 0.83           | 0.28      |
+| length-only (3 feats)      | 24.59          | 15.23     |
+| surface-only, no length    | 9.93           | 3.37      |
+| content-only, length-norm. | 0.94           | 6.28      |
+
+|             |       | surface | content | cue present in |         |
+|-------------|-------|---------|---------|----------------|---------|
+| HC3 domain  | n     | err %   | err %   | human          | machine |
+| reddit eli5 | 6,690 | 0.01    | 2.66    | 98.9%          | 0.3%    |
+| finance     | 684   | 7.60    | 3.07    | 5.6%           | 0.1%    |
+| medicine    | 250   | 4.00    | 0.40    | 17.0%          | 0.1%    |
+| open qa     | 198   | 4.04    | 5.05    | 60.7%          | 0.4%    |
+| wiki csai   | 168   | 5.36    | 11.90   | 1.6%           | 0.2%    |
+
+weighted F1, and the DAIGT V2 pair overlap where the HC3 pair do not. The classical configurations carry no such range, each being fit with a fixed random state on the fixed split, unlike the transformers' initialisation and batch order.
+
+That tie is not a matched comparison, since the classical models read whole documents while the transformers read 128 tokens. We refit the classical grid on the exact character span each tokeniser kept, from offset mapping. Held to one text budget the transformers lead on both corpora and every interval in Table [III](#page-3-2) excludes zero, so the unmatched tie was a fact about information access rather than architecture.
+
+## <span id="page-3-0"></span>*B. On HC3, orthography alone matches content alone*
+
+Table [IV](#page-3-3) gives the decomposition. On HC3 the two arms are indistinguishable at 3.20% error from orthography against 3.26% from content. They disagree on 625 documents split 316 to 309, so McNemar returns p = 0.81 and the difference is −0.07 points with interval [−0.52, +0.40]. Forty-seven features that never read a word do as well as a bag-of-words model over the whole vocabulary. On DAIGT V2 the same arms separate by a factor of 7.9, 7.86% against 0.99%, with 569 discordant documents split 44 to 525 at p < 10<sup>−</sup><sup>6</sup> .
+
+The content arm is deliberately unfiltered, since refitting it with the stopword removal and lemmatisation of the classical pipeline makes the HC3 filtered arm lose to orthography by 1.30 points where the unfiltered arm ties it, and we report the stronger opponent because it makes the parity claim harder. That arm is not itself clean on HC3, where its largest humanside weights fall on url placeholders and newline fragments rather than words, so the tie is between two partly artefactual views and not between orthography and meaning.
+
+Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so
+
+![](_page_3_Figure_11.jpeg)
+
+<span id="page-3-4"></span>Fig. 2. Test error per DAIGT V2 generator, the ten above the 200-row floor.
+
+only on HC3 does it reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs over five group-aware partitions. Content leads on DAIGT V2 on all five at p < 10−<sup>6</sup> , while on HC3 it reaches significance on none, with p of 0.81, 0.27, 0.34, 0.23 and 0.78, changing sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average −0.08 points over −0.29 to +0.27. Tuning regularisation per arm changes no conclusion, since the HC3 arms move to 3.15% and 3.47% and stay indistinguishable on all five.
+
+## <span id="page-3-1"></span>*C. The parity belongs to one sub-domain and one cue*
+
+The lower half of Table [IV](#page-3-3) runs the same measurement per HC3 domain. On reddit\_eli5 the surface arm reaches 0.01% error, one mistake in 6,690 documents, while on the two other domains with enough test rows the ordering reverses, content winning by 4.53 points on finance, interval [+2.34, +6.87], and 3.60 on medicine, interval [+1.60, +6.00]. Since reddit\_eli5 is 74.8% of the balanced corpus, the corpus-level parity is substantially that one domain.
+
+The mechanism is measured. The space-before-punctuation cue appears in 98.9% of reddit\_eli5 human documents against 0.3% of machine ones, decaying to 1.6% on wiki\_csai. A boolean rule treating a document as human when the cue is present scores 99.22% accuracy there and 94.23% on the balanced corpus, 94.22 weighted F1, against 82.12 for the sentence-level equivalent in [\[4\]](#page-5-3). Applying that work's cleaning kit changes 44.5% of HC3 documents and moves the surface arm from 3.20% to 13.22% error, a loss of 10.03 points with interval [−10.69, −9.38], while the content arm is untouched at 3.26%.
+
+Fig. [2](#page-3-4) pairs each DAIGT V2 generator against the shared human pool. Content wins on every one, while the surface arm spans sixteenfold, 0.50% to 8.13%. Two pairs of the same model contributed by different people differ by 4.1 and 2.3 times, suggestive only, since the smaller member of each holds 184 and 130 test rows. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, from 0.9921 to 0.7902 and 0.9930 to 0.9096 off DAIGT V2, and
+
+![](_page_4_Figure_0.jpeg)
+
+<span id="page-4-4"></span>Fig. 3. Arm error and the per-split difference. Filled marks a significant surface-vs-content difference (p < 0.05).
+
+<span id="page-4-5"></span>TABLE V
+LABEL-FREE CONTROL, ALL FIVE CONDITIONS. SHARE ASSIGNED THE HUMAN LABEL, MEAN CONFIDENCE IN PARENTHESES, 400 INPUTS PER CONDITION. D IS DAIGT V2. H IS HC3.
+
+| Condition                                                          | D-BERT                                                              | D-DeBERTa | H-BERT                                                                  | H-DeBERTa |
+|--------------------------------------------------------------------|---------------------------------------------------------------------|-----------|-------------------------------------------------------------------------|-----------|
+| random chars<br>shuffled<br>punctuation<br>repeated token<br>empty | 0% (0.91)<br>94.8% (0.99)<br>97.8% (0.71)<br>0% (0.83)<br>0% (0.82) | ` ,       | 51.0% (0.71)<br>98.5% (1.00)<br>100% (1.00)<br>100% (0.98)<br>0% (1.00) | , ,       |
+
+0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3. Much of what each model learned is specific to its own corpus.
+
+## <span id="page-4-0"></span>D. A model that cannot represent the cue reaches 0.9916 anyway
+
+The natural inference is that HC3-trained detectors exploit the cue, but the test does not support it. BERT's Word-Piece splits on punctuation irrespective of adjacent whitespace, emitting identical identifiers for "the answer is simple." and "the answer is simple." in three of three pairs, where DeBERTa's SentencePiece distinguishes all three. BERT cannot represent the cue and still reaches 0.9916 weighted F1, so the cue is sufficient in isolation and unnecessary in practice.
+
+This is why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji, does change them, so the pipeline fires. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig. 3 shows both arms per corpus and the difference on each partition.
+
+# <span id="page-4-1"></span>E. An adversarial collapse a label-free control does not distinguish
+
+The same reasoning applies to a robustness number. Typos at 10% of alphabetic characters drive DeBERTa from 0.9972 to 0.3644 weighted F1 and BERT to 0.3746, one-directionally, 5,207 of 5,355 machine documents reassigned to human against one human document lost. That looks targeted. Table V feeds the same checkpoints five inputs carrying no human-versus-machine information. Token-shuffled and punctuation-only text draws the human label 94.8% to 100% of the time, empty input draws the machine label from all four at up to 0.998 confidence, and random characters split them. The
+
+label on content-free input is confident but arbitrary, tracking input type rather than evidence, and majority-prior collapse is excluded by the training balance of 0.4981 against 0.5019. The collapse is not distinguished from that behaviour, so we decline to read our own perturbation numbers as robustness measurements. Back-translation, which leaves text readable, costs the same models only 0.004 to 0.020 weighted F1.
+
+#### F. A published detector out of domain
+
+The RoBERTa detector released with HC3 [12] gives an external reference point, run over the same partitions without fine-tuning and reported in Table I. Its 17.55% error on an unseen corpus bounds how far the 99.82 F1 of Section II travels untuned.
+
+## V. DISCUSSION
+
+<span id="page-4-2"></span>The decomposition separates two benchmarks that a head-line accuracy does not, and per sub-corpus it separates one benchmark from itself. Section IV-C narrows the HC3 parity to one convention in the Reddit sub-corpus, three quarters of the corpus, and removing it costs the surface arm ten points. A single collection convention can be cleaned, whereas DAIGT V2's surface arm reads a diffuse signal, its largest Shapley attribution reaching 2.77 against HC3's 7.81 for the cue alone, so it has no equivalent single cleaning step and may not be an artefact.
+
+What the measurement does not license is a claim that either corpus is clean, since surface form is substantially informative on both, and a low surface score would not have settled the question either [19]. The finding is comparative, bounded by the arms we built and by the confounds documented in detector generalisation [27]. The generator and transfer spreads in Section IV-C point the same way, at how a subset was collected rather than at what produced it.
+
+Three results here say more about method than about these corpora. A cleaning experiment reporting no change is uninterpretable without evidence the pipeline ran, a tokeniser that cannot represent a cleaned cue makes the null a fact about the model, and a perturbation collapse is uninterpretable until label-free inputs are shown to behave differently.
+
+The practical use is a pre-release check rather than a detector, since a benchmark builder can run both arms and report the gap beside the headline score. The arms also mark where a detector should not be trusted, because a score earned on the Reddit sub-corpus does not carry to the rest of HC3. The gap against the released detector in Table I is a training-data effect, since that model reads more tokens than ours and still loses 17.55 points.
+
+#### VI. LIMITATIONS
+
+<span id="page-4-3"></span>Several limits bound every number above. The transformers see at most 128 tokens, so the DAIGT V2 results describe an essay's opening, which is why the classical comparison repeats on that span in Table III. The four checkpoints move by 0.0005 to 0.0036 weighted F1 across three seeds, but the grid behind them is single-seed. The content arm is bag-of-words, so word
+
+order lies outside it, and the 47 hand-built surface features make ε<sup>S</sup> an upper bound. Seven of the twenty sub-corpora fall below 200 test rows and are reported as underpowered, not as nulls. HC3 has one generator collected at one time, and both corpora are English, so these orthographic conventions are not language-independent.
+
+## VII. CONCLUSION AND FUTURE WORK
+
+<span id="page-5-10"></span>The measurement is the portable part of this work, since it needs no new annotation and fits two logistic regressions. It yields one number per corpus, and per sub-corpus, that a headline accuracy cannot express, namely how much of a corpus a model could pass without reading the language, and we encourage reporting it alongside any new benchmark.
+
+Future work can focus on (1) running the decomposition per condition on RAID, M4 and SemEval-2024 Task 8, which already carry the labels it needs, (2) repeating the transformer comparison at a 512-token budget, so the DAIGT V2 results describe whole essays, and (3) testing a non-English corpus, where the conventions measured here need not hold.
+
+## REFERENCES
+
+- <span id="page-5-0"></span>[1] B. Guo, X. Zhang, Z. Wang, M. Jiang, J. Nie, Y. Ding, J. Yue, and Y. Wu, "How close is chatgpt to human experts? comparison corpus, evaluation, and detection," 2023, preprint. [Online]. Available: [https://www.semanticscholar.org/paper/](https://www.semanticscholar.org/paper/cb29cf52f0f7d2e4324c68690a55b22890f2212d) [cb29cf52f0f7d2e4324c68690a55b22890f2212d](https://www.semanticscholar.org/paper/cb29cf52f0f7d2e4324c68690a55b22890f2212d)
+- <span id="page-5-1"></span>[2] Z. Su, X. Wu, W. Zhou, G. Ma, and S. Hu, "Hc3 plus: A semantic-invariant human chatgpt comparison corpus," 2023, preprint. [Online]. Available: [https://www.semanticscholar.org/paper/](https://www.semanticscholar.org/paper/ff7ee54876220ccf425050a14f14bb9893849f05) [ff7ee54876220ccf425050a14f14bb9893849f05](https://www.semanticscholar.org/paper/ff7ee54876220ccf425050a14f14bb9893849f05)
+- <span id="page-5-2"></span>[3] C. Zhou, "Exploiting machine learning model ensemble for AIgenerated texts detection," *Transactions on Computer Science and Intelligent Systems Research*, vol. 5, 2024, aIDML 2024. [Online]. Available: <https://wepub.org/index.php/TCSISR/article/view/2382>
+- <span id="page-5-3"></span>[4] Y. Tian, H. Chen, X. Wang, Z. Bai, Q. Zhang, R. Li, C. Xu, and Y. Wang, "Multiscale positive-unlabeled detection of AI-generated texts," in *Proc. Int. Conf. Learning Representations (ICLR)*, 2024. [Online]. Available: <https://openreview.net/forum?id=5Lp6qU9hzV>
+- <span id="page-5-4"></span>[5] M. S. Baidya, S. S. Baidya, and C. Chawla, "Detecting the machine: A comprehensive benchmark of AI-generated text detectors across architectures, domains, and adversarial conditions," 2026, preprint. [Online]. Available: [https://www.researchgate.net/publication/](https://www.researchgate.net/publication/402739141) [402739141](https://www.researchgate.net/publication/402739141)
+- <span id="page-5-5"></span>[6] C. Park, H. J. Kim, J. Kim, Y. Kim, T. Kim, H. Cho, H. Jo, S. goo Lee, and K. M. Yoo, "Investigating the influence of prompt-specific shortcuts in AI generated text detection," 2024, preprint. [Online]. Available: [https://www.semanticscholar.org/paper/](https://www.semanticscholar.org/paper/c860cd15c192b54bc94ac927ba99e0f3d562bd86) [c860cd15c192b54bc94ac927ba99e0f3d562bd86](https://www.semanticscholar.org/paper/c860cd15c192b54bc94ac927ba99e0f3d562bd86)
+- <span id="page-5-6"></span>[7] L. Dugan, A. Hwang, F. Trhl´ık, A. Zhu, J. M. Ludan, H. Xu, D. Ippolito, and C. Callison-Burch, "RAID: A shared benchmark for robust evaluation of machine-generated text detectors," in *Proc. ACL*, 2024, pp. 12 463–12 492. [Online]. Available: [https:](https://doi.org/10.18653/v1/2024.acl-long.674) [//doi.org/10.18653/v1/2024.acl-long.674](https://doi.org/10.18653/v1/2024.acl-long.674)
+- <span id="page-5-7"></span>[8] Y. Wang, J. Mansurov, P. Ivanov, J. Su, A. Shelmanov, A. Tsvigun, C. Whitehouse, O. Mohammed Afzal, T. Mahmoud, T. Sasaki, T. Arnold, A. F. Aji, N. Habash, I. Gurevych, and P. Nakov, "M4: Multi-generator, multi-domain, and multi-lingual black-box machinegenerated text detection," in *Proc. EACL*, 2024, pp. 1369–1407. [Online]. Available: <https://doi.org/10.18653/v1/2024.eacl-long.83>
+- <span id="page-5-8"></span>[9] S. Gururangan, S. Swayamdipta, O. Levy, R. Schwartz, S. R. Bowman, and N. A. Smith, "Annotation artifacts in natural language inference data," in *Proc. NAACL-HLT*, 2018, pp. 107–112. [Online]. Available: <https://doi.org/10.18653/v1/N18-2017>
+- <span id="page-5-9"></span>[10] A. Poliak, J. Naradowsky, A. Haldar, R. Rudinger, and B. Van Durme, "Hypothesis only baselines in natural language inference," in *Proc. Joint Conf. on Lexical and Computational Semantics (\*SEM)*, 2018, pp. 180–191. [Online]. Available: <https://doi.org/10.18653/v1/S18-2023>
+
+- <span id="page-5-11"></span>[11] W. Antoun, V. Mouilleron, B. Sagot, and D. Seddah, "Towards a robust detection of language model-generated text: Is ChatGPT that easy to detect?" in *Actes de CORIA-TALN 2023, Vol. 1: Travaux de Recherche Originaux, Articles Longs*, Paris, France, 2023, pp. 14–27. [Online]. Available: <https://aclanthology.org/2023.jeptalnrecital-long.2/>
+- <span id="page-5-12"></span>[12] "ChatGPT detector, RoBERTa," Hugging Face Models, 2023. [Online]. Available: [https://huggingface.co/Hello-SimpleAI/](https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta) [chatgpt-detector-roberta](https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta)
+- <span id="page-5-13"></span>[13] A. Yadagiri, S. Sai Teja, P. Pakray, and C. Chunka, "AI-generated text detection using DeBERTa with auxiliary stylometric features," in *Proceedings of the RANLP 2025 Workshop on Multi-Domain Detection of AI-Generated Text (M-DAIGT)*, 2025. [Online]. Available: <https://aclanthology.org/2025.ranlp-mdaigt.2/>
+- <span id="page-5-14"></span>[14] Y. Annepaka, P. Kumar, Y. Poddar, P. Pakray, and C. Chunka, "Synergizing linguistic features and transformer networks for detecting AI-generated text," *Knowledge and Information Systems*, vol. 68, no. 1, 2026. [Online]. Available: <https://doi.org/10.1007/s10115-025-02637-6>
+- <span id="page-5-15"></span>[15] R. Ardeshirifar, "Comparing hand-crafted and deep learning approaches for detecting AI-generated text: performance, generalization, and linguistic insights," *AI and Ethics*, vol. 5, no. 4, pp. 4197–4209, 2025. [Online]. Available: <https://doi.org/10.1007/s43681-025-00699-4>
+- <span id="page-5-16"></span>[16] Y. Wang, J. Mansurov, P. Ivanov, J. Su, A. Shelmanov, A. Tsvigun, O. M. Afzal, T. Mahmoud, G. Puccetti, T. Arnold, A. F. Aji, N. Habash, I. Gurevych, and P. Nakov, "SemEval-2024 task 8: Multidomain, multimodel and multilingual machine-generated text detection," in *Proc. 18th Int. Workshop on Semantic Evaluation (SemEval-2024)*, 2024, pp. 2057–2079. [Online]. Available: [https:](https://doi.org/10.18653/v1/2024.semeval-1.279) [//doi.org/10.18653/v1/2024.semeval-1.279](https://doi.org/10.18653/v1/2024.semeval-1.279)
+- <span id="page-5-17"></span>[17] A. Torralba and A. A. Efros, "Unbiased look at dataset bias," in *Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR)*, 2011, pp. 1521–1528. [Online]. Available: [https://doi.org/10.1109/](https://doi.org/10.1109/CVPR.2011.5995347) [CVPR.2011.5995347](https://doi.org/10.1109/CVPR.2011.5995347)
+- <span id="page-5-18"></span>[18] R. Geirhos, J.-H. Jacobsen, C. Michaelis, R. Zemel, W. Brendel, M. Bethge, and F. A. Wichmann, "Shortcut learning in deep neural networks," *Nature Machine Intelligence*, vol. 2, no. 11, pp. 665–673, 2020. [Online]. Available: <https://doi.org/10.1038/s42256-020-00257-z>
+- <span id="page-5-19"></span>[19] S. Feng, E. Wallace, and J. Boyd-Graber, "Misleading failures of partial-input baselines," in *Proc. ACL*, 2019, pp. 5533–5538. [Online]. Available: <https://doi.org/10.18653/v1/P19-1554>
+- <span id="page-5-20"></span>[20] W. Liang, M. Yuksekgonul, Y. Mao, E. Wu, and J. Zou, "GPT detectors are biased against non-native English writers," *Patterns*, vol. 4, no. 7, p. 100779, 2023. [Online]. Available: [https://doi.org/10.1016/j.patter.](https://doi.org/10.1016/j.patter.2023.100779) [2023.100779](https://doi.org/10.1016/j.patter.2023.100779)
+- <span id="page-5-21"></span>[21] thedrcat, "DAIGT v2 train dataset," Kaggle, 2023. [Online]. Available: <https://www.kaggle.com/datasets/thedrcat/daigt-v2-train-dataset>
+- <span id="page-5-22"></span>[22] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, "BERT: Pretraining of deep bidirectional transformers for language understanding," in *Proc. NAACL-HLT*, 2019, pp. 4171–4186. [Online]. Available: <https://doi.org/10.18653/v1/N19-1423>
+- <span id="page-5-23"></span>[23] P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-style pre-training with gradient-disentangled embedding sharing," in *Proc. Int. Conf. Learning Representations (ICLR)*, 2023. [Online]. Available: <https://openreview.net/forum?id=sE7-XhLxHA>
+- <span id="page-5-24"></span>[24] T. Kudo and J. Richardson, "SentencePiece: A simple and language independent subword tokenizer and detokenizer for neural text processing," in *Proc. EMNLP: System Demonstrations*, 2018, pp. 66–71. [Online]. Available: <https://doi.org/10.18653/v1/D18-2012>
+- <span id="page-5-25"></span>[25] Q. McNemar, "Note on the sampling error of the difference between correlated proportions or percentages," *Psychometrika*, vol. 12, no. 2, pp. 153–157, 1947. [Online]. Available: [https://doi.org/10.1007/](https://doi.org/10.1007/BF02295996) [BF02295996](https://doi.org/10.1007/BF02295996)
+- <span id="page-5-26"></span>[26] B. Efron, "Bootstrap methods: Another look at the jackknife," *The Annals of Statistics*, vol. 7, no. 1, pp. 1–26, 1979. [Online]. Available: <https://doi.org/10.1214/aos/1176344552>
+- <span id="page-5-27"></span>[27] C. Borile and C. Abrate, "How to generalize the detection of AIgenerated text: Confounding neurons," in *Findings of the Association for Computational Linguistics: EMNLP 2025*, 2025, pp. 25 461–25 476. [Online]. Available: [https://aclanthology.org/2025.findings-emnlp.1388.](https://aclanthology.org/2025.findings-emnlp.1388.pdf) [pdf](https://aclanthology.org/2025.findings-emnlp.1388.pdf)

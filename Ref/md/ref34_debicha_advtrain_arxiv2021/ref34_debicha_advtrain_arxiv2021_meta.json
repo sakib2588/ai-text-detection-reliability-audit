@@ -1,0 +1,651 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Adversarial Training for Deep Learning-based\nIntrusion Detection Systems",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          169.734375,
+          54.140625
+        ],
+        [
+          448.6445007324219,
+          54.140625
+        ],
+        [
+          448.6445007324219,
+          87.09552001953125
+        ],
+        [
+          169.734375,
+          87.09552001953125
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          131.185546875,
+          506.21484375
+        ],
+        [
+          216.38072204589844,
+          506.21484375
+        ],
+        [
+          216.38072204589844,
+          518.7310791015625
+        ],
+        [
+          131.185546875,
+          518.7310791015625
+        ]
+      ]
+    },
+    {
+      "title": "Wim Mees",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          407.6015625,
+          238.9921875
+        ],
+        [
+          462.5859375,
+          238.9921875
+        ],
+        [
+          462.5859375,
+          251.9803466796875
+        ],
+        [
+          407.6015625,
+          251.9803466796875
+        ]
+      ]
+    },
+    {
+      "title": "II. BACKGROUND",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          132.0,
+          76.5
+        ],
+        [
+          216.75,
+          76.5
+        ],
+        [
+          216.75,
+          86.25
+        ],
+        [
+          132.0,
+          86.25
+        ]
+      ]
+    },
+    {
+      "title": "A. Deep Neural Network (DNN)",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          46.5,
+          90.75
+        ],
+        [
+          184.5,
+          90.75
+        ],
+        [
+          184.5,
+          100.16015625
+        ],
+        [
+          46.5,
+          100.16015625
+        ]
+      ]
+    },
+    {
+      "title": "B. Related work",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          48.0,
+          543.33984375
+        ],
+        [
+          117.75,
+          543.33984375
+        ],
+        [
+          117.75,
+          552.75
+        ],
+        [
+          48.0,
+          552.75
+        ]
+      ]
+    },
+    {
+      "title": "C. Adversarial examples",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.056640625,
+          249.0
+        ],
+        [
+          421.5,
+          249.0
+        ],
+        [
+          421.5,
+          258.0
+        ],
+        [
+          317.056640625,
+          258.0
+        ]
+      ]
+    },
+    {
+      "title": "III. EXPERIMENTAL APPROACH",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          372.75,
+          599.02734375
+        ],
+        [
+          516.0,
+          599.02734375
+        ],
+        [
+          516.0,
+          609.0
+        ],
+        [
+          372.75,
+          608.25
+        ]
+      ]
+    },
+    {
+      "title": "A. NSL-KDD Dataset",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          47.513671875,
+          57.22705078125
+        ],
+        [
+          138.955078125,
+          57.22705078125
+        ],
+        [
+          138.955078125,
+          67.18963623046875
+        ],
+        [
+          47.513671875,
+          67.18963623046875
+        ]
+      ]
+    },
+    {
+      "title": "B. Preprocessing",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          48.41015625,
+          362.52899169921875
+        ],
+        [
+          119.64363861083984,
+          362.52899169921875
+        ],
+        [
+          119.64363861083984,
+          372.4915771484375
+        ],
+        [
+          48.41015625,
+          372.4915771484375
+        ]
+      ]
+    },
+    {
+      "title": "C. Building deep learning-based IDS",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          48.708984375,
+          537.15234375
+        ],
+        [
+          202.31329345703125,
+          537.15234375
+        ],
+        [
+          202.31329345703125,
+          547.3724822998047
+        ],
+        [
+          48.708984375,
+          547.3724822998047
+        ]
+      ]
+    },
+    {
+      "title": "D. Generating adversarial samples",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          47.513671875,
+          688.74609375
+        ],
+        [
+          193.04808044433594,
+          688.74609375
+        ],
+        [
+          193.04808044433594,
+          700.3356094360352
+        ],
+        [
+          47.513671875,
+          700.3356094360352
+        ]
+      ]
+    },
+    {
+      "title": "E. Adversarial training",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          317.654296875,
+          327.95672607421875
+        ],
+        [
+          415.3353271484375,
+          327.95672607421875
+        ],
+        [
+          415.3353271484375,
+          337.9193115234375
+        ],
+        [
+          317.654296875,
+          337.9193115234375
+        ]
+      ]
+    },
+    {
+      "title": "IV. EXPERIMENTAL RESULTS",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          379.810546875,
+          472.18359375
+        ],
+        [
+          510.00927734375,
+          472.18359375
+        ],
+        [
+          510.00927734375,
+          484.3016662597656
+        ],
+        [
+          379.810546875,
+          484.3016662597656
+        ]
+      ]
+    },
+    {
+      "title": "A. Effect of adversarial attacks on deep learning-based IDS",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          317.953125,
+          564.99609375
+        ],
+        [
+          566.617431640625,
+          564.99609375
+        ],
+        [
+          566.617431640625,
+          575.5371856689453
+        ],
+        [
+          317.953125,
+          575.5371856689453
+        ]
+      ]
+    },
+    {
+      "title": "B. Adversarial training effect",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          47.8125,
+          267.2330322265625
+        ],
+        [
+          170.1839141845703,
+          267.2330322265625
+        ],
+        [
+          170.1839141845703,
+          277.19561767578125
+        ],
+        [
+          47.8125,
+          277.19561767578125
+        ]
+      ]
+    },
+    {
+      "title": "V. CONCLUSION AND FUTURE WORK",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          360.38671875,
+          311.78497314453125
+        ],
+        [
+          526.492431640625,
+          311.78497314453125
+        ],
+        [
+          526.492431640625,
+          321.7475891113281
+        ],
+        [
+          360.38671875,
+          321.7475891113281
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          416.267578125,
+          478.37109375
+        ],
+        [
+          473.044921875,
+          478.37109375
+        ],
+        [
+          473.044921875,
+          488.4584655761719
+        ],
+        [
+          416.267578125,
+          488.4584655761719
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          207
+        ],
+        [
+          "Line",
+          92
+        ],
+        [
+          "Text",
+          20
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          136
+        ],
+        [
+          "Span",
+          77
+        ],
+        [
+          "Text",
+          16
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Equation",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          333
+        ],
+        [
+          "Line",
+          120
+        ],
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          271
+        ],
+        [
+          "Line",
+          106
+        ],
+        [
+          "Reference",
+          11
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          76
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Reference",
+          10
+        ],
+        [
+          "Figure",
+          6
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "FigureGroup",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/ref34_debicha_advtrain_arxiv2021"
+}

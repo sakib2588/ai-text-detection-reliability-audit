@@ -1,0 +1,683 @@
+{
+  "table_of_contents": [
+    {
+      "title": "UAV-VLRR: Vision-Language Informed NMPC for Rapid Response in\nUAV Search and Rescue",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          57.375,
+          72.80853271484375
+        ],
+        [
+          552.9153442382812,
+          72.80853271484375
+        ],
+        [
+          552.9153442382812,
+          108.67376708984375
+        ],
+        [
+          57.375,
+          108.67376708984375
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          135.369140625,
+          422.68359375
+        ],
+        [
+          215.27880859375,
+          422.68359375
+        ],
+        [
+          215.27880859375,
+          432.7811584472656
+        ],
+        [
+          135.369140625,
+          432.7811584472656
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORK",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          132.380859375,
+          222.36328125
+        ],
+        [
+          219.35816955566406,
+          222.36328125
+        ],
+        [
+          219.35816955566406,
+          232.6732177734375
+        ],
+        [
+          132.380859375,
+          232.6732177734375
+        ]
+      ]
+    },
+    {
+      "title": "A. Multimodal Vision-Language Approaches for Robotic\nSystems",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          52.59375,
+          239.765625
+        ],
+        [
+          298.828125,
+          239.765625
+        ],
+        [
+          298.828125,
+          261.85980224609375
+        ],
+        [
+          52.59375,
+          261.85980224609375
+        ]
+      ]
+    },
+    {
+      "title": "B. Safe Agile Control for Drones",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.080078125,
+          54.3060302734375
+        ],
+        [
+          449.9566345214844,
+          54.3060302734375
+        ],
+        [
+          449.9566345214844,
+          64.26861572265625
+        ],
+        [
+          311.080078125,
+          64.26861572265625
+        ]
+      ]
+    },
+    {
+      "title": "III. SYSTEM OVERVIEW",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          382.201171875,
+          642.33984375
+        ],
+        [
+          487.986328125,
+          642.33984375
+        ],
+        [
+          487.986328125,
+          652.6460418701172
+        ],
+        [
+          382.201171875,
+          652.6460418701172
+        ]
+      ]
+    },
+    {
+      "title": "A. Vision-Language Integration for Accurate Object Identi-\nfication",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          309.5859375,
+          657.421875
+        ],
+        [
+          558.0010375976562,
+          657.421875
+        ],
+        [
+          558.0010375976562,
+          681.590576171875
+        ],
+        [
+          309.5859375,
+          681.590576171875
+        ]
+      ]
+    },
+    {
+      "title": "B. NMPC for Rapid Response",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.25,
+          465.0
+        ],
+        [
+          438.380859375,
+          465.0
+        ],
+        [
+          438.380859375,
+          474.50390625
+        ],
+        [
+          311.25,
+          474.50390625
+        ]
+      ]
+    },
+    {
+      "title": "IV. EXPERIMENTAL SETUP",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          376.5,
+          54.0
+        ],
+        [
+          493.5,
+          54.0
+        ],
+        [
+          493.5,
+          62.25
+        ],
+        [
+          376.5,
+          62.25
+        ]
+      ]
+    },
+    {
+      "title": "V. EXPERIMENTAL RESULTS",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          372.75,
+          610.5
+        ],
+        [
+          497.25,
+          610.5
+        ],
+        [
+          497.25,
+          619.91015625
+        ],
+        [
+          372.75,
+          619.91015625
+        ]
+      ]
+    },
+    {
+      "title": "A. Multimodal System Results",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          311.080078125,
+          626.25
+        ],
+        [
+          436.5,
+          626.25
+        ],
+        [
+          436.5,
+          635.37890625
+        ],
+        [
+          311.080078125,
+          635.37890625
+        ]
+      ]
+    },
+    {
+      "title": "B. Mission Results",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          53.7890625,
+          493.739013671875
+        ],
+        [
+          131.484375,
+          493.739013671875
+        ],
+        [
+          131.484375,
+          503.70159912109375
+        ],
+        [
+          53.7890625,
+          503.70159912109375
+        ]
+      ]
+    },
+    {
+      "title": "VI. CONCLUSION",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          396.544921875,
+          657.80859375
+        ],
+        [
+          473.9045104980469,
+          657.80859375
+        ],
+        [
+          473.9045104980469,
+          671.2870941162109
+        ],
+        [
+          396.544921875,
+          671.2870941162109
+        ]
+      ]
+    },
+    {
+      "title": "VII. FUTURE WORK",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          130.88671875,
+          549.52734375
+        ],
+        [
+          220.63121032714844,
+          549.52734375
+        ],
+        [
+          220.63121032714844,
+          560.3619384765625
+        ],
+        [
+          130.88671875,
+          560.3619384765625
+        ]
+      ]
+    },
+    {
+      "title": "ACKNOWLEDGEMENTS",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          127.001953125,
+          701.12109375
+        ],
+        [
+          224.991943359375,
+          701.12109375
+        ],
+        [
+          224.991943359375,
+          713.6049499511719
+        ],
+        [
+          127.001953125,
+          713.6049499511719
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          407.302734375,
+          54.48138427734375
+        ],
+        [
+          463.5054626464844,
+          54.48138427734375
+        ],
+        [
+          463.5054626464844,
+          64.4439697265625
+        ],
+        [
+          407.302734375,
+          64.4439697265625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          157
+        ],
+        [
+          "Line",
+          77
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          228
+        ],
+        [
+          "Line",
+          110
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          112
+        ],
+        [
+          "Span",
+          36
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Equation",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          102
+        ],
+        [
+          "Span",
+          49
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "Equation",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Picture",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "PictureGroup",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          436
+        ],
+        [
+          "TableCell",
+          140
+        ],
+        [
+          "Line",
+          88
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Caption",
+          5
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Figure",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "TableGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          318
+        ],
+        [
+          "Line",
+          108
+        ],
+        [
+          "ListItem",
+          25
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Anon2025_uav-vlrr-nmpc"
+}

@@ -1,0 +1,622 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Drone Object Detection Using RGB/IR Fusion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.7890625,
+          79.6640625
+        ],
+        [
+          407.83209228515625,
+          79.6640625
+        ],
+        [
+          407.83209228515625,
+          98.08697509765625
+        ],
+        [
+          53.7890625,
+          98.08697509765625
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.99999237060547,
+          216.94921875
+        ],
+        [
+          98.912109375,
+          216.94921875
+        ],
+        [
+          98.912109375,
+          228.6385498046875
+        ],
+        [
+          53.99999237060547,
+          228.6385498046875
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.99999237060547,
+          425.77734375
+        ],
+        [
+          130.61366271972656,
+          425.77734375
+        ],
+        [
+          130.61366271972656,
+          437.2292785644531
+        ],
+        [
+          53.99999237060547,
+          437.2292785644531
+        ]
+      ]
+    },
+    {
+      "title": "2. RGB/IR fusion object detection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          309.6000061035156,
+          634.7098999023438
+        ],
+        [
+          483.8684387207031,
+          634.7098999023438
+        ],
+        [
+          483.8684387207031,
+          645.6687927246094
+        ],
+        [
+          309.6000061035156,
+          645.6687927246094
+        ]
+      ]
+    },
+    {
+      "title": "3. Synthetic IR data generation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          53.7890625,
+          644.4813385009766
+        ],
+        [
+          215.15625,
+          644.4813385009766
+        ],
+        [
+          215.15625,
+          655.4402313232422
+        ],
+        [
+          53.7890625,
+          655.4402313232422
+        ]
+      ]
+    },
+    {
+      "title": "3.1 CycleGAN with Mask R-CNN Segmentation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          308.390625,
+          162.03515625
+        ],
+        [
+          528.6177978515625,
+          162.03515625
+        ],
+        [
+          528.6177978515625,
+          172.53985595703125
+        ],
+        [
+          308.390625,
+          172.53985595703125
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Simulation Rendering of Environment",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          308.98828125,
+          602.12109375
+        ],
+        [
+          504.2193908691406,
+          602.12109375
+        ],
+        [
+          504.2193908691406,
+          612.1054534912109
+        ],
+        [
+          308.98828125,
+          612.1054534912109
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Combining CycleGAN with Simulation Based\nRendering",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.99998474121094,
+          543.33984375
+        ],
+        [
+          289.86328125,
+          543.33984375
+        ],
+        [
+          289.86328125,
+          567.8511810302734
+        ],
+        [
+          53.99998474121094,
+          567.8511810302734
+        ]
+      ]
+    },
+    {
+      "title": "4. Experiments",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          309.6000061035156,
+          172.08984375
+        ],
+        [
+          388.284912109375,
+          172.08984375
+        ],
+        [
+          388.284912109375,
+          183.6085205078125
+        ],
+        [
+          309.6000061035156,
+          183.6085205078125
+        ]
+      ]
+    },
+    {
+      "title": "5. Conclusion",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          54.0,
+          297.7734375
+        ],
+        [
+          126.36161804199219,
+          297.7734375
+        ],
+        [
+          126.36161804199219,
+          308.98858642578125
+        ],
+        [
+          54.0,
+          308.98858642578125
+        ]
+      ]
+    },
+    {
+      "title": "6. Acknowledgements",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          52.294921875,
+          410.30859375
+        ],
+        [
+          169.55064392089844,
+          410.30859375
+        ],
+        [
+          169.55064392089844,
+          422.6084899902344
+        ],
+        [
+          52.294921875,
+          422.6084899902344
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          54.0,
+          459.515625
+        ],
+        [
+          112.96984100341797,
+          459.515625
+        ],
+        [
+          112.96984100341797,
+          470.4745178222656
+        ],
+        [
+          54.0,
+          470.4745178222656
+        ]
+      ]
+    },
+    {
+      "title": "Author Biography",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          309.5859375,
+          511.8919982910156
+        ],
+        [
+          402.8203125,
+          511.8919982910156
+        ],
+        [
+          402.8203125,
+          522.8508911132812
+        ],
+        [
+          309.5859375,
+          522.8508911132812
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          207
+        ],
+        [
+          "Line",
+          97
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          229
+        ],
+        [
+          "Line",
+          102
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          86
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "Picture",
+          4
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "PictureGroup",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          151
+        ],
+        [
+          "Line",
+          78
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Picture",
+          3
+        ],
+        [
+          "PictureGroup",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          460
+        ],
+        [
+          "TableCell",
+          195
+        ],
+        [
+          "Line",
+          77
+        ],
+        [
+          "Table",
+          4
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "TableGroup",
+          4
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          313
+        ],
+        [
+          "Line",
+          106
+        ],
+        [
+          "TableCell",
+          32
+        ],
+        [
+          "ListItem",
+          26
+        ],
+        [
+          "Reference",
+          22
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Yang2022_rgb-ir-fusion-drone"
+}

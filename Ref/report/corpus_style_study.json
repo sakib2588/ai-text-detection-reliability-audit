@@ -1,0 +1,7903 @@
+{
+ "_schema": "ndss_corpus_style_study",
+ "_normalisation_version": "1",
+ "_normalisation_rules": [
+  "harvest page anchors before stripping them (section page spans)",
+  "strip control characters",
+  "drop markdown pipe-table rows",
+  "collapse marker repetition loops",
+  "drop fenced code blocks",
+  "replace display maths, THEN inline maths (before any tag stripping)",
+  "drop residual LaTeX commands and sub/superscripts",
+  "strip WHITELISTED html tags only, never a generic <[^>]+>",
+  "drop the NDSS boilerplate footer",
+  "drop caption lines",
+  "drop orphan equation numbers",
+  "drop heading lines (captured separately as sections)",
+  "rewrite cross-reference links before citation links",
+  "count citations, then collapse them",
+  "unescape markdown, drop emphasis, fold unicode punctuation",
+  "sentence split via src.prose_metrics.sentences (shared with scripts/73)",
+  "drop any sentence over 120 words as a conversion artefact"
+ ],
+ "_generated_by": "scripts/78_corpus_style_study.py",
+ "_source_dir": "../md",
+ "_ours": "00_OURS_iccit6",
+ "_hand_map": {},
+ "_section_band_exclude": [],
+ "_corpus_caveat": "25 reference papers, not a random sample of NDSS: 20 are NDSS 2025 and 16 are backdoor/adversarial-ML papers selected for topical proximity.",
+ "_proxy_limitations": {
+  "tense": [
+   "was/were cannot separate past active from past passive: a past passive increments BOTH the tense and the passive proxy. The two are not independent; never sum them.",
+   "present perfect ('has been shown') registers as PRESENT via 'has', though it reports a past event. Systematic, and applied identically to all papers.",
+   "would/could/should/might are morphologically past but functionally conditional; they are counted as MODAL and belong to no tense.",
+   "-ed remains ambiguous behind the subject guard: reduced relatives such as 'the results obtained show' are missed by both the past and the present pattern.",
+   "non-finite clauses receive no anchor, so a sentence reading as present tense can score zero.",
+   "this is not parsing. Part of speech is guessed from word shape and left neighbour. No POS tagger is installed and none was added.",
+   "18-50% of sentences carry no tense anchor at all. Read every tense figure against the no-anchor share printed beside it."
+  ],
+  "passive": [
+   "adjectival predicates over-count: 'is based on', 'is limited', 'is related to' are stative readings most annotators would not call passive. Inspect the participle histogram before quoting an absolute rate.",
+   "reduced passives are missed ('features selected by SHAP'), pulling the other way.",
+   "get-passives are not matched.",
+   "overlaps the tense proxy; see the first tense limitation."
+  ],
+  "sections": [
+   "heading LEVEL is discarded: marker assigns depth from font size and it drifts within a single paper.",
+   "'I.' is rejected as a subsection letter once a numeral >= II has been accepted. The alternative rule (reject unless ALL-CAPS) is wrong: papers 13, 18 and 26 render their genuine section I in title case.",
+   "paper 09 lost its 'VI. EVALUATION' heading in conversion, so its sections V and VI are merged. It is excluded from section-level statistics and kept at paper level."
+  ],
+  "captions": [
+   "marker ran with --disable_image_extraction, so a figure count is a CAPTION count. A caption lost in conversion is an undercount with no error; numeral gaps are the only detector.",
+   "distinct numerals are counted, not caption lines, so split and repeated captions count once.",
+   "TOTAL caption counts are trustworthy -- CatBack's 18 tables and 9 figures reproduce known ground truth exactly. The BODY/TOTAL SPLIT IS NOT. Verified against our own paper's main.aux: tab:verdict-matrix is TABLE I on page 8 and tab:corpora is TABLE II on page 8, both squarely in the body, yet neither caption appears before the REFERENCES heading in the markdown, and the line that marker labels 'TABLE I' carries an appendix table's caption text. Marker reorders and mislabels full-width table* floats. Quote n_tables_total; do not quote n_tables_body without a per-paper check against a source of truth."
+  ],
+  "page_spans": [
+   "page spans come from marker's <span id='page-N-M'> anchors, which only 19 of 26 papers carry. Any page-based band has n=19, not n=26, and must be reported as such."
+  ],
+  "sentence_split": [
+   "inherited from scripts/73 and deliberately unchanged: the single-initial guard misfires on 'Section V-A. We test...', merging two sentences."
+  ]
+ },
+ "_calibration": null,
+ "papers": {
+  "00_OURS_iccit6": {
+   "sha256": "398dff29743ccaab08cd75fbd0a4f094490c9d59a568f4f6f3868f8b3c8e5693",
+   "source_pdf_sha256": null,
+   "lines": 261,
+   "refs_heading_line": 232,
+   "body_start_line": 9,
+   "notes": [],
+   "body": {
+    "n_first_person": 15,
+    "n_passive": 32,
+    "n_be_verbs": 108,
+    "words": 3434,
+    "sentences": 170,
+    "mean_words_per_sentence": 20.2,
+    "median_words_per_sentence": 19.0,
+    "p90_words_per_sentence": 36,
+    "max_words_per_sentence": 52,
+    "pct_over_35w": 10.6,
+    "n_over_35w": 18,
+    "sentence_length_histogram": {
+     "1-10": 34,
+     "11-20": 61,
+     "21-30": 47,
+     "31-40": 20,
+     "41-50": 7,
+     "51+": 1
+    },
+    "paragraphs": 64,
+    "mean_words_per_paragraph": 53.7,
+    "median_words_per_paragraph": 58.0,
+    "citations": 43,
+    "citations_per_1k": 12.5,
+    "first_person_per_1k": 4.4,
+    "past_anchors_per_1k": 2.9,
+    "present_anchors_per_1k": 45.1,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 5.0,
+    "pct_sentences_past": 5.9,
+    "pct_sentences_present": 61.8,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 35.9,
+    "passive_per_1k_words": 9.3,
+    "pct_sentences_with_passive": 16.5,
+    "be_verbs_per_1k": 31.5,
+    "passive_top_participles": [
+     [
+      "documented",
+      2
+     ],
+     [
+      "distinguished",
+      2
+     ],
+     [
+      "carried",
+      2
+     ],
+     [
+      "collected",
+      2
+     ],
+     [
+      "reported",
+      2
+     ],
+     [
+      "assembled",
+      1
+     ],
+     [
+      "moved",
+      1
+     ],
+     [
+      "organised",
+      1
+     ],
+     [
+      "needed",
+      1
+     ],
+     [
+      "evaluated",
+      1
+     ]
+    ],
+    "n_tables": 5,
+    "n_figures": 3
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 15,
+    "n_passive": 32,
+    "n_be_verbs": 108,
+    "words": 3434,
+    "sentences": 170,
+    "mean_words_per_sentence": 20.2,
+    "median_words_per_sentence": 19.0,
+    "p90_words_per_sentence": 36,
+    "max_words_per_sentence": 52,
+    "pct_over_35w": 10.6,
+    "n_over_35w": 18,
+    "sentence_length_histogram": {
+     "1-10": 34,
+     "11-20": 61,
+     "21-30": 47,
+     "31-40": 20,
+     "41-50": 7,
+     "51+": 1
+    },
+    "paragraphs": 64,
+    "mean_words_per_paragraph": 53.7,
+    "median_words_per_paragraph": 58.0,
+    "citations": 43,
+    "citations_per_1k": 12.5,
+    "first_person_per_1k": 4.4,
+    "past_anchors_per_1k": 2.9,
+    "present_anchors_per_1k": 45.1,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 5.0,
+    "pct_sentences_past": 5.9,
+    "pct_sentences_present": 61.8,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 35.9,
+    "passive_per_1k_words": 9.3,
+    "pct_sentences_with_passive": 16.5,
+    "be_verbs_per_1k": 31.5,
+    "passive_top_participles": [
+     [
+      "documented",
+      2
+     ],
+     [
+      "distinguished",
+      2
+     ],
+     [
+      "carried",
+      2
+     ],
+     [
+      "collected",
+      2
+     ],
+     [
+      "reported",
+      2
+     ],
+     [
+      "assembled",
+      1
+     ],
+     [
+      "moved",
+      1
+     ],
+     [
+      "organised",
+      1
+     ],
+     [
+      "needed",
+      1
+     ],
+     [
+      "evaluated",
+      1
+     ]
+    ],
+    "n_tables": 5,
+    "n_figures": 3
+   },
+   "structure": {
+    "n_sections": 7,
+    "n_numbered_sections": 7,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V",
+     "VI",
+     "VII"
+    ],
+    "n_tables_body": 5,
+    "n_tables_total": 5,
+    "n_figures_body": 3,
+    "n_figures_total": 3,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 46,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": true,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.076
+   },
+   "sections": [
+    {
+     "n_first_person": 0,
+     "n_passive": 5,
+     "n_be_verbs": 17,
+     "words": 514,
+     "sentences": 25,
+     "mean_words_per_sentence": 20.6,
+     "median_words_per_sentence": 19,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 40,
+     "pct_over_35w": 4.0,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 4,
+      "11-20": 9,
+      "21-30": 8,
+      "31-40": 4,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 9,
+     "mean_words_per_paragraph": 57.1,
+     "median_words_per_paragraph": 53,
+     "citations": 11,
+     "citations_per_1k": 21.4,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 1.9,
+     "present_anchors_per_1k": 48.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 5.8,
+     "pct_sentences_past": 4.0,
+     "pct_sentences_present": 60.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 36.0,
+     "passive_per_1k_words": 9.7,
+     "pct_sentences_with_passive": 20.0,
+     "be_verbs_per_1k": 33.1,
+     "passive_top_participles": [
+      [
+       "assembled",
+       1
+      ],
+      [
+       "documented",
+       1
+      ],
+      [
+       "moved",
+       1
+      ],
+      [
+       "distinguished",
+       1
+      ],
+      [
+       "organised",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 9,
+     "end_line": 25,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 3,
+     "n_passive": 6,
+     "n_be_verbs": 15,
+     "words": 459,
+     "sentences": 17,
+     "mean_words_per_sentence": 27,
+     "median_words_per_sentence": 25,
+     "p90_words_per_sentence": 39,
+     "max_words_per_sentence": 46,
+     "pct_over_35w": 29.4,
+     "n_over_35w": 5,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 5,
+      "21-30": 5,
+      "31-40": 5,
+      "41-50": 2,
+      "51+": 0
+     },
+     "paragraphs": 8,
+     "mean_words_per_paragraph": 57.4,
+     "median_words_per_paragraph": 66.5,
+     "citations": 20,
+     "citations_per_1k": 43.6,
+     "first_person_per_1k": 6.5,
+     "past_anchors_per_1k": 4.4,
+     "present_anchors_per_1k": 37.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 4.4,
+     "pct_sentences_past": 11.8,
+     "pct_sentences_present": 64.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 35.3,
+     "passive_per_1k_words": 13.1,
+     "pct_sentences_with_passive": 29.4,
+     "be_verbs_per_1k": 32.7,
+     "passive_top_participles": [
+      [
+       "carried",
+       2
+      ],
+      [
+       "collected",
+       1
+      ],
+      [
+       "reported",
+       1
+      ],
+      [
+       "needed",
+       1
+      ],
+      [
+       "documented",
+       1
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "RELATED WORK",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 26,
+     "end_line": 54,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 4,
+     "n_passive": 9,
+     "n_be_verbs": 25,
+     "words": 770,
+     "sentences": 40,
+     "mean_words_per_sentence": 19.2,
+     "median_words_per_sentence": 19.0,
+     "p90_words_per_sentence": 33,
+     "max_words_per_sentence": 50,
+     "pct_over_35w": 7.5,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 10,
+      "11-20": 12,
+      "21-30": 13,
+      "31-40": 3,
+      "41-50": 2,
+      "51+": 0
+     },
+     "paragraphs": 16,
+     "mean_words_per_paragraph": 48.1,
+     "median_words_per_paragraph": 52.5,
+     "citations": 8,
+     "citations_per_1k": 10.4,
+     "first_person_per_1k": 5.2,
+     "past_anchors_per_1k": 3.9,
+     "present_anchors_per_1k": 42.9,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.6,
+     "pct_sentences_past": 7.5,
+     "pct_sentences_present": 55.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 40.0,
+     "passive_per_1k_words": 11.7,
+     "pct_sentences_with_passive": 15.0,
+     "be_verbs_per_1k": 32.5,
+     "passive_top_participles": [
+      [
+       "evaluated",
+       1
+      ],
+      [
+       "scored",
+       1
+      ],
+      [
+       "balanced",
+       1
+      ],
+      [
+       "preserved",
+       1
+      ],
+      [
+       "partitioned",
+       1
+      ],
+      [
+       "repeated",
+       1
+      ],
+      [
+       "described",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "retrained",
+       1
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 1,
+     "index": 3,
+     "numeral": "III",
+     "title": "METHODOLOGY",
+     "role": "method",
+     "hand_mapped": false,
+     "start_line": 55,
+     "end_line": 117,
+     "page_start": 1,
+     "page_end": 2,
+     "pages": 2
+    },
+    {
+     "n_first_person": 5,
+     "n_passive": 7,
+     "n_be_verbs": 31,
+     "words": 1171,
+     "sentences": 67,
+     "mean_words_per_sentence": 17.5,
+     "median_words_per_sentence": 16,
+     "p90_words_per_sentence": 30,
+     "max_words_per_sentence": 48,
+     "pct_over_35w": 7.5,
+     "n_over_35w": 5,
+     "sentence_length_histogram": {
+      "1-10": 18,
+      "11-20": 27,
+      "21-30": 15,
+      "31-40": 6,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 23,
+     "mean_words_per_paragraph": 51.0,
+     "median_words_per_paragraph": 58,
+     "citations": 2,
+     "citations_per_1k": 1.7,
+     "first_person_per_1k": 4.3,
+     "past_anchors_per_1k": 1.7,
+     "present_anchors_per_1k": 42.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.9,
+     "pct_sentences_past": 3.0,
+     "pct_sentences_present": 59.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 40.3,
+     "passive_per_1k_words": 6.0,
+     "pct_sentences_with_passive": 10.4,
+     "be_verbs_per_1k": 26.5,
+     "passive_top_participles": [
+      [
+       "matched",
+       1
+      ],
+      [
+       "unfiltered",
+       1
+      ],
+      [
+       "measured",
+       1
+      ],
+      [
+       "untouched",
+       1
+      ],
+      [
+       "trained",
+       1
+      ],
+      [
+       "excluded",
+       1
+      ],
+      [
+       "distinguished",
+       1
+      ]
+     ],
+     "n_tables": 3,
+     "n_figures": 2,
+     "index": 4,
+     "numeral": "IV",
+     "title": "RESULTS AND ANALYSIS",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 118,
+     "end_line": 209,
+     "page_start": 2,
+     "page_end": 4,
+     "pages": 3
+    },
+    {
+     "n_first_person": 2,
+     "n_passive": 4,
+     "n_be_verbs": 13,
+     "words": 301,
+     "sentences": 11,
+     "mean_words_per_sentence": 27.4,
+     "median_words_per_sentence": 27,
+     "p90_words_per_sentence": 43,
+     "max_words_per_sentence": 43,
+     "pct_over_35w": 18.2,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 3,
+      "21-30": 5,
+      "31-40": 1,
+      "41-50": 2,
+      "51+": 0
+     },
+     "paragraphs": 4,
+     "mean_words_per_paragraph": 75.2,
+     "median_words_per_paragraph": 78.5,
+     "citations": 2,
+     "citations_per_1k": 6.6,
+     "first_person_per_1k": 6.6,
+     "past_anchors_per_1k": 6.6,
+     "present_anchors_per_1k": 56.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 19.9,
+     "pct_sentences_past": 18.2,
+     "pct_sentences_present": 72.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 18.2,
+     "passive_per_1k_words": 13.3,
+     "pct_sentences_with_passive": 36.4,
+     "be_verbs_per_1k": 43.2,
+     "passive_top_participles": [
+      [
+       "cleaned",
+       1
+      ],
+      [
+       "collected",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "trusted",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "DISCUSSION",
+     "role": "discussion",
+     "hand_mapped": false,
+     "start_line": 210,
+     "end_line": 219,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 6,
+     "words": 109,
+     "sentences": 7,
+     "mean_words_per_sentence": 15.6,
+     "median_words_per_sentence": 17,
+     "p90_words_per_sentence": 20,
+     "max_words_per_sentence": 28,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 4,
+      "21-30": 1,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 54.5,
+     "median_words_per_paragraph": 54.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 82.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 85.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 14.3,
+     "passive_per_1k_words": 9.2,
+     "pct_sentences_with_passive": 14.3,
+     "be_verbs_per_1k": 55.0,
+     "passive_top_participles": [
+      [
+       "reported",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": "VI",
+     "title": "LIMITATIONS",
+     "role": "discussion",
+     "hand_mapped": false,
+     "start_line": 220,
+     "end_line": 225,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 0,
+     "n_be_verbs": 1,
+     "words": 110,
+     "sentences": 3,
+     "mean_words_per_sentence": 36.7,
+     "median_words_per_sentence": 38,
+     "p90_words_per_sentence": 38,
+     "max_words_per_sentence": 52,
+     "pct_over_35w": 66.7,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 1,
+      "21-30": 0,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 55,
+     "median_words_per_paragraph": 55.0,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 9.1,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 36.4,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 27.3,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 100.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 9.1,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 7,
+     "numeral": "VII",
+     "title": "CONCLUSION AND FUTURE WORK",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 226,
+     "end_line": 231,
+     "page_start": 4,
+     "page_end": 5,
+     "pages": 2
+    }
+   ]
+  },
+  "AlvarezMelis2018_robustness-interpretability": {
+   "sha256": "cc79d72130ffcf0335f018d35143ac427a903ee56bce40834d56caf5d69e2f45",
+   "source_pdf_sha256": null,
+   "lines": 159,
+   "refs_heading_line": 138,
+   "body_start_line": 9,
+   "notes": [],
+   "body": {
+    "n_first_person": 40,
+    "n_passive": 21,
+    "n_be_verbs": 86,
+    "words": 2464,
+    "sentences": 126,
+    "mean_words_per_sentence": 19.6,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 33,
+    "max_words_per_sentence": 56,
+    "pct_over_35w": 8.7,
+    "n_over_35w": 11,
+    "sentence_length_histogram": {
+     "1-10": 24,
+     "11-20": 54,
+     "21-30": 27,
+     "31-40": 16,
+     "41-50": 3,
+     "51+": 2
+    },
+    "paragraphs": 49,
+    "mean_words_per_paragraph": 50.3,
+    "median_words_per_paragraph": 46,
+    "citations": 0,
+    "citations_per_1k": 0.0,
+    "first_person_per_1k": 16.2,
+    "past_anchors_per_1k": 1.2,
+    "present_anchors_per_1k": 47.1,
+    "future_anchors_per_1k": 0.4,
+    "modal_anchors_per_1k": 7.7,
+    "pct_sentences_past": 2.4,
+    "pct_sentences_present": 60.3,
+    "pct_sentences_future": 0.8,
+    "pct_sentences_no_tense_anchor": 38.1,
+    "passive_per_1k_words": 8.5,
+    "pct_sentences_with_passive": 13.5,
+    "be_verbs_per_1k": 34.9,
+    "passive_top_participles": [
+     [
+      "used",
+      4
+     ],
+     [
+      "explained",
+      3
+     ],
+     [
+      "estimated",
+      2
+     ],
+     [
+      "divided",
+      1
+     ],
+     [
+      "derived",
+      1
+     ],
+     [
+      "expressed",
+      1
+     ],
+     [
+      "applied",
+      1
+     ],
+     [
+      "modified",
+      1
+     ],
+     [
+      "interested",
+      1
+     ],
+     [
+      "known",
+      1
+     ]
+    ],
+    "n_tables": 0,
+    "n_figures": 8
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 40,
+    "n_passive": 21,
+    "n_be_verbs": 86,
+    "words": 2464,
+    "sentences": 126,
+    "mean_words_per_sentence": 19.6,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 33,
+    "max_words_per_sentence": 56,
+    "pct_over_35w": 8.7,
+    "n_over_35w": 11,
+    "sentence_length_histogram": {
+     "1-10": 24,
+     "11-20": 54,
+     "21-30": 27,
+     "31-40": 16,
+     "41-50": 3,
+     "51+": 2
+    },
+    "paragraphs": 49,
+    "mean_words_per_paragraph": 50.3,
+    "median_words_per_paragraph": 46,
+    "citations": 0,
+    "citations_per_1k": 0.0,
+    "first_person_per_1k": 16.2,
+    "past_anchors_per_1k": 1.2,
+    "present_anchors_per_1k": 47.1,
+    "future_anchors_per_1k": 0.4,
+    "modal_anchors_per_1k": 7.7,
+    "pct_sentences_past": 2.4,
+    "pct_sentences_present": 60.3,
+    "pct_sentences_future": 0.8,
+    "pct_sentences_no_tense_anchor": 38.1,
+    "passive_per_1k_words": 8.5,
+    "pct_sentences_with_passive": 13.5,
+    "be_verbs_per_1k": 34.9,
+    "passive_top_participles": [
+     [
+      "used",
+      4
+     ],
+     [
+      "explained",
+      3
+     ],
+     [
+      "estimated",
+      2
+     ],
+     [
+      "divided",
+      1
+     ],
+     [
+      "derived",
+      1
+     ],
+     [
+      "expressed",
+      1
+     ],
+     [
+      "applied",
+      1
+     ],
+     [
+      "modified",
+      1
+     ],
+     [
+      "interested",
+      1
+     ],
+     [
+      "known",
+      1
+     ]
+    ],
+    "n_tables": 0,
+    "n_figures": 8
+   },
+   "structure": {
+    "n_sections": 4,
+    "n_numbered_sections": 4,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "n_tables_body": 0,
+    "n_tables_total": 0,
+    "n_figures_body": 8,
+    "n_figures_total": 8,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 3,
+    "has_page_spans": false,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 7,
+     "n_passive": 6,
+     "n_be_verbs": 18,
+     "words": 493,
+     "sentences": 22,
+     "mean_words_per_sentence": 22.4,
+     "median_words_per_sentence": 21.0,
+     "p90_words_per_sentence": 32,
+     "max_words_per_sentence": 51,
+     "pct_over_35w": 9.1,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 9,
+      "21-30": 7,
+      "31-40": 3,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 7,
+     "mean_words_per_paragraph": 70.4,
+     "median_words_per_paragraph": 72,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 14.2,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 40.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 18.3,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 63.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 36.4,
+     "passive_per_1k_words": 12.2,
+     "pct_sentences_with_passive": 18.2,
+     "be_verbs_per_1k": 36.5,
+     "passive_top_participles": [
+      [
+       "divided",
+       1
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "derived",
+       1
+      ],
+      [
+       "expressed",
+       1
+      ],
+      [
+       "applied",
+       1
+      ],
+      [
+       "used",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "1",
+     "title": "Introduction",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 9,
+     "end_line": 24,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 13,
+     "n_passive": 7,
+     "n_be_verbs": 34,
+     "words": 768,
+     "sentences": 42,
+     "mean_words_per_sentence": 18.3,
+     "median_words_per_sentence": 17.0,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 47,
+     "pct_over_35w": 7.1,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 7,
+      "11-20": 22,
+      "21-30": 7,
+      "31-40": 4,
+      "41-50": 2,
+      "51+": 0
+     },
+     "paragraphs": 15,
+     "mean_words_per_paragraph": 51.2,
+     "median_words_per_paragraph": 41,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 16.9,
+     "past_anchors_per_1k": 1.3,
+     "present_anchors_per_1k": 57.3,
+     "future_anchors_per_1k": 1.3,
+     "modal_anchors_per_1k": 6.5,
+     "pct_sentences_past": 2.4,
+     "pct_sentences_present": 73.8,
+     "pct_sentences_future": 2.4,
+     "pct_sentences_no_tense_anchor": 23.8,
+     "passive_per_1k_words": 9.1,
+     "pct_sentences_with_passive": 11.9,
+     "be_verbs_per_1k": 44.3,
+     "passive_top_participles": [
+      [
+       "estimated",
+       2
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "modified",
+       1
+      ],
+      [
+       "interested",
+       1
+      ],
+      [
+       "known",
+       1
+      ],
+      [
+       "used",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 2,
+     "index": 2,
+     "numeral": "2",
+     "title": "Robustness",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 25,
+     "end_line": 68,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 16,
+     "n_passive": 4,
+     "n_be_verbs": 10,
+     "words": 798,
+     "sentences": 47,
+     "mean_words_per_sentence": 17.0,
+     "median_words_per_sentence": 17,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 44,
+     "pct_over_35w": 6.4,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 14,
+      "11-20": 18,
+      "21-30": 10,
+      "31-40": 4,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 23,
+     "mean_words_per_paragraph": 34.7,
+     "median_words_per_paragraph": 18,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 20.1,
+     "past_anchors_per_1k": 1.3,
+     "present_anchors_per_1k": 30.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 2.1,
+     "pct_sentences_present": 38.3,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 59.6,
+     "passive_per_1k_words": 5.0,
+     "pct_sentences_with_passive": 8.5,
+     "be_verbs_per_1k": 12.5,
+     "passive_top_participles": [
+      [
+       "shown",
+       1
+      ],
+      [
+       "labeled",
+       1
+      ],
+      [
+       "chosen",
+       1
+      ],
+      [
+       "affected",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 6,
+     "index": 3,
+     "numeral": "3",
+     "title": "Experiments",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 69,
+     "end_line": 127,
+     "page_start": 1,
+     "page_end": 4,
+     "pages": 4
+    },
+    {
+     "n_first_person": 4,
+     "n_passive": 4,
+     "n_be_verbs": 24,
+     "words": 405,
+     "sentences": 15,
+     "mean_words_per_sentence": 27,
+     "median_words_per_sentence": 25,
+     "p90_words_per_sentence": 37,
+     "max_words_per_sentence": 56,
+     "pct_over_35w": 20.0,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 5,
+      "21-30": 3,
+      "31-40": 5,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 4,
+     "mean_words_per_paragraph": 101.2,
+     "median_words_per_paragraph": 105.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 9.9,
+     "past_anchors_per_1k": 2.5,
+     "present_anchors_per_1k": 69.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 12.3,
+     "pct_sentences_past": 6.7,
+     "pct_sentences_present": 86.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 13.3,
+     "passive_per_1k_words": 9.9,
+     "pct_sentences_with_passive": 26.7,
+     "be_verbs_per_1k": 59.3,
+     "passive_top_participles": [
+      [
+       "used",
+       2
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "proposed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 4,
+     "numeral": "4",
+     "title": "Discussion",
+     "role": "discussion",
+     "hand_mapped": false,
+     "start_line": 128,
+     "end_line": 137,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    }
+   ]
+  },
+  "Anon2025_uav-vlrr-nmpc": {
+   "sha256": "f32005ba4f9f5b1fc169f7592e08022e9531b213c48d7b4b3d6a007133a719d3",
+   "source_pdf_sha256": null,
+   "lines": 276,
+   "refs_heading_line": 254,
+   "body_start_line": 9,
+   "notes": [],
+   "body": {
+    "n_first_person": 8,
+    "n_passive": 46,
+    "n_be_verbs": 99,
+    "words": 2654,
+    "sentences": 140,
+    "mean_words_per_sentence": 19.0,
+    "median_words_per_sentence": 19.0,
+    "p90_words_per_sentence": 30,
+    "max_words_per_sentence": 60,
+    "pct_over_35w": 2.9,
+    "n_over_35w": 4,
+    "sentence_length_histogram": {
+     "1-10": 27,
+     "11-20": 58,
+     "21-30": 42,
+     "31-40": 11,
+     "41-50": 1,
+     "51+": 1
+    },
+    "paragraphs": 72,
+    "mean_words_per_paragraph": 36.9,
+    "median_words_per_paragraph": 23.5,
+    "citations": 28,
+    "citations_per_1k": 10.6,
+    "first_person_per_1k": 3.0,
+    "past_anchors_per_1k": 13.9,
+    "present_anchors_per_1k": 30.1,
+    "future_anchors_per_1k": 0.8,
+    "modal_anchors_per_1k": 6.4,
+    "pct_sentences_past": 20.7,
+    "pct_sentences_present": 38.6,
+    "pct_sentences_future": 1.4,
+    "pct_sentences_no_tense_anchor": 42.9,
+    "passive_per_1k_words": 17.3,
+    "pct_sentences_with_passive": 30.0,
+    "be_verbs_per_1k": 37.3,
+    "passive_top_participles": [
+     [
+      "shown",
+      4
+     ],
+     [
+      "tested",
+      3
+     ],
+     [
+      "deployed",
+      2
+     ],
+     [
+      "seen",
+      2
+     ],
+     [
+      "utilized",
+      2
+     ],
+     [
+      "mapped",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "overlooked",
+      1
+     ],
+     [
+      "applied",
+      1
+     ],
+     [
+      "required",
+      1
+     ]
+    ],
+    "n_tables": 3,
+    "n_figures": 7
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 8,
+    "n_passive": 45,
+    "n_be_verbs": 98,
+    "words": 2641,
+    "sentences": 139,
+    "mean_words_per_sentence": 19,
+    "median_words_per_sentence": 19,
+    "p90_words_per_sentence": 30,
+    "max_words_per_sentence": 60,
+    "pct_over_35w": 2.9,
+    "n_over_35w": 4,
+    "sentence_length_histogram": {
+     "1-10": 27,
+     "11-20": 57,
+     "21-30": 42,
+     "31-40": 11,
+     "41-50": 1,
+     "51+": 1
+    },
+    "paragraphs": 71,
+    "mean_words_per_paragraph": 37.2,
+    "median_words_per_paragraph": 24,
+    "citations": 28,
+    "citations_per_1k": 10.6,
+    "first_person_per_1k": 3.0,
+    "past_anchors_per_1k": 13.6,
+    "present_anchors_per_1k": 30.3,
+    "future_anchors_per_1k": 0.8,
+    "modal_anchors_per_1k": 6.4,
+    "pct_sentences_past": 20.1,
+    "pct_sentences_present": 38.8,
+    "pct_sentences_future": 1.4,
+    "pct_sentences_no_tense_anchor": 43.2,
+    "passive_per_1k_words": 17.0,
+    "pct_sentences_with_passive": 29.5,
+    "be_verbs_per_1k": 37.1,
+    "passive_top_participles": [
+     [
+      "shown",
+      4
+     ],
+     [
+      "tested",
+      3
+     ],
+     [
+      "deployed",
+      2
+     ],
+     [
+      "seen",
+      2
+     ],
+     [
+      "utilized",
+      2
+     ],
+     [
+      "mapped",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "overlooked",
+      1
+     ],
+     [
+      "applied",
+      1
+     ],
+     [
+      "required",
+      1
+     ]
+    ],
+    "n_tables": 3,
+    "n_figures": 7
+   },
+   "structure": {
+    "n_sections": 8,
+    "n_numbered_sections": 7,
+    "n_backmatter_words": 13,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V",
+     "VI",
+     "VII",
+     "ACKNOWLEDGEMENTS"
+    ],
+    "n_tables_body": 3,
+    "n_tables_total": 3,
+    "n_figures_body": 7,
+    "n_figures_total": 7,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 9,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.086
+   },
+   "sections": [
+    {
+     "n_first_person": 4,
+     "n_passive": 2,
+     "n_be_verbs": 6,
+     "words": 435,
+     "sentences": 23,
+     "mean_words_per_sentence": 18.9,
+     "median_words_per_sentence": 19,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 33,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 3,
+      "11-20": 12,
+      "21-30": 7,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 10,
+     "mean_words_per_paragraph": 43.5,
+     "median_words_per_paragraph": 25.0,
+     "citations": 5,
+     "citations_per_1k": 11.5,
+     "first_person_per_1k": 9.2,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 25.3,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 13.8,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 39.1,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 60.9,
+     "passive_per_1k_words": 4.6,
+     "pct_sentences_with_passive": 8.7,
+     "be_verbs_per_1k": 13.8,
+     "passive_top_participles": [
+      [
+       "overlooked",
+       1
+      ],
+      [
+       "deployed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 9,
+     "end_line": 29,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 2,
+     "n_passive": 6,
+     "n_be_verbs": 15,
+     "words": 725,
+     "sentences": 28,
+     "mean_words_per_sentence": 25.9,
+     "median_words_per_sentence": 25.0,
+     "p90_words_per_sentence": 35,
+     "max_words_per_sentence": 60,
+     "pct_over_35w": 10.7,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 8,
+      "21-30": 11,
+      "31-40": 7,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 6,
+     "mean_words_per_paragraph": 120.8,
+     "median_words_per_paragraph": 93.5,
+     "citations": 21,
+     "citations_per_1k": 29.0,
+     "first_person_per_1k": 2.8,
+     "past_anchors_per_1k": 9.7,
+     "present_anchors_per_1k": 24.8,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 4.1,
+     "pct_sentences_past": 21.4,
+     "pct_sentences_present": 46.4,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 35.7,
+     "passive_per_1k_words": 8.3,
+     "pct_sentences_with_passive": 21.4,
+     "be_verbs_per_1k": 20.7,
+     "passive_top_participles": [
+      [
+       "applied",
+       1
+      ],
+      [
+       "required",
+       1
+      ],
+      [
+       "seen",
+       1
+      ],
+      [
+       "performed",
+       1
+      ],
+      [
+       "utilized",
+       1
+      ],
+      [
+       "deployed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "RELATED WORK",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 30,
+     "end_line": 47,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 17,
+     "n_be_verbs": 37,
+     "words": 548,
+     "sentences": 32,
+     "mean_words_per_sentence": 17.1,
+     "median_words_per_sentence": 17.0,
+     "p90_words_per_sentence": 23,
+     "max_words_per_sentence": 49,
+     "pct_over_35w": 3.1,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 9,
+      "11-20": 12,
+      "21-30": 8,
+      "31-40": 2,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 20,
+     "mean_words_per_paragraph": 27.4,
+     "median_words_per_paragraph": 24.5,
+     "citations": 2,
+     "citations_per_1k": 3.6,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 5.5,
+     "present_anchors_per_1k": 67.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 1.8,
+     "pct_sentences_past": 9.4,
+     "pct_sentences_present": 65.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 31.0,
+     "pct_sentences_with_passive": 46.9,
+     "be_verbs_per_1k": 67.5,
+     "passive_top_participles": [
+      [
+       "mapped",
+       2
+      ],
+      [
+       "used",
+       2
+      ],
+      [
+       "employed",
+       1
+      ],
+      [
+       "utilized",
+       1
+      ],
+      [
+       "handled",
+       1
+      ],
+      [
+       "represented",
+       1
+      ],
+      [
+       "identified",
+       1
+      ],
+      [
+       "computed",
+       1
+      ],
+      [
+       "derived",
+       1
+      ],
+      [
+       "known",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 2,
+     "index": 3,
+     "numeral": "III",
+     "title": "SYSTEM OVERVIEW",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 48,
+     "end_line": 118,
+     "page_start": null,
+     "page_end": 3,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 9,
+     "n_be_verbs": 14,
+     "words": 299,
+     "sentences": 17,
+     "mean_words_per_sentence": 17.6,
+     "median_words_per_sentence": 17,
+     "p90_words_per_sentence": 23,
+     "max_words_per_sentence": 29,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 11,
+      "21-30": 4,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 10,
+     "mean_words_per_paragraph": 29.9,
+     "median_words_per_paragraph": 17.0,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 40.1,
+     "present_anchors_per_1k": 10.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 58.8,
+     "pct_sentences_present": 17.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 29.4,
+     "passive_per_1k_words": 30.1,
+     "pct_sentences_with_passive": 47.1,
+     "be_verbs_per_1k": 46.8,
+     "passive_top_participles": [
+      [
+       "shown",
+       3
+      ],
+      [
+       "tested",
+       2
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "given",
+       1
+      ],
+      [
+       "timed",
+       1
+      ],
+      [
+       "launched",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 4,
+     "numeral": "IV",
+     "title": "EXPERIMENTAL SETUP",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 119,
+     "end_line": 140,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 9,
+     "n_be_verbs": 19,
+     "words": 398,
+     "sentences": 24,
+     "mean_words_per_sentence": 16.6,
+     "median_words_per_sentence": 17.0,
+     "p90_words_per_sentence": 26,
+     "max_words_per_sentence": 34,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 7,
+      "11-20": 9,
+      "21-30": 7,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 14,
+     "mean_words_per_paragraph": 28.5,
+     "median_words_per_paragraph": 16.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 30.2,
+     "present_anchors_per_1k": 15.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 10.1,
+     "pct_sentences_past": 33.3,
+     "pct_sentences_present": 20.8,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 54.2,
+     "passive_per_1k_words": 22.6,
+     "pct_sentences_with_passive": 33.3,
+     "be_verbs_per_1k": 47.7,
+     "passive_top_participles": [
+      [
+       "compared",
+       1
+      ],
+      [
+       "seen",
+       1
+      ],
+      [
+       "considered",
+       1
+      ],
+      [
+       "captured",
+       1
+      ],
+      [
+       "expected",
+       1
+      ],
+      [
+       "listed",
+       1
+      ],
+      [
+       "observed",
+       1
+      ],
+      [
+       "deduced",
+       1
+      ],
+      [
+       "shown",
+       1
+      ]
+     ],
+     "n_tables": 3,
+     "n_figures": 2,
+     "index": 5,
+     "numeral": "V",
+     "title": "EXPERIMENTAL RESULTS",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 141,
+     "end_line": 223,
+     "page_start": 3,
+     "page_end": 4,
+     "pages": 2
+    },
+    {
+     "n_first_person": 2,
+     "n_passive": 2,
+     "n_be_verbs": 5,
+     "words": 157,
+     "sentences": 11,
+     "mean_words_per_sentence": 14.3,
+     "median_words_per_sentence": 14,
+     "p90_words_per_sentence": 26,
+     "max_words_per_sentence": 28,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 5,
+      "11-20": 2,
+      "21-30": 4,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 9,
+     "mean_words_per_paragraph": 17.4,
+     "median_words_per_paragraph": 14,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 12.7,
+     "past_anchors_per_1k": 12.7,
+     "present_anchors_per_1k": 12.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 12.7,
+     "pct_sentences_past": 9.1,
+     "pct_sentences_present": 9.1,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 81.8,
+     "passive_per_1k_words": 12.7,
+     "pct_sentences_with_passive": 18.2,
+     "be_verbs_per_1k": 31.8,
+     "passive_top_participles": [
+      [
+       "aimed",
+       1
+      ],
+      [
+       "tested",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 6,
+     "numeral": "VI",
+     "title": "CONCLUSION",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 224,
+     "end_line": 243,
+     "page_start": 4,
+     "page_end": 5,
+     "pages": 2
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 2,
+     "words": 79,
+     "sentences": 4,
+     "mean_words_per_sentence": 19.8,
+     "median_words_per_sentence": 19.0,
+     "p90_words_per_sentence": 20,
+     "max_words_per_sentence": 24,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 3,
+      "21-30": 1,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 39.5,
+     "median_words_per_paragraph": 39.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 38.0,
+     "future_anchors_per_1k": 25.3,
+     "modal_anchors_per_1k": 12.7,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 50.0,
+     "pct_sentences_future": 50.0,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 25.3,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 7,
+     "numeral": "VII",
+     "title": "FUTURE WORK",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 244,
+     "end_line": 249,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 1,
+     "words": 13,
+     "sentences": 1,
+     "mean_words_per_sentence": 13,
+     "median_words_per_sentence": 13,
+     "p90_words_per_sentence": 13,
+     "max_words_per_sentence": 13,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 1,
+      "21-30": 0,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 13,
+     "median_words_per_paragraph": 13,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 76.9,
+     "present_anchors_per_1k": 0.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 100.0,
+     "pct_sentences_present": 0.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 76.9,
+     "pct_sentences_with_passive": 100.0,
+     "be_verbs_per_1k": 76.9,
+     "passive_top_participles": [
+      [
+       "supported",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 8,
+     "numeral": null,
+     "title": "ACKNOWLEDGEMENTS",
+     "role": "acknowledgement",
+     "hand_mapped": false,
+     "start_line": 250,
+     "end_line": 253,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    }
+   ]
+  },
+  "Batool2026_humandiffusion-sar": {
+   "sha256": "59e590ee01fa35b2a244ca6e60b517bc96a5cf69a249cfecc2bc5d718f37669f",
+   "source_pdf_sha256": null,
+   "lines": 194,
+   "refs_heading_line": 158,
+   "body_start_line": 38,
+   "notes": [],
+   "body": {
+    "n_first_person": 2,
+    "n_passive": 28,
+    "n_be_verbs": 50,
+    "words": 1873,
+    "sentences": 102,
+    "mean_words_per_sentence": 18.4,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 29,
+    "max_words_per_sentence": 50,
+    "pct_over_35w": 5.9,
+    "n_over_35w": 6,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 41,
+     "21-30": 32,
+     "31-40": 8,
+     "41-50": 1,
+     "51+": 0
+    },
+    "paragraphs": 37,
+    "mean_words_per_paragraph": 50.6,
+    "median_words_per_paragraph": 48,
+    "citations": 34,
+    "citations_per_1k": 18.2,
+    "first_person_per_1k": 1.1,
+    "past_anchors_per_1k": 7.5,
+    "present_anchors_per_1k": 29.4,
+    "future_anchors_per_1k": 0.5,
+    "modal_anchors_per_1k": 1.6,
+    "pct_sentences_past": 12.7,
+    "pct_sentences_present": 41.2,
+    "pct_sentences_future": 1.0,
+    "pct_sentences_no_tense_anchor": 47.1,
+    "passive_per_1k_words": 14.9,
+    "pct_sentences_with_passive": 25.5,
+    "be_verbs_per_1k": 26.7,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "inferred",
+      2
+     ],
+     [
+      "evaluated",
+      2
+     ],
+     [
+      "treated",
+      1
+     ],
+     [
+      "obtained",
+      1
+     ],
+     [
+      "based",
+      1
+     ],
+     [
+      "added",
+      1
+     ],
+     [
+      "repeated",
+      1
+     ],
+     [
+      "inpainted",
+      1
+     ],
+     [
+      "trained",
+      1
+     ]
+    ],
+    "n_tables": 0,
+    "n_figures": 3
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 2,
+    "n_passive": 27,
+    "n_be_verbs": 49,
+    "words": 1860,
+    "sentences": 101,
+    "mean_words_per_sentence": 18.4,
+    "median_words_per_sentence": 18,
+    "p90_words_per_sentence": 30,
+    "max_words_per_sentence": 50,
+    "pct_over_35w": 5.9,
+    "n_over_35w": 6,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 40,
+     "21-30": 32,
+     "31-40": 8,
+     "41-50": 1,
+     "51+": 0
+    },
+    "paragraphs": 36,
+    "mean_words_per_paragraph": 51.7,
+    "median_words_per_paragraph": 48.5,
+    "citations": 34,
+    "citations_per_1k": 18.3,
+    "first_person_per_1k": 1.1,
+    "past_anchors_per_1k": 7.0,
+    "present_anchors_per_1k": 29.6,
+    "future_anchors_per_1k": 0.5,
+    "modal_anchors_per_1k": 1.6,
+    "pct_sentences_past": 11.9,
+    "pct_sentences_present": 41.6,
+    "pct_sentences_future": 1.0,
+    "pct_sentences_no_tense_anchor": 47.5,
+    "passive_per_1k_words": 14.5,
+    "pct_sentences_with_passive": 24.8,
+    "be_verbs_per_1k": 26.3,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "inferred",
+      2
+     ],
+     [
+      "evaluated",
+      2
+     ],
+     [
+      "treated",
+      1
+     ],
+     [
+      "obtained",
+      1
+     ],
+     [
+      "based",
+      1
+     ],
+     [
+      "added",
+      1
+     ],
+     [
+      "repeated",
+      1
+     ],
+     [
+      "inpainted",
+      1
+     ],
+     [
+      "trained",
+      1
+     ]
+    ],
+    "n_tables": 0,
+    "n_figures": 3
+   },
+   "structure": {
+    "n_sections": 6,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 13,
+    "section_sequence": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "Acknowledgment"
+    ],
+    "n_tables_body": 0,
+    "n_tables_total": 0,
+    "n_figures_body": 3,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 37,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.083
+   },
+   "sections": [
+    {
+     "n_first_person": 1,
+     "n_passive": 2,
+     "n_be_verbs": 5,
+     "words": 301,
+     "sentences": 13,
+     "mean_words_per_sentence": 23.2,
+     "median_words_per_sentence": 25,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 39,
+     "pct_over_35w": 7.7,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 4,
+      "21-30": 6,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 60.2,
+     "median_words_per_paragraph": 27,
+     "citations": 5,
+     "citations_per_1k": 16.6,
+     "first_person_per_1k": 3.3,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 23.3,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 6.6,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 46.2,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 53.8,
+     "passive_per_1k_words": 6.6,
+     "pct_sentences_with_passive": 15.4,
+     "be_verbs_per_1k": 16.6,
+     "passive_top_participles": [
+      [
+       "inferred",
+       1
+      ],
+      [
+       "treated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "1",
+     "title": "Introduction",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 38,
+     "end_line": 47,
+     "page_start": 0,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 1,
+     "n_be_verbs": 2,
+     "words": 372,
+     "sentences": 17,
+     "mean_words_per_sentence": 21.9,
+     "median_words_per_sentence": 21,
+     "p90_words_per_sentence": 34,
+     "max_words_per_sentence": 39,
+     "pct_over_35w": 11.8,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 8,
+      "21-30": 6,
+      "31-40": 3,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 74.4,
+     "median_words_per_paragraph": 76,
+     "citations": 25,
+     "citations_per_1k": 67.2,
+     "first_person_per_1k": 2.7,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 21.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.7,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 41.2,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 58.8,
+     "passive_per_1k_words": 2.7,
+     "pct_sentences_with_passive": 5.9,
+     "be_verbs_per_1k": 5.4,
+     "passive_top_participles": [
+      [
+       "inferred",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "2",
+     "title": "Related Works",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 48,
+     "end_line": 67,
+     "page_start": 0,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 9,
+     "n_be_verbs": 24,
+     "words": 449,
+     "sentences": 27,
+     "mean_words_per_sentence": 16.6,
+     "median_words_per_sentence": 14,
+     "p90_words_per_sentence": 30,
+     "max_words_per_sentence": 50,
+     "pct_over_35w": 3.7,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 7,
+      "11-20": 11,
+      "21-30": 7,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 13,
+     "mean_words_per_paragraph": 34.5,
+     "median_words_per_paragraph": 32,
+     "citations": 2,
+     "citations_per_1k": 4.5,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 62.4,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 66.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 33.3,
+     "passive_per_1k_words": 20.0,
+     "pct_sentences_with_passive": 29.6,
+     "be_verbs_per_1k": 53.5,
+     "passive_top_participles": [
+      [
+       "used",
+       3
+      ],
+      [
+       "obtained",
+       1
+      ],
+      [
+       "based",
+       1
+      ],
+      [
+       "added",
+       1
+      ],
+      [
+       "repeated",
+       1
+      ],
+      [
+       "inpainted",
+       1
+      ],
+      [
+       "trained",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 3,
+     "numeral": "3",
+     "title": "System Architecture",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 68,
+     "end_line": 111,
+     "page_start": 0,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 15,
+     "n_be_verbs": 17,
+     "words": 569,
+     "sentences": 35,
+     "mean_words_per_sentence": 16.3,
+     "median_words_per_sentence": 16,
+     "p90_words_per_sentence": 26,
+     "max_words_per_sentence": 38,
+     "pct_over_35w": 5.7,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 11,
+      "11-20": 13,
+      "21-30": 9,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 9,
+     "mean_words_per_paragraph": 63.2,
+     "median_words_per_paragraph": 64,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 21.1,
+     "present_anchors_per_1k": 15.8,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 31.4,
+     "pct_sentences_present": 25.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 48.6,
+     "passive_per_1k_words": 26.4,
+     "pct_sentences_with_passive": 40.0,
+     "be_verbs_per_1k": 29.9,
+     "passive_top_participles": [
+      [
+       "evaluated",
+       2
+      ],
+      [
+       "attached",
+       1
+      ],
+      [
+       "projected",
+       1
+      ],
+      [
+       "constructed",
+       1
+      ],
+      [
+       "executed",
+       1
+      ],
+      [
+       "categorized",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "equipped",
+       1
+      ],
+      [
+       "measured",
+       1
+      ],
+      [
+       "shown",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 4,
+     "numeral": "4",
+     "title": "Experimental Evaluation",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 112,
+     "end_line": 139,
+     "page_start": 0,
+     "page_end": 3,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 1,
+     "words": 169,
+     "sentences": 9,
+     "mean_words_per_sentence": 18.8,
+     "median_words_per_sentence": 19,
+     "p90_words_per_sentence": 24,
+     "max_words_per_sentence": 29,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 4,
+      "21-30": 4,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 4,
+     "mean_words_per_paragraph": 42.2,
+     "median_words_per_paragraph": 35.5,
+     "citations": 2,
+     "citations_per_1k": 11.8,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 5.9,
+     "present_anchors_per_1k": 17.8,
+     "future_anchors_per_1k": 5.9,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 11.1,
+     "pct_sentences_present": 22.2,
+     "pct_sentences_future": 11.1,
+     "pct_sentences_no_tense_anchor": 55.6,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 5.9,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 2,
+     "index": 5,
+     "numeral": "5",
+     "title": "Conclusion and Future Work",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 140,
+     "end_line": 153,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 1,
+     "words": 13,
+     "sentences": 1,
+     "mean_words_per_sentence": 13,
+     "median_words_per_sentence": 13,
+     "p90_words_per_sentence": 13,
+     "max_words_per_sentence": 13,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 1,
+      "21-30": 0,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 13,
+     "median_words_per_paragraph": 13,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 76.9,
+     "present_anchors_per_1k": 0.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 100.0,
+     "pct_sentences_present": 0.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 76.9,
+     "pct_sentences_with_passive": 100.0,
+     "be_verbs_per_1k": 76.9,
+     "passive_top_participles": [
+      [
+       "supported",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": null,
+     "title": "Acknowledgment",
+     "role": "acknowledgement",
+     "hand_mapped": false,
+     "start_line": 154,
+     "end_line": 157,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    }
+   ]
+  },
+  "Boddu2025_quantized-yolov4tiny-pi": {
+   "sha256": "fe2caf3988903e937631051c92553172b55e2aebca8d07a3f4a4bf9a4c8a527f",
+   "source_pdf_sha256": null,
+   "lines": 238,
+   "refs_heading_line": 231,
+   "body_start_line": 13,
+   "notes": [],
+   "body": {
+    "n_first_person": 5,
+    "n_passive": 47,
+    "n_be_verbs": 67,
+    "words": 2874,
+    "sentences": 158,
+    "mean_words_per_sentence": 18.2,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 30,
+    "max_words_per_sentence": 38,
+    "pct_over_35w": 1.9,
+    "n_over_35w": 3,
+    "sentence_length_histogram": {
+     "1-10": 34,
+     "11-20": 63,
+     "21-30": 45,
+     "31-40": 16,
+     "41-50": 0,
+     "51+": 0
+    },
+    "paragraphs": 94,
+    "mean_words_per_paragraph": 30.6,
+    "median_words_per_paragraph": 26.0,
+    "citations": 6,
+    "citations_per_1k": 2.1,
+    "first_person_per_1k": 1.7,
+    "past_anchors_per_1k": 17.4,
+    "present_anchors_per_1k": 18.4,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 6.3,
+    "pct_sentences_past": 30.4,
+    "pct_sentences_present": 30.4,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 43.0,
+    "passive_per_1k_words": 16.4,
+    "pct_sentences_with_passive": 29.1,
+    "be_verbs_per_1k": 23.3,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "deployed",
+      3
+     ],
+     [
+      "developed",
+      2
+     ],
+     [
+      "structured",
+      2
+     ],
+     [
+      "applied",
+      2
+     ],
+     [
+      "selected",
+      2
+     ],
+     [
+      "conducted",
+      2
+     ],
+     [
+      "evaluated",
+      2
+     ],
+     [
+      "converted",
+      2
+     ],
+     [
+      "executed",
+      2
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 4
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 5,
+    "n_passive": 47,
+    "n_be_verbs": 67,
+    "words": 2874,
+    "sentences": 158,
+    "mean_words_per_sentence": 18.2,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 30,
+    "max_words_per_sentence": 38,
+    "pct_over_35w": 1.9,
+    "n_over_35w": 3,
+    "sentence_length_histogram": {
+     "1-10": 34,
+     "11-20": 63,
+     "21-30": 45,
+     "31-40": 16,
+     "41-50": 0,
+     "51+": 0
+    },
+    "paragraphs": 94,
+    "mean_words_per_paragraph": 30.6,
+    "median_words_per_paragraph": 26.0,
+    "citations": 6,
+    "citations_per_1k": 2.1,
+    "first_person_per_1k": 1.7,
+    "past_anchors_per_1k": 17.4,
+    "present_anchors_per_1k": 18.4,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 6.3,
+    "pct_sentences_past": 30.4,
+    "pct_sentences_present": 30.4,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 43.0,
+    "passive_per_1k_words": 16.4,
+    "pct_sentences_with_passive": 29.1,
+    "be_verbs_per_1k": 23.3,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "deployed",
+      3
+     ],
+     [
+      "developed",
+      2
+     ],
+     [
+      "structured",
+      2
+     ],
+     [
+      "applied",
+      2
+     ],
+     [
+      "selected",
+      2
+     ],
+     [
+      "conducted",
+      2
+     ],
+     [
+      "evaluated",
+      2
+     ],
+     [
+      "converted",
+      2
+     ],
+     [
+      "executed",
+      2
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 4
+   },
+   "structure": {
+    "n_sections": 6,
+    "n_numbered_sections": 6,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V",
+     "VI"
+    ],
+    "n_tables_body": 1,
+    "n_tables_total": 1,
+    "n_figures_body": 4,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 12,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.046
+   },
+   "sections": [
+    {
+     "n_first_person": 1,
+     "n_passive": 3,
+     "n_be_verbs": 4,
+     "words": 320,
+     "sentences": 13,
+     "mean_words_per_sentence": 24.6,
+     "median_words_per_sentence": 26,
+     "p90_words_per_sentence": 29,
+     "max_words_per_sentence": 33,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 4,
+      "21-30": 8,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 4,
+     "mean_words_per_paragraph": 80,
+     "median_words_per_paragraph": 78.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 3.1,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 40.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 3.1,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 84.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 15.4,
+     "passive_per_1k_words": 9.4,
+     "pct_sentences_with_passive": 23.1,
+     "be_verbs_per_1k": 12.5,
+     "passive_top_participles": [
+      [
+       "developed",
+       1
+      ],
+      [
+       "benchmarked",
+       1
+      ],
+      [
+       "structured",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 13,
+     "end_line": 22,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 4,
+     "words": 342,
+     "sentences": 15,
+     "mean_words_per_sentence": 22.8,
+     "median_words_per_sentence": 23,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 28,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 4,
+      "21-30": 11,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 68.4,
+     "median_words_per_paragraph": 71,
+     "citations": 6,
+     "citations_per_1k": 17.5,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 5.8,
+     "present_anchors_per_1k": 20.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.9,
+     "pct_sentences_past": 13.3,
+     "pct_sentences_present": 46.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 46.7,
+     "passive_per_1k_words": 2.9,
+     "pct_sentences_with_passive": 6.7,
+     "be_verbs_per_1k": 11.7,
+     "passive_top_participles": [
+      [
+       "introduced",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "RELATED WORK",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 23,
+     "end_line": 34,
+     "page_start": null,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 22,
+     "n_be_verbs": 25,
+     "words": 709,
+     "sentences": 54,
+     "mean_words_per_sentence": 13.1,
+     "median_words_per_sentence": 12.0,
+     "p90_words_per_sentence": 21,
+     "max_words_per_sentence": 36,
+     "pct_over_35w": 1.9,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 23,
+      "11-20": 24,
+      "21-30": 4,
+      "31-40": 3,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 39,
+     "mean_words_per_paragraph": 18.2,
+     "median_words_per_paragraph": 11,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 33.9,
+     "present_anchors_per_1k": 14.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 42.6,
+     "pct_sentences_present": 18.5,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 44.4,
+     "passive_per_1k_words": 31.0,
+     "pct_sentences_with_passive": 38.9,
+     "be_verbs_per_1k": 35.3,
+     "passive_top_participles": [
+      [
+       "applied",
+       2
+      ],
+      [
+       "selected",
+       2
+      ],
+      [
+       "converted",
+       2
+      ],
+      [
+       "used",
+       2
+      ],
+      [
+       "structured",
+       1
+      ],
+      [
+       "sourced",
+       1
+      ],
+      [
+       "annotated",
+       1
+      ],
+      [
+       "resized",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "employed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 3,
+     "numeral": "III",
+     "title": "METHODOLOGY",
+     "role": "method",
+     "hand_mapped": false,
+     "start_line": 35,
+     "end_line": 118,
+     "page_start": 0,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 11,
+     "n_be_verbs": 15,
+     "words": 462,
+     "sentences": 32,
+     "mean_words_per_sentence": 14.4,
+     "median_words_per_sentence": 14.5,
+     "p90_words_per_sentence": 21,
+     "max_words_per_sentence": 31,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 10,
+      "11-20": 17,
+      "21-30": 4,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 22,
+     "mean_words_per_paragraph": 21,
+     "median_words_per_paragraph": 12.0,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 28.1,
+     "present_anchors_per_1k": 8.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 37.5,
+     "pct_sentences_present": 12.5,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 50.0,
+     "passive_per_1k_words": 23.8,
+     "pct_sentences_with_passive": 34.4,
+     "be_verbs_per_1k": 32.5,
+     "passive_top_participles": [
+      [
+       "deployed",
+       2
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "executed",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "measured",
+       1
+      ],
+      [
+       "monitored",
+       1
+      ],
+      [
+       "connected",
+       1
+      ],
+      [
+       "expected",
+       1
+      ],
+      [
+       "recorded",
+       1
+      ],
+      [
+       "observed",
+       1
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 4,
+     "index": 4,
+     "numeral": "IV",
+     "title": "RESULTS AND DISCUSSION",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 119,
+     "end_line": 182,
+     "page_start": 1,
+     "page_end": 3,
+     "pages": 3
+    },
+    {
+     "n_first_person": 3,
+     "n_passive": 7,
+     "n_be_verbs": 13,
+     "words": 716,
+     "sentences": 32,
+     "mean_words_per_sentence": 22.4,
+     "median_words_per_sentence": 22.0,
+     "p90_words_per_sentence": 33,
+     "max_words_per_sentence": 38,
+     "pct_over_35w": 3.1,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 14,
+      "21-30": 10,
+      "31-40": 7,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 18,
+     "mean_words_per_paragraph": 39.8,
+     "median_words_per_paragraph": 38.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 4.2,
+     "past_anchors_per_1k": 11.2,
+     "present_anchors_per_1k": 22.3,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 18.2,
+     "pct_sentences_past": 25.0,
+     "pct_sentences_present": 40.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 37.5,
+     "passive_per_1k_words": 9.8,
+     "pct_sentences_with_passive": 21.9,
+     "be_verbs_per_1k": 18.2,
+     "passive_top_participles": [
+      [
+       "explored",
+       2
+      ],
+      [
+       "limited",
+       1
+      ],
+      [
+       "tested",
+       1
+      ],
+      [
+       "evaluated",
+       1
+      ],
+      [
+       "trained",
+       1
+      ],
+      [
+       "studied",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "CONTRIBUTION AND FUTURE WORK",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 183,
+     "end_line": 216,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 3,
+     "n_be_verbs": 6,
+     "words": 325,
+     "sentences": 12,
+     "mean_words_per_sentence": 27.1,
+     "median_words_per_sentence": 26.5,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 37,
+     "pct_over_35w": 8.3,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 0,
+      "21-30": 8,
+      "31-40": 4,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 6,
+     "mean_words_per_paragraph": 54.2,
+     "median_words_per_paragraph": 51.5,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 3.1,
+     "past_anchors_per_1k": 9.2,
+     "present_anchors_per_1k": 9.2,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 9.2,
+     "pct_sentences_past": 25.0,
+     "pct_sentences_present": 25.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 58.3,
+     "passive_per_1k_words": 9.2,
+     "pct_sentences_with_passive": 25.0,
+     "be_verbs_per_1k": 18.5,
+     "passive_top_participles": [
+      [
+       "limited",
+       1
+      ],
+      [
+       "compressed",
+       1
+      ],
+      [
+       "deployed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": "VI",
+     "title": "CONCLUSION",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 217,
+     "end_line": 230,
+     "page_start": 3,
+     "page_end": 5,
+     "pages": 3
+    }
+   ]
+  },
+  "Manzini2023b_differentiable-boustrophedon": {
+   "sha256": "ed4a392dc3603c922a07e1760e9e261bdf0b008e9c7b44aabdc9af4a9b46248c",
+   "source_pdf_sha256": null,
+   "lines": 227,
+   "refs_heading_line": 211,
+   "body_start_line": 7,
+   "notes": [],
+   "body": {
+    "n_first_person": 1,
+    "n_passive": 110,
+    "n_be_verbs": 177,
+    "words": 3671,
+    "sentences": 181,
+    "mean_words_per_sentence": 20.3,
+    "median_words_per_sentence": 18,
+    "p90_words_per_sentence": 35,
+    "max_words_per_sentence": 49,
+    "pct_over_35w": 8.8,
+    "n_over_35w": 16,
+    "sentence_length_histogram": {
+     "1-10": 21,
+     "11-20": 89,
+     "21-30": 43,
+     "31-40": 22,
+     "41-50": 6,
+     "51+": 0
+    },
+    "paragraphs": 64,
+    "mean_words_per_paragraph": 57.4,
+    "median_words_per_paragraph": 50.0,
+    "citations": 47,
+    "citations_per_1k": 12.8,
+    "first_person_per_1k": 0.3,
+    "past_anchors_per_1k": 6.8,
+    "present_anchors_per_1k": 48.2,
+    "future_anchors_per_1k": 3.0,
+    "modal_anchors_per_1k": 11.4,
+    "pct_sentences_past": 9.9,
+    "pct_sentences_present": 73.5,
+    "pct_sentences_future": 4.4,
+    "pct_sentences_no_tense_anchor": 17.7,
+    "passive_per_1k_words": 30.0,
+    "pct_sentences_with_passive": 49.7,
+    "be_verbs_per_1k": 48.2,
+    "passive_top_participles": [
+     [
+      "shown",
+      8
+     ],
+     [
+      "approximated",
+      6
+     ],
+     [
+      "computed",
+      6
+     ],
+     [
+      "used",
+      5
+     ],
+     [
+      "considered",
+      4
+     ],
+     [
+      "noted",
+      4
+     ],
+     [
+      "utilized",
+      4
+     ],
+     [
+      "contained",
+      4
+     ],
+     [
+      "varied",
+      4
+     ],
+     [
+      "generated",
+      3
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 5
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 1,
+    "n_passive": 109,
+    "n_be_verbs": 176,
+    "words": 3647,
+    "sentences": 180,
+    "mean_words_per_sentence": 20.3,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 35,
+    "max_words_per_sentence": 49,
+    "pct_over_35w": 8.9,
+    "n_over_35w": 16,
+    "sentence_length_histogram": {
+     "1-10": 21,
+     "11-20": 89,
+     "21-30": 42,
+     "31-40": 22,
+     "41-50": 6,
+     "51+": 0
+    },
+    "paragraphs": 63,
+    "mean_words_per_paragraph": 57.9,
+    "median_words_per_paragraph": 51,
+    "citations": 47,
+    "citations_per_1k": 12.9,
+    "first_person_per_1k": 0.3,
+    "past_anchors_per_1k": 6.9,
+    "present_anchors_per_1k": 48.3,
+    "future_anchors_per_1k": 3.0,
+    "modal_anchors_per_1k": 11.5,
+    "pct_sentences_past": 10.0,
+    "pct_sentences_present": 73.3,
+    "pct_sentences_future": 4.4,
+    "pct_sentences_no_tense_anchor": 17.8,
+    "passive_per_1k_words": 29.9,
+    "pct_sentences_with_passive": 49.4,
+    "be_verbs_per_1k": 48.3,
+    "passive_top_participles": [
+     [
+      "shown",
+      8
+     ],
+     [
+      "approximated",
+      6
+     ],
+     [
+      "computed",
+      6
+     ],
+     [
+      "used",
+      5
+     ],
+     [
+      "considered",
+      4
+     ],
+     [
+      "noted",
+      4
+     ],
+     [
+      "utilized",
+      4
+     ],
+     [
+      "contained",
+      4
+     ],
+     [
+      "varied",
+      4
+     ],
+     [
+      "generated",
+      3
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 5
+   },
+   "structure": {
+    "n_sections": 9,
+    "n_numbered_sections": 8,
+    "n_backmatter_words": 24,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V",
+     "VI",
+     "VII",
+     "VIII",
+     "ACKNOWLEDGEMENTS"
+    ],
+    "n_tables_body": 1,
+    "n_tables_total": 1,
+    "n_figures_body": 5,
+    "n_figures_total": 5,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 19,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.123
+   },
+   "sections": [
+    {
+     "n_first_person": 0,
+     "n_passive": 9,
+     "n_be_verbs": 14,
+     "words": 457,
+     "sentences": 21,
+     "mean_words_per_sentence": 21.8,
+     "median_words_per_sentence": 23,
+     "p90_words_per_sentence": 38,
+     "max_words_per_sentence": 46,
+     "pct_over_35w": 14.3,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 4,
+      "11-20": 6,
+      "21-30": 5,
+      "31-40": 5,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 10,
+     "mean_words_per_paragraph": 45.7,
+     "median_words_per_paragraph": 50.5,
+     "citations": 4,
+     "citations_per_1k": 8.8,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 48.1,
+     "future_anchors_per_1k": 4.4,
+     "modal_anchors_per_1k": 8.8,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 76.2,
+     "pct_sentences_future": 9.5,
+     "pct_sentences_no_tense_anchor": 19.0,
+     "passive_per_1k_words": 19.7,
+     "pct_sentences_with_passive": 38.1,
+     "be_verbs_per_1k": 30.6,
+     "passive_top_participles": [
+      [
+       "followed",
+       2
+      ],
+      [
+       "referred",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "selected",
+       1
+      ],
+      [
+       "depicted",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "covered",
+       1
+      ],
+      [
+       "differentiated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 7,
+     "end_line": 31,
+     "page_start": null,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 8,
+     "n_be_verbs": 18,
+     "words": 392,
+     "sentences": 22,
+     "mean_words_per_sentence": 17.8,
+     "median_words_per_sentence": 17.5,
+     "p90_words_per_sentence": 24,
+     "max_words_per_sentence": 29,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 3,
+      "11-20": 12,
+      "21-30": 7,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 78.4,
+     "median_words_per_paragraph": 76,
+     "citations": 12,
+     "citations_per_1k": 30.6,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 12.8,
+     "present_anchors_per_1k": 43.4,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 12.8,
+     "pct_sentences_past": 22.7,
+     "pct_sentences_present": 72.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 13.6,
+     "passive_per_1k_words": 20.4,
+     "pct_sentences_with_passive": 36.4,
+     "be_verbs_per_1k": 45.9,
+     "passive_top_participles": [
+      [
+       "explored",
+       2
+      ],
+      [
+       "optimized",
+       2
+      ],
+      [
+       "studied",
+       1
+      ],
+      [
+       "considered",
+       1
+      ],
+      [
+       "generated",
+       1
+      ],
+      [
+       "noted",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "RELATED WORK",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 32,
+     "end_line": 43,
+     "page_start": 0,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 54,
+     "n_be_verbs": 80,
+     "words": 1357,
+     "sentences": 74,
+     "mean_words_per_sentence": 18.3,
+     "median_words_per_sentence": 17.0,
+     "p90_words_per_sentence": 29,
+     "max_words_per_sentence": 49,
+     "pct_over_35w": 6.8,
+     "n_over_35w": 5,
+     "sentence_length_histogram": {
+      "1-10": 10,
+      "11-20": 43,
+      "21-30": 14,
+      "31-40": 6,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 28,
+     "mean_words_per_paragraph": 48.5,
+     "median_words_per_paragraph": 45.0,
+     "citations": 15,
+     "citations_per_1k": 11.1,
+     "first_person_per_1k": 0.7,
+     "past_anchors_per_1k": 2.9,
+     "present_anchors_per_1k": 60.4,
+     "future_anchors_per_1k": 1.5,
+     "modal_anchors_per_1k": 11.1,
+     "pct_sentences_past": 4.1,
+     "pct_sentences_present": 79.7,
+     "pct_sentences_future": 2.7,
+     "pct_sentences_no_tense_anchor": 18.9,
+     "passive_per_1k_words": 39.8,
+     "pct_sentences_with_passive": 62.2,
+     "be_verbs_per_1k": 59.0,
+     "passive_top_participles": [
+      [
+       "shown",
+       4
+      ],
+      [
+       "approximated",
+       4
+      ],
+      [
+       "contained",
+       4
+      ],
+      [
+       "discussed",
+       3
+      ],
+      [
+       "determined",
+       3
+      ],
+      [
+       "utilized",
+       3
+      ],
+      [
+       "defined",
+       3
+      ],
+      [
+       "computed",
+       3
+      ],
+      [
+       "evaluated",
+       2
+      ],
+      [
+       "passed",
+       2
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 2,
+     "index": 3,
+     "numeral": "III",
+     "title": "PROBLEM FORMULATION",
+     "role": "threat_model",
+     "hand_mapped": false,
+     "start_line": 44,
+     "end_line": 154,
+     "page_start": 0,
+     "page_end": 3,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 18,
+     "n_be_verbs": 22,
+     "words": 312,
+     "sentences": 16,
+     "mean_words_per_sentence": 19.5,
+     "median_words_per_sentence": 19.0,
+     "p90_words_per_sentence": 28,
+     "max_words_per_sentence": 35,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 8,
+      "21-30": 5,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 62.4,
+     "median_words_per_paragraph": 40,
+     "citations": 5,
+     "citations_per_1k": 16.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 35.3,
+     "present_anchors_per_1k": 44.9,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 9.6,
+     "pct_sentences_past": 37.5,
+     "pct_sentences_present": 62.5,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 57.7,
+     "pct_sentences_with_passive": 68.8,
+     "be_verbs_per_1k": 70.5,
+     "passive_top_participles": [
+      [
+       "computed",
+       2
+      ],
+      [
+       "considered",
+       2
+      ],
+      [
+       "varied",
+       2
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "generated",
+       1
+      ],
+      [
+       "passed",
+       1
+      ],
+      [
+       "approximated",
+       1
+      ],
+      [
+       "measured",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "taken",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 4,
+     "numeral": "IV",
+     "title": "COMPARISON WITH DISCRETE REPRESENTATIONS",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 155,
+     "end_line": 167,
+     "page_start": 3,
+     "page_end": 4,
+     "pages": 2
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 3,
+     "n_be_verbs": 10,
+     "words": 367,
+     "sentences": 16,
+     "mean_words_per_sentence": 22.9,
+     "median_words_per_sentence": 24.5,
+     "p90_words_per_sentence": 34,
+     "max_words_per_sentence": 37,
+     "pct_over_35w": 12.5,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 7,
+      "21-30": 4,
+      "31-40": 5,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 4,
+     "mean_words_per_paragraph": 91.8,
+     "median_words_per_paragraph": 95.0,
+     "citations": 5,
+     "citations_per_1k": 13.6,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 35.4,
+     "future_anchors_per_1k": 10.9,
+     "modal_anchors_per_1k": 5.4,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 68.8,
+     "pct_sentences_future": 12.5,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 8.2,
+     "pct_sentences_with_passive": 18.8,
+     "be_verbs_per_1k": 27.2,
+     "passive_top_participles": [
+      [
+       "observed",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "considered",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "DISCUSSION OF THE OPTIMIZATION SPACE",
+     "role": "discussion",
+     "hand_mapped": false,
+     "start_line": 168,
+     "end_line": 177,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 9,
+     "n_be_verbs": 13,
+     "words": 234,
+     "sentences": 11,
+     "mean_words_per_sentence": 21.3,
+     "median_words_per_sentence": 18,
+     "p90_words_per_sentence": 35,
+     "max_words_per_sentence": 40,
+     "pct_over_35w": 9.1,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 7,
+      "21-30": 2,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 3,
+     "mean_words_per_paragraph": 78,
+     "median_words_per_paragraph": 82,
+     "citations": 1,
+     "citations_per_1k": 4.3,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 42.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 29.9,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 63.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 36.4,
+     "passive_per_1k_words": 38.5,
+     "pct_sentences_with_passive": 54.5,
+     "be_verbs_per_1k": 55.6,
+     "passive_top_participles": [
+      [
+       "seen",
+       2
+      ],
+      [
+       "introduced",
+       1
+      ],
+      [
+       "approximated",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "varied",
+       1
+      ],
+      [
+       "noted",
+       1
+      ],
+      [
+       "computed",
+       1
+      ],
+      [
+       "recommended",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": "VI",
+     "title": "DISCUSSION OF TEMPERATURE",
+     "role": "discussion",
+     "hand_mapped": false,
+     "start_line": 178,
+     "end_line": 185,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 7,
+     "n_be_verbs": 17,
+     "words": 296,
+     "sentences": 14,
+     "mean_words_per_sentence": 21.1,
+     "median_words_per_sentence": 20.0,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 49,
+     "pct_over_35w": 7.1,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 6,
+      "21-30": 4,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 6,
+     "mean_words_per_paragraph": 49.3,
+     "median_words_per_paragraph": 48.5,
+     "citations": 3,
+     "citations_per_1k": 10.1,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 16.9,
+     "present_anchors_per_1k": 40.5,
+     "future_anchors_per_1k": 6.8,
+     "modal_anchors_per_1k": 10.1,
+     "pct_sentences_past": 28.6,
+     "pct_sentences_present": 64.3,
+     "pct_sentences_future": 7.1,
+     "pct_sentences_no_tense_anchor": 14.3,
+     "passive_per_1k_words": 23.6,
+     "pct_sentences_with_passive": 42.9,
+     "be_verbs_per_1k": 57.4,
+     "passive_top_participles": [
+      [
+       "used",
+       2
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "varied",
+       1
+      ],
+      [
+       "displayed",
+       1
+      ],
+      [
+       "theorized",
+       1
+      ],
+      [
+       "utilized",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 7,
+     "numeral": "VII",
+     "title": "OPTIMIZATION VIA GRADIENT DESCENT",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 186,
+     "end_line": 200,
+     "page_start": 4,
+     "page_end": 5,
+     "pages": 2
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 2,
+     "words": 232,
+     "sentences": 6,
+     "mean_words_per_sentence": 38.7,
+     "median_words_per_sentence": 40.0,
+     "p90_words_per_sentence": 43,
+     "max_words_per_sentence": 47,
+     "pct_over_35w": 66.7,
+     "n_over_35w": 4,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 0,
+      "21-30": 1,
+      "31-40": 2,
+      "41-50": 3,
+      "51+": 0
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 116,
+     "median_words_per_paragraph": 116.0,
+     "citations": 2,
+     "citations_per_1k": 8.6,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 25.9,
+     "future_anchors_per_1k": 4.3,
+     "modal_anchors_per_1k": 12.9,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 66.7,
+     "pct_sentences_future": 16.7,
+     "pct_sentences_no_tense_anchor": 16.7,
+     "passive_per_1k_words": 4.3,
+     "pct_sentences_with_passive": 16.7,
+     "be_verbs_per_1k": 8.6,
+     "passive_top_participles": [
+      [
+       "tuned",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 8,
+     "numeral": "VIII",
+     "title": "CONCLUSIONS",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 201,
+     "end_line": 206,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 1,
+     "words": 24,
+     "sentences": 1,
+     "mean_words_per_sentence": 24,
+     "median_words_per_sentence": 24,
+     "p90_words_per_sentence": 24,
+     "max_words_per_sentence": 24,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 0,
+      "21-30": 1,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 24,
+     "median_words_per_paragraph": 24,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 41.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 100.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 41.7,
+     "pct_sentences_with_passive": 100.0,
+     "be_verbs_per_1k": 41.7,
+     "passive_top_participles": [
+      [
+       "given",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 9,
+     "numeral": null,
+     "title": "ACKNOWLEDGEMENTS",
+     "role": "acknowledgement",
+     "hand_mapped": false,
+     "start_line": 207,
+     "end_line": 210,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    }
+   ]
+  },
+  "Yang2022_rgb-ir-fusion-drone": {
+   "sha256": "fd2b8d1dd382bcd2b41a21c0482640304b9279af87881f8a59af172184ec193f",
+   "source_pdf_sha256": null,
+   "lines": 205,
+   "refs_heading_line": 169,
+   "body_start_line": 9,
+   "notes": [],
+   "body": {
+    "n_first_person": 48,
+    "n_passive": 36,
+    "n_be_verbs": 104,
+    "words": 3341,
+    "sentences": 137,
+    "mean_words_per_sentence": 24.4,
+    "median_words_per_sentence": 21,
+    "p90_words_per_sentence": 41,
+    "max_words_per_sentence": 103,
+    "pct_over_35w": 13.9,
+    "n_over_35w": 19,
+    "sentence_length_histogram": {
+     "1-10": 14,
+     "11-20": 51,
+     "21-30": 42,
+     "31-40": 15,
+     "41-50": 4,
+     "51+": 11
+    },
+    "paragraphs": 37,
+    "mean_words_per_paragraph": 90.3,
+    "median_words_per_paragraph": 70,
+    "citations": 29,
+    "citations_per_1k": 8.7,
+    "first_person_per_1k": 14.4,
+    "past_anchors_per_1k": 2.1,
+    "present_anchors_per_1k": 42.2,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 5.4,
+    "pct_sentences_past": 5.1,
+    "pct_sentences_present": 62.8,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 32.8,
+    "passive_per_1k_words": 10.8,
+    "pct_sentences_with_passive": 21.9,
+    "be_verbs_per_1k": 31.1,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "trained",
+      3
+     ],
+     [
+      "passed",
+      3
+     ],
+     [
+      "shown",
+      2
+     ],
+     [
+      "connected",
+      2
+     ],
+     [
+      "comprised",
+      2
+     ],
+     [
+      "based",
+      2
+     ],
+     [
+      "resized",
+      2
+     ],
+     [
+      "captured",
+      1
+     ],
+     [
+      "presented",
+      1
+     ]
+    ],
+    "n_tables": 6,
+    "n_figures": 7
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 48,
+    "n_passive": 36,
+    "n_be_verbs": 104,
+    "words": 3325,
+    "sentences": 136,
+    "mean_words_per_sentence": 24.4,
+    "median_words_per_sentence": 21.0,
+    "p90_words_per_sentence": 41,
+    "max_words_per_sentence": 103,
+    "pct_over_35w": 14.0,
+    "n_over_35w": 19,
+    "sentence_length_histogram": {
+     "1-10": 14,
+     "11-20": 50,
+     "21-30": 42,
+     "31-40": 15,
+     "41-50": 4,
+     "51+": 11
+    },
+    "paragraphs": 36,
+    "mean_words_per_paragraph": 92.4,
+    "median_words_per_paragraph": 70.0,
+    "citations": 29,
+    "citations_per_1k": 8.7,
+    "first_person_per_1k": 14.4,
+    "past_anchors_per_1k": 2.1,
+    "present_anchors_per_1k": 42.4,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 5.4,
+    "pct_sentences_past": 5.1,
+    "pct_sentences_present": 63.2,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 32.4,
+    "passive_per_1k_words": 10.8,
+    "pct_sentences_with_passive": 22.1,
+    "be_verbs_per_1k": 31.3,
+    "passive_top_participles": [
+     [
+      "used",
+      3
+     ],
+     [
+      "trained",
+      3
+     ],
+     [
+      "passed",
+      3
+     ],
+     [
+      "shown",
+      2
+     ],
+     [
+      "connected",
+      2
+     ],
+     [
+      "comprised",
+      2
+     ],
+     [
+      "based",
+      2
+     ],
+     [
+      "resized",
+      2
+     ],
+     [
+      "captured",
+      1
+     ],
+     [
+      "presented",
+      1
+     ]
+    ],
+    "n_tables": 6,
+    "n_figures": 7
+   },
+   "structure": {
+    "n_sections": 6,
+    "n_numbered_sections": 6,
+    "n_backmatter_words": 16,
+    "section_sequence": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "n_tables_body": 6,
+    "n_tables_total": 6,
+    "n_figures_body": 7,
+    "n_figures_total": 7,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 29,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 7,
+     "n_passive": 4,
+     "n_be_verbs": 22,
+     "words": 632,
+     "sentences": 26,
+     "mean_words_per_sentence": 24.3,
+     "median_words_per_sentence": 24.0,
+     "p90_words_per_sentence": 35,
+     "max_words_per_sentence": 41,
+     "pct_over_35w": 7.7,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 7,
+      "21-30": 12,
+      "31-40": 5,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 126.4,
+     "median_words_per_paragraph": 134,
+     "citations": 14,
+     "citations_per_1k": 22.2,
+     "first_person_per_1k": 11.1,
+     "past_anchors_per_1k": 3.2,
+     "present_anchors_per_1k": 50.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 7.9,
+     "pct_sentences_past": 7.7,
+     "pct_sentences_present": 73.1,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 23.1,
+     "passive_per_1k_words": 6.3,
+     "pct_sentences_with_passive": 15.4,
+     "be_verbs_per_1k": 34.8,
+     "passive_top_participles": [
+      [
+       "captured",
+       1
+      ],
+      [
+       "presented",
+       1
+      ],
+      [
+       "applied",
+       1
+      ],
+      [
+       "included",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "1",
+     "title": "Introduction",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 9,
+     "end_line": 20,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 7,
+     "n_passive": 12,
+     "n_be_verbs": 18,
+     "words": 439,
+     "sentences": 20,
+     "mean_words_per_sentence": 21.9,
+     "median_words_per_sentence": 19.5,
+     "p90_words_per_sentence": 28,
+     "max_words_per_sentence": 63,
+     "pct_over_35w": 5.0,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 11,
+      "21-30": 7,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 5,
+     "mean_words_per_paragraph": 87.8,
+     "median_words_per_paragraph": 64,
+     "citations": 7,
+     "citations_per_1k": 15.9,
+     "first_person_per_1k": 15.9,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 43.3,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.3,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 70.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 30.0,
+     "passive_per_1k_words": 27.3,
+     "pct_sentences_with_passive": 55.0,
+     "be_verbs_per_1k": 41.0,
+     "passive_top_participles": [
+      [
+       "connected",
+       2
+      ],
+      [
+       "comprised",
+       2
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "collected",
+       1
+      ],
+      [
+       "constructed",
+       1
+      ],
+      [
+       "described",
+       1
+      ],
+      [
+       "motivated",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "trained",
+       1
+      ],
+      [
+       "passed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 2,
+     "numeral": "2",
+     "title": "RGB/IR fusion object detection",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 21,
+     "end_line": 34,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 24,
+     "n_passive": 11,
+     "n_be_verbs": 26,
+     "words": 1228,
+     "sentences": 36,
+     "mean_words_per_sentence": 34.1,
+     "median_words_per_sentence": 26.5,
+     "p90_words_per_sentence": 68,
+     "max_words_per_sentence": 103,
+     "pct_over_35w": 30.6,
+     "n_over_35w": 11,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 9,
+      "21-30": 9,
+      "31-40": 7,
+      "41-50": 1,
+      "51+": 8
+     },
+     "paragraphs": 12,
+     "mean_words_per_paragraph": 102.3,
+     "median_words_per_paragraph": 79.5,
+     "citations": 8,
+     "citations_per_1k": 6.5,
+     "first_person_per_1k": 19.5,
+     "past_anchors_per_1k": 0.8,
+     "present_anchors_per_1k": 37.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 3.3,
+     "pct_sentences_past": 2.8,
+     "pct_sentences_present": 55.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 41.7,
+     "passive_per_1k_words": 9.0,
+     "pct_sentences_with_passive": 16.7,
+     "be_verbs_per_1k": 21.2,
+     "passive_top_participles": [
+      [
+       "based",
+       2
+      ],
+      [
+       "resized",
+       2
+      ],
+      [
+       "passed",
+       2
+      ],
+      [
+       "labelled",
+       1
+      ],
+      [
+       "paired",
+       1
+      ],
+      [
+       "interested",
+       1
+      ],
+      [
+       "trained",
+       1
+      ],
+      [
+       "enhanced",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 6,
+     "index": 3,
+     "numeral": "3",
+     "title": "Synthetic IR data generation",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 35,
+     "end_line": 79,
+     "page_start": 1,
+     "page_end": 3,
+     "pages": 3
+    },
+    {
+     "n_first_person": 9,
+     "n_passive": 9,
+     "n_be_verbs": 36,
+     "words": 952,
+     "sentences": 50,
+     "mean_words_per_sentence": 19.0,
+     "median_words_per_sentence": 16.5,
+     "p90_words_per_sentence": 30,
+     "max_words_per_sentence": 56,
+     "pct_over_35w": 8.0,
+     "n_over_35w": 4,
+     "sentence_length_histogram": {
+      "1-10": 10,
+      "11-20": 21,
+      "21-30": 14,
+      "31-40": 1,
+      "41-50": 2,
+      "51+": 2
+     },
+     "paragraphs": 13,
+     "mean_words_per_paragraph": 73.2,
+     "median_words_per_paragraph": 48,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 9.5,
+     "past_anchors_per_1k": 3.2,
+     "present_anchors_per_1k": 45.2,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 7.4,
+     "pct_sentences_past": 6.0,
+     "pct_sentences_present": 64.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 30.0,
+     "passive_per_1k_words": 9.5,
+     "pct_sentences_with_passive": 18.0,
+     "be_verbs_per_1k": 37.8,
+     "passive_top_participles": [
+      [
+       "used",
+       2
+      ],
+      [
+       "generated",
+       1
+      ],
+      [
+       "tuned",
+       1
+      ],
+      [
+       "noted",
+       1
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "trained",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "seen",
+       1
+      ]
+     ],
+     "n_tables": 6,
+     "n_figures": 0,
+     "index": 4,
+     "numeral": "4",
+     "title": "Experiments",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 80,
+     "end_line": 160,
+     "page_start": 3,
+     "page_end": 5,
+     "pages": 3
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 0,
+     "n_be_verbs": 2,
+     "words": 74,
+     "sentences": 4,
+     "mean_words_per_sentence": 18.5,
+     "median_words_per_sentence": 14.5,
+     "p90_words_per_sentence": 18,
+     "max_words_per_sentence": 36,
+     "pct_over_35w": 25.0,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 2,
+      "21-30": 0,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 74,
+     "median_words_per_paragraph": 74,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 13.5,
+     "past_anchors_per_1k": 13.5,
+     "present_anchors_per_1k": 13.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 13.5,
+     "pct_sentences_past": 25.0,
+     "pct_sentences_present": 25.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 50.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 27.0,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "5",
+     "title": "Conclusion",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 161,
+     "end_line": 164,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 0,
+     "words": 16,
+     "sentences": 1,
+     "mean_words_per_sentence": 16,
+     "median_words_per_sentence": 16,
+     "p90_words_per_sentence": 16,
+     "max_words_per_sentence": 16,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 1,
+      "21-30": 0,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 16,
+     "median_words_per_paragraph": 16,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 0.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 0.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 100.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 0.0,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": "6",
+     "title": "Acknowledgements",
+     "role": "acknowledgement",
+     "hand_mapped": false,
+     "start_line": 165,
+     "end_line": 168,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    }
+   ]
+  },
+  "ref17_gueriani_resnet_bigru_arxiv2026": {
+   "sha256": "3ec513caecd65a31f006456aad098e3b2c77a55590f9d4bef017b665ca39a0f7",
+   "source_pdf_sha256": null,
+   "lines": 235,
+   "refs_heading_line": 173,
+   "body_start_line": 13,
+   "notes": [],
+   "body": {
+    "n_first_person": 0,
+    "n_passive": 47,
+    "n_be_verbs": 60,
+    "words": 2744,
+    "sentences": 146,
+    "mean_words_per_sentence": 18.8,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 27,
+    "max_words_per_sentence": 52,
+    "pct_over_35w": 2.7,
+    "n_over_35w": 4,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 69,
+     "21-30": 49,
+     "31-40": 6,
+     "41-50": 1,
+     "51+": 1
+    },
+    "paragraphs": 57,
+    "mean_words_per_paragraph": 48.1,
+    "median_words_per_paragraph": 30,
+    "citations": 30,
+    "citations_per_1k": 10.9,
+    "first_person_per_1k": 0.0,
+    "past_anchors_per_1k": 6.6,
+    "present_anchors_per_1k": 30.6,
+    "future_anchors_per_1k": 0.7,
+    "modal_anchors_per_1k": 1.5,
+    "pct_sentences_past": 12.3,
+    "pct_sentences_present": 49.3,
+    "pct_sentences_future": 1.4,
+    "pct_sentences_no_tense_anchor": 38.4,
+    "passive_per_1k_words": 17.1,
+    "pct_sentences_with_passive": 30.8,
+    "be_verbs_per_1k": 21.9,
+    "passive_top_participles": [
+     [
+      "employed",
+      5
+     ],
+     [
+      "applied",
+      3
+     ],
+     [
+      "presented",
+      2
+     ],
+     [
+      "calculated",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "conducted",
+      2
+     ],
+     [
+      "discussed",
+      1
+     ],
+     [
+      "grounded",
+      1
+     ],
+     [
+      "incorporated",
+      1
+     ],
+     [
+      "integrated",
+      1
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 4
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 0,
+    "n_passive": 46,
+    "n_be_verbs": 59,
+    "words": 2719,
+    "sentences": 145,
+    "mean_words_per_sentence": 18.8,
+    "median_words_per_sentence": 18,
+    "p90_words_per_sentence": 27,
+    "max_words_per_sentence": 52,
+    "pct_over_35w": 2.8,
+    "n_over_35w": 4,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 69,
+     "21-30": 48,
+     "31-40": 6,
+     "41-50": 1,
+     "51+": 1
+    },
+    "paragraphs": 56,
+    "mean_words_per_paragraph": 48.6,
+    "median_words_per_paragraph": 31.5,
+    "citations": 30,
+    "citations_per_1k": 11.0,
+    "first_person_per_1k": 0.0,
+    "past_anchors_per_1k": 6.3,
+    "present_anchors_per_1k": 30.9,
+    "future_anchors_per_1k": 0.7,
+    "modal_anchors_per_1k": 1.5,
+    "pct_sentences_past": 11.7,
+    "pct_sentences_present": 49.7,
+    "pct_sentences_future": 1.4,
+    "pct_sentences_no_tense_anchor": 38.6,
+    "passive_per_1k_words": 16.9,
+    "pct_sentences_with_passive": 30.3,
+    "be_verbs_per_1k": 21.7,
+    "passive_top_participles": [
+     [
+      "employed",
+      5
+     ],
+     [
+      "applied",
+      3
+     ],
+     [
+      "presented",
+      2
+     ],
+     [
+      "calculated",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "conducted",
+      2
+     ],
+     [
+      "discussed",
+      1
+     ],
+     [
+      "grounded",
+      1
+     ],
+     [
+      "incorporated",
+      1
+     ],
+     [
+      "integrated",
+      1
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 4
+   },
+   "structure": {
+    "n_sections": 6,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 25,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V",
+     "ACKNOWLEDGMENT"
+    ],
+    "n_tables_body": 1,
+    "n_tables_total": 3,
+    "n_figures_body": 4,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 43,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 0,
+     "n_passive": 10,
+     "n_be_verbs": 12,
+     "words": 497,
+     "sentences": 21,
+     "mean_words_per_sentence": 23.7,
+     "median_words_per_sentence": 23,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 52,
+     "pct_over_35w": 4.8,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 9,
+      "21-30": 9,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 248.5,
+     "median_words_per_paragraph": 248.5,
+     "citations": 10,
+     "citations_per_1k": 20.1,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 44.3,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 71.4,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 28.6,
+     "passive_per_1k_words": 20.1,
+     "pct_sentences_with_passive": 38.1,
+     "be_verbs_per_1k": 24.1,
+     "passive_top_participles": [
+      [
+       "discussed",
+       1
+      ],
+      [
+       "grounded",
+       1
+      ],
+      [
+       "employed",
+       1
+      ],
+      [
+       "incorporated",
+       1
+      ],
+      [
+       "integrated",
+       1
+      ],
+      [
+       "overloaded",
+       1
+      ],
+      [
+       "arranged",
+       1
+      ],
+      [
+       "presented",
+       1
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "provided",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 13,
+     "end_line": 18,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 2,
+     "n_be_verbs": 4,
+     "words": 309,
+     "sentences": 16,
+     "mean_words_per_sentence": 19.3,
+     "median_words_per_sentence": 17.0,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 30,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 10,
+      "21-30": 6,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 309,
+     "median_words_per_paragraph": 309,
+     "citations": 7,
+     "citations_per_1k": 22.7,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 9.7,
+     "present_anchors_per_1k": 16.2,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 18.8,
+     "pct_sentences_present": 25.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 56.2,
+     "passive_per_1k_words": 6.5,
+     "pct_sentences_with_passive": 12.5,
+     "be_verbs_per_1k": 12.9,
+     "passive_top_participles": [
+      [
+       "employed",
+       1
+      ],
+      [
+       "investigated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "LITERATURE REVIEW",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 19,
+     "end_line": 22,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 21,
+     "n_be_verbs": 26,
+     "words": 777,
+     "sentences": 40,
+     "mean_words_per_sentence": 19.4,
+     "median_words_per_sentence": 18.0,
+     "p90_words_per_sentence": 33,
+     "max_words_per_sentence": 46,
+     "pct_over_35w": 7.5,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 6,
+      "11-20": 20,
+      "21-30": 9,
+      "31-40": 4,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 15,
+     "mean_words_per_paragraph": 51.8,
+     "median_words_per_paragraph": 33,
+     "citations": 3,
+     "citations_per_1k": 3.9,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 7.7,
+     "present_anchors_per_1k": 30.9,
+     "future_anchors_per_1k": 2.6,
+     "modal_anchors_per_1k": 1.3,
+     "pct_sentences_past": 15.0,
+     "pct_sentences_present": 57.5,
+     "pct_sentences_future": 5.0,
+     "pct_sentences_no_tense_anchor": 27.5,
+     "passive_per_1k_words": 27.0,
+     "pct_sentences_with_passive": 52.5,
+     "be_verbs_per_1k": 33.5,
+     "passive_top_participles": [
+      [
+       "employed",
+       3
+      ],
+      [
+       "applied",
+       3
+      ],
+      [
+       "calculated",
+       2
+      ],
+      [
+       "used",
+       2
+      ],
+      [
+       "created",
+       1
+      ],
+      [
+       "discovered",
+       1
+      ],
+      [
+       "compared",
+       1
+      ],
+      [
+       "computed",
+       1
+      ],
+      [
+       "utilized",
+       1
+      ],
+      [
+       "retained",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 3,
+     "numeral": "III",
+     "title": "PROPOSED METHODOLOGY",
+     "role": "method",
+     "hand_mapped": false,
+     "start_line": 23,
+     "end_line": 68,
+     "page_start": 1,
+     "page_end": 1,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 13,
+     "n_be_verbs": 16,
+     "words": 1015,
+     "sentences": 62,
+     "mean_words_per_sentence": 16.4,
+     "median_words_per_sentence": 16.0,
+     "p90_words_per_sentence": 25,
+     "max_words_per_sentence": 29,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 14,
+      "11-20": 26,
+      "21-30": 22,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 35,
+     "mean_words_per_paragraph": 29,
+     "median_words_per_paragraph": 23,
+     "citations": 10,
+     "citations_per_1k": 9.9,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 7.9,
+     "present_anchors_per_1k": 28.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 1.0,
+     "pct_sentences_past": 12.9,
+     "pct_sentences_present": 41.9,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 45.2,
+     "passive_per_1k_words": 12.8,
+     "pct_sentences_with_passive": 21.0,
+     "be_verbs_per_1k": 15.8,
+     "passive_top_participles": [
+      [
+       "conducted",
+       2
+      ],
+      [
+       "refined",
+       1
+      ],
+      [
+       "captured",
+       1
+      ],
+      [
+       "presented",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "identified",
+       1
+      ],
+      [
+       "misclassified",
+       1
+      ],
+      [
+       "placed",
+       1
+      ],
+      [
+       "positioned",
+       1
+      ],
+      [
+       "tested",
+       1
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 4,
+     "index": 4,
+     "numeral": "IV",
+     "title": "EXPERIMENTATION, OUTCOMES AND DISCUSSION",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 69,
+     "end_line": 160,
+     "page_start": 2,
+     "page_end": 4,
+     "pages": 3
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 1,
+     "words": 121,
+     "sentences": 6,
+     "mean_words_per_sentence": 20.2,
+     "median_words_per_sentence": 19.5,
+     "p90_words_per_sentence": 25,
+     "max_words_per_sentence": 27,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 4,
+      "21-30": 2,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 3,
+     "mean_words_per_paragraph": 40.3,
+     "median_words_per_paragraph": 41,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 33.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 8.3,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 66.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 33.3,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 8.3,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "CONCLUSION",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 161,
+     "end_line": 168,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 1,
+     "words": 25,
+     "sentences": 1,
+     "mean_words_per_sentence": 25,
+     "median_words_per_sentence": 25,
+     "p90_words_per_sentence": 25,
+     "max_words_per_sentence": 25,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 0,
+      "21-30": 1,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 25,
+     "median_words_per_paragraph": 25,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 40.0,
+     "present_anchors_per_1k": 0.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 100.0,
+     "pct_sentences_present": 0.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 0.0,
+     "passive_per_1k_words": 40.0,
+     "pct_sentences_with_passive": 100.0,
+     "be_verbs_per_1k": 40.0,
+     "passive_top_participles": [
+      [
+       "funded",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 6,
+     "numeral": null,
+     "title": "ACKNOWLEDGMENT",
+     "role": "acknowledgement",
+     "hand_mapped": false,
+     "start_line": 169,
+     "end_line": 172,
+     "page_start": 4,
+     "page_end": 4,
+     "pages": 1
+    }
+   ]
+  },
+  "ref18_gueriani_vit_bilstm_arxiv2026": {
+   "sha256": "f807f1ac4b866f07f8f381ef55bc9a2b163cba0fb562d7a659c97c7a49af87ff",
+   "source_pdf_sha256": null,
+   "lines": 230,
+   "refs_heading_line": 173,
+   "body_start_line": 17,
+   "notes": [],
+   "body": {
+    "n_first_person": 4,
+    "n_passive": 28,
+    "n_be_verbs": 31,
+    "words": 2292,
+    "sentences": 113,
+    "mean_words_per_sentence": 20.3,
+    "median_words_per_sentence": 20,
+    "p90_words_per_sentence": 31,
+    "max_words_per_sentence": 53,
+    "pct_over_35w": 8.0,
+    "n_over_35w": 9,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 39,
+     "21-30": 39,
+     "31-40": 9,
+     "41-50": 5,
+     "51+": 1
+    },
+    "paragraphs": 47,
+    "mean_words_per_paragraph": 48.8,
+    "median_words_per_paragraph": 31,
+    "citations": 21,
+    "citations_per_1k": 9.2,
+    "first_person_per_1k": 1.7,
+    "past_anchors_per_1k": 7.0,
+    "present_anchors_per_1k": 20.5,
+    "future_anchors_per_1k": 0.4,
+    "modal_anchors_per_1k": 0.0,
+    "pct_sentences_past": 12.4,
+    "pct_sentences_present": 34.5,
+    "pct_sentences_future": 0.9,
+    "pct_sentences_no_tense_anchor": 54.0,
+    "passive_per_1k_words": 12.2,
+    "pct_sentences_with_passive": 21.2,
+    "be_verbs_per_1k": 13.5,
+    "passive_top_participles": [
+     [
+      "applied",
+      3
+     ],
+     [
+      "conducted",
+      3
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "reshaped",
+      2
+     ],
+     [
+      "flattened",
+      2
+     ],
+     [
+      "performed",
+      1
+     ],
+     [
+      "structured",
+      1
+     ],
+     [
+      "mapped",
+      1
+     ],
+     [
+      "identified",
+      1
+     ],
+     [
+      "excluded",
+      1
+     ]
+    ],
+    "n_tables": 2,
+    "n_figures": 4
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 4,
+    "n_passive": 28,
+    "n_be_verbs": 31,
+    "words": 2292,
+    "sentences": 113,
+    "mean_words_per_sentence": 20.3,
+    "median_words_per_sentence": 20,
+    "p90_words_per_sentence": 31,
+    "max_words_per_sentence": 53,
+    "pct_over_35w": 8.0,
+    "n_over_35w": 9,
+    "sentence_length_histogram": {
+     "1-10": 20,
+     "11-20": 39,
+     "21-30": 39,
+     "31-40": 9,
+     "41-50": 5,
+     "51+": 1
+    },
+    "paragraphs": 47,
+    "mean_words_per_paragraph": 48.8,
+    "median_words_per_paragraph": 31,
+    "citations": 21,
+    "citations_per_1k": 9.2,
+    "first_person_per_1k": 1.7,
+    "past_anchors_per_1k": 7.0,
+    "present_anchors_per_1k": 20.5,
+    "future_anchors_per_1k": 0.4,
+    "modal_anchors_per_1k": 0.0,
+    "pct_sentences_past": 12.4,
+    "pct_sentences_present": 34.5,
+    "pct_sentences_future": 0.9,
+    "pct_sentences_no_tense_anchor": 54.0,
+    "passive_per_1k_words": 12.2,
+    "pct_sentences_with_passive": 21.2,
+    "be_verbs_per_1k": 13.5,
+    "passive_top_participles": [
+     [
+      "applied",
+      3
+     ],
+     [
+      "conducted",
+      3
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "reshaped",
+      2
+     ],
+     [
+      "flattened",
+      2
+     ],
+     [
+      "performed",
+      1
+     ],
+     [
+      "structured",
+      1
+     ],
+     [
+      "mapped",
+      1
+     ],
+     [
+      "identified",
+      1
+     ],
+     [
+      "excluded",
+      1
+     ]
+    ],
+    "n_tables": 2,
+    "n_figures": 4
+   },
+   "structure": {
+    "n_sections": 5,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V"
+    ],
+    "n_tables_body": 2,
+    "n_tables_total": 4,
+    "n_figures_body": 4,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 0,
+    "has_page_spans": false,
+    "has_roadmap_paragraph": true,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 1,
+     "n_passive": 5,
+     "n_be_verbs": 5,
+     "words": 428,
+     "sentences": 22,
+     "mean_words_per_sentence": 19.5,
+     "median_words_per_sentence": 20.0,
+     "p90_words_per_sentence": 26,
+     "max_words_per_sentence": 39,
+     "pct_over_35w": 4.5,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 5,
+      "11-20": 6,
+      "21-30": 9,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 8,
+     "mean_words_per_paragraph": 53.5,
+     "median_words_per_paragraph": 25.0,
+     "citations": 11,
+     "citations_per_1k": 25.7,
+     "first_person_per_1k": 2.3,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 30.4,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 45.5,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 54.5,
+     "passive_per_1k_words": 11.7,
+     "pct_sentences_with_passive": 18.2,
+     "be_verbs_per_1k": 11.7,
+     "passive_top_participles": [
+      [
+       "applied",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "performed",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "structured",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 17,
+     "end_line": 35,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 1,
+     "words": 287,
+     "sentences": 11,
+     "mean_words_per_sentence": 26.1,
+     "median_words_per_sentence": 21,
+     "p90_words_per_sentence": 41,
+     "max_words_per_sentence": 53,
+     "pct_over_35w": 18.2,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 4,
+      "21-30": 4,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 1
+     },
+     "paragraphs": 2,
+     "mean_words_per_paragraph": 143.5,
+     "median_words_per_paragraph": 143.5,
+     "citations": 5,
+     "citations_per_1k": 17.4,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 17.4,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 45.5,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 54.5,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 3.5,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "PROBLEM STATEMENT AND LITERATURE REVIEW",
+     "role": "threat_model",
+     "hand_mapped": false,
+     "start_line": 36,
+     "end_line": 41,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 3,
+     "n_passive": 18,
+     "n_be_verbs": 19,
+     "words": 532,
+     "sentences": 24,
+     "mean_words_per_sentence": 22.2,
+     "median_words_per_sentence": 19.5,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 49,
+     "pct_over_35w": 12.5,
+     "n_over_35w": 3,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 11,
+      "21-30": 7,
+      "31-40": 1,
+      "41-50": 3,
+      "51+": 0
+     },
+     "paragraphs": 15,
+     "mean_words_per_paragraph": 35.5,
+     "median_words_per_paragraph": 30,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 5.6,
+     "past_anchors_per_1k": 20.7,
+     "present_anchors_per_1k": 18.8,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 37.5,
+     "pct_sentences_present": 41.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 33.8,
+     "pct_sentences_with_passive": 62.5,
+     "be_verbs_per_1k": 35.7,
+     "passive_top_participles": [
+      [
+       "applied",
+       2
+      ],
+      [
+       "reshaped",
+       2
+      ],
+      [
+       "flattened",
+       2
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "mapped",
+       1
+      ],
+      [
+       "identified",
+       1
+      ],
+      [
+       "excluded",
+       1
+      ],
+      [
+       "removed",
+       1
+      ],
+      [
+       "divided",
+       1
+      ],
+      [
+       "allocated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 3,
+     "numeral": "III",
+     "title": "MATERIALS AND METHOD",
+     "role": "method",
+     "hand_mapped": false,
+     "start_line": 42,
+     "end_line": 69,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 5,
+     "n_be_verbs": 6,
+     "words": 929,
+     "sentences": 52,
+     "mean_words_per_sentence": 17.9,
+     "median_words_per_sentence": 19.0,
+     "p90_words_per_sentence": 27,
+     "max_words_per_sentence": 38,
+     "pct_over_35w": 3.8,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 13,
+      "11-20": 17,
+      "21-30": 18,
+      "31-40": 4,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 21,
+     "mean_words_per_paragraph": 44.2,
+     "median_words_per_paragraph": 39,
+     "citations": 5,
+     "citations_per_1k": 5.4,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 4.3,
+     "present_anchors_per_1k": 20.5,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 7.7,
+     "pct_sentences_present": 26.9,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 67.3,
+     "passive_per_1k_words": 5.4,
+     "pct_sentences_with_passive": 9.6,
+     "be_verbs_per_1k": 6.5,
+     "passive_top_participles": [
+      [
+       "employed",
+       1
+      ],
+      [
+       "derived",
+       1
+      ],
+      [
+       "defined",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "outperformed",
+       1
+      ]
+     ],
+     "n_tables": 2,
+     "n_figures": 3,
+     "index": 4,
+     "numeral": "IV",
+     "title": "EXPERIMENTATION, RESULTS AND DISCUSSION",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 70,
+     "end_line": 168,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 0,
+     "n_be_verbs": 0,
+     "words": 116,
+     "sentences": 4,
+     "mean_words_per_sentence": 29,
+     "median_words_per_sentence": 28.5,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 42,
+     "pct_over_35w": 25.0,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 1,
+      "21-30": 1,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 116,
+     "median_words_per_paragraph": 116,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 8.6,
+     "present_anchors_per_1k": 0.0,
+     "future_anchors_per_1k": 8.6,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 25.0,
+     "pct_sentences_present": 0.0,
+     "pct_sentences_future": 25.0,
+     "pct_sentences_no_tense_anchor": 50.0,
+     "passive_per_1k_words": 0.0,
+     "pct_sentences_with_passive": 0.0,
+     "be_verbs_per_1k": 0.0,
+     "passive_top_participles": [],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "CONCLUSION",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 169,
+     "end_line": 172,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    }
+   ]
+  },
+  "ref28_okabe_attentivestats_interspeech2018": {
+   "sha256": "b8252ab7ad1415658c140fb6e1859afe6da249bc32c445dbebc1010394fd1259",
+   "source_pdf_sha256": null,
+   "lines": 200,
+   "refs_heading_line": 177,
+   "body_start_line": 15,
+   "notes": [],
+   "body": {
+    "n_first_person": 16,
+    "n_passive": 44,
+    "n_be_verbs": 86,
+    "words": 2563,
+    "sentences": 128,
+    "mean_words_per_sentence": 20.0,
+    "median_words_per_sentence": 17.5,
+    "p90_words_per_sentence": 36,
+    "max_words_per_sentence": 65,
+    "pct_over_35w": 11.7,
+    "n_over_35w": 15,
+    "sentence_length_histogram": {
+     "1-10": 25,
+     "11-20": 54,
+     "21-30": 28,
+     "31-40": 13,
+     "41-50": 6,
+     "51+": 2
+    },
+    "paragraphs": 45,
+    "mean_words_per_paragraph": 57,
+    "median_words_per_paragraph": 52,
+    "citations": 46,
+    "citations_per_1k": 17.9,
+    "first_person_per_1k": 6.2,
+    "past_anchors_per_1k": 16.8,
+    "present_anchors_per_1k": 47.2,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 4.3,
+    "pct_sentences_past": 26.6,
+    "pct_sentences_present": 60.9,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 20.3,
+    "passive_per_1k_words": 17.2,
+    "pct_sentences_with_passive": 28.9,
+    "be_verbs_per_1k": 33.6,
+    "passive_top_participles": [
+     [
+      "used",
+      9
+     ],
+     [
+      "applied",
+      4
+     ],
+     [
+      "evaluated",
+      3
+     ],
+     [
+      "represented",
+      1
+     ],
+     [
+      "employed",
+      1
+     ],
+     [
+      "shown",
+      1
+     ],
+     [
+      "proposed",
+      1
+     ],
+     [
+      "introduced",
+      1
+     ],
+     [
+      "computed",
+      1
+     ],
+     [
+      "utilized",
+      1
+     ]
+    ],
+    "n_tables": 3,
+    "n_figures": 2
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 16,
+    "n_passive": 44,
+    "n_be_verbs": 86,
+    "words": 2563,
+    "sentences": 128,
+    "mean_words_per_sentence": 20.0,
+    "median_words_per_sentence": 17.5,
+    "p90_words_per_sentence": 36,
+    "max_words_per_sentence": 65,
+    "pct_over_35w": 11.7,
+    "n_over_35w": 15,
+    "sentence_length_histogram": {
+     "1-10": 25,
+     "11-20": 54,
+     "21-30": 28,
+     "31-40": 13,
+     "41-50": 6,
+     "51+": 2
+    },
+    "paragraphs": 45,
+    "mean_words_per_paragraph": 57,
+    "median_words_per_paragraph": 52,
+    "citations": 46,
+    "citations_per_1k": 17.9,
+    "first_person_per_1k": 6.2,
+    "past_anchors_per_1k": 16.8,
+    "present_anchors_per_1k": 47.2,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 4.3,
+    "pct_sentences_past": 26.6,
+    "pct_sentences_present": 60.9,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 20.3,
+    "passive_per_1k_words": 17.2,
+    "pct_sentences_with_passive": 28.9,
+    "be_verbs_per_1k": 33.6,
+    "passive_top_participles": [
+     [
+      "used",
+      9
+     ],
+     [
+      "applied",
+      4
+     ],
+     [
+      "evaluated",
+      3
+     ],
+     [
+      "represented",
+      1
+     ],
+     [
+      "employed",
+      1
+     ],
+     [
+      "shown",
+      1
+     ],
+     [
+      "proposed",
+      1
+     ],
+     [
+      "introduced",
+      1
+     ],
+     [
+      "computed",
+      1
+     ],
+     [
+      "utilized",
+      1
+     ]
+    ],
+    "n_tables": 3,
+    "n_figures": 2
+   },
+   "structure": {
+    "n_sections": 5,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "n_tables_body": 3,
+    "n_tables_total": 3,
+    "n_figures_body": 2,
+    "n_figures_total": 2,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 33,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": true,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 3,
+     "n_passive": 14,
+     "n_be_verbs": 16,
+     "words": 584,
+     "sentences": 25,
+     "mean_words_per_sentence": 23.4,
+     "median_words_per_sentence": 21,
+     "p90_words_per_sentence": 37,
+     "max_words_per_sentence": 45,
+     "pct_over_35w": 20.0,
+     "n_over_35w": 5,
+     "sentence_length_histogram": {
+      "1-10": 3,
+      "11-20": 9,
+      "21-30": 6,
+      "31-40": 4,
+      "41-50": 3,
+      "51+": 0
+     },
+     "paragraphs": 7,
+     "mean_words_per_paragraph": 83.4,
+     "median_words_per_paragraph": 100,
+     "citations": 14,
+     "citations_per_1k": 24.0,
+     "first_person_per_1k": 5.1,
+     "past_anchors_per_1k": 3.4,
+     "present_anchors_per_1k": 65.1,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 1.7,
+     "pct_sentences_past": 8.0,
+     "pct_sentences_present": 88.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 8.0,
+     "passive_per_1k_words": 24.0,
+     "pct_sentences_with_passive": 48.0,
+     "be_verbs_per_1k": 27.4,
+     "passive_top_participles": [
+      [
+       "used",
+       2
+      ],
+      [
+       "represented",
+       1
+      ],
+      [
+       "employed",
+       1
+      ],
+      [
+       "shown",
+       1
+      ],
+      [
+       "proposed",
+       1
+      ],
+      [
+       "introduced",
+       1
+      ],
+      [
+       "computed",
+       1
+      ],
+      [
+       "utilized",
+       1
+      ],
+      [
+       "focused",
+       1
+      ],
+      [
+       "evaluated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "1",
+     "title": "Introduction",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 15,
+     "end_line": 30,
+     "page_start": null,
+     "page_end": null,
+     "pages": null
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 2,
+     "n_be_verbs": 10,
+     "words": 257,
+     "sentences": 15,
+     "mean_words_per_sentence": 17.1,
+     "median_words_per_sentence": 17,
+     "p90_words_per_sentence": 21,
+     "max_words_per_sentence": 35,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 3,
+      "11-20": 8,
+      "21-30": 2,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 6,
+     "mean_words_per_paragraph": 43,
+     "median_words_per_paragraph": 17.0,
+     "citations": 12,
+     "citations_per_1k": 46.7,
+     "first_person_per_1k": 3.9,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 46.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 7.8,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 66.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 33.3,
+     "passive_per_1k_words": 7.8,
+     "pct_sentences_with_passive": 13.3,
+     "be_verbs_per_1k": 38.9,
+     "passive_top_participles": [
+      [
+       "stacked",
+       1
+      ],
+      [
+       "used",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 2,
+     "numeral": "2",
+     "title": "Deep speaker embedding",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 31,
+     "end_line": 46,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 3,
+     "n_passive": 7,
+     "n_be_verbs": 16,
+     "words": 477,
+     "sentences": 22,
+     "mean_words_per_sentence": 21.7,
+     "median_words_per_sentence": 20.5,
+     "p90_words_per_sentence": 26,
+     "max_words_per_sentence": 49,
+     "pct_over_35w": 9.1,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 9,
+      "21-30": 9,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 11,
+     "mean_words_per_paragraph": 43.4,
+     "median_words_per_paragraph": 34,
+     "citations": 4,
+     "citations_per_1k": 8.4,
+     "first_person_per_1k": 6.3,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 62.9,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 8.4,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 81.8,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 18.2,
+     "passive_per_1k_words": 14.7,
+     "pct_sentences_with_passive": 27.3,
+     "be_verbs_per_1k": 33.5,
+     "passive_top_participles": [
+      [
+       "viewed",
+       1
+      ],
+      [
+       "normalized",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "given",
+       1
+      ],
+      [
+       "defined",
+       1
+      ],
+      [
+       "shared",
+       1
+      ],
+      [
+       "trained",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 3,
+     "numeral": "3",
+     "title": "Higher-order pooling with attention",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 47,
+     "end_line": 97,
+     "page_start": 1,
+     "page_end": 2,
+     "pages": 2
+    },
+    {
+     "n_first_person": 7,
+     "n_passive": 20,
+     "n_be_verbs": 41,
+     "words": 1106,
+     "sentences": 58,
+     "mean_words_per_sentence": 19.1,
+     "median_words_per_sentence": 15.5,
+     "p90_words_per_sentence": 36,
+     "max_words_per_sentence": 65,
+     "pct_over_35w": 13.8,
+     "n_over_35w": 8,
+     "sentence_length_histogram": {
+      "1-10": 16,
+      "11-20": 23,
+      "21-30": 9,
+      "31-40": 6,
+      "41-50": 2,
+      "51+": 2
+     },
+     "paragraphs": 20,
+     "mean_words_per_paragraph": 55.4,
+     "median_words_per_paragraph": 57.0,
+     "citations": 16,
+     "citations_per_1k": 14.5,
+     "first_person_per_1k": 6.3,
+     "past_anchors_per_1k": 37.1,
+     "present_anchors_per_1k": 29.8,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.7,
+     "pct_sentences_past": 55.2,
+     "pct_sentences_present": 37.9,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 22.4,
+     "passive_per_1k_words": 18.1,
+     "pct_sentences_with_passive": 27.6,
+     "be_verbs_per_1k": 37.1,
+     "passive_top_participles": [
+      [
+       "used",
+       5
+      ],
+      [
+       "applied",
+       4
+      ],
+      [
+       "evaluated",
+       2
+      ],
+      [
+       "compared",
+       1
+      ],
+      [
+       "appended",
+       1
+      ],
+      [
+       "extracted",
+       1
+      ],
+      [
+       "generated",
+       1
+      ],
+      [
+       "mixed",
+       1
+      ],
+      [
+       "convolved",
+       1
+      ],
+      [
+       "encoded",
+       1
+      ]
+     ],
+     "n_tables": 3,
+     "n_figures": 0,
+     "index": 4,
+     "numeral": "4",
+     "title": "Experiments",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 98,
+     "end_line": 172,
+     "page_start": 2,
+     "page_end": 3,
+     "pages": 2
+    },
+    {
+     "n_first_person": 2,
+     "n_passive": 1,
+     "n_be_verbs": 3,
+     "words": 139,
+     "sentences": 8,
+     "mean_words_per_sentence": 17.4,
+     "median_words_per_sentence": 16.5,
+     "p90_words_per_sentence": 25,
+     "max_words_per_sentence": 27,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 5,
+      "21-30": 2,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 139,
+     "median_words_per_paragraph": 139,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 14.4,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 57.6,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 7.2,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 75.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 7.2,
+     "pct_sentences_with_passive": 12.5,
+     "be_verbs_per_1k": 21.6,
+     "passive_top_participles": [
+      [
+       "obtained",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "5",
+     "title": "Summary and Future Work",
+     "role": "other",
+     "hand_mapped": false,
+     "start_line": 173,
+     "end_line": 176,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    }
+   ]
+  },
+  "ref32_yang_lnetskd_arxiv2023": {
+   "sha256": "18233f18e5944acba5151a05d403ce6d29d24bce64f8d49765c4447582a3de4e",
+   "source_pdf_sha256": null,
+   "lines": 239,
+   "refs_heading_line": 214,
+   "body_start_line": 10,
+   "notes": [],
+   "body": {
+    "n_first_person": 35,
+    "n_passive": 46,
+    "n_be_verbs": 88,
+    "words": 2930,
+    "sentences": 158,
+    "mean_words_per_sentence": 18.5,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 28,
+    "max_words_per_sentence": 45,
+    "pct_over_35w": 1.9,
+    "n_over_35w": 3,
+    "sentence_length_histogram": {
+     "1-10": 24,
+     "11-20": 71,
+     "21-30": 51,
+     "31-40": 10,
+     "41-50": 2,
+     "51+": 0
+    },
+    "paragraphs": 53,
+    "mean_words_per_paragraph": 55.3,
+    "median_words_per_paragraph": 52,
+    "citations": 32,
+    "citations_per_1k": 10.9,
+    "first_person_per_1k": 11.9,
+    "past_anchors_per_1k": 0.3,
+    "present_anchors_per_1k": 47.4,
+    "future_anchors_per_1k": 1.0,
+    "modal_anchors_per_1k": 2.7,
+    "pct_sentences_past": 0.6,
+    "pct_sentences_present": 58.2,
+    "pct_sentences_future": 1.9,
+    "pct_sentences_no_tense_anchor": 39.9,
+    "passive_per_1k_words": 15.7,
+    "pct_sentences_with_passive": 27.8,
+    "be_verbs_per_1k": 30.0,
+    "passive_top_participles": [
+     [
+      "used",
+      7
+     ],
+     [
+      "implemented",
+      3
+     ],
+     [
+      "based",
+      3
+     ],
+     [
+      "considered",
+      3
+     ],
+     [
+      "proposed",
+      2
+     ],
+     [
+      "composed",
+      2
+     ],
+     [
+      "introduced",
+      2
+     ],
+     [
+      "written",
+      2
+     ],
+     [
+      "shown",
+      2
+     ],
+     [
+      "concluded",
+      2
+     ]
+    ],
+    "n_tables": 4,
+    "n_figures": 4
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 35,
+    "n_passive": 46,
+    "n_be_verbs": 88,
+    "words": 2930,
+    "sentences": 158,
+    "mean_words_per_sentence": 18.5,
+    "median_words_per_sentence": 18.0,
+    "p90_words_per_sentence": 28,
+    "max_words_per_sentence": 45,
+    "pct_over_35w": 1.9,
+    "n_over_35w": 3,
+    "sentence_length_histogram": {
+     "1-10": 24,
+     "11-20": 71,
+     "21-30": 51,
+     "31-40": 10,
+     "41-50": 2,
+     "51+": 0
+    },
+    "paragraphs": 53,
+    "mean_words_per_paragraph": 55.3,
+    "median_words_per_paragraph": 52,
+    "citations": 32,
+    "citations_per_1k": 10.9,
+    "first_person_per_1k": 11.9,
+    "past_anchors_per_1k": 0.3,
+    "present_anchors_per_1k": 47.4,
+    "future_anchors_per_1k": 1.0,
+    "modal_anchors_per_1k": 2.7,
+    "pct_sentences_past": 0.6,
+    "pct_sentences_present": 58.2,
+    "pct_sentences_future": 1.9,
+    "pct_sentences_no_tense_anchor": 39.9,
+    "passive_per_1k_words": 15.7,
+    "pct_sentences_with_passive": 27.8,
+    "be_verbs_per_1k": 30.0,
+    "passive_top_participles": [
+     [
+      "used",
+      7
+     ],
+     [
+      "implemented",
+      3
+     ],
+     [
+      "based",
+      3
+     ],
+     [
+      "considered",
+      3
+     ],
+     [
+      "proposed",
+      2
+     ],
+     [
+      "composed",
+      2
+     ],
+     [
+      "introduced",
+      2
+     ],
+     [
+      "written",
+      2
+     ],
+     [
+      "shown",
+      2
+     ],
+     [
+      "concluded",
+      2
+     ]
+    ],
+    "n_tables": 4,
+    "n_figures": 4
+   },
+   "structure": {
+    "n_sections": 5,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V"
+    ],
+    "n_tables_body": 4,
+    "n_tables_total": 4,
+    "n_figures_body": 4,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 33,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": true,
+    "related_work_merged_into_background": false,
+    "related_work_position": 0.147
+   },
+   "sections": [
+    {
+     "n_first_person": 7,
+     "n_passive": 8,
+     "n_be_verbs": 19,
+     "words": 671,
+     "sentences": 32,
+     "mean_words_per_sentence": 21.0,
+     "median_words_per_sentence": 21.0,
+     "p90_words_per_sentence": 28,
+     "max_words_per_sentence": 45,
+     "pct_over_35w": 3.1,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 13,
+      "21-30": 15,
+      "31-40": 1,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 13,
+     "mean_words_per_paragraph": 51.6,
+     "median_words_per_paragraph": 46,
+     "citations": 13,
+     "citations_per_1k": 19.4,
+     "first_person_per_1k": 10.4,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 47.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 0.0,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 65.6,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 34.4,
+     "passive_per_1k_words": 11.9,
+     "pct_sentences_with_passive": 25.0,
+     "be_verbs_per_1k": 28.3,
+     "passive_top_participles": [
+      [
+       "proposed",
+       2
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "implemented",
+       1
+      ],
+      [
+       "visualized",
+       1
+      ],
+      [
+       "employed",
+       1
+      ],
+      [
+       "summarized",
+       1
+      ],
+      [
+       "composed",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 10,
+     "end_line": 39,
+     "page_start": null,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 7,
+     "n_be_verbs": 12,
+     "words": 360,
+     "sentences": 17,
+     "mean_words_per_sentence": 21.2,
+     "median_words_per_sentence": 21,
+     "p90_words_per_sentence": 31,
+     "max_words_per_sentence": 44,
+     "pct_over_35w": 5.9,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 1,
+      "11-20": 7,
+      "21-30": 5,
+      "31-40": 3,
+      "41-50": 1,
+      "51+": 0
+     },
+     "paragraphs": 3,
+     "mean_words_per_paragraph": 120,
+     "median_words_per_paragraph": 104,
+     "citations": 11,
+     "citations_per_1k": 30.6,
+     "first_person_per_1k": 2.8,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 47.2,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 2.8,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 58.8,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 41.2,
+     "passive_per_1k_words": 19.4,
+     "pct_sentences_with_passive": 35.3,
+     "be_verbs_per_1k": 33.3,
+     "passive_top_participles": [
+      [
+       "used",
+       2
+      ],
+      [
+       "based",
+       1
+      ],
+      [
+       "applied",
+       1
+      ],
+      [
+       "verified",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "propagated",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "RELATED WORK",
+     "role": "related_work",
+     "hand_mapped": false,
+     "start_line": 40,
+     "end_line": 47,
+     "page_start": 0,
+     "page_end": 0,
+     "pages": null
+    },
+    {
+     "n_first_person": 12,
+     "n_passive": 16,
+     "n_be_verbs": 32,
+     "words": 973,
+     "sentences": 55,
+     "mean_words_per_sentence": 17.7,
+     "median_words_per_sentence": 16,
+     "p90_words_per_sentence": 28,
+     "max_words_per_sentence": 35,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 9,
+      "11-20": 27,
+      "21-30": 16,
+      "31-40": 3,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 19,
+     "mean_words_per_paragraph": 51.2,
+     "median_words_per_paragraph": 45,
+     "citations": 3,
+     "citations_per_1k": 3.1,
+     "first_person_per_1k": 12.3,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 44.2,
+     "future_anchors_per_1k": 3.1,
+     "modal_anchors_per_1k": 3.1,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 49.1,
+     "pct_sentences_future": 5.5,
+     "pct_sentences_no_tense_anchor": 47.3,
+     "passive_per_1k_words": 16.4,
+     "pct_sentences_with_passive": 27.3,
+     "be_verbs_per_1k": 32.9,
+     "passive_top_participles": [
+      [
+       "used",
+       3
+      ],
+      [
+       "introduced",
+       2
+      ],
+      [
+       "implemented",
+       2
+      ],
+      [
+       "written",
+       2
+      ],
+      [
+       "designed",
+       1
+      ],
+      [
+       "parameterized",
+       1
+      ],
+      [
+       "reduced",
+       1
+      ],
+      [
+       "based",
+       1
+      ],
+      [
+       "obtained",
+       1
+      ],
+      [
+       "performed",
+       1
+      ]
+     ],
+     "n_tables": 2,
+     "n_figures": 1,
+     "index": 3,
+     "numeral": "III",
+     "title": "THE PROPOSED APPROACH",
+     "role": "method",
+     "hand_mapped": false,
+     "start_line": 48,
+     "end_line": 127,
+     "page_start": 0,
+     "page_end": 3,
+     "pages": null
+    },
+    {
+     "n_first_person": 12,
+     "n_passive": 14,
+     "n_be_verbs": 23,
+     "words": 819,
+     "sentences": 49,
+     "mean_words_per_sentence": 16.7,
+     "median_words_per_sentence": 18,
+     "p90_words_per_sentence": 25,
+     "max_words_per_sentence": 37,
+     "pct_over_35w": 2.0,
+     "n_over_35w": 1,
+     "sentence_length_histogram": {
+      "1-10": 12,
+      "11-20": 22,
+      "21-30": 13,
+      "31-40": 2,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 17,
+     "mean_words_per_paragraph": 48.2,
+     "median_words_per_paragraph": 58,
+     "citations": 5,
+     "citations_per_1k": 6.1,
+     "first_person_per_1k": 14.7,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 54.9,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 3.7,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 65.3,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 34.7,
+     "passive_per_1k_words": 17.1,
+     "pct_sentences_with_passive": 28.6,
+     "be_verbs_per_1k": 28.1,
+     "passive_top_participles": [
+      [
+       "considered",
+       3
+      ],
+      [
+       "shown",
+       2
+      ],
+      [
+       "based",
+       1
+      ],
+      [
+       "divided",
+       1
+      ],
+      [
+       "composed",
+       1
+      ],
+      [
+       "described",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "transferred",
+       1
+      ],
+      [
+       "plotted",
+       1
+      ],
+      [
+       "neglected",
+       1
+      ]
+     ],
+     "n_tables": 2,
+     "n_figures": 2,
+     "index": 4,
+     "numeral": "IV",
+     "title": "EXPERIMENTAL RESULTS",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 128,
+     "end_line": 209,
+     "page_start": 3,
+     "page_end": 5,
+     "pages": 3
+    },
+    {
+     "n_first_person": 3,
+     "n_passive": 1,
+     "n_be_verbs": 2,
+     "words": 107,
+     "sentences": 5,
+     "mean_words_per_sentence": 21.4,
+     "median_words_per_sentence": 23,
+     "p90_words_per_sentence": 24,
+     "max_words_per_sentence": 31,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 2,
+      "21-30": 2,
+      "31-40": 1,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 107,
+     "median_words_per_paragraph": 107,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 28.0,
+     "past_anchors_per_1k": 9.3,
+     "present_anchors_per_1k": 18.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 9.3,
+     "pct_sentences_past": 20.0,
+     "pct_sentences_present": 40.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 40.0,
+     "passive_per_1k_words": 9.3,
+     "pct_sentences_with_passive": 20.0,
+     "be_verbs_per_1k": 18.7,
+     "passive_top_participles": [
+      [
+       "concluded",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "CONCLUSION",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 210,
+     "end_line": 213,
+     "page_start": 5,
+     "page_end": 5,
+     "pages": 1
+    }
+   ]
+  },
+  "ref34_debicha_advtrain_arxiv2021": {
+   "sha256": "d66dc14d707ce5f44607ff923454b397d030e5937ad5ed24a60314da6a071b90",
+   "source_pdf_sha256": null,
+   "lines": 192,
+   "refs_heading_line": 156,
+   "body_start_line": 21,
+   "notes": [],
+   "body": {
+    "n_first_person": 20,
+    "n_passive": 47,
+    "n_be_verbs": 105,
+    "words": 3022,
+    "sentences": 130,
+    "mean_words_per_sentence": 23.2,
+    "median_words_per_sentence": 20.0,
+    "p90_words_per_sentence": 43,
+    "max_words_per_sentence": 96,
+    "pct_over_35w": 16.2,
+    "n_over_35w": 21,
+    "sentence_length_histogram": {
+     "1-10": 14,
+     "11-20": 54,
+     "21-30": 38,
+     "31-40": 9,
+     "41-50": 7,
+     "51+": 8
+    },
+    "paragraphs": 43,
+    "mean_words_per_paragraph": 70.3,
+    "median_words_per_paragraph": 72,
+    "citations": 23,
+    "citations_per_1k": 7.6,
+    "first_person_per_1k": 6.6,
+    "past_anchors_per_1k": 3.6,
+    "present_anchors_per_1k": 41.7,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 6.6,
+    "pct_sentences_past": 6.9,
+    "pct_sentences_present": 67.7,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 28.5,
+    "passive_per_1k_words": 15.6,
+    "pct_sentences_with_passive": 28.5,
+    "be_verbs_per_1k": 34.7,
+    "passive_top_participles": [
+     [
+      "explained",
+      4
+     ],
+     [
+      "designed",
+      3
+     ],
+     [
+      "presented",
+      3
+     ],
+     [
+      "considered",
+      3
+     ],
+     [
+      "added",
+      2
+     ],
+     [
+      "carried",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "generated",
+      2
+     ],
+     [
+      "repeated",
+      2
+     ],
+     [
+      "motivated",
+      1
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 1
+   },
+   "body_ex_backmatter": {
+    "n_first_person": 20,
+    "n_passive": 47,
+    "n_be_verbs": 105,
+    "words": 3022,
+    "sentences": 130,
+    "mean_words_per_sentence": 23.2,
+    "median_words_per_sentence": 20.0,
+    "p90_words_per_sentence": 43,
+    "max_words_per_sentence": 96,
+    "pct_over_35w": 16.2,
+    "n_over_35w": 21,
+    "sentence_length_histogram": {
+     "1-10": 14,
+     "11-20": 54,
+     "21-30": 38,
+     "31-40": 9,
+     "41-50": 7,
+     "51+": 8
+    },
+    "paragraphs": 43,
+    "mean_words_per_paragraph": 70.3,
+    "median_words_per_paragraph": 72,
+    "citations": 23,
+    "citations_per_1k": 7.6,
+    "first_person_per_1k": 6.6,
+    "past_anchors_per_1k": 3.6,
+    "present_anchors_per_1k": 41.7,
+    "future_anchors_per_1k": 0.0,
+    "modal_anchors_per_1k": 6.6,
+    "pct_sentences_past": 6.9,
+    "pct_sentences_present": 67.7,
+    "pct_sentences_future": 0.0,
+    "pct_sentences_no_tense_anchor": 28.5,
+    "passive_per_1k_words": 15.6,
+    "pct_sentences_with_passive": 28.5,
+    "be_verbs_per_1k": 34.7,
+    "passive_top_participles": [
+     [
+      "explained",
+      4
+     ],
+     [
+      "designed",
+      3
+     ],
+     [
+      "presented",
+      3
+     ],
+     [
+      "considered",
+      3
+     ],
+     [
+      "added",
+      2
+     ],
+     [
+      "carried",
+      2
+     ],
+     [
+      "used",
+      2
+     ],
+     [
+      "generated",
+      2
+     ],
+     [
+      "repeated",
+      2
+     ],
+     [
+      "motivated",
+      1
+     ]
+    ],
+    "n_tables": 1,
+    "n_figures": 1
+   },
+   "structure": {
+    "n_sections": 5,
+    "n_numbered_sections": 5,
+    "n_backmatter_words": 0,
+    "section_sequence": [
+     "I",
+     "II",
+     "III",
+     "IV",
+     "V"
+    ],
+    "n_tables_body": 1,
+    "n_tables_total": 1,
+    "n_figures_body": 1,
+    "n_figures_total": 4,
+    "table_numeral_gaps": [],
+    "figure_numeral_gaps": [],
+    "n_images": 0,
+    "n_page_anchors": 26,
+    "has_page_spans": true,
+    "has_roadmap_paragraph": false,
+    "has_related_work_section": false,
+    "related_work_merged_into_background": false,
+    "related_work_position": null
+   },
+   "sections": [
+    {
+     "n_first_person": 3,
+     "n_passive": 8,
+     "n_be_verbs": 22,
+     "words": 518,
+     "sentences": 22,
+     "mean_words_per_sentence": 23.5,
+     "median_words_per_sentence": 22.0,
+     "p90_words_per_sentence": 38,
+     "max_words_per_sentence": 55,
+     "pct_over_35w": 18.2,
+     "n_over_35w": 4,
+     "sentence_length_histogram": {
+      "1-10": 5,
+      "11-20": 3,
+      "21-30": 9,
+      "31-40": 2,
+      "41-50": 1,
+      "51+": 2
+     },
+     "paragraphs": 10,
+     "mean_words_per_paragraph": 51.8,
+     "median_words_per_paragraph": 44.0,
+     "citations": 6,
+     "citations_per_1k": 11.6,
+     "first_person_per_1k": 5.8,
+     "past_anchors_per_1k": 0.0,
+     "present_anchors_per_1k": 56.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 3.9,
+     "pct_sentences_past": 0.0,
+     "pct_sentences_present": 72.7,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 27.3,
+     "passive_per_1k_words": 15.4,
+     "pct_sentences_with_passive": 22.7,
+     "be_verbs_per_1k": 42.5,
+     "passive_top_participles": [
+      [
+       "presented",
+       2
+      ],
+      [
+       "motivated",
+       1
+      ],
+      [
+       "designed",
+       1
+      ],
+      [
+       "conducted",
+       1
+      ],
+      [
+       "tested",
+       1
+      ],
+      [
+       "explained",
+       1
+      ],
+      [
+       "given",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 1,
+     "numeral": "I",
+     "title": "INTRODUCTION",
+     "role": "introduction",
+     "hand_mapped": false,
+     "start_line": 21,
+     "end_line": 44,
+     "page_start": null,
+     "page_end": 1,
+     "pages": null
+    },
+    {
+     "n_first_person": 1,
+     "n_passive": 16,
+     "n_be_verbs": 35,
+     "words": 818,
+     "sentences": 39,
+     "mean_words_per_sentence": 21.0,
+     "median_words_per_sentence": 19,
+     "p90_words_per_sentence": 30,
+     "max_words_per_sentence": 61,
+     "pct_over_35w": 5.1,
+     "n_over_35w": 2,
+     "sentence_length_histogram": {
+      "1-10": 2,
+      "11-20": 22,
+      "21-30": 11,
+      "31-40": 3,
+      "41-50": 0,
+      "51+": 1
+     },
+     "paragraphs": 13,
+     "mean_words_per_paragraph": 62.9,
+     "median_words_per_paragraph": 65,
+     "citations": 9,
+     "citations_per_1k": 11.0,
+     "first_person_per_1k": 1.2,
+     "past_anchors_per_1k": 8.6,
+     "present_anchors_per_1k": 37.9,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 6.1,
+     "pct_sentences_past": 12.8,
+     "pct_sentences_present": 59.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 30.8,
+     "passive_per_1k_words": 19.6,
+     "pct_sentences_with_passive": 33.3,
+     "be_verbs_per_1k": 42.8,
+     "passive_top_participles": [
+      [
+       "carried",
+       2
+      ],
+      [
+       "composed",
+       1
+      ],
+      [
+       "applied",
+       1
+      ],
+      [
+       "handled",
+       1
+      ],
+      [
+       "seen",
+       1
+      ],
+      [
+       "called",
+       1
+      ],
+      [
+       "added",
+       1
+      ],
+      [
+       "interpreted",
+       1
+      ],
+      [
+       "assigned",
+       1
+      ],
+      [
+       "used",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 2,
+     "numeral": "II",
+     "title": "BACKGROUND",
+     "role": "background",
+     "hand_mapped": false,
+     "start_line": 45,
+     "end_line": 84,
+     "page_start": 1,
+     "page_end": 1,
+     "pages": 1
+    },
+    {
+     "n_first_person": 8,
+     "n_passive": 13,
+     "n_be_verbs": 29,
+     "words": 817,
+     "sentences": 36,
+     "mean_words_per_sentence": 22.7,
+     "median_words_per_sentence": 18.5,
+     "p90_words_per_sentence": 43,
+     "max_words_per_sentence": 96,
+     "pct_over_35w": 16.7,
+     "n_over_35w": 6,
+     "sentence_length_histogram": {
+      "1-10": 4,
+      "11-20": 17,
+      "21-30": 9,
+      "31-40": 1,
+      "41-50": 3,
+      "51+": 2
+     },
+     "paragraphs": 10,
+     "mean_words_per_paragraph": 81.7,
+     "median_words_per_paragraph": 94.0,
+     "citations": 8,
+     "citations_per_1k": 9.8,
+     "first_person_per_1k": 9.8,
+     "past_anchors_per_1k": 2.4,
+     "present_anchors_per_1k": 47.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 3.7,
+     "pct_sentences_past": 5.6,
+     "pct_sentences_present": 75.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 25.0,
+     "passive_per_1k_words": 15.9,
+     "pct_sentences_with_passive": 30.6,
+     "be_verbs_per_1k": 35.5,
+     "passive_top_participles": [
+      [
+       "considered",
+       2
+      ],
+      [
+       "assessed",
+       1
+      ],
+      [
+       "released",
+       1
+      ],
+      [
+       "grouped",
+       1
+      ],
+      [
+       "implemented",
+       1
+      ],
+      [
+       "used",
+       1
+      ],
+      [
+       "employed",
+       1
+      ],
+      [
+       "minimized",
+       1
+      ],
+      [
+       "added",
+       1
+      ],
+      [
+       "explained",
+       1
+      ]
+     ],
+     "n_tables": 1,
+     "n_figures": 0,
+     "index": 3,
+     "numeral": "III",
+     "title": "EXPERIMENTAL APPROACH",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 85,
+     "end_line": 125,
+     "page_start": 1,
+     "page_end": 2,
+     "pages": 2
+    },
+    {
+     "n_first_person": 8,
+     "n_passive": 9,
+     "n_be_verbs": 16,
+     "words": 758,
+     "sentences": 27,
+     "mean_words_per_sentence": 28.1,
+     "median_words_per_sentence": 23,
+     "p90_words_per_sentence": 49,
+     "max_words_per_sentence": 68,
+     "pct_over_35w": 33.3,
+     "n_over_35w": 9,
+     "sentence_length_histogram": {
+      "1-10": 3,
+      "11-20": 7,
+      "21-30": 8,
+      "31-40": 3,
+      "41-50": 3,
+      "51+": 3
+     },
+     "paragraphs": 9,
+     "mean_words_per_paragraph": 84.2,
+     "median_words_per_paragraph": 79,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 10.6,
+     "past_anchors_per_1k": 1.3,
+     "present_anchors_per_1k": 31.7,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 7.9,
+     "pct_sentences_past": 3.7,
+     "pct_sentences_present": 70.4,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 29.6,
+     "passive_per_1k_words": 11.9,
+     "pct_sentences_with_passive": 25.9,
+     "be_verbs_per_1k": 21.1,
+     "passive_top_participles": [
+      [
+       "repeated",
+       2
+      ],
+      [
+       "explained",
+       2
+      ],
+      [
+       "mixed",
+       1
+      ],
+      [
+       "generated",
+       1
+      ],
+      [
+       "observed",
+       1
+      ],
+      [
+       "designed",
+       1
+      ],
+      [
+       "trained",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 1,
+     "index": 4,
+     "numeral": "IV",
+     "title": "EXPERIMENTAL RESULTS",
+     "role": "evaluation",
+     "hand_mapped": false,
+     "start_line": 126,
+     "end_line": 151,
+     "page_start": 2,
+     "page_end": 3,
+     "pages": 2
+    },
+    {
+     "n_first_person": 0,
+     "n_passive": 1,
+     "n_be_verbs": 3,
+     "words": 111,
+     "sentences": 6,
+     "mean_words_per_sentence": 18.5,
+     "median_words_per_sentence": 17.5,
+     "p90_words_per_sentence": 19,
+     "max_words_per_sentence": 29,
+     "pct_over_35w": 0.0,
+     "n_over_35w": 0,
+     "sentence_length_histogram": {
+      "1-10": 0,
+      "11-20": 5,
+      "21-30": 1,
+      "31-40": 0,
+      "41-50": 0,
+      "51+": 0
+     },
+     "paragraphs": 1,
+     "mean_words_per_paragraph": 111,
+     "median_words_per_paragraph": 111,
+     "citations": 0,
+     "citations_per_1k": 0.0,
+     "first_person_per_1k": 0.0,
+     "past_anchors_per_1k": 9.0,
+     "present_anchors_per_1k": 27.0,
+     "future_anchors_per_1k": 0.0,
+     "modal_anchors_per_1k": 36.0,
+     "pct_sentences_past": 16.7,
+     "pct_sentences_present": 50.0,
+     "pct_sentences_future": 0.0,
+     "pct_sentences_no_tense_anchor": 33.3,
+     "passive_per_1k_words": 9.0,
+     "pct_sentences_with_passive": 16.7,
+     "be_verbs_per_1k": 27.0,
+     "passive_top_participles": [
+      [
+       "examined",
+       1
+      ]
+     ],
+     "n_tables": 0,
+     "n_figures": 0,
+     "index": 5,
+     "numeral": "V",
+     "title": "CONCLUSION AND FUTURE WORK",
+     "role": "conclusion",
+     "hand_mapped": false,
+     "start_line": 152,
+     "end_line": 155,
+     "page_start": 3,
+     "page_end": 3,
+     "pages": 1
+    }
+   ]
+  }
+ },
+ "bands": {
+  "body.words": {
+   "n": 11,
+   "min": 1873,
+   "median": 2744,
+   "max": 3671,
+   "ours": 3434,
+   "in_band": true,
+   "percentile": 91,
+   "gated": false
+  },
+  "body_ex_backmatter.words": {
+   "n": 11,
+   "min": 1860,
+   "median": 2719,
+   "max": 3647,
+   "ours": 3434,
+   "in_band": true,
+   "percentile": 91,
+   "gated": false
+  },
+  "structure.n_backmatter_words": {
+   "n": 11,
+   "min": 0,
+   "median": 0,
+   "max": 25,
+   "ours": 0,
+   "in_band": true,
+   "percentile": 55,
+   "gated": false
+  },
+  "body.sentences": {
+   "n": 11,
+   "min": 102,
+   "median": 137,
+   "max": 181,
+   "ours": 170,
+   "in_band": true,
+   "percentile": 91,
+   "gated": false
+  },
+  "body.mean_words_per_sentence": {
+   "n": 11,
+   "min": 18.2,
+   "median": 19.6,
+   "max": 24.4,
+   "ours": 20.2,
+   "in_band": true,
+   "percentile": 64,
+   "gated": true
+  },
+  "body.median_words_per_sentence": {
+   "n": 11,
+   "min": 17.5,
+   "median": 18.0,
+   "max": 21,
+   "ours": 19.0,
+   "in_band": true,
+   "percentile": 73,
+   "gated": false
+  },
+  "body.pct_over_35w": {
+   "n": 11,
+   "min": 1.9,
+   "median": 8.0,
+   "max": 16.2,
+   "ours": 10.6,
+   "in_band": true,
+   "percentile": 73,
+   "gated": true
+  },
+  "body.max_words_per_sentence": {
+   "n": 11,
+   "min": 38,
+   "median": 53,
+   "max": 103,
+   "ours": 52,
+   "in_band": true,
+   "percentile": 45,
+   "gated": false
+  },
+  "body.paragraphs": {
+   "n": 11,
+   "min": 37,
+   "median": 49,
+   "max": 94,
+   "ours": 64,
+   "in_band": true,
+   "percentile": 82,
+   "gated": false
+  },
+  "body.mean_words_per_paragraph": {
+   "n": 11,
+   "min": 30.6,
+   "median": 50.6,
+   "max": 90.3,
+   "ours": 53.7,
+   "in_band": true,
+   "percentile": 55,
+   "gated": true
+  },
+  "body.citations_per_1k": {
+   "n": 11,
+   "min": 0.0,
+   "median": 10.6,
+   "max": 18.2,
+   "ours": 12.5,
+   "in_band": true,
+   "percentile": 73,
+   "gated": false
+  },
+  "body.first_person_per_1k": {
+   "n": 11,
+   "min": 0.0,
+   "median": 3.0,
+   "max": 16.2,
+   "ours": 4.4,
+   "in_band": true,
+   "percentile": 55,
+   "gated": false
+  },
+  "body.passive_per_1k_words": {
+   "n": 11,
+   "min": 8.5,
+   "median": 15.7,
+   "max": 30.0,
+   "ours": 9.3,
+   "in_band": true,
+   "percentile": 9,
+   "gated": false
+  },
+  "body.pct_sentences_past": {
+   "n": 11,
+   "min": 0.6,
+   "median": 12.3,
+   "max": 30.4,
+   "ours": 5.9,
+   "in_band": true,
+   "percentile": 27,
+   "gated": false
+  },
+  "body.pct_sentences_future": {
+   "n": 11,
+   "min": 0.0,
+   "median": 0.9,
+   "max": 4.4,
+   "ours": 0.0,
+   "in_band": true,
+   "percentile": 36,
+   "gated": false
+  },
+  "body.pct_sentences_no_tense_anchor": {
+   "n": 11,
+   "min": 17.7,
+   "median": 38.4,
+   "max": 54.0,
+   "ours": 35.9,
+   "in_band": true,
+   "percentile": 36,
+   "gated": false
+  },
+  "structure.n_sections": {
+   "n": 11,
+   "min": 4,
+   "median": 6,
+   "max": 9,
+   "ours": 7,
+   "in_band": true,
+   "percentile": 82,
+   "gated": false
+  },
+  "structure.n_numbered_sections": {
+   "n": 11,
+   "min": 4,
+   "median": 5,
+   "max": 8,
+   "ours": 7,
+   "in_band": true,
+   "percentile": 91,
+   "gated": false
+  },
+  "structure.n_tables_total": {
+   "n": 11,
+   "min": 0,
+   "median": 3,
+   "max": 6,
+   "ours": 5,
+   "in_band": true,
+   "percentile": 91,
+   "gated": false
+  },
+  "structure.n_figures_total": {
+   "n": 11,
+   "min": 2,
+   "median": 4,
+   "max": 8,
+   "ours": 3,
+   "in_band": true,
+   "percentile": 9,
+   "gated": false
+  }
+ }
+}

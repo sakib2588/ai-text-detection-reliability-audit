@@ -1,0 +1,781 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Efficient Edge Deployment of Quantized\nYOLOv4-Tiny for Aerial Emergency Object\nDetection on Raspberry Pi 5",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          87.2578125,
+          78.1436767578125
+        ],
+        [
+          523.238037109375,
+          78.1436767578125
+        ],
+        [
+          523.238037109375,
+          157.843994140625
+        ],
+        [
+          87.2578125,
+          157.843994140625
+        ]
+      ]
+    },
+    {
+      "title": "Sindhu Boddu",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          171.228515625,
+          175.138916015625
+        ],
+        [
+          237.8125457763672,
+          175.138916015625
+        ],
+        [
+          237.8125457763672,
+          186.0977783203125
+        ],
+        [
+          171.228515625,
+          186.0977783203125
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          145.23046875,
+          515.49609375
+        ],
+        [
+          224.88978576660156,
+          515.49609375
+        ],
+        [
+          224.88978576660156,
+          525.5561828613281
+        ],
+        [
+          145.23046875,
+          525.5561828613281
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORK",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          382.5,
+          657.80859375
+        ],
+        [
+          468.9471740722656,
+          657.80859375
+        ],
+        [
+          468.9471740722656,
+          669.807014465332
+        ],
+        [
+          382.5,
+          669.807014465332
+        ]
+      ]
+    },
+    {
+      "title": "III. METHODOLOGY",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          141.046875,
+          611.40234375
+        ],
+        [
+          230.05747985839844,
+          611.40234375
+        ],
+        [
+          230.05747985839844,
+          622.1640472412109
+        ],
+        [
+          141.046875,
+          622.1640472412109
+        ]
+      ]
+    },
+    {
+      "title": "A. Dataset Preparation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          309.884765625,
+          119.8828125
+        ],
+        [
+          408.20672607421875,
+          119.8828125
+        ],
+        [
+          408.20672607421875,
+          130.6866455078125
+        ],
+        [
+          309.884765625,
+          130.6866455078125
+        ]
+      ]
+    },
+    {
+      "title": "B. Model Training: YOLOv4-Tiny",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          310.18359375,
+          413.40234375
+        ],
+        [
+          450.6673583984375,
+          413.40234375
+        ],
+        [
+          450.6673583984375,
+          423.37567138671875
+        ],
+        [
+          310.18359375,
+          423.37567138671875
+        ]
+      ]
+    },
+    {
+      "title": "C. Exporting to TensorFlow Format",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.080078125,
+          645.43359375
+        ],
+        [
+          460.2413330078125,
+          645.43359375
+        ],
+        [
+          460.2413330078125,
+          656.0635986328125
+        ],
+        [
+          311.080078125,
+          656.0635986328125
+        ]
+      ]
+    },
+    {
+      "title": "D. Post-Training Quantization",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          69.626953125,
+          167.8359375
+        ],
+        [
+          196.927734375,
+          167.8359375
+        ],
+        [
+          196.927734375,
+          177.8626708984375
+        ],
+        [
+          69.626953125,
+          177.8626708984375
+        ]
+      ]
+    },
+    {
+      "title": "Quantization Steps:",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          80.982421875,
+          242.69659423828125
+        ],
+        [
+          167.642578125,
+          242.69659423828125
+        ],
+        [
+          167.642578125,
+          252.6591796875
+        ],
+        [
+          80.982421875,
+          252.6591796875
+        ]
+      ]
+    },
+    {
+      "title": "E. Deployment and Performance Evaluation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          70.5234375,
+          407.21484375
+        ],
+        [
+          254.04660034179688,
+          407.21484375
+        ],
+        [
+          254.04660034179688,
+          417.72052001953125
+        ],
+        [
+          70.5234375,
+          417.72052001953125
+        ]
+      ]
+    },
+    {
+      "title": "F. Evaluation Metrics",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          70.822265625,
+          635.7388458251953
+        ],
+        [
+          161.8626708984375,
+          635.7388458251953
+        ],
+        [
+          161.8626708984375,
+          645.7014465332031
+        ],
+        [
+          70.822265625,
+          645.7014465332031
+        ]
+      ]
+    },
+    {
+      "title": "G. Summary",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.080078125,
+          204.1875
+        ],
+        [
+          364.2716979980469,
+          204.1875
+        ],
+        [
+          364.2716979980469,
+          215.57354736328125
+        ],
+        [
+          311.080078125,
+          215.57354736328125
+        ]
+      ]
+    },
+    {
+      "title": "IV. RESULTS AND DISCUSSION",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          358.892578125,
+          336.4664001464844
+        ],
+        [
+          492.646728515625,
+          336.4664001464844
+        ],
+        [
+          492.646728515625,
+          346.42901611328125
+        ],
+        [
+          358.892578125,
+          346.42901611328125
+        ]
+      ]
+    },
+    {
+      "title": "A. Power Measurement on Raspberry Pi 5 (FP32\nModel)",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.37890625,
+          561.515625
+        ],
+        [
+          540.001953125,
+          561.515625
+        ],
+        [
+          540.001953125,
+          584.8964080810547
+        ],
+        [
+          311.37890625,
+          584.8964080810547
+        ]
+      ]
+    },
+    {
+      "title": "B. Power Measurement on Raspberry Pi 5 (INT8 Quan-\ntized Model)",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          71.71875,
+          622.1310119628906
+        ],
+        [
+          300.0239562988281,
+          622.1310119628906
+        ],
+        [
+          300.0239562988281,
+          644.66015625
+        ],
+        [
+          71.71875,
+          644.66015625
+        ]
+      ]
+    },
+    {
+      "title": "C. Quantized vs FP32 Model Comparison",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          311.37890625,
+          667.08984375
+        ],
+        [
+          487.08984375,
+          667.08984375
+        ],
+        [
+          487.08984375,
+          677.1356048583984
+        ],
+        [
+          311.37890625,
+          677.1356048583984
+        ]
+      ]
+    },
+    {
+      "title": "V. CONTRIBUTION AND FUTURE WORK",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          98.61328125,
+          322.5234375
+        ],
+        [
+          271.1081848144531,
+          322.5234375
+        ],
+        [
+          271.1081848144531,
+          333.5260925292969
+        ],
+        [
+          98.61328125,
+          333.5260925292969
+        ]
+      ]
+    },
+    {
+      "title": "A. Summary of Contributions",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          69.029296875,
+          583.536865234375
+        ],
+        [
+          193.07546997070312,
+          583.536865234375
+        ],
+        [
+          193.07546997070312,
+          593.4994659423828
+        ],
+        [
+          69.029296875,
+          593.4994659423828
+        ]
+      ]
+    },
+    {
+      "title": "B. Future Work",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          311.677734375,
+          453.62109375
+        ],
+        [
+          376.822265625,
+          453.62109375
+        ],
+        [
+          376.822265625,
+          465.0395202636719
+        ],
+        [
+          311.677734375,
+          465.0395202636719
+        ]
+      ]
+    },
+    {
+      "title": "VI. CONCLUSION",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          145.23046875,
+          469.08984375
+        ],
+        [
+          224.31549072265625,
+          469.08984375
+        ],
+        [
+          224.31549072265625,
+          479.16412353515625
+        ],
+        [
+          145.23046875,
+          479.16412353515625
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          397.142578125,
+          428.87109375
+        ],
+        [
+          453.919921875,
+          428.87109375
+        ],
+        [
+          453.919921875,
+          439.7871398925781
+        ],
+        [
+          397.142578125,
+          439.7871398925781
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          179
+        ],
+        [
+          "Line",
+          88
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          251
+        ],
+        [
+          "Line",
+          103
+        ],
+        [
+          "Text",
+          18
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          283
+        ],
+        [
+          "Line",
+          102
+        ],
+        [
+          "ListItem",
+          18
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "ListGroup",
+          6
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          104
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Picture",
+          4
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "PictureGroup",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          274
+        ],
+        [
+          "Line",
+          103
+        ],
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "ListItem",
+          10
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          242
+        ],
+        [
+          "Line",
+          107
+        ],
+        [
+          "ListItem",
+          10
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Reference",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Boddu2025_quantized-yolov4tiny-pi"
+}

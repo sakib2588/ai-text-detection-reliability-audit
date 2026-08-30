@@ -1,0 +1,610 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Differentiable Boustrophedon Paths That Enable Optimization Via\nGradient Descent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          71.71875,
+          72.31640625
+        ],
+        [
+          539.365966796875,
+          72.31640625
+        ],
+        [
+          539.365966796875,
+          108.67376708984375
+        ],
+        [
+          71.71875,
+          108.67376708984375
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          134.771484375,
+          362.7421875
+        ],
+        [
+          215.27883911132812,
+          362.7421875
+        ],
+        [
+          215.27883911132812,
+          373.69610595703125
+        ],
+        [
+          134.771484375,
+          373.69610595703125
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORK",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          132.0,
+          187.5
+        ],
+        [
+          219.75,
+          187.5
+        ],
+        [
+          219.75,
+          196.5
+        ],
+        [
+          132.0,
+          196.5
+        ]
+      ]
+    },
+    {
+      "title": "III. PROBLEM FORMULATION",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          370.5,
+          84.0
+        ],
+        [
+          500.25,
+          84.0
+        ],
+        [
+          500.25,
+          93.0
+        ],
+        [
+          370.5,
+          93.0
+        ]
+      ]
+    },
+    {
+      "title": "A. Discrete Approaches",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.25,
+          153.75
+        ],
+        [
+          411.0,
+          153.75
+        ],
+        [
+          411.0,
+          163.5
+        ],
+        [
+          311.25,
+          163.5
+        ]
+      ]
+    },
+    {
+      "title": "B. Differentiable Approach",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.25,
+          493.5
+        ],
+        [
+          424.5,
+          493.5
+        ],
+        [
+          424.5,
+          502.5
+        ],
+        [
+          311.25,
+          502.5
+        ]
+      ]
+    },
+    {
+      "title": "IV. COMPARISON WITH DISCRETE REPRESENTATIONS",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          318.55078125,
+          456.71484375
+        ],
+        [
+          551.63671875,
+          456.71484375
+        ],
+        [
+          551.63671875,
+          467.2350158691406
+        ],
+        [
+          318.55078125,
+          467.2350158691406
+        ]
+      ]
+    },
+    {
+      "title": "V. DISCUSSION OF THE OPTIMIZATION SPACE",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          77.6953125,
+          431.96484375
+        ],
+        [
+          274.4959411621094,
+          431.96484375
+        ],
+        [
+          274.4959411621094,
+          443.7450256347656
+        ],
+        [
+          77.6953125,
+          443.7450256347656
+        ]
+      ]
+    },
+    {
+      "title": "VI. DISCUSSION OF TEMPERATURE",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          358.59375,
+          265.2890625
+        ],
+        [
+          511.69732666015625,
+          265.2890625
+        ],
+        [
+          511.69732666015625,
+          275.61212158203125
+        ],
+        [
+          358.59375,
+          275.61212158203125
+        ]
+      ]
+    },
+    {
+      "title": "VII. OPTIMIZATION VIA GRADIENT DESCENT",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          337.4349365234375,
+          611.40234375
+        ],
+        [
+          533.7738037109375,
+          611.40234375
+        ],
+        [
+          533.7738037109375,
+          622.3119201660156
+        ],
+        [
+          337.4349365234375,
+          622.3119201660156
+        ]
+      ]
+    },
+    {
+      "title": "VIII. CONCLUSIONS",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          131.185546875,
+          569.9072570800781
+        ],
+        [
+          220.97706604003906,
+          569.9072570800781
+        ],
+        [
+          220.97706604003906,
+          579.8698577880859
+        ],
+        [
+          131.185546875,
+          579.8698577880859
+        ]
+      ]
+    },
+    {
+      "title": "ACKNOWLEDGEMENTS",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          386.0859375,
+          264.44439697265625
+        ],
+        [
+          484.1919250488281,
+          264.44439697265625
+        ],
+        [
+          484.1919250488281,
+          274.406982421875
+        ],
+        [
+          386.0859375,
+          274.406982421875
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          406.705078125,
+          322.12835693359375
+        ],
+        [
+          463.50543212890625,
+          322.12835693359375
+        ],
+        [
+          463.50543212890625,
+          332.0909729003906
+        ],
+        [
+          406.705078125,
+          332.0909729003906
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          153
+        ],
+        [
+          "Line",
+          74
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          132
+        ],
+        [
+          "Span",
+          68
+        ],
+        [
+          "Text",
+          15
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Equation",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          327
+        ],
+        [
+          "Line",
+          76
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Equation",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          316
+        ],
+        [
+          "Line",
+          97
+        ],
+        [
+          "TableCell",
+          28
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Equation",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          218
+        ],
+        [
+          "Line",
+          93
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          245
+        ],
+        [
+          "Line",
+          101
+        ],
+        [
+          "ListItem",
+          13
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Manzini2023b_differentiable-boustrophedon"
+}
