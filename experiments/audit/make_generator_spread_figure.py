@@ -44,12 +44,21 @@ def main() -> None:
     d = json.loads(SRC.read_text())["corpora"]["DAIGT V2"]
     g = {k: v for k, v in d.items() if isinstance(v, dict) and "surface_err" in v}
 
+    seen = {}
+
+    def jit(x, y):
+        # nudge a point vertically when another sits within 0.35 points of it
+        k = (y, round(x / 0.35))
+        seen[k] = seen.get(k, -1) + 1
+        return (seen[k] % 3 - 1) * 0.13
+
     fig, ax = plt.subplots(figsize=(3.45, 1.25))
     for name, v in g.items():
         powered = v["n_test"] >= FLOOR
         for y, key, colour in ((1, "surface_err", SURF), (0, "content_err", CONT)):
-            ax.plot(v[key] * 100, y, "o", ms=4.2, color=colour,
-                    mfc=colour if powered else "white", mew=0.9, zorder=3)
+            ax.plot(v[key] * 100, y + jit(v[key] * 100, y), "o", ms=4.4, color=colour,
+                    mfc=colour if powered else "white",
+                    mew=0.8 if powered else 1.4, zorder=3)
 
     for (a, b), top in zip(PAIRS, (1.42, 1.18)):
         if a in g and b in g:
@@ -60,8 +69,12 @@ def main() -> None:
             ax.annotate(f"{max(xa, xb) / min(xa, xb):.1f}$\\times$",
                         ((xa + xb) / 2, top), textcoords="offset points",
                         xytext=(0, 1.5), ha="center", fontsize=6.2, color="#666666")
-    ax.text(7.6, 1.40, "same model, different contributor",
-            fontsize=6.2, color="#666666", va="center")
+
+    worst = sorted(g.items(), key=lambda kv: -kv[1]["surface_err"])[:2]
+    for name, v in worst:
+        ax.annotate(name.split("/")[-1].replace("_", " "),
+                    (v["surface_err"] * 100, 1), textcoords="offset points",
+                    xytext=(0, 8), ha="right", fontsize=5.8, color="#666666")
 
     ax.set_yticks([1, 0])
     ax.set_yticklabels(["surface", "content"])

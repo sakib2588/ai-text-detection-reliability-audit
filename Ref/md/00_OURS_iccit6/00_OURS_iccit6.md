@@ -16,14 +16,14 @@ Three lines of prior work come close and each stops short. Shared benchmarks [\[
 
 This paper proposes that measurement and compares three arms on identical splits. A *surface-only* model reads 47 orthographic features and never sees a word, a *content-only* model reads text stripped of punctuation, casing and non-ASCII characters, and a *full* model is a fine-tuned transformer on raw text. The first two share a classifier family and are directly comparable, the third is a reference point, and the object of measurement is a corpus rather than a detector. On HC3 the two arms are indistinguishable, while on DAIGT V2 content is stronger 7.9-fold, and subgroup labels place the HC3 tie in the Reddit sub-corpus. The main contributions are the following.
 
-- A surface-content decomposition, stated formally in Section [III-D](#page-1-0) as a reusable measurement over any humanversus-machine corpus, with the length control that stops its two arms sharing a channel.
-- Its application to two benchmarks and their twenty subcorpora (Sections [IV-B](#page-3-0) and [IV-C\)](#page-3-1), locating the HC3 result in one collection convention in one dominant domain, where removing that convention costs the surface arm ten points.
-- A tokenisation control (Section [IV-D\)](#page-4-0) establishing that the most-discussed cue in HC3 is sufficient in isolation yet unnecessary in practice, since BERT cannot represent it and still reaches 0.9916 weighted F1 there.
-- A label-free control (Section [IV-E\)](#page-4-1) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
+- 1) A surface-content decomposition, stated formally in Section [III-D](#page-1-0) as a reusable measurement over any humanversus-machine corpus, with the length control that stops its two arms sharing a channel.
+- 2) Its application to two benchmarks and their twenty subcorpora (Sections [IV-B](#page-3-0) and [IV-C\)](#page-3-1), locating the HC3 result in one collection convention in one dominant domain, where removing that convention costs the surface arm ten points.
+- 3) A tokenisation control (Section [IV-D\)](#page-4-0) establishing that the most-discussed cue in HC3 is sufficient in isolation yet unnecessary in practice, since BERT cannot represent it and still reaches 0.9916 weighted F1 there.
+- 4) A label-free control (Section [IV-E\)](#page-4-1) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
 
 The rest of this paper is organised as follows. Section [II](#page-0-0) reviews detection on these benchmarks, shortcut learning and robustness. Section [III](#page-1-1) states the problem setting, the corpora, the decomposition and the controls. Section [IV](#page-2-0) reports the measurements. Section [V](#page-4-2) discusses what they license, Section [VI](#page-4-3) states the limits and Section [VII](#page-5-10) concludes.
 
-### II. RELATED WORK
+## II. RELATED WORK
 
 <span id="page-0-0"></span>Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
 
@@ -31,7 +31,7 @@ TABLE I PRIOR WORK ON THESE BENCHMARKS, BY METHOD, RESULT AND THE LIMITATION THA
 
 <span id="page-1-2"></span>
 
-| Ref. | Method                            | Corpus     | Reported result               | Limitation                                   |
+| Ref. | Method                            | Dataset    | Reported result               | Limitation                                   |
 |------|-----------------------------------|------------|-------------------------------|----------------------------------------------|
 | [1]  | fine-tuned RoBERTa                | HC3        | 99.82 F1                      | which property of the text carries the score |
 | [4]  | one-token whitespace rule         | HC3        | 82.12 F1, per sentence        | how much surface form carries in total       |
@@ -52,7 +52,7 @@ The robustness line [\[11\]](#page-5-11) tested how far a reported accuracy surv
 
 Table [I](#page-1-2) sets these side by side against what each reports. None of this work measures how much of a benchmark's separability is carried by surface form. Unlike [\[4\]](#page-5-3), which removes one cue, and [\[7\]](#page-5-6), [\[8\]](#page-5-7), which compare detectors across conditions, this paper measures each corpus with two matched arms, locates the result per sub-corpus, and checks whether the detector can read the cue at all.
 
-## III. METHODOLOGY
+# III. METHODOLOGY
 
 ## <span id="page-1-1"></span>*A. Problem setting*
 
@@ -68,7 +68,7 @@ HC3 carries 6,118 duplicate rows, 7.16% of the corpus, so the split is group-awa
 
 Five families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased [\[22\]](#page-5-22) and microsoft/deberta-v3-base [\[23\]](#page-5-23), fine-tuned over a sixteen-run grid per dataset, learning rate ∈ {2, 3} × 10<sup>−</sup><sup>5</sup> , batch size ∈ {16, 32}, weight decay ∈ {0.01, 0.1}, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser [\[24\]](#page-5-24) encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section [IV-D](#page-4-0) examines.
 
-## <span id="page-1-0"></span>*D. The decomposition*
+# <span id="page-1-0"></span>*D. The decomposition*
 
 Write x for a document and y ∈ {0, 1} for its label, with 1 denoting machine-generated. The surface map ϕ<sup>S</sup> sends a
 
@@ -167,11 +167,11 @@ The content arm is deliberately unfiltered, since refitting it with the stopword
 
 ![](_page_3_Figure_10.jpeg)
 
-<span id="page-3-4"></span>Fig. 2. Arm error per DAIGT V2 generator, with the two same-model pairs.
+<span id="page-3-4"></span>Fig. 2. Test error per DAIGT V2 generator. Brackets join same-model pairs from different contributors.
 
 Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so only on HC3 does it reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs over five group-aware partitions. Content leads on DAIGT V2 on all five at p < 10−<sup>6</sup> , while on HC3 it reaches significance on none, with p of 0.81, 0.27, 0.34, 0.23 and 0.78, changing sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average −0.08 points over −0.29 to +0.27. Tuning regularisation per arm changes no conclusion, since the HC3 arms move to 3.15% and 3.47% and stay indistinguishable on all five.
 
-#### <span id="page-3-1"></span>*C. The parity belongs to one sub-domain and one cue*
+## <span id="page-3-1"></span>*C. The parity belongs to one sub-domain and one cue*
 
 The lower half of Table [IV](#page-3-3) runs the same measurement per HC3 domain. On reddit\_eli5 the surface arm reaches 0.01% error, one mistake in 6,690 documents, while on the two other domains with enough test rows the ordering reverses, content winning by 4.53 points on finance, interval [+2.34, +6.87], and 3.60 on medicine, interval [+1.60, +6.00]. Since reddit\_eli5 is 74.8% of the balanced corpus, the corpus-level parity is substantially that one domain.
 
