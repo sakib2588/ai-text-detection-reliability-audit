@@ -18,9 +18,11 @@
 \citation{Zhou2024exploiting}
 \citation{Antoun2023towards}
 \citation{HelloSimpleAI2023detector}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
 \citation{Guo2023close}
 \citation{Su2023plus}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{1}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{II}{1}{Related Work}{section.2}{}}
 \citation{Tian2023multiscale}
 \citation{Zhou2024exploiting}
 \citation{Yadagiri2025aigenerated}
@@ -46,21 +48,19 @@
 \citation{Kudo2018sentencepiece}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Prior work on these benchmarks, by method, result and the limitation that bears on our claim.}}{2}{table.1}\protected@file@percent }
 \newlabel{tab:relatedwork}{{I}{2}{Prior work on these benchmarks, by method, result and the limitation that bears on our claim}{table.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
-\newlabel{sec:related}{{II}{2}{Related Work}{section.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Methodology}{2}{section.3}\protected@file@percent }
 \newlabel{sec:method}{{III}{2}{Methodology}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Problem setting}{2}{subsection.3.1}\protected@file@percent }
 \newlabel{sec:problem}{{\mbox  {III-A}}{2}{Problem setting}{subsection.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Corpora and partitioning}{2}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Models}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}The decomposition}{2}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:decomp-def}{{\mbox  {III-D}}{2}{The decomposition}{subsection.3.4}{}}
 \citation{Baidya2026detecting}
 \citation{McNemar1947note}
 \citation{Efron1979bootstrap}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The measurement pipeline and its three disjoint views.}}{3}{figure.1}\protected@file@percent }
 \newlabel{fig:pipeline}{{1}{3}{The measurement pipeline and its three disjoint views}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}The decomposition}{3}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:decomp-def}{{\mbox  {III-D}}{3}{The decomposition}{subsection.3.4}{}}
 \newlabel{eq:arm}{{1}{3}{The decomposition}{equation.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Evaluation metrics}{3}{subsection.3.5}\protected@file@percent }
 \newlabel{sec:metrics}{{\mbox  {III-E}}{3}{Evaluation metrics}{subsection.3.5}{}}
@@ -80,13 +80,15 @@
 \newlabel{tab:decomp}{{IV}{4}{Decomposition per corpus, then HC3 by domain. Bold marks the lower error}{table.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}On HC3, orthography alone matches content alone}{4}{subsection.4.2}\protected@file@percent }
 \newlabel{sec:decomp}{{\mbox  {IV-B}}{4}{On HC3, orthography alone matches content alone}{subsection.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Arm error per DAIGT V2 generator, with the two same-model pairs.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:genspread}{{2}{4}{Arm error per DAIGT V2 generator, with the two same-model pairs}{figure.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}The parity belongs to one sub-domain and one cue}{4}{subsection.4.3}\protected@file@percent }
 \newlabel{sec:subgroup}{{\mbox  {IV-C}}{4}{The parity belongs to one sub-domain and one cue}{subsection.4.3}{}}
 \citation{HelloSimpleAI2023detector}
 \citation{Feng2019misleading}
 \citation{Borile2025generalize}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Arm error and the per-split difference. Filled marks a significant surface-vs-content difference ($p<0.05$).}}{5}{figure.2}\protected@file@percent }
-\newlabel{fig:dashboard}{{2}{5}{Arm error and the per-split difference. Filled marks a significant surface-vs-content difference ($p<0.05$)}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Arm error and the per-split difference. Filled marks a significant surface-vs-content difference ($p<0.05$).}}{5}{figure.3}\protected@file@percent }
+\newlabel{fig:dashboard}{{3}{5}{Arm error and the per-split difference. Filled marks a significant surface-vs-content difference ($p<0.05$)}{figure.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Label-free control, all five conditions. Share assigned the human label, mean confidence in parentheses, 400 inputs per condition. D is DAIGT V2, H is HC3.}}{5}{table.5}\protected@file@percent }
 \newlabel{tab:labelfree}{{V}{5}{Label-free control, all five conditions. Share assigned the human label, mean confidence in parentheses, 400 inputs per condition. D is DAIGT V2, H is HC3}{table.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}A model that cannot represent the cue reaches 0.9916 anyway}{5}{subsection.4.4}\protected@file@percent }

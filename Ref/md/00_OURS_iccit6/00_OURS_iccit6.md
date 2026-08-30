@@ -14,14 +14,18 @@ Separability has more than one source. A detector can reach a high score by mode
 
 Three lines of prior work come close and each stops short. Shared benchmarks [\[7\]](#page-5-6), [\[8\]](#page-5-7) make detectors comparable across conditions but do not ask what any condition is separable by. Cleaning kits remove a single known cue [\[4\]](#page-5-3), yet a null after cleaning says nothing unless the detector could read that cue. Partial-input baselines expose artefacts in natural language inference [\[9\]](#page-5-8), [\[10\]](#page-5-9) but have not been moved to detection.
 
-This paper proposes that measurement and compares three arms on identical splits. A *surface-only* model reads 47 orthographic features and never sees a word, a *content-only* model reads text after punctuation, casing and non-ASCII characters are stripped, and a *full* model is a fine-tuned transformer on raw text. The first two share a classifier family and are directly comparable, while the third is a reference point. The object of measurement is a corpus rather than a detector, and we offer no detector comparison, since a fair one would need matched training data on both corpora. On HC3 the two arms are indistinguishable, while on DAIGT V2 content is stronger 7.9 fold, and subgroup labels then place the HC3 tie in the Reddit sub-corpus that is three quarters of it. The main contributions are the following.
+This paper proposes that measurement and compares three arms on identical splits. A *surface-only* model reads 47 orthographic features and never sees a word, a *content-only* model reads text stripped of punctuation, casing and non-ASCII characters, and a *full* model is a fine-tuned transformer on raw text. The first two share a classifier family and are directly comparable, the third is a reference point, and the object of measurement is a corpus rather than a detector. On HC3 the two arms are indistinguishable, while on DAIGT V2 content is stronger 7.9-fold, and subgroup labels place the HC3 tie in the Reddit sub-corpus. The main contributions are the following.
 
-- A surface-content decomposition, stated formally in Section [III-D](#page-2-0) as a reusable measurement over any humanversus-machine corpus, with the length control that stops its two arms sharing a channel.
+- A surface-content decomposition, stated formally in Section [III-D](#page-1-0) as a reusable measurement over any humanversus-machine corpus, with the length control that stops its two arms sharing a channel.
 - Its application to two benchmarks and their twenty subcorpora (Sections [IV-B](#page-3-0) and [IV-C\)](#page-3-1), locating the HC3 result in one collection convention in one dominant domain, where removing that convention costs the surface arm ten points.
 - A tokenisation control (Section [IV-D\)](#page-4-0) establishing that the most-discussed cue in HC3 is sufficient in isolation yet unnecessary in practice, since BERT cannot represent it and still reaches 0.9916 weighted F1 there.
 - A label-free control (Section [IV-E\)](#page-4-1) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
 
-The rest of this paper is organised as follows. Section [II](#page-1-0) reviews detection on these benchmarks, shortcut learning and robustness. Section [III](#page-1-1) states the problem setting, the corpora, the decomposition and the controls. Section [IV](#page-2-1) reports the measurements. Section [V](#page-4-2) discusses what they license, Section [VI](#page-4-3) states the limits and Section [VII](#page-5-10) concludes.
+The rest of this paper is organised as follows. Section [II](#page-0-0) reviews detection on these benchmarks, shortcut learning and robustness. Section [III](#page-1-1) states the problem setting, the corpora, the decomposition and the controls. Section [IV](#page-2-0) reports the measurements. Section [V](#page-4-2) discusses what they license, Section [VI](#page-4-3) states the limits and Section [VII](#page-5-10) concludes.
+
+### II. RELATED WORK
+
+<span id="page-0-0"></span>Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
 
 TABLE I PRIOR WORK ON THESE BENCHMARKS, BY METHOD, RESULT AND THE LIMITATION THAT BEARS ON OUR CLAIM.
 
@@ -36,10 +40,6 @@ TABLE I PRIOR WORK ON THESE BENCHMARKS, BY METHOD, RESULT AND THE LIMITATION THA
 | [12] | released RoBERTa, run by us       | HC3, DAIGT | 0.9952 and 0.8230 wtd. F1     | contaminated on HC3, unseen on DAIGT         |
 | ours | surface-content decomposition     | HC3, DAIGT | 0.9972 and 0.9917 wtd. F1     | reports the arms, per sub-corpus             |
 
-## II. RELATED WORK
-
-<span id="page-1-0"></span>Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
-
 The corpus that set the current accuracy regime [\[1\]](#page-5-0) asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 questionanswer rows from five sources with a RoBERTa classifier finetuned on it, later narrowed to roughly 91.7% under semanticinvariant tasks [\[2\]](#page-5-1). Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
 
 The closest prior result [\[4\]](#page-5-3) addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix carries the experiment we build on, a detector made from a single test for one token identifier, above the 81.89 quoted there for a fine-tuned RoBERTa. It removes one cue already known, so it bounds neither the separability carried by surface form in total nor how that total compares across corpora.
@@ -52,49 +52,50 @@ The robustness line [\[11\]](#page-5-11) tested how far a reported accuracy surv
 
 Table [I](#page-1-2) sets these side by side against what each reports. None of this work measures how much of a benchmark's separability is carried by surface form. Unlike [\[4\]](#page-5-3), which removes one cue, and [\[7\]](#page-5-6), [\[8\]](#page-5-7), which compare detectors across conditions, this paper measures each corpus with two matched arms, locates the result per sub-corpus, and checks whether the detector can read the cue at all.
 
-# III. METHODOLOGY
+## III. METHODOLOGY
 
 ## <span id="page-1-1"></span>*A. Problem setting*
 
-This is a measurement contribution rather than a detector, so no baseline shares its evaluation object and the comparison is arm against arm. Given a human-versus-machine benchmark we ask how much of its separability a model could obtain without reading the language. The instruments are two matched classifiers over disjoint views of each document, plus a finetuned transformer as reference (Fig. [1\)](#page-2-2). We assume balanced classes, English text and a 128-token budget, and make no claim about which detector is best.
+This is a measurement contribution rather than a detector, so no baseline shares its evaluation object and the comparison is arm against arm. Given a human-versus-machine benchmark we ask how much of its separability a model could obtain without reading the language. The instruments are two matched classifiers over disjoint views of each document, plus a finetuned transformer as reference (Fig. [1\)](#page-2-1). We assume balanced classes, English text and a 128-token budget, and make no claim about which detector is best.
 
-#### *B. Corpora and partitioning*
+# *B. Corpora and partitioning*
 
 DAIGT V2 [\[21\]](#page-5-21) contains 44,868 argumentative student essays, 27,371 human-written and 17,497 machine-generated by 2023-era systems. HC3 [\[1\]](#page-5-0) contains 85,449 questionanswer rows from five English sources, contrasting human answers with GPT-3.5-Turbo. The two differ in nearly every respect that matters, since DAIGT V2 has many generators, one genre and long documents where HC3 has one generator, five domains and short ones. Both were class-balanced by downsampling to 34,994 and 53,806 rows, which fixes a degenerate single-class predictor at 0.333 weighted F1.
 
 HC3 carries 6,118 duplicate rows, 7.16% of the corpus, so the split is group-aware, grouping documents by an MD5 hash of their whitespace-normalised lowercased text and sending whole groups to one side of a 72/8/20 division. That rule leaks 0 of 10,732 HC3 test documents against 570, or 5.30%, for a plain stratified split.
 
-# *C. Models*
+## *C. Models*
 
 Five families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased [\[22\]](#page-5-22) and microsoft/deberta-v3-base [\[23\]](#page-5-23), fine-tuned over a sixteen-run grid per dataset, learning rate ∈ {2, 3} × 10<sup>−</sup><sup>5</sup> , batch size ∈ {16, 32}, weight decay ∈ {0.01, 0.1}, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser [\[24\]](#page-5-24) encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section [IV-D](#page-4-0) examines.
 
+## <span id="page-1-0"></span>*D. The decomposition*
+
+Write x for a document and y ∈ {0, 1} for its label, with 1 denoting machine-generated. The surface map ϕ<sup>S</sup> sends a
+
 ![](_page_2_Figure_0.jpeg)
 
-<span id="page-2-2"></span>Fig. 1. The measurement pipeline and its three disjoint views.
+<span id="page-2-1"></span>Fig. 1. The measurement pipeline and its three disjoint views.
 
-#### <span id="page-2-0"></span>D. The decomposition
-
-Write x for a document and  $y \in \{0,1\}$  for its label, with 1 denoting machine-generated. The surface map  $\phi_{\rm S}$  sends a document to  $\mathbb{R}^{47}$ , a vector of orthographic statistics covering punctuation, whitespace behaviour including spaces before punctuation, casing, length, non-ASCII and digit rates, and it reads no word identity. The content map  $\phi_{\rm C}$  lowercases, replaces every character outside the lowercase Latin alphabet and whitespace with a space, collapses whitespace runs, then takes raw bag-of-words counts. Punctuation, casing and non-ASCII cannot enter it.
+document to R <sup>47</sup>, orthographic statistics covering punctuation, whitespace including spaces before punctuation, casing, length, non-ASCII and digit rates, reading no word identity. The content map ϕ<sup>C</sup> lowercases, replaces every character outside the lowercase Latin alphabet and whitespace with a space, collapses whitespace runs, then takes raw bag-of-words counts, so punctuation, casing and non-ASCII cannot enter it.
 
 Each arm fits one logistic regression on the same training partition,
 
-$$h_a = \arg\min_{h} \sum_{(x,y) \in \mathcal{D}_{tr}} \ell(h(\phi_a(x)), y) + \frac{1}{2C} ||h||_2^2, \quad (1)$$
+$$h_a = \arg\min_{h} \sum_{(x,y)\in\mathcal{D}_{tr}} \ell(h(\phi_a(x)), y) + \frac{1}{2C} ||h||_2^2,$$
+ (1)
 
-for  $a \in \{S,C\}$ , with C=1.0, scikit-learn's default, for both. Sharing the classifier family and the regularisation is what makes the two arms comparable. We report the held-out error  $\varepsilon_a$  of each arm and the gap  $\Delta = \varepsilon_S - \varepsilon_C$ , where a gap near zero says orthography alone reaches the accuracy of content alone. The comparison is between two specific arms rather than a partition of the total separability.
+for a ∈ {S, C}, with C = 1.0, scikit-learn's default, for both. Sharing the classifier family and the regularisation is what makes the two arms comparable. We report the held-out error ε<sup>a</sup> of each arm and the gap ∆ = ε<sup>S</sup> − εC, where a gap near zero says orthography alone reaches the accuracy of content alone. The comparison is between two specific arms rather than a partition of the total separability.
 
-One channel reaches both arms, since the surface arm reads size counts directly and raw bag-of-words rows sum to document length. Length is a documented confound on both corpora [5], so we drop the five size-scaling surface features and normalise content rows to unit total before rescaling by the mean training document length, which stops the arm collapsing for reasons of scale rather than length.
+One channel reaches both arms, since the surface arm reads size counts directly and raw bag-of-words rows sum to document length. Length is a documented confound on both corpora [\[5\]](#page-5-4), so we drop the five size-scaling surface features and normalise content rows to unit total before rescaling by the mean training document length, which stops the arm collapsing for reasons of scale rather than length.
 
-## E. Evaluation metrics
+# *E. Evaluation metrics*
 
-Models are scored by weighted F1 and by test error, which move together because the corpora are balanced by construction, and weighted F1 keeps our numbers comparable with the published detectors of Section II. The decomposition is read from the gap between two error rates rather than from either alone.
+Models are scored by weighted F1 and by test error, which move together because the corpora are balanced by construction, and weighted F1 keeps our numbers comparable with the published detectors of Section [II.](#page-0-0) The decomposition is read from the gap between two error rates rather than from either alone.
 
-## F. Statistics and controls
+## *F. Statistics and controls*
 
-Transformer baselines are read from the deployed check-point's own record rather than from a grid maximum, with paired comparisons on the same test set. Writing b and c for the discordant counts, we report the exact two-sided binomial p-value [25] with a paired bootstrap 95% interval on the error
+Transformer baselines are read from the deployed checkpoint's own record rather than from a grid maximum, with paired comparisons on the same test set. Writing b and c for the discordant counts, we report the exact two-sided binomial p-value [\[25\]](#page-5-25) with a paired bootstrap 95% interval on the error difference over 10,000 resamples [\[26\]](#page-5-26), resampling document indices so the pairing is preserved. A bootstrap says nothing about how the corpus was partitioned and the central claim here is a null, so the decomposition is repeated over five
 
-<span id="page-2-3"></span>TABLE II
-TEST ERROR FOR ALL EIGHT CONFIGURATIONS. BOLD MARKS THE BEST
-PER CORPUS
+<span id="page-2-2"></span>TABLE II TEST ERROR FOR ALL EIGHT CONFIGURATIONS. BOLD MARKS THE BEST PER CORPUS.
 
 | Model         | Rep.   | DAIGT V2 err % | HC3 err % |
 |---------------|--------|----------------|-----------|
@@ -107,21 +108,21 @@ PER CORPUS
 | BERT          | raw    | 0.84           | 0.84      |
 | DeBERTa       | raw    | 0.83           | 0.28      |
 
-difference over 10,000 resamples [26], resampling document indices so the pairing is preserved. A bootstrap says nothing about how the corpus was partitioned and the central claim here is a null, so the decomposition is repeated over five group-aware partitions varying only the split seed. We run no parametric tests at  $n \leq 30$ .
+group-aware partitions varying only the split seed. We run no parametric tests at n ≤ 30.
 
 Three controls guard the claims below, on tokenisation, on whether a cleaning pipeline fired, and on inputs carrying no label information at all. Each is described where it is used.
 
-## G. Reproducibility
+#### *G. Reproducibility*
 
-Partitions are built once at split seed 42 and reused by every model and training seed, so only initialisation and batch order vary. The four deployed checkpoints were retrained at seeds 123 and 456. Fine-tuning ran three epochs at a 128-token budget on one 8 GiB NVIDIA GeForce RTX 3060 Ti, the longest run taking 1,111 seconds, under PyTorch 2.11, Transformers 4.57 and scikit-learn 1.9. That seed, the grid above and this hardware are the reproducibility record available under double-blind review, and code and per-run logs follow at camera-ready.
+Partitions are built once at split seed 42 and reused by every model and training seed, so only initialisation and batch order vary. The four deployed checkpoints were retrained at seeds 123 and 456. Fine-tuning ran three epochs at a 128 token budget on one 8 GiB NVIDIA GeForce RTX 3060 Ti, the longest run taking 1,111 seconds, under PyTorch 2.11, Transformers 4.57 and scikit-learn 1.9. That seed, the grid above and this hardware are the reproducibility record available under double-blind review, and code and per-run logs follow at camera-ready.
 
-## IV. RESULTS AND ANALYSIS
+# IV. RESULTS AND ANALYSIS
 
-<span id="page-2-1"></span>Every number below comes from the group-aware split of Section III, reused by every model. To the best of our knowledge this is the first surface-content decomposition reported for either corpus, so Table I places our detectors beside the published numbers instead.
+<span id="page-2-0"></span>Every number below comes from the group-aware split of Section [III,](#page-1-1) reused by every model. To the best of our knowledge this is the first surface-content decomposition reported for either corpus, so Table [I](#page-1-2) places our detectors beside the published numbers instead.
 
-A. A classical model matches a transformer on DAIGT V2 until the text budget is matched
+*A. A classical model matches a transformer on DAIGT V2 until the text budget is matched*
 
-Table II reports every configuration, and the two benchmarks part company. On DAIGT V2 the best classical configuration sits 0.07 points above the best transformer, the two
+Table [II](#page-2-2) reports every configuration, and the two benchmarks part company. On DAIGT V2 the best classical configuration sits 0.07 points above the best transformer, the two disagree on 99 documents split 47 to 52, and McNemar returns p = 0.69 with a paired interval of [−0.21, +0.34]. On HC3 the same comparison gives 484 discordant cases split 16 to 468 at p < 10<sup>−</sup><sup>6</sup> , an error difference of +4.21 points. Reseeding
 
 TABLE III THE MATCHED TEXT BUDGET. ERRORS ARE PERCENTAGES.
 
@@ -145,38 +146,42 @@ TABLE III THE MATCHED TEXT BUDGET. ERRORS ARE PERCENTAGES.
 | surface-only, no length    | 9.93           | 3.37      |
 | content-only, length-norm. | 0.94           | 6.28      |
 
-|             |       | surface | content |       | cue present in |
-|-------------|-------|---------|---------|-------|----------------|
-| HC3 domain  | n     | err %   | err %   | human | machine        |
-| reddit eli5 | 6,690 | 0.01    | 2.66    | 98.9% | 0.3%           |
-| finance     | 684   | 7.60    | 3.07    | 5.6%  | 0.1%           |
-| medicine    | 250   | 4.00    | 0.40    | 17.0% | 0.1%           |
-| open qa     | 198   | 4.04    | 5.05    | 60.7% | 0.4%           |
-| wiki csai   | 168   | 5.36    | 11.90   | 1.6%  | 0.2%           |
+|             |       | surface | content | cue present in |         |
+|-------------|-------|---------|---------|----------------|---------|
+| HC3 domain  | n     | err %   | err %   | human          | machine |
+| reddit eli5 | 6,690 | 0.01    | 2.66    | 98.9%          | 0.3%    |
+| finance     | 684   | 7.60    | 3.07    | 5.6%           | 0.1%    |
+| medicine    | 250   | 4.00    | 0.40    | 17.0%          | 0.1%    |
+| open qa     | 198   | 4.04    | 5.05    | 60.7%          | 0.4%    |
+| wiki csai   | 168   | 5.36    | 11.90   | 1.6%           | 0.2%    |
 
-disagree on 99 documents split 47 to 52, and McNemar returns p = 0.69 with a paired interval of [−0.21, +0.34] points. On HC3 the same comparison gives 484 discordant cases split 16 to 468 at p < 10<sup>−</sup><sup>6</sup> , with an error difference of +4.21 points. Reseeding the four checkpoints at 123 and 456 moves them by 0.0005 to 0.0036 weighted F1, and the DAIGT V2 pair overlap where the HC3 pair do not. The eight classical configurations carry no such range, because each is fit with a fixed random state on the fixed split and has no seed to vary, unlike the transformers' initialisation and batch order.
+at 123 and 456 moves the checkpoints by 0.0005 to 0.0036 weighted F1, and the DAIGT V2 pair overlap where the HC3 pair do not. The classical configurations carry no such range, each being fit with a fixed random state on the fixed split, unlike the transformers' initialisation and batch order.
 
 That tie is not a matched comparison, since the classical models read whole documents while the transformers read 128 tokens. We refit the classical grid on the exact character span each tokeniser kept, from offset mapping. Held to one text budget the transformers lead on both corpora and every interval in Table [III](#page-3-2) excludes zero, so the unmatched tie was a fact about information access rather than architecture.
 
-## <span id="page-3-0"></span>*B. On HC3, orthography alone matches content alone*
+#### <span id="page-3-0"></span>*B. On HC3, orthography alone matches content alone*
 
 Table [IV](#page-3-3) gives the decomposition. On HC3 the two arms are indistinguishable at 3.20% error from orthography against 3.26% from content. They disagree on 625 documents split 316 to 309, so McNemar returns p = 0.81 and the difference is −0.07 points with interval [−0.52, +0.40]. Forty-seven features that never read a word do as well as a bag-of-words model over the whole vocabulary. On DAIGT V2 the same arms separate by a factor of 7.9, 7.86% against 0.99%, with 569 discordant documents split 44 to 525 at p < 10<sup>−</sup><sup>6</sup> .
 
 The content arm is deliberately unfiltered, since refitting it with the stopword removal and lemmatisation of the classical pipeline makes the HC3 filtered arm lose to orthography by 1.30 points where the unfiltered arm ties it, and we report the stronger opponent because it makes the parity claim harder. That arm is not itself clean on HC3, where its largest humanside weights fall on url placeholders and newline fragments rather than words, so the tie is between two partly artefactual views and not between orthography and meaning.
 
-Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so only on HC3 does surface reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs again over five group-aware partitions. Content leads on DAIGT V2 on all five at p < 10−<sup>6</sup> , while on HC3 the difference reaches significance on none, with p of 0.81, 0.27, 0.34, 0.23 and 0.78, and changes sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average −0.08 points over a range of −0.29 to +0.27, straddling zero. Tuning regularisation per arm on validation changes no conclusion, since the HC3 arms move to 3.15% and 3.47% error and stay indistinguishable on all five.
+![](_page_3_Figure_10.jpeg)
 
-## <span id="page-3-1"></span>*C. The parity belongs to one sub-domain and one cue*
+<span id="page-3-4"></span>Fig. 2. Arm error per DAIGT V2 generator, with the two same-model pairs.
+
+Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so only on HC3 does it reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs over five group-aware partitions. Content leads on DAIGT V2 on all five at p < 10−<sup>6</sup> , while on HC3 it reaches significance on none, with p of 0.81, 0.27, 0.34, 0.23 and 0.78, changing sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average −0.08 points over −0.29 to +0.27. Tuning regularisation per arm changes no conclusion, since the HC3 arms move to 3.15% and 3.47% and stay indistinguishable on all five.
+
+#### <span id="page-3-1"></span>*C. The parity belongs to one sub-domain and one cue*
 
 The lower half of Table [IV](#page-3-3) runs the same measurement per HC3 domain. On reddit\_eli5 the surface arm reaches 0.01% error, one mistake in 6,690 documents, while on the two other domains with enough test rows the ordering reverses, content winning by 4.53 points on finance, interval [+2.34, +6.87], and 3.60 on medicine, interval [+1.60, +6.00]. Since reddit\_eli5 is 74.8% of the balanced corpus, the corpus-level parity is substantially that one domain.
 
-The mechanism is measured. The space-before-punctuation cue appears in 98.9% of reddit\_eli5 human documents against 0.3% of machine ones, decaying to 1.6% on wiki\_csai. A boolean rule treating a document as human when the cue is present scores 99.22% accuracy on reddit\_eli5 and 94.23% on the balanced corpus, 94.22 weighted F1, where the sentence-level equivalent in [\[4\]](#page-5-3) reaches 82.12. Applying that work's cleaning kit changes 44.5% of HC3 documents and moves the surface arm from 3.20% to 13.22% error, a loss of 10.03 points with interval [−10.69, −9.38], while the content arm is untouched at 3.26%.
+The mechanism is measured. The space-before-punctuation cue appears in 98.9% of reddit\_eli5 human documents against 0.3% of machine ones, decaying to 1.6% on wiki\_csai. A boolean rule treating a document as human when the cue is present scores 99.22% accuracy there and 94.23% on the balanced corpus, 94.22 weighted F1, against 82.12 for the sentence-level equivalent in [\[4\]](#page-5-3). Applying that work's cleaning kit changes 44.5% of HC3 documents and moves the surface arm from 3.20% to 13.22% error, a loss of 10.03 points with interval [−10.69, −9.38], while the content arm is untouched at 3.26%.
 
-The same treatment on DAIGT V2 pairs each generator against the shared human pool. Content wins on every generator, while the surface arm's error spans sixteenfold across the ten generators with enough test rows, from 0.50% to 8.13%. Two pairs of the same underlying model contributed by different people differ by factors of 4.1 and 2.3, which we report as suggestive, since the smaller member of each pair holds 184 and 130 test rows. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, falling from 0.9921 to 0.7902 and 0.9930 to 0.9096 off DAIGT V2, and from 0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3.
+Fig. [2](#page-3-4) pairs each DAIGT V2 generator against the shared human pool. Content wins on every one, while the surface arm spans sixteenfold across the ten with enough test rows, 0.50% to 8.13%. Two pairs of the same underlying model contributed by different people differ by 4.1 and 2.3 times, suggestive only, since the smaller member of each holds 184 and 130 test rows. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, from 0.9921 to 0.7902 and 0.9930
 
 ![](_page_4_Figure_0.jpeg)
 
-<span id="page-4-4"></span>Fig. 2. Arm error and the per-split difference. Filled marks a significant surface-vs-content difference (p < 0.05).
+<span id="page-4-4"></span>Fig. 3. Arm error and the per-split difference. Filled marks a significant surface-vs-content difference (p < 0.05).
 
 #### <span id="page-4-5"></span>TABLE V LABEL-FREE CONTROL, ALL FIVE CONDITIONS. SHARE ASSIGNED THE HUMAN LABEL, MEAN CONFIDENCE IN PARENTHESES, 400 INPUTS PER CONDITION. D IS DAIGT V2, H IS HC3.
 
@@ -184,13 +189,13 @@ The same treatment on DAIGT V2 pairs each generator against the shared human poo
 |--------------------------------------------------------------------|-------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
 | random chars<br>shuffled<br>punctuation<br>repeated token<br>empty | 0% (0.91)<br>0% (0.83)<br>0% (0.82) | 0% (0.94) | 100% (0.99) 51.0% (0.71) 100% (0.98)<br>94.8% (0.99) 100% (1.00) 98.5% (1.00) 100% (1.00)<br>97.8% (0.71) 100% (1.00) 100% (1.00) 100% (0.99)<br>100% (1.00) 100% (0.98)<br>0% (1.00) | 0% (0.84)<br>0% (0.99) |
 
-Much of what each model learned is specific to the corpus it was fitted to.
+to 0.9096 off DAIGT V2, and 0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3. Much of what each model learned is specific to its own corpus.
 
-## <span id="page-4-0"></span>*D. A model that cannot represent the cue reaches 0.9916 anyway*
+# <span id="page-4-0"></span>*D. A model that cannot represent the cue reaches 0.9916 anyway*
 
-The natural inference is that HC3-trained detectors exploit the cue, but the test does not support it. BERT's WordPiece splits on punctuation irrespective of adjacent whitespace, emitting identical identifiers for "the answer is simple ." and "the answer is simple." in three of three pairs tested, where DeBERTa's SentencePiece distinguishes all three. BERT cannot represent the cue and still reaches 0.9916 weighted F1 on HC3, so the cue is sufficient in isolation and unnecessary in practice.
+The natural inference is that HC3-trained detectors exploit the cue, but the test does not support it. BERT's Word-Piece splits on punctuation irrespective of adjacent whitespace, emitting identical identifiers for "the answer is simple ." and "the answer is simple." in three of three pairs, where DeBERTa's SentencePiece distinguishes all three. BERT cannot represent the cue and still reaches 0.9916 weighted F1, so the cue is sufficient in isolation and unnecessary in practice.
 
-This is why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji, does change them, so the pipeline fires and the null is specific to whitespace. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig. [2](#page-4-4) shows both arms per corpus and the difference on each partition.
+This is why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji, does change them, so the pipeline fires. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig. [3](#page-4-4) shows both arms per corpus and the difference on each partition.
 
 # <span id="page-4-1"></span>*E. An adversarial collapse a label-free control does not distinguish*
 
@@ -198,11 +203,11 @@ The same reasoning applies to a robustness number. Perturbing HC3 text with typo
 
 #### *F. A published detector out of domain*
 
-The RoBERTa detector released with HC3 [\[12\]](#page-5-12) gives an external reference point, run over the same partitions without fine-tuning and reported in Table [I.](#page-1-2) Its 17.55% error on an unseen corpus bounds how far the 99.82 F1 of Section [II](#page-1-0) travels untuned.
+The RoBERTa detector released with HC3 [\[12\]](#page-5-12) gives an external reference point, run over the same partitions without fine-tuning and reported in Table [I.](#page-1-2) Its 17.55% error on an unseen corpus bounds how far the 99.82 F1 of Section [II](#page-0-0) travels untuned.
 
 #### V. DISCUSSION
 
-<span id="page-4-2"></span>The decomposition separates two benchmarks that a headline accuracy figure does not, and per sub-corpus it separates one benchmark from itself. Section [IV-C](#page-3-1) narrows the HC3 parity to one collection convention in the Reddit sub-corpus that is three quarters of the corpus, and removing that convention costs the surface arm ten points. A single collection convention can be cleaned, whereas DAIGT V2's surface arm reads a diffuse signal, its largest Shapley attribution reaching 2.77 against HC3's 7.81 for the cue alone, so it has no equivalent single cleaning step and may not be an artefact.
+<span id="page-4-2"></span>The decomposition separates two benchmarks that a headline accuracy does not, and per sub-corpus it separates one benchmark from itself. Section [IV-C](#page-3-1) narrows the HC3 parity to one convention in the Reddit sub-corpus, three quarters of the corpus, and removing it costs the surface arm ten points. A single collection convention can be cleaned, whereas DAIGT V2's surface arm reads a diffuse signal, its largest Shapley attribution reaching 2.77 against HC3's 7.81 for the cue alone, so it has no equivalent single cleaning step and may not be an artefact.
 
 What the measurement does not license is a claim that either corpus is clean, since surface form is substantially informative on both, and a low surface score would not have settled the question either [\[19\]](#page-5-19). The finding is comparative, bounded by the arms we built and by the confounds documented in detector generalisation [\[27\]](#page-5-27). The generator and transfer spreads in Section [IV-C](#page-3-1) point the same way, at how a subset was collected rather than at what produced it.
 
@@ -214,9 +219,11 @@ The practical use is a pre-release check rather than a detector, since a benchma
 
 <span id="page-4-3"></span>Several limits bound every number above. The transformers see at most 128 tokens, so the DAIGT V2 results describe an essay's opening, which is why the classical comparison repeats on that span in Table [III.](#page-3-2) The four checkpoints move by 0.0005 to 0.0036 weighted F1 across three seeds, but the grid behind them is single-seed. The content arm is bag-of-words, so word order lies outside it, and the 47 hand-built surface features make ε<sup>S</sup> an upper bound. Seven of the twenty sub-corpora fall below 200 test rows and are reported as underpowered, not as nulls. HC3 has one generator collected at one time, and both corpora are English, so these orthographic conventions are not language-independent.
 
-## VII. CONCLUSION AND FUTURE WORK
+# VII. CONCLUSION AND FUTURE WORK
 
-<span id="page-5-10"></span>The measurement is the portable part of this work, since it needs no new annotation and fits two logistic regressions. It yields one number per corpus, and per sub-corpus, that a headline accuracy cannot express, namely how much of a corpus a model could pass without reading the language, and we encourage reporting it alongside any new benchmark. Three extensions follow. The first is to run the decomposition per condition on RAID, M4 and SemEval-2024 Task 8, which already carry the labels it needs. The second is to repeat the comparison at a 512-token budget, so the DAIGT V2 results describe whole essays. The third is to test a non-English corpus, where these conventions need not hold.
+<span id="page-5-10"></span>The measurement is the portable part of this work, since it needs no new annotation and fits two logistic regressions. It yields one number per corpus, and per sub-corpus, that a headline accuracy cannot express, namely how much of a corpus a model could pass without reading the language, and we encourage reporting it alongside any new benchmark.
+
+Future work can focus on (1) running the decomposition per condition on RAID, M4 and SemEval-2024 Task 8, which already carry the labels it needs, (2) repeating the transformer comparison at a 512-token budget, so the DAIGT V2 results describe whole essays, and (3) testing a non-English corpus, where the conventions measured here need not hold.
 
 # REFERENCES
 
