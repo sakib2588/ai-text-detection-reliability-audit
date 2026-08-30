@@ -11,7 +11,7 @@
 
 | paper                                        | pp | body words | sent | sec | tab | fig | med w/sent |
 |----------------------------------------------|----|------------|------|-----|-----|-----|------------|
-| OURS 00_OURS_iccit6                          | 6  | 3550       | 169  | 6   | 5   | 2   | 20         |
+| OURS 00_OURS_iccit6                          | 6  | 3544       | 169  | 7   | 5   | 2   | 20         |
 | AlvarezMelis2018_robustness-interpretability | 6  | 2464       | 126  | 4   | 0   | 8   | 18.0       |
 | Anon2025_uav-vlrr-nmpc                       | 6  | 2654       | 140  | 8   | 3   | 7   | 19.0       |
 | Batool2026_humandiffusion-sar                | 5  | 1873       | 102  | 6   | 0   | 4   | 18.0       |
@@ -31,21 +31,21 @@
 
 | metric                   | ours | min  | median | max  | pct | flag |
 |--------------------------|------|------|--------|------|-----|------|
-| body words               | 3550 | 1873 | 2744   | 3671 | 91  | high |
+| body words               | 3544 | 1873 | 2744   | 3671 | 91  | high |
 | sentences                | 169  | 102  | 137    | 181  | 91  | high |
 | mean words / sentence    | 21.0 | 18.2 | 19.6   | 24.4 | 82  | -    |
 | median words / sentence  | 20   | 17.5 | 18.0   | 21   | 91  | high |
-| % sentences over 35w     | 10.1 | 1.9  | 8.0    | 16.2 | 73  | -    |
+| % sentences over 35w     | 9.5  | 1.9  | 8.0    | 16.2 | 73  | -    |
 | longest sentence         | 48   | 38   | 53     | 103  | 18  | -    |
 | paragraphs               | 58   | 37   | 49     | 94   | 73  | -    |
-| mean words / paragraph   | 61.2 | 30.6 | 50.6   | 90.3 | 82  | -    |
+| mean words / paragraph   | 61.1 | 30.6 | 50.6   | 90.3 | 82  | -    |
 | citations per 1k         | 12.1 | 0.0  | 10.6   | 18.2 | 73  | -    |
 | first person per 1k      | 4.8  | 0.0  | 3.0    | 16.2 | 55  | -    |
-| passive per 1k [proxy]   | 9.9  | 8.5  | 15.7   | 30.0 | 9   | low  |
+| passive per 1k [proxy]   | 9.6  | 8.5  | 15.7   | 30.0 | 9   | low  |
 | % sentences past [proxy] | 6.5  | 0.6  | 12.3   | 30.4 | 27  | -    |
 | % no tense anchor        | 33.1 | 17.7 | 38.4   | 54.0 | 36  | -    |
-| sections                 | 6    | 4    | 6      | 9    | 82  | -    |
-| sections (numbered)      | 6    | 4    | 5      | 8    | 82  | -    |
+| sections                 | 7    | 4    | 6      | 9    | 82  | -    |
+| sections (numbered)      | 7    | 4    | 5      | 8    | 91  | high |
 | tables (total)           | 5    | 0    | 3      | 6    | 91  | high |
 | figures (total)          | 2    | 2    | 4      | 8    | 9   | low  |
 
@@ -54,13 +54,13 @@
 
 | role         | n papers | ours   | min | median | max  | verdict                                            |
 |--------------|----------|--------|-----|--------|------|----------------------------------------------------|
-| introduction | 11       | 551    | 301 | 493    | 671  | in band, median 493                                |
+| introduction | 11       | 556    | 301 | 493    | 671  | in band, median 493                                |
 | background   | 1        | ABSENT | 818 | 818    | 818  | no band, only 1 of 11 papers                       |
 | related_work | 5        | 443    | 342 | 372    | 725  | in band, median 372                                |
 | threat_model | 2        | ABSENT | 287 | 822    | 1357 | no band, only 2 of 11 papers                       |
 | method       | 4        | 777    | 532 | 743    | 973  | in band, median 743                                |
 | evaluation   | 10       | 1233   | 462 | 874    | 1575 | in band, median 874                                |
-| discussion   | 2        | 430    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
+| discussion   | 2        | 419    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
 | conclusion   | 9        | 116    | 74  | 121    | 325  | in band, median 121                                |
 
 **A role carried by fewer than three of the eleven papers has no band.** Background appears in one reference paper and a threat model in two, so neither is a convention this corpus can be said to have, and their absence from our draft is not a violation. Every role that can be banded, and every role our draft carries, is inside its band.
@@ -84,7 +84,7 @@
 
 | paper                                    | 1-10 | 11-20 | 21-30 | 31-40 | 41-50 | 51+ |
 |------------------------------------------|------|-------|-------|-------|-------|-----|
-| OURS 00_OURS_iccit6                      | 18%  | 35%   | 25%   | 17%   | 5%    | 0%  |
+| OURS 00_OURS_iccit6                      | 17%  | 36%   | 25%   | 17%   | 5%    | 0%  |
 | AlvarezMelis2018_robustness-interpretabi | 19%  | 43%   | 21%   | 13%   | 2%    | 2%  |
 | Anon2025_uav-vlrr-nmpc                   | 19%  | 41%   | 30%   | 8%    | 1%    | 1%  |
 | Batool2026_humandiffusion-sar            | 20%  | 40%   | 31%   | 8%    | 1%    | 0%  |

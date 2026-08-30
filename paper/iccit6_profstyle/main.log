@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 01:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 01:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -473,7 +473,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-<fig_pipeline_compact.pdf, id=152, 403.91702pt x 111.4042pt>
+<fig_pipeline_compact.pdf, id=157, 403.91702pt x 111.4042pt>
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
 Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 142.
@@ -516,7 +516,7 @@ Underfull \hbox (badness 1371) in paragraph at lines 289--290
  []
 
 [4]
-<fig_decomp_2panel.pdf, id=243, 248.45314pt x 100.42801pt>
+<fig_decomp_2panel.pdf, id=248, 248.45314pt x 100.42801pt>
 File: fig_decomp_2panel.pdf Graphic file (type pdf)
 <use fig_decomp_2panel.pdf>
 Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 298.
@@ -539,13 +539,13 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 35F744BE626E75F2D4975762ECEB021A;3909.
+(rerunfilecheck)             Checksum: C331BEBD57DD00F65A1D92FE11CC3936;4122.
  ) 
 Here is how much of TeX's memory you used:
- 11150 strings out of 476106
- 172976 string characters out of 5793933
+ 11153 strings out of 476106
+ 173013 string characters out of 5793933
  1957975 words of memory out of 5000000
- 32954 multiletter control sequences out of 15000+600000
+ 32956 multiletter control sequences out of 15000+600000
  599980 words of font info for 113 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  75i,10n,79p,1567b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -563,10 +563,10 @@ ymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
 e/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 253734 bytes).
+Output written on main.pdf (6 pages, 253954 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 339 compressed objects within 4 object streams
- 62 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 410 PDF objects out of 1000 (max. 8388607)
+ 344 compressed objects within 4 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 
