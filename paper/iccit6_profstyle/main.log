@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  30 AUG 2026 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  30 AUG 2026 22:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -485,12 +485,13 @@ ptm/m/n/10 [[]] and
  []
 
 [2] [3 <./fig_pipeline_compact.pdf>]
-<fig_dashboard.pdf, id=227, 523.16573pt x 306.44637pt>
-File: fig_dashboard.pdf Graphic file (type pdf)
-<use fig_dashboard.pdf>
-Package pdftex.def Info: fig_dashboard.pdf  used on input line 270.
-(pdftex.def)             Requested size: 216.71906pt x 126.94374pt.
- [4] [5 <./fig_dashboard.pdf>] (./main.bbl)
+<fig_decomp_2panel.pdf, id=227, 248.45314pt x 138.73111pt>
+File: fig_decomp_2panel.pdf Graphic file (type pdf)
+<use fig_decomp_2panel.pdf>
+Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 270.
+(pdftex.def)             Requested size: 252.0pt x 140.71849pt.
+ [4] [5 <./fig_decomp_2panel.pdf>]
+(./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -511,10 +512,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 70F0A2D91790F778C5E3A5265C7AE0FA;3760.
  ) 
 Here is how much of TeX's memory you used:
- 10735 strings out of 476106
- 167354 string characters out of 5793933
- 1956975 words of memory out of 5000000
- 32545 multiletter control sequences out of 15000+600000
+ 10737 strings out of 476106
+ 167438 string characters out of 5793933
+ 1955975 words of memory out of 5000000
+ 32547 multiletter control sequences out of 15000+600000
  599980 words of font info for 113 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  75i,9n,79p,1457b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -524,17 +525,18 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courie
-r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 297260 bytes).
+pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (6 pages, 251876 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 324 compressed objects within 4 object streams
+ 393 PDF objects out of 1000 (max. 8388607)
+ 327 compressed objects within 4 object streams
  59 named destinations out of 1000 (max. 500000)
  171 words of extra memory for PDF output out of 10000 (max. 10000000)
 

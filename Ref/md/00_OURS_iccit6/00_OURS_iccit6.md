@@ -156,15 +156,13 @@ The mechanism is measured rather than inferred. The spacebefore-punctuation cue 
 
 The same treatment on DAIGT V2 pairs each generator against the shared human pool. Content wins on every generator, while the surface arm's error spans sixteenfold across the ten generators with enough test rows, from 0.50% to 8.13%. Two pairs of the same underlying model contributed by different people differ by factors of 4.1 and 2.3, which we report as suggestive, since the smaller member of each pair holds 184 and 130 test rows.
 
-### <span id="page-3-2"></span>*D. A model that cannot represent the cue reaches 0.9916 anyway*
+## <span id="page-3-2"></span>*D. A model that cannot represent the cue reaches 0.9916 anyway*
 
 The natural inference from the cue's dominance is that HC3 trained detectors exploit it, but the test does not support it. BERT's WordPiece tokeniser splits on punctuation irrespective of adjacent whitespace, emitting identical identifier sequences
 
 ![](_page_4_Figure_0.jpeg)
 
-![](_page_4_Figure_1.jpeg)
-
-<span id="page-4-2"></span>Fig. 2. Every headline result in one view.
+<span id="page-4-2"></span>Fig. 2. Arm error and the per-split difference. Filled marks p < 0.05.
 
 <span id="page-4-1"></span>TABLE IV
 PUBLISHED NUMBERS ON THESE CORPORA, AND WHY EACH DIFFERS.
@@ -180,7 +178,7 @@ PUBLISHED NUMBERS ON THESE CORPORA, AND WHY EACH DIFFERS.
 
 for "the answer is simple ." and "the answer is simple." in three of three pairs tested, where De-BERTa's SentencePiece distinguishes all three. BERT cannot represent the cue and still reaches 0.9916 weighted F1 on HC3, so the cue is sufficient in isolation and unnecessary in practice.
 
-This is also why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, which alone would be indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji that WordPiece represents, does change them. The pipeline therefore fires and the null is specific to whitespace. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig. 2 collects the results above.
+This is also why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, which alone would be indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji that WordPiece represents, does change them. The pipeline therefore fires and the null is specific to whitespace. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig. 2 shows both arms per corpus and the difference on each partition.
 
 ### E. Neither corpus transfers to the other
 
@@ -190,7 +188,7 @@ Each deployed checkpoint was also evaluated on the corpus it was not trained on,
 
 Every model above is one we trained, so the RoBERTa detector released with HC3 [25] gives an external reference point, run over the same partitions without fine-tuning. Table IV places it beside the published figures and our own, and its 17.55% error on a corpus it has never seen bounds how far the 99.82 F1 of Section II travels untuned.
 
-# V. DISCUSSION
+#### V. DISCUSSION
 
 <span id="page-4-0"></span>The decomposition separates two benchmarks that a headline accuracy figure does not, and applied per sub-corpus it separates one benchmark from itself, since on HC3 orthography alone matches content alone on all five partitions while on DAIGT V2 content is stronger by a factor of 7.9. Section IV-C narrows the first of those to one collection convention in the Reddit sub-corpus that is three quarters of the corpus, and removing that convention costs the surface arm ten points. A single collection convention can be cleaned, whereas the diffuse stylistic signal DAIGT V2's surface arm reads has no equivalent single cleaning step in our experiments, and it may not be an artefact at all.
 
@@ -202,11 +200,11 @@ Two results here say more about method than about these corpora, because a clean
 
 The practical use of the measurement is a pre-release check rather than a detector, since a benchmark builder can run both arms before release and report the gap beside the headline score for the cost of two logistic regressions. The arms also mark where a detector should not be trusted, because a score earned on the Reddit sub-corpus does not carry to the rest of HC3. The gap against the released detector in Table IV is a training-data effect rather than an architectural one, since that model reads more tokens than ours and still loses 17.55 error points off its own corpus.
 
-Several limits bound every number above. The transformers see at most 128 tokens, so the DAIGT V2 transformer results describe classification from an essay's opening, which is why
+Several limits bound every number above. The transformers see at most 128 tokens, so the DAIGT V2 transformer results describe classification from an essay's opening, which is why the classical comparison is repeated on that span in Table II. The four deployed checkpoints were run at three seeds and move by 0.0005 to 0.0036 weighted F1, but the grid behind them is single-seed. The content arm is bag-of-words, so word order and syntax lie outside it, and the surface set is 47 hand-built features, so  $\varepsilon_{\rm S}$  is an upper bound rather than a measurement of what orthography could carry. Five of the eighteen sub-corpora fall below 200 test rows after rebalancing and are reported as underpowered rather than as nulls. HC3
 
-the classical comparison is repeated on that span in Table [II.](#page-3-4) The four deployed checkpoints were run at three seeds and move by 0.0005 to 0.0036 weighted F1, but the grid behind them is single-seed. The content arm is bag-of-words, so word order and syntax lie outside it, and the surface set is 47 hand-built features, so ε<sup>S</sup> is an upper bound rather than a measurement of what orthography could carry. Five of the eighteen sub-corpora fall below 200 test rows after rebalancing and are reported as underpowered rather than as nulls. HC3 has one generator collected at one time and both corpora are English, so the orthographic conventions the surface arm reads are not language-independent.
+has one generator collected at one time and both corpora are English, so the orthographic conventions the surface arm reads are not language-independent.
 
-## VI. CONCLUSION
+### VI. CONCLUSION
 
 <span id="page-5-10"></span>The measurement itself is the portable part of this work, since it needs no new annotation and fits two logistic regressions. It yields one number per corpus, and per sub-corpus, that a headline accuracy cannot express, namely how much of a corpus a model could pass without reading the language. We would encourage reporting it alongside any new detection benchmark, as a hypothesis-only baseline is now reported alongside a natural language inference dataset [\[10\]](#page-5-9). Three extensions follow directly. The first is to run the decomposition per condition on RAID, M4 and SemEval-2024 Task 8, which already carry the labels it needs. The second is to repeat the transformer comparison at a 512-token budget, so the DAIGT V2 results describe whole essays. The third is to test a non-English corpus, where the conventions measured here need not hold.
 
@@ -219,10 +217,10 @@ the classical comparison is repeated on that span in Table [II.](#page-3-4) The 
 - <span id="page-5-4"></span>[5] M. S. Baidya, S. S. Baidya, and C. Chawla, "Detecting the machine: A comprehensive benchmark of AI-generated text detectors across architectures, domains, and adversarial conditions," 2026, preprint. [Online]. Available: [https://www.researchgate.net/publication/](https://www.researchgate.net/publication/402739141) [402739141](https://www.researchgate.net/publication/402739141)
 - <span id="page-5-5"></span>[6] C. Park, H. J. Kim, J. Kim, Y. Kim, T. Kim, H. Cho, H. Jo, S. goo Lee, and K. M. Yoo, "Investigating the influence of prompt-specific shortcuts in AI generated text detection," 2024, preprint. [Online]. Available: [https://www.semanticscholar.org/paper/](https://www.semanticscholar.org/paper/c860cd15c192b54bc94ac927ba99e0f3d562bd86) [c860cd15c192b54bc94ac927ba99e0f3d562bd86](https://www.semanticscholar.org/paper/c860cd15c192b54bc94ac927ba99e0f3d562bd86)
 - <span id="page-5-6"></span>[7] L. Dugan, A. Hwang, F. Trhl´ık, A. Zhu, J. M. Ludan, H. Xu, D. Ippolito, and C. Callison-Burch, "RAID: A shared benchmark for robust evaluation of machine-generated text detectors," in *Proc. ACL*, 2024, pp. 12 463–12 492. [Online]. Available: [https:](https://doi.org/10.18653/v1/2024.acl-long.674) [//doi.org/10.18653/v1/2024.acl-long.674](https://doi.org/10.18653/v1/2024.acl-long.674)
-
 - <span id="page-5-7"></span>[8] Y. Wang, J. Mansurov, P. Ivanov, J. Su, A. Shelmanov, A. Tsvigun, C. Whitehouse, O. Mohammed Afzal, T. Mahmoud, T. Sasaki, T. Arnold, A. F. Aji, N. Habash, I. Gurevych, and P. Nakov, "M4: Multi-generator, multi-domain, and multi-lingual black-box machinegenerated text detection," in *Proc. EACL*, 2024, pp. 1369–1407. [Online]. Available: <https://doi.org/10.18653/v1/2024.eacl-long.83>
 - <span id="page-5-8"></span>[9] S. Gururangan, S. Swayamdipta, O. Levy, R. Schwartz, S. R. Bowman, and N. A. Smith, "Annotation artifacts in natural language inference data," in *Proc. NAACL-HLT*, 2018, pp. 107–112. [Online]. Available: <https://doi.org/10.18653/v1/N18-2017>
 - <span id="page-5-9"></span>[10] A. Poliak, J. Naradowsky, A. Haldar, R. Rudinger, and B. Van Durme, "Hypothesis only baselines in natural language inference," in *Proc. Joint Conf. on Lexical and Computational Semantics (\*SEM)*, 2018, pp. 180–191. [Online]. Available: <https://doi.org/10.18653/v1/S18-2023>
+
 - <span id="page-5-11"></span>[11] A. Yadagiri, S. Sai Teja, P. Pakray, and C. Chunka, "AI-generated text detection using DeBERTa with auxiliary stylometric features," in *Proceedings of the RANLP 2025 Workshop on Multi-Domain Detection of AI-Generated Text (M-DAIGT)*, 2025. [Online]. Available: <https://aclanthology.org/2025.ranlp-mdaigt.2/>
 - <span id="page-5-12"></span>[12] Y. Annepaka, P. Kumar, Y. Poddar, P. Pakray, and C. Chunka, "Synergizing linguistic features and transformer networks for detecting AI-generated text," *Knowledge and Information Systems*, vol. 68, no. 1, 2026. [Online]. Available: <https://doi.org/10.1007/s10115-025-02637-6>
 - <span id="page-5-13"></span>[13] Y. Wang, J. Mansurov, P. Ivanov, J. Su, A. Shelmanov, A. Tsvigun, O. M. Afzal, T. Mahmoud, G. Puccetti, T. Arnold, A. F. Aji, N. Habash, I. Gurevych, and P. Nakov, "SemEval-2024 task 8: Multidomain, multimodel and multilingual machine-generated text detection," in *Proc. 18th Int. Workshop on Semantic Evaluation (SemEval-2024)*, 2024, pp. 2057–2079. [Online]. Available: [https:](https://doi.org/10.18653/v1/2024.semeval-1.279) [//doi.org/10.18653/v1/2024.semeval-1.279](https://doi.org/10.18653/v1/2024.semeval-1.279)

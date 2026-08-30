@@ -265,16 +265,16 @@ The same treatment on DAIGT V2 pairs each generator against the shared human poo
 \subsection{A model that cannot represent the cue reaches 0.9916 anyway}
 \label{sec:tok}
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.42\textwidth]{fig_dashboard.pdf}
-\caption{Every headline result in one view.}
+\includegraphics[width=\columnwidth]{fig_decomp_2panel.pdf}
+\caption{Arm error and the per-split difference. Filled marks $p<0.05$.}
 \label{fig:dashboard}
-\end{figure*}
+\end{figure}
 
 The natural inference from the cue's dominance is that HC3-trained detectors exploit it, but the test does not support it. BERT's WordPiece tokeniser splits on punctuation irrespective of adjacent whitespace, emitting identical identifier sequences for \texttt{"the answer is simple ."} and \texttt{"the answer is simple."} in three of three pairs tested, where DeBERTa's SentencePiece distinguishes all three. BERT cannot represent the cue and still reaches 0.9916 weighted F1 on HC3, so the cue is sufficient in isolation and unnecessary in practice.
 
-This is also why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, which alone would be indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji that WordPiece represents, does change them. The pipeline therefore fires and the null is specific to whitespace. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig.~\ref{fig:dashboard} collects the results above.
+This is also why removing the cue changes nothing for BERT. Whitespace cleaning on HC3 yields predictions bit-identical to the uncleaned run, which alone would be indistinguishable from a step that never executed, whereas the same pipeline on DAIGT V2, where it also removes emoji that WordPiece represents, does change them. The pipeline therefore fires and the null is specific to whitespace. We do not attribute the BERT-to-DeBERTa difference to this cue, since the two models differ in tokeniser, architecture, pretraining corpus and parameter count. Fig.~\ref{fig:dashboard} shows both arms per corpus and the difference on each partition.
 
 \subsection{Neither corpus transfers to the other}
 \label{sec:cross}

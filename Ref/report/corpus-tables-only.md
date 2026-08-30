@@ -11,7 +11,7 @@
 
 | paper                                        | pp | body words | sent | sec | tab | fig | med w/sent |
 |----------------------------------------------|----|------------|------|-----|-----|-----|------------|
-| OURS 00_OURS_iccit6                          | 6  | 3616       | 172  | 6   | 4   | 2   | 20.0       |
+| OURS 00_OURS_iccit6                          | 6  | 3626       | 173  | 6   | 4   | 2   | 20         |
 | AlvarezMelis2018_robustness-interpretability | 6  | 2464       | 126  | 4   | 0   | 8   | 18.0       |
 | Anon2025_uav-vlrr-nmpc                       | 6  | 2654       | 140  | 8   | 3   | 7   | 19.0       |
 | Batool2026_humandiffusion-sar                | 5  | 1873       | 102  | 6   | 0   | 4   | 18.0       |
@@ -31,19 +31,19 @@
 
 | metric                   | ours | min  | median | max  | pct | flag |
 |--------------------------|------|------|--------|------|-----|------|
-| body words               | 3616 | 1873 | 2744   | 3671 | 91  | high |
-| sentences                | 172  | 102  | 137    | 181  | 91  | high |
+| body words               | 3626 | 1873 | 2744   | 3671 | 91  | high |
+| sentences                | 173  | 102  | 137    | 181  | 91  | high |
 | mean words / sentence    | 21.0 | 18.2 | 19.6   | 24.4 | 82  | -    |
-| median words / sentence  | 20.0 | 17.5 | 18.0   | 21   | 91  | high |
-| % sentences over 35w     | 7.0  | 1.9  | 8.0    | 16.2 | 45  | -    |
+| median words / sentence  | 20   | 17.5 | 18.0   | 21   | 91  | high |
+| % sentences over 35w     | 6.9  | 1.9  | 8.0    | 16.2 | 45  | -    |
 | longest sentence         | 57   | 38   | 53     | 103  | 64  | -    |
 | paragraphs               | 56   | 37   | 49     | 94   | 64  | -    |
-| mean words / paragraph   | 64.6 | 30.6 | 50.6   | 90.3 | 82  | -    |
+| mean words / paragraph   | 64.8 | 30.6 | 50.6   | 90.3 | 82  | -    |
 | citations per 1k         | 11.6 | 0.0  | 10.6   | 18.2 | 73  | -    |
 | first person per 1k      | 4.4  | 0.0  | 3.0    | 16.2 | 55  | -    |
 | passive per 1k [proxy]   | 10.2 | 8.5  | 15.7   | 30.0 | 9   | low  |
 | % sentences past [proxy] | 8.1  | 0.6  | 12.3   | 30.4 | 36  | -    |
-| % no tense anchor        | 34.3 | 17.7 | 38.4   | 54.0 | 36  | -    |
+| % no tense anchor        | 34.1 | 17.7 | 38.4   | 54.0 | 36  | -    |
 | sections                 | 6    | 4    | 6      | 9    | 82  | -    |
 | sections (numbered)      | 6    | 4    | 5      | 8    | 82  | -    |
 | tables (total)           | 4    | 0    | 3      | 6    | 91  | high |
@@ -59,7 +59,7 @@
 | related_work | 5        | 567    | 342 | 372    | 725  | in band, median 372                                |
 | threat_model | 2        | ABSENT | 287 | 822    | 1357 | no band, only 2 of 11 papers                       |
 | method       | 4        | 825    | 532 | 743    | 973  | in band, median 743                                |
-| evaluation   | 10       | 1041   | 462 | 874    | 1575 | in band, median 874                                |
+| evaluation   | 10       | 1051   | 462 | 874    | 1575 | in band, median 874                                |
 | discussion   | 2        | 528    | 405 | 503    | 601  | no band, only 2 of 11 papers, ours inside the pair |
 | conclusion   | 9        | 136    | 74  | 121    | 325  | in band, median 121                                |
 
