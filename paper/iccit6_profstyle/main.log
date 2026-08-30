@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 00:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.27)  31 AUG 2026 00:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -406,24 +406,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 -- Lines per column: 56 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -448,51 +448,65 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 45.
+Package hyperref Info: Link coloring ON on input line 46.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 84.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texm
-f-dist/fonts/enc/dvips/base/8r.enc}
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
+-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
 <fig_pipeline_compact.pdf, id=146, 403.91702pt x 111.4042pt>
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
-Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 120.
-(pdftex.def)             Requested size: 423.12378pt x 116.70416pt.
+Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 121.
+(pdftex.def)             Requested size: 402.47937pt x 111.00954pt.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-33.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+34.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 3701) in paragraph at lines 133--134
-\OT1/ptm/m/n/10 Naive Bayes, lo-gis-tic re-gres-sion and a lin-ear sup-port
+Underfull \hbox (badness 3291) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 Bayes, lo-gis-tic re-gres-sion and a lin-ear sup-port vec-tor
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 133--134
-\OT1/ptm/m/n/10 vec-tor ma-chine, each un-der bag-of-words and TF-IDF.
+Underfull \hbox (badness 5908) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 ma-chine, each un-der bag-of-words and TF-IDF. Two
  []
 
 
-Underfull \hbox (badness 1552) in paragraph at lines 133--134
-\OT1/ptm/m/n/10 Two are trans-form-ers, \OT1/pcr/m/n/10 bert-base-uncased \OT1/
-ptm/m/n/10 [[]] and
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 are trans-form-ers, \OT1/pcr/m/n/10 bert-base-uncased \OT1/ptm/
+m/n/10 [[]] and
+ []
+
+
+Underfull \hbox (badness 6608) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 on val-i-da-tion weighted F1. De-BERTa's Sen-ten-ce-Piece
+ []
+
+
+Underfull \hbox (badness 2302) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 to-keniser [[]] en-codes lead-ing whites-pace and BERT's
  []
 
 [2] [3 <./fig_pipeline_compact.pdf>]
@@ -501,11 +515,11 @@ Underfull \hbox (badness 1371) in paragraph at lines 268--269
 /n/10 hu-man doc-u-
  []
 
-<fig_decomp_2panel.pdf, id=229, 255.63622pt x 117.05011pt>
+<fig_decomp_2panel.pdf, id=229, 248.45314pt x 100.42801pt>
 File: fig_decomp_2panel.pdf Graphic file (type pdf)
 <use fig_decomp_2panel.pdf>
 Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 277.
-(pdftex.def)             Requested size: 252.0pt x 115.38878pt.
+(pdftex.def)             Requested size: 252.0pt x 101.86667pt.
 [4] [5 <./fig_decomp_2panel.pdf>] (./main.bbl)
 
 ** Conference Paper **
@@ -527,13 +541,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 35F744BE626E75F2D4975762ECEB021A;3909.
  ) 
 Here is how much of TeX's memory you used:
- 11147 strings out of 476106
- 172912 string characters out of 5793933
+ 11148 strings out of 476106
+ 172918 string characters out of 5793933
  1957975 words of memory out of 5000000
- 32951 multiletter control sequences out of 15000+600000
+ 32952 multiletter control sequences out of 15000+600000
  599980 words of font info for 113 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,9n,79p,1567b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,1567b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
@@ -548,7 +562,7 @@ ymbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a
 e/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 253960 bytes).
+Output written on main.pdf (6 pages, 253546 bytes).
 PDF statistics:
  402 PDF objects out of 1000 (max. 8388607)
  336 compressed objects within 4 object streams

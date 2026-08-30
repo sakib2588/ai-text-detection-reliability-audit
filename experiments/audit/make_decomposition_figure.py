@@ -42,7 +42,7 @@ def main() -> None:
             for k in ("D1", "D2")}
     names = {k: d[k]["name"] for k in ("D1", "D2")}
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(3.45, 1.65))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(3.45, 1.42))
 
     x = np.arange(2)
     w = 0.34
