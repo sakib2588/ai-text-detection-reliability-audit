@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 18:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,25 +475,38 @@ ts/enc/dvips/base/8r.enc}
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
 Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 161.
-(pdftex.def)             Requested size: 402.47937pt x 129.22116pt.
- [2] [3 <./fig_pipeline_compact.pdf>]
-<classical_vs_transformer.pdf, id=249, 260.39517pt x 194.61432pt>
+(pdftex.def)             Requested size: 299.28094pt x 96.08728pt.
+ [2]
+<classical_vs_transformer.pdf, id=202, 260.39517pt x 194.61432pt>
 File: classical_vs_transformer.pdf Graphic file (type pdf)
 <use classical_vs_transformer.pdf>
 Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 256.
-(pdftex.def)             Requested size: 252.0pt x 188.34209pt.
- [4 <./classical_vs_transformer.pdf>]
+(pdftex.def)             Requested size: 221.76123pt x 165.74068pt.
+ [3 <./fig_pipeline_compact.pdf>]
+Underfull \hbox (badness 1584) in paragraph at lines 312--313
+\OT1/ptm/m/n/10 on the two other do-mains with enough test rows, the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+[]\OT1/ptm/m/n/10 The mech-a-nism was mea-sured. The space-before-
+ []
+
+[4 <./classical_vs_transformer.pdf>]
 <fig_shap_beeswarm.pdf, id=287, 251.29497pt x 148.90431pt>
 File: fig_shap_beeswarm.pdf Graphic file (type pdf)
 <use fig_shap_beeswarm.pdf>
 Package pdftex.def Info: fig_shap_beeswarm.pdf  used on input line 318.
-(pdftex.def)             Requested size: 252.0pt x 149.32881pt.
+(pdftex.def)             Requested size: 221.76123pt x 131.4088pt.
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3
 30.
- (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-[5 <./fig_shap_beeswarm.pdf>] (./main.bbl)
+Underfull \vbox (badness 1107) has occurred while \output is active []
+
+ [5 <./fig_shap_beeswarm.pdf>] (./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -511,16 +524,16 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 87CD2B52CDBC395CA6B16772F856CC95;3879.
+(rerunfilecheck)             Checksum: 742692B47C757B4C1F2E0F659D03C342;3869.
  ) 
 Here is how much of TeX's memory you used:
  10970 strings out of 469515
  169316 string characters out of 5470807
- 603667 words of memory out of 5000000
+ 603663 words of memory out of 5000000
  39418 multiletter control sequences out of 15000+600000
  668525 words of font info for 116 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,1567b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1572b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -533,7 +546,7 @@ ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 
-Output written on main.pdf (6 pages, 243919 bytes).
+Output written on main.pdf (6 pages, 244219 bytes).
 PDF statistics:
  416 PDF objects out of 1000 (max. 8388607)
  338 compressed objects within 4 object streams
