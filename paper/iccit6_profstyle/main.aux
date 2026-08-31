@@ -38,9 +38,6 @@
 \citation{Feng2019misleading}
 \citation{Antoun2023towards}
 \citation{Liang2023gpt}
-\citation{Tian2023multiscale}
-\citation{Dugan2024raid}
-\citation{Wang2024m4}
 \citation{Thedrcat2023daigtv2}
 \citation{Guo2023close}
 \citation{Devlin2019bert}
@@ -56,26 +53,26 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Models}{2}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}The decomposition}{2}{subsection.3.4}\protected@file@percent }
 \newlabel{sec:decomp-def}{{\mbox  {III-D}}{2}{The decomposition}{subsection.3.4}{}}
+\newlabel{eq:arm}{{1}{2}{The decomposition}{equation.1}{}}
 \citation{Baidya2026detecting}
 \citation{McNemar1947note}
 \citation{Efron1979bootstrap}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The measurement pipeline and its three disjoint views.}}{3}{figure.1}\protected@file@percent }
 \newlabel{fig:pipeline}{{1}{3}{The measurement pipeline and its three disjoint views}{figure.1}{}}
-\newlabel{eq:arm}{{1}{3}{The decomposition}{equation.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Evaluation metrics}{3}{subsection.3.5}\protected@file@percent }
 \newlabel{sec:metrics}{{\mbox  {III-E}}{3}{Evaluation metrics}{subsection.3.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Statistics and controls}{3}{subsection.3.6}\protected@file@percent }
 \newlabel{sec:stats}{{\mbox  {III-F}}{3}{Statistics and controls}{subsection.3.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Test error for all eight configurations. Bold marks the best per corpus.}}{3}{table.2}\protected@file@percent }
-\newlabel{tab:models}{{II}{3}{Test error for all eight configurations. Bold marks the best per corpus}{table.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-G}}Reproducibility}{3}{subsection.3.7}\protected@file@percent }
 \newlabel{sec:repro}{{\mbox  {III-G}}{3}{Reproducibility}{subsection.3.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Test error for all eight configurations. Bold marks the best per corpus.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:models}{{II}{3}{Test error for all eight configurations. Bold marks the best per corpus}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces The matched text budget. Errors are percentages.}}{3}{table.3}\protected@file@percent }
+\newlabel{tab:budget}{{III}{3}{The matched text budget. Errors are percentages}{table.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Analysis}{3}{section.4}\protected@file@percent }
 \newlabel{sec:results}{{IV}{3}{Results and Analysis}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}A classical model matches a transformer on DAIGT V2 until the text budget is matched}{3}{subsection.4.1}\protected@file@percent }
 \citation{Tian2023multiscale}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces The matched text budget. Errors are percentages.}}{4}{table.3}\protected@file@percent }
-\newlabel{tab:budget}{{III}{4}{The matched text budget. Errors are percentages}{table.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Decomposition per corpus, then HC3 by domain. Bold marks the lower error.}}{4}{table.4}\protected@file@percent }
 \newlabel{tab:decomp}{{IV}{4}{Decomposition per corpus, then HC3 by domain. Bold marks the lower error}{table.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}On HC3, orthography alone matches content alone}{4}{subsection.4.2}\protected@file@percent }
@@ -84,6 +81,8 @@
 \newlabel{fig:genspread}{{2}{4}{Test error per DAIGT V2 generator, the ten above the 200-row floor}{figure.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}The parity belongs to one sub-domain and one cue}{4}{subsection.4.3}\protected@file@percent }
 \newlabel{sec:subgroup}{{\mbox  {IV-C}}{4}{The parity belongs to one sub-domain and one cue}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}A model that cannot represent the cue reaches 0.9916 anyway}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:tok}{{\mbox  {IV-D}}{4}{A model that cannot represent the cue reaches 0.9916 anyway}{subsection.4.4}{}}
 \citation{HelloSimpleAI2023detector}
 \citation{Feng2019misleading}
 \citation{Borile2025generalize}
@@ -91,8 +90,6 @@
 \newlabel{fig:dashboard}{{3}{5}{Arm error and the per-split difference. Filled marks a significant surface-vs-content difference ($p<0.05$)}{figure.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Label-free control, all five conditions. Share assigned the human label, mean confidence in parentheses, 400 inputs per condition. D is DAIGT V2, H is HC3.}}{5}{table.5}\protected@file@percent }
 \newlabel{tab:labelfree}{{V}{5}{Label-free control, all five conditions. Share assigned the human label, mean confidence in parentheses, 400 inputs per condition. D is DAIGT V2, H is HC3}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}A model that cannot represent the cue reaches 0.9916 anyway}{5}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:tok}{{\mbox  {IV-D}}{5}{A model that cannot represent the cue reaches 0.9916 anyway}{subsection.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}An adversarial collapse a label-free control does not distinguish}{5}{subsection.4.5}\protected@file@percent }
 \newlabel{sec:labelfree}{{\mbox  {IV-E}}{5}{An adversarial collapse a label-free control does not distinguish}{subsection.4.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}A published detector out of domain}{5}{subsection.4.6}\protected@file@percent }
@@ -101,6 +98,8 @@
 \newlabel{sec:limits}{{V}{5}{Discussion}{section.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Limitations}{5}{section.6}\protected@file@percent }
 \newlabel{sec:limitations}{{VI}{5}{Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion and Future Work}{5}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{VII}{5}{Conclusion and Future Work}{section.7}{}}
 \bibstyle{IEEEtran}
 \bibdata{refs6}
 \bibcite{Guo2023close}{1}
@@ -130,7 +129,5 @@
 \bibcite{McNemar1947note}{25}
 \bibcite{Efron1979bootstrap}{26}
 \bibcite{Borile2025generalize}{27}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion and Future Work}{6}{section.7}\protected@file@percent }
-\newlabel{sec:conclusion}{{VII}{6}{Conclusion and Future Work}{section.7}{}}
 \@writefile{toc}{\contentsline {section}{References}{6}{section*.1}\protected@file@percent }
 \gdef \@abspage@last{6}

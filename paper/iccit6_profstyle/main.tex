@@ -94,20 +94,20 @@ Ref. & Method & Dataset & Reported result & Limitation \\
 \section{Related Work}
 \label{sec:related}
 
-Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
+Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and its limitations.
 
 
 The dataset that set the current accuracy regime~\cite{Guo2023close} asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 question-answer rows from five sources with a RoBERTa classifier fine-tuned on it, later narrowed to roughly 91.7\% under semantic-invariant tasks~\cite{Su2023plus}. Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
 
-The closest prior result~\cite{Tian2023multiscale} addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix carries the experiment we build on, a detector made from a single test for one token identifier, above the 81.89 quoted there for a fine-tuned RoBERTa. It removes one cue already known, so it bounds neither the separability carried by surface form in total nor how that total compares across corpora.
+A related result~\cite{Tian2023multiscale} addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix reports a detector made from a single test for one token identifier reaching 82.12 F1 at sentence level, above the 81.89 quoted there for a fine-tuned RoBERTa.
 
-A third line~\cite{Zhou2024exploiting} asked whether a transformer is needed on the competition-era essay benchmarks at all, replacing fine-tuning with classical classifiers over character n-gram features on DAIGT V2, consistent with our own tie. It is a score rather than a decomposition, so what the n-grams read is left open, as it is for work pairing stylometry with DeBERTa~\cite{Yadagiri2025aigenerated} or transformer networks~\cite{Annepaka2026synergizing}, and the hand-crafted-versus-deep-learning comparison in~\cite{Ardeshirifar2025comparing}.
+A third line~\cite{Zhou2024exploiting} asked whether a transformer is needed on the competition-era essay benchmarks at all, replacing fine-tuning with classical classifiers over character n-gram features on DAIGT V2. What property of the text those n-grams exploit is left open, as it is for work pairing stylometry with DeBERTa~\cite{Yadagiri2025aigenerated} or transformer networks~\cite{Annepaka2026synergizing}, and the hand-crafted-versus-deep-learning comparison in~\cite{Ardeshirifar2025comparing}.
 
-The shared-benchmark line~\cite{Dugan2024raid,Wang2024m4,Wang2024semeval} makes detector results comparable when generators, domains and attacks vary at once, scoring per condition rather than in aggregate. None of them ask what any one condition is separable by, which is the axis added here. The same blind spot is documented for vision datasets~\cite{Torralba2011unbiased} and for inference models reading only the hypothesis~\cite{Gururangan2018annotation,Poliak2018hypothesis,Geirhos2020shortcut}, under the caveat~\cite{Feng2019misleading} that a high partial-input score shows a dataset is cheatable while a low one does not.
+The shared-benchmark line~\cite{Dugan2024raid,Wang2024m4,Wang2024semeval} makes detector results comparable when generators, domains and attacks vary at once, scoring per condition rather than in aggregate. None of them ask what any one condition is separable by. The same blind spot is documented for vision datasets~\cite{Torralba2011unbiased} and for inference models reading only the hypothesis~\cite{Gururangan2018annotation,Poliak2018hypothesis,Geirhos2020shortcut}, under the caveat~\cite{Feng2019misleading} that a high partial-input score shows a dataset is cheatable while a low one does not.
 
 The robustness line~\cite{Antoun2023towards} tested how far a reported accuracy survives a hostile writer, perturbing inputs and re-scoring HC3-trained detectors without retraining, while deployed detectors flag non-native English writing as machine-generated at high rates~\cite{Liang2023gpt}. Both report the fragility without locating what the detector relied on.
 
-Table~\tabref{tab:relatedwork} sets these side by side against what each reports. None of this work measures how much of a benchmark's separability is carried by surface form. Unlike~\cite{Tian2023multiscale}, which removes one cue, and~\cite{Dugan2024raid,Wang2024m4}, which compare detectors across conditions, this paper measures each corpus with two matched arms, locates the result per sub-corpus, and checks whether the detector can read the cue at all.
+Table~\tabref{tab:relatedwork} sets these side by side against what each reports. None of this work measures how much of a benchmark's separability is carried by surface form.
 
 % ---- 02_methods.tex ----
 \section{Methodology}
