@@ -176,7 +176,7 @@ HC3 carries 6,118 duplicate rows, 7.16\% of the corpus, so the split is group-aw
 
 \subsection{Models}
 
-Five families are evaluated. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased~\cite{Devlin2019bert} and microsoft/deberta-v3-base~\cite{He2023debertav3}, fine-tuned over a sixteen-run grid per dataset, learning rate $\in\{2,3\}\times10^{-5}$, batch size $\in\{16,32\}$, weight decay $\in\{0.01,0.1\}$, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section~\secref{sec:tok} examines.
+Five families carry the analysis. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased~\cite{Devlin2019bert} and microsoft/deberta-v3-base~\cite{He2023debertav3}, fine-tuned over a sixteen-run grid per dataset, learning rate $\in\{2,3\}\times10^{-5}$, batch size $\in\{16,32\}$, weight decay $\in\{0.01,0.1\}$, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section~\secref{sec:tok} examines. A wider sweep of twenty-one classical families over four representations, bag-of-words, TF-IDF, scaled TF-IDF and character 3--5 grams, is reported alongside them as context in Section~\secref{sec:results}, and no claim below rests on it.
 
 \subsection{The decomposition}
 \label{sec:decomp-def}
