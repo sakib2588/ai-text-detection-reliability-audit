@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 16:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -398,24 +398,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 
 -- Lines per column: 56 (exact).
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -449,70 +449,75 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 149.
 
 (/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 43.
  (./main.out)
 (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: No \author given.
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
-[]|\OT1/ptm/m/n/7 Tk-Instruct de-tec-tor on
- []
-
-
-Underfull \hbox (badness 1389) in paragraph at lines 89--89
-[]|\OT1/ptm/m/n/7 character n-grams, no trans-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
-[]|\OT1/ptm/m/n/7 TOEFL, US
- []
-
-
-Underfull \hbox (badness 1490) in paragraph at lines 89--89
-[]|\OT1/ptm/m/n/7 no orthographic-cue at-tri-bu-
- []
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fon
-ts/enc/dvips/base/8r.enc}
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fo
+nts/enc/dvips/base/8r.enc}
 
 
 ]
-<fig_pipeline_compact.pdf, id=176, 412.6243pt x 123.48053pt>
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\OT1/ptm/m/n/7 broad ar-chi-tec-ture bench-mark,
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 133--133
+[]|\OT1/ptm/m/n/7 TOEFL, US stu-
+ []
+
+<fig_pipeline_compact.pdf, id=172, 412.6243pt x 123.48053pt>
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
-Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 122.
+Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 166.
 (pdftex.def)             Requested size: 402.47937pt x 120.45238pt.
- [2] [3 <./fig_pipeline_compact.pdf>]
-<fig_generator_spread.pdf, id=274, 248.17908pt x 113.63611pt>
-File: fig_generator_spread.pdf Graphic file (type pdf)
-<use fig_generator_spread.pdf>
-Package pdftex.def Info: fig_generator_spread.pdf  used on input line 273.
-(pdftex.def)             Requested size: 252.0pt x 115.3871pt.
- [4 <./fig_generator_spread.pdf>]
-<fig_decomp_2panel.pdf, id=292, 252.01747pt x 100.69872pt>
-File: fig_decomp_2panel.pdf Graphic file (type pdf)
-<use fig_decomp_2panel.pdf>
-Package pdftex.def Info: fig_decomp_2panel.pdf  used on input line 285.
-(pdftex.def)             Requested size: 252.0pt x 100.69077pt.
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-90.
- (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+[2] [3 <./fig_pipeline_compact.pdf>]
+<classical_vs_transformer.pdf, id=269, 929.75548pt x 439.04117pt>
+File: classical_vs_transformer.pdf Graphic file (type pdf)
+<use classical_vs_transformer.pdf>
+Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 246.
+(pdftex.def)             Requested size: 423.12378pt x 199.80423pt.
+<fig_roc_zoom.pdf, id=272, 436.52321pt x 175.56703pt>
+File: fig_roc_zoom.pdf Graphic file (type pdf)
+<use fig_roc_zoom.pdf>
+Package pdftex.def Info: fig_roc_zoom.pdf  used on input line 257.
+(pdftex.def)             Requested size: 443.76031pt x 178.48663pt.
+<fig_confusion.pdf, id=274, 445.9265pt x 195.14357pt>
+File: fig_confusion.pdf Graphic file (type pdf)
+<use fig_confusion.pdf>
+Package pdftex.def Info: fig_confusion.pdf  used on input line 266.
+(pdftex.def)             Requested size: 464.39685pt x 203.23334pt.
+ [4]
+
+LaTeX Warning: Text page 5 contains only floats.
+
+
+Overfull \vbox (2.9161pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 5 contains only floats.
+
+
+Overfull \vbox (2.9161pt too high) has occurred while \output is active []
+
+
+[5 <./classical_vs_transformer.pdf> <./fig_roc_zoom.pdf> <./fig_confusion.pdf>]
+<fig_shap_beeswarm.pdf, id=417, 512.42406pt x 212.57732pt>
+File: fig_shap_beeswarm.pdf Graphic file (type pdf)
+<use fig_shap_beeswarm.pdf>
+Package pdftex.def Info: fig_shap_beeswarm.pdf  used on input line 326.
+(pdftex.def)             Requested size: 464.39685pt x 192.65742pt.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3
+38.
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [5 <./fig_decomp_2panel.pdf>] (./main.bbl)
+) [6] (./main.bbl [7 <./fig_shap_beeswarm.pdf>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -524,38 +529,37 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6] (./main.aux)
+[8] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2F726F037BECC5D4F2A4D3170CAD1187;4122.
+(rerunfilecheck)             Checksum: 76E0C2327E0357071F37CA5B8B9ABE2C;4122.
  ) 
 Here is how much of TeX's memory you used:
- 10977 strings out of 469515
- 169523 string characters out of 5470807
- 606642 words of memory out of 5000000
- 39422 multiletter control sequences out of 15000+600000
- 667447 words of font info for 115 fonts, out of 8000000 for 9000
+ 10996 strings out of 469515
+ 169926 string characters out of 5470807
+ 601237 words of memory out of 5000000
+ 39436 multiletter control sequences out of 15000+600000
+ 668525 words of font info for 116 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,1567b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1567b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/sy
-mbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></us
-r/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/font
-s/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr
-8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 347977 bytes).
+/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-
+dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on main.pdf (8 pages, 1363924 bytes).
 PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 364 compressed objects within 4 object streams
- 68 named destinations out of 1000 (max. 500000)
- 184 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 585 PDF objects out of 1000 (max. 8388607)
+ 392 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
