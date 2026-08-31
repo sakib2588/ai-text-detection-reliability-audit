@@ -11,20 +11,10 @@
 \definecolor{citecol}{HTML}{AA3377}
 \definecolor{seccol}{HTML}{228833}
 \definecolor{tabcol}{HTML}{4477AA}
-\usepackage[colorlinks=true,linkcolor=black,citecolor=citecol,urlcolor=citecol]{hyperref}
+\usepackage[hidelinks]{hyperref}
 \newcommand{\secref}[1]{\hyperref[#1]{\textcolor{seccol}{\ref*{#1}}}}
 \newcommand{\tabref}[1]{\hyperref[#1]{\textcolor{tabcol}{\ref*{#1}}}}
 \newcommand{\figref}[1]{\hyperref[#1]{\textcolor{tabcol}{\ref*{#1}}}}
-
-% ============================================================
-% SIX-PAGE ICCIT CUT. The full-length manuscript lives in ../iccit/.
-% This version keeps the decomposition, its localisation to one
-% sub-domain, and the two controls that change what the results mean.
-% Dropped for space, and recoverable from the long version: the ROC
-% analysis, the matched-text-budget refit, cross-corpus transfer, the
-% ensemble, the label-free perturbation control, the surface-feature
-% correlation matrix and the SHAP figure.
-% ============================================================
 
 \newif\ifblind
 \blindtrue
@@ -47,16 +37,7 @@
 
 \title{A Surface-Content Decomposition of\\AI-Generated Text Detection Benchmarks}
 
-\ifblind
-  \author{\IEEEauthorblockN{Anonymous Author(s)}
-  \IEEEauthorblockA{Affiliation withheld for double-blind review}}
-\else
-  \author{\IEEEauthorblockN{Niloy Paul, Arnob Sarker Supta, Nazmus Sakib, Afnan Ur Rayan}
-  \IEEEauthorblockA{Department of Computer Science\\
-  Faculty of Science and Technology\\
-  American International University-Bangladesh (AIUB)\\
-  Dhaka, Bangladesh}}
-\fi
+
 
 \maketitle
 
@@ -94,8 +75,8 @@ The rest of this paper is organised as follows. Section~\secref{sec:related} rev
 \caption{Prior work on these benchmarks, by method, result and the limitation that bears on our claim.}
 \label{tab:relatedwork}
 \scriptsize
-\setlength{\tabcolsep}{10pt}
-\begin{tabular}{@{}llllp{4.7cm}@{}}
+\setlength{\tabcolsep}{08pt}
+\begin{tabular}{@{}llllp{5cm}@{}}
 \toprule
 Ref. & Method & Dataset & Reported result & Limitation \\
 \midrule
@@ -104,7 +85,7 @@ Ref. & Method & Dataset & Reported result & Limitation \\
 \cite{Zhou2024exploiting} & character n-grams, no transformer & DAIGT & competitive with transformers & what the n-grams are reading \\
 \cite{Antoun2023towards} & misspelling, homoglyph attack & HC3 & 99.88 F1 falls to 33.57\% & a label-free control on the collapse \\
 \cite{HelloSimpleAI2023detector} & released RoBERTa, run by us & HC3, DAIGT & 0.9952 and 0.8230 wtd. F1 & contaminated on HC3, unseen on DAIGT \\
-ours & surface-content decomposition & HC3, DAIGT & \textbf{0.9972} and \textbf{0.9917} wtd. F1 & reports the arms, per sub-corpus \\
+
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -116,7 +97,7 @@ ours & surface-content decomposition & HC3, DAIGT & \textbf{0.9972} and \textbf{
 Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and the limitation bearing on our claim.
 
 
-The corpus that set the current accuracy regime~\cite{Guo2023close} asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 question-answer rows from five sources with a RoBERTa classifier fine-tuned on it, later narrowed to roughly 91.7\% under semantic-invariant tasks~\cite{Su2023plus}. Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
+The dataset that set the current accuracy regime~\cite{Guo2023close} asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 question-answer rows from five sources with a RoBERTa classifier fine-tuned on it, later narrowed to roughly 91.7\% under semantic-invariant tasks~\cite{Su2023plus}. Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
 
 The closest prior result~\cite{Tian2023multiscale} addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix carries the experiment we build on, a detector made from a single test for one token identifier, above the 81.89 quoted there for a fine-tuned RoBERTa. It removes one cue already known, so it bounds neither the separability carried by surface form in total nor how that total compares across corpora.
 
@@ -295,7 +276,7 @@ The mechanism is measured. The space-before-punctuation cue appears in 98.9\% of
 \label{fig:genspread}
 \end{figure}
 
-Fig.~\figref{fig:genspread} pairs each DAIGT V2 generator against the shared human pool. Content wins on every one, while the surface arm spans sixteenfold, 0.50\% to 8.13\%. Two pairs of the same model contributed by different people differ by 4.1 and 2.3 times, suggestive only, since the smaller member of each holds 184 and 130 test rows. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, from 0.9921 to 0.7902 and 0.9930 to 0.9096 off DAIGT V2, and 0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3. Much of what each model learned is specific to its own corpus.
+Fig.~\figref{fig:genspread} pairs each DAIGT V2 generator against the shared human pool. Content wins on every one, while the surface arm spans sixteenfold, 0.50\% to 8.13\%. Two pairs of the same model contributed by different people differ by 4.1 and 2.3 times, suggestive only, since the smaller member of each holds 184 and 130 test rows. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, from 0.9921 to 0.7902 and 0.9930 to 0.9096 off DAIGT V2, and 0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3.
 
 \subsection{A model that cannot represent the cue reaches 0.9916 anyway}
 \label{sec:tok}
@@ -367,6 +348,6 @@ Future work can focus on (1) running the decomposition per condition on RAID, M4
 
 
 \bibliographystyle{IEEEtran}
-\bibliography{refs}
+\bibliography{refs6}
 
 \end{document}
