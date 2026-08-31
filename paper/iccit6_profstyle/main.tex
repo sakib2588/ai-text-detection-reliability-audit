@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{placeins}
+\usepackage{tabularx}
 \usepackage{url}
 \usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
 \newcommand{\secref}[1]{\hyperref[#1]{\ref*{#1}}}
@@ -71,19 +72,21 @@ The rest of this paper is organised as follows. Section~\secref{sec:related} rev
 \caption{Prior work on these benchmarks, by method, result and its limitation.}
 \label{tab:relatedwork}
 \scriptsize
-\setlength{\tabcolsep}{08pt}
-\begin{tabular}{@{}llllp{5cm}@{}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{@{}lp{3.1cm}p{1.6cm}Xp{3cm}@{}}
 \toprule
 Ref. & Method & Dataset & Reported result & Limitation \\
 \midrule
 \cite{Guo2023close} & fine-tuned RoBERTa & HC3 & 99.82 F1 & which property of the text carries the score \\
+\cite{Su2023plus} & Tk-Instruct detector on semantic-invariant tasks & HC3 Plus & 91.73\% accuracy on the harder tasks against 99.82\% on plain HC3 & task difficulty varied, separability not measured \\
 \cite{Tian2023multiscale} & one-token whitespace rule & HC3 & 82.12 F1, per sentence & how much surface form carries in total \\
 \cite{Zhou2024exploiting} & character n-grams, no transformer & DAIGT & competitive with transformers & what the n-grams are reading \\
 \cite{Antoun2023towards} & misspelling, homoglyph attack & HC3 & 99.88 F1 falls to 33.57\% & a label-free control on the collapse \\
-\cite{HelloSimpleAI2023detector} & released RoBERTa, run by us & HC3, DAIGT & 0.9952 and 0.8230 wtd. F1 & contaminated on HC3, unseen on DAIGT \\
-
+\cite{Baidya2026detecting} & broad architecture benchmark, length-matched, humanised & HC3, ELI5 & near-perfect in domain, substantial drops out of domain & not decomposed into surface and content \\
+\cite{Liang2023gpt} & audit of seven deployed GPT detectors & TOEFL, US student essays & over half of non-native essays misclassified as machine-generated & no orthographic-cue attribution \\
+\cite{HelloSimpleAI2023detector} & released RoBERTa & HC3, DAIGT & 0.9952 and 0.8230 wtd. F1 & contaminated on HC3, unseen on DAIGT \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table*}
 
 % ---- 04_related_work.tex ----
