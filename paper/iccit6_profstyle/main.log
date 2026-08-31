@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 17:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.7.14)  31 AUG 2026 17:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -471,23 +471,23 @@ Underfull \hbox (badness 2717) in paragraph at lines 133--133
 []|\OT1/ptm/m/n/7 TOEFL, US stu-
  []
 
-<fig_pipeline_compact.pdf, id=172, 412.6243pt x 123.48053pt>
+<fig_pipeline_compact.pdf, id=172, 403.58179pt x 119.92001pt>
 File: fig_pipeline_compact.pdf Graphic file (type pdf)
 <use fig_pipeline_compact.pdf>
 Package pdftex.def Info: fig_pipeline_compact.pdf  used on input line 166.
-(pdftex.def)             Requested size: 402.47937pt x 120.45238pt.
+(pdftex.def)             Requested size: 402.47937pt x 119.59766pt.
 [2] [3 <./fig_pipeline_compact.pdf>]
-<classical_vs_transformer.pdf, id=270, 929.75548pt x 439.04117pt>
+<classical_vs_transformer.pdf, id=276, 929.75548pt x 439.04117pt>
 File: classical_vs_transformer.pdf Graphic file (type pdf)
 <use classical_vs_transformer.pdf>
 Package pdftex.def Info: classical_vs_transformer.pdf  used on input line 246.
 (pdftex.def)             Requested size: 423.12378pt x 199.80423pt.
-<fig_roc_zoom.pdf, id=273, 436.52321pt x 175.56703pt>
+<fig_roc_zoom.pdf, id=279, 436.52321pt x 175.56703pt>
 File: fig_roc_zoom.pdf Graphic file (type pdf)
 <use fig_roc_zoom.pdf>
 Package pdftex.def Info: fig_roc_zoom.pdf  used on input line 257.
 (pdftex.def)             Requested size: 443.76031pt x 178.48663pt.
-<fig_confusion.pdf, id=275, 445.9265pt x 195.14357pt>
+<fig_confusion.pdf, id=281, 445.9265pt x 195.14357pt>
 File: fig_confusion.pdf Graphic file (type pdf)
 <use fig_confusion.pdf>
 Package pdftex.def Info: fig_confusion.pdf  used on input line 266.
@@ -508,7 +508,7 @@ Overfull \vbox (2.9161pt too high) has occurred while \output is active []
 
 
 [5 <./classical_vs_transformer.pdf> <./fig_roc_zoom.pdf> <./fig_confusion.pdf>]
-<fig_shap_beeswarm.pdf, id=418, 512.42406pt x 212.57732pt>
+<fig_shap_beeswarm.pdf, id=424, 512.42406pt x 212.57732pt>
 File: fig_shap_beeswarm.pdf Graphic file (type pdf)
 <use fig_shap_beeswarm.pdf>
 Package pdftex.def Info: fig_shap_beeswarm.pdf  used on input line 326.
@@ -548,18 +548,20 @@ Here is how much of TeX's memory you used:
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/ty
-pe1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.
-pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-
-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/ti
-mes/utmri8a.pfb>
-Output written on main.pdf (8 pages, 1364039 bytes).
+/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-d
+ist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/tim
+es/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
+are/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (8 pages, 1277759 bytes).
 PDF statistics:
- 586 PDF objects out of 1000 (max. 8388607)
- 393 compressed objects within 4 object streams
+ 591 PDF objects out of 1000 (max. 8388607)
+ 404 compressed objects within 5 object streams
  72 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 

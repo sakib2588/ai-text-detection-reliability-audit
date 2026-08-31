@@ -1,4 +1,8 @@
-"""Measurement pipeline for the six-page cut, fig_pipeline_compact.pdf.
+"""SUPERSEDED. Fig. 1 is now drawn in TikZ, in paper/iccit6_profstyle/fig_pipeline.tex,
+so that it sets in the paper's own Times instead of a plotting library's sans.
+Running this script overwrites fig_pipeline_compact.pdf with the older styling.
+
+Measurement pipeline for the six-page cut, fig_pipeline_compact.pdf.
 
 Built as a publication figure rather than a flowchart of labelled boxes. Three
 choices carry it.
