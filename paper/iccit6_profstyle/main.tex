@@ -14,7 +14,7 @@
 \newcommand{\figref}[1]{\hyperref[#1]{\ref*{#1}}}
 
 \newif\ifblind
-\blindfalse
+\blindtrue
 
 \hypersetup{pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={},pdfcreator={}}
 
@@ -137,16 +137,13 @@ Ref. & Method & Dataset & Reported result & Limitation \\
 \section{Related Work}
 \label{sec:related}
 
-Each work below is read the same way, by what it set out to solve, the methodology it proposed, how that was carried out, its result, and its limitations.
-
-
 The dataset that set the current accuracy regime~\cite{Guo2023close} asked whether machine answers can be told apart from human answers across several domains at once, pairing 85,449 question-answer rows from five sources with a RoBERTa classifier fine-tuned on it, later narrowed to roughly 91.7\% under semantic-invariant tasks~\cite{Su2023plus}. Its generator was collected in one window, and the score is reported without asking which property of the text carries it.
 
 A related result~\cite{Tian2023multiscale} addressed detection when documents are too short for document-level evidence, releasing a cleaning kit for the whitespace convention it found. Its appendix reports a detector made from a single test for one token identifier reaching 82.12 F1 at sentence level, above the 81.89 quoted there for a fine-tuned RoBERTa.
 
-A third line~\cite{Zhou2024exploiting} asked whether a transformer is needed on the competition-era essay benchmarks at all, replacing fine-tuning with classical classifiers over character n-gram features on DAIGT V2. What property of the text those n-grams exploit is left open, as it is for work pairing stylometry with DeBERTa~\cite{Yadagiri2025aigenerated} or transformer networks~\cite{Annepaka2026synergizing}, and the hand-crafted-versus-deep-learning comparison in~\cite{Ardeshirifar2025comparing}.
+A third line~\cite{Zhou2024exploiting} asked whether a transformer is needed on the competition-era essay benchmarks at all, replacing fine-tuning with classical classifiers over character n-gram features on DAIGT V2. What property of the text those n-grams exploit is left open.
 
-The shared-benchmark line~\cite{Dugan2024raid,Wang2024m4,Wang2024semeval} makes detector results comparable when generators, domains and attacks vary at once, scoring per condition rather than in aggregate. None of them ask what any one condition is separable by. The same blind spot is documented for vision datasets~\cite{Torralba2011unbiased} and for inference models reading only the hypothesis~\cite{Gururangan2018annotation,Poliak2018hypothesis,Geirhos2020shortcut}, under the caveat~\cite{Feng2019misleading} that a high partial-input score shows a dataset is cheatable while a low one does not.
+The shared-benchmark line~\cite{Dugan2024raid,Wang2024m4} makes detector results comparable when generators, domains and attacks vary at once, scoring per condition rather than in aggregate. None of them ask what any one condition is separable by. The same blind spot is documented for inference models reading only the hypothesis~\cite{Gururangan2018annotation,Poliak2018hypothesis,Geirhos2020shortcut}, under the caveat~\cite{Feng2019misleading} that a high partial-input score shows a dataset is cheatable while a low one does not.
 
 The robustness line~\cite{Antoun2023towards} tested how far a reported accuracy survives a hostile writer, perturbing inputs and re-scoring HC3-trained detectors without retraining, while deployed detectors flag non-native English writing as machine-generated at high rates~\cite{Liang2023gpt}. Both report the fragility without locating what the detector relied on.
 
@@ -164,7 +161,7 @@ This is a measurement contribution rather than a detector, so no baseline shares
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.78\textwidth]{fig_pipeline_compact.pdf}
-\caption{The measurement pipeline. Stage 3 applies each view to the same constructed example document and prints what survives: the surface view keeps the marks and drops every word, the content view does the reverse, and the raw view is the unaltered text. The transformer is a reference point rather than a third arm.}
+\caption{The measurement pipeline. Stage 3 puts one constructed document through each view and shows what survives. The transformer is a reference point, not a third arm.}
 \label{fig:pipeline}
 \end{figure*}
 
@@ -176,7 +173,7 @@ HC3 carries 6,118 duplicate rows, 7.16\% of the corpus, so the split is group-aw
 
 \subsection{Models}
 
-Five families carry the analysis. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased~\cite{Devlin2019bert} and microsoft/deberta-v3-base~\cite{He2023debertav3}, fine-tuned over a sixteen-run grid per dataset, learning rate $\in\{2,3\}\times10^{-5}$, batch size $\in\{16,32\}$, weight decay $\in\{0.01,0.1\}$, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section~\secref{sec:tok} examines. A wider sweep of twenty-one classical families over four representations, bag-of-words, TF-IDF, scaled TF-IDF and character 3--5 grams, is reported alongside them as context in Section~\secref{sec:results}, and no claim below rests on it.
+Five families carry the analysis. Three are classical, Naive Bayes, logistic regression and a linear support vector machine, each under bag-of-words and TF-IDF. Two are transformers, bert-base-uncased~\cite{Devlin2019bert} and microsoft/deberta-v3-base~\cite{He2023debertav3}, fine-tuned over a sixteen-run grid per dataset, learning rate $\in\{2,3\}\times10^{-5}$, batch size $\in\{16,32\}$, weight decay $\in\{0.01,0.1\}$, selected on validation weighted F1. DeBERTa's SentencePiece tokeniser~\cite{Kudo2018sentencepiece} encodes leading whitespace and BERT's WordPiece does not, which makes the pair a controlled contrast on the cue Section~\secref{sec:tok} examines. A wider sweep of twenty classical families over four representations, bag-of-words, TF-IDF, scaled TF-IDF and character 3--5 grams, is reported alongside them as context in Section~\secref{sec:results}, and no claim below rests on it.
 
 \subsection{The decomposition}
 \label{sec:decomp-def}
@@ -241,34 +238,16 @@ DeBERTa & raw & \textbf{0.83} & \textbf{0.28} \\
 
 Table~\tabref{tab:models} reports every configuration, and the two benchmarks part company. On DAIGT V2 the best classical configuration sits 0.07 points above the best transformer, the two disagree on 99 documents split 47 to 52, and McNemar returns $p=0.69$ with a paired interval of $[-0.21, +0.34]$. On HC3 the same comparison gives 484 discordant cases split 16 to 468 at $p < 10^{-6}$, an error difference of $+4.21$ points. Reseeding at 123 and 456 moves the checkpoints by 0.0005 to 0.0036 weighted F1, and the DAIGT V2 pair overlap where the HC3 pair do not. The classical configurations carry no such range, each being fit with a fixed random state on the fixed split, unlike the transformers' initialisation and batch order.
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.82\textwidth]{classical_vs_transformer.pdf}
-\caption{Best weighted F1 per model family on each corpus, over the four classical representations and the two fine-tuned checkpoints. Transformers are the darker bars. On DAIGT V2 four classical families finish above the better transformer; on HC3 none does.}
+\includegraphics[width=\columnwidth]{classical_vs_transformer.pdf}
+\caption{Best weighted F1 per model family on each corpus, over the four classical representations and the two checkpoints. Transformers are in bold. On DAIGT V2 four classical families finish above the better transformer, on HC3 none does.}
 \label{fig:allmodels}
-\end{figure*}
+\end{figure}
 
-The ordering is not an artefact of the five families in Table~\tabref{tab:models}. Fig.~\figref{fig:allmodels} sweeps twenty-one classical families over four representations, bag-of-words, TF-IDF, scaled TF-IDF and character 3--5 grams, against the same two checkpoints. On DAIGT V2 four classical configurations finish above the better transformer, a ridge classifier on character 3--5 grams leading at 0.9941 weighted F1 against DeBERTa's 0.9917, whereas on HC3 both transformers clear every classical family, DeBERTa at 0.9972 against 0.9890 for the best linear support vector machine. The corpus decides the ordering, not the model class.
+The ordering is not an artefact of the five families in Table~\tabref{tab:models}. Fig.~\figref{fig:allmodels} sweeps twenty classical families over four representations, bag-of-words, TF-IDF, scaled TF-IDF and character 3--5 grams, against the same two checkpoints. On DAIGT V2 four classical configurations finish above the better transformer, a ridge classifier on character 3--5 grams leading at 0.9941 weighted F1 against DeBERTa's 0.9917, whereas on HC3 both transformers clear every classical family, DeBERTa at 0.9972 against 0.9890 for the best linear support vector machine. The corpus decides the ordering, not the model class.
 
 That tie is not a matched comparison, since the classical models read whole documents while the transformers read 128 tokens. We refit the classical grid on the exact character span each tokeniser kept, from offset mapping. That window holds 33.5\% and 34.1\% of a DAIGT V2 document against 74.6\% and 75.6\% of an HC3 one, and restricting the classical models to it costs them 1.20 and 1.19 points on DAIGT V2 and 1.17 and 1.23 on HC3. Held to one budget the transformers lead on both corpora, by 1.26 points against each DAIGT V2 window, interval $[0.90, 1.63]$, and by 4.82 and 5.44 on HC3, so the unmatched tie was a fact about information access rather than architecture.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=0.86\textwidth]{fig_roc_zoom.pdf}
-\caption{Operating region above 0.85 true positive rate, with area under the curve in the legend. The two corpora separate on this axis as they do on error.}
-\label{fig:roc}
-\end{figure*}
-
-Ranking the same eight configurations without a threshold does not change which corpus is which. In Fig.~\figref{fig:roc} every DAIGT V2 configuration falls between 0.9915 and 0.9996 area, and the order there depends on the metric, since the support vector machine on TF-IDF takes 0.9992 against DeBERTa's 0.9991 while DeBERTa leads it on weighted F1. On HC3 the same panel separates instead, the two transformers reaching 0.9996 and 1.0000 where no classical configuration passes 0.9866. What distinguishes the corpora is therefore not an artefact of the operating point.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=0.9\textwidth]{fig_confusion.pdf}
-\caption{Per-class breakdown behind Table~\tabref{tab:models}, counts with row percentages. The classical errors on HC3 fall on both sides of the diagonal.}
-\label{fig:confusion}
-\end{figure*}
-
-Fig.~\figref{fig:confusion} splits those errors by class. On HC3 the classical mistakes are two-sided, Naive Bayes over bag-of-words calling 11.8\% of human answers machine and 13.9\% of machine answers human, where DeBERTa leaves 0.3\% and 0.2\%. On DAIGT V2 the same configurations sit near the diagonal apart from Naive Bayes, which misses 6.7\% of the machine-generated essays.
 
 \subsection{On HC3, orthography alone matches content alone}
 \label{sec:decomp}
@@ -321,12 +300,12 @@ The lower half of Table~\tabref{tab:decomp} runs the same measurement per HC3 do
 
 The mechanism is measured. The space-before-punctuation cue appears in 98.9\% of reddit\_eli5 human documents against 0.3\% of machine ones, decaying to 1.6\% on wiki\_csai. A boolean rule treating a document as human when the cue is present scores 99.22\% accuracy there and 94.23\% on the balanced corpus, 94.22 weighted F1, against 82.12 for the sentence-level equivalent in~\cite{Tian2023multiscale}. Applying that work's cleaning kit changes 44.5\% of HC3 documents and moves the surface arm from 3.20\% to 13.22\% error, a loss of 10.03 points with interval $[-10.69, -9.38]$, while the content arm is untouched at 3.26\%.
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.9\textwidth]{fig_shap_beeswarm.pdf}
-\caption{Shapley attributions for the surface arm, the twelve highest-magnitude features per corpus with the remaining thirty-four summed. Colour is the feature value. HC3 is led by one cue; DAIGT V2 is led by size.}
+\includegraphics[width=\columnwidth]{fig_shap_beeswarm.pdf}
+\caption{Mean absolute Shapley value for the surface arm, ten highest features per corpus. Colour marks the class a feature drives. HC3 is led by one cue, DAIGT V2 by size.}
 \label{fig:shap}
-\end{figure*}
+\end{figure}
 
 Fig.~\figref{fig:shap} reads the arm that carries this. On HC3 the space-before-punctuation rate is the leading attribution, ahead of length in words and in characters, while on DAIGT V2 the ranking opens with length in characters and mean word length and no single orthographic convention dominates.
 
@@ -362,12 +341,6 @@ empty & 0\% (0.82) & 0\% (0.94) & 0\% (1.00) & 0\% (0.99) \\
 \end{table}
 
 The same reasoning applies to a robustness number. Typos at 10\% of alphabetic characters drive DeBERTa from 0.9972 to 0.3644 weighted F1 and BERT to 0.3746, one-directionally, 5,207 of 5,355 machine documents reassigned to human against one human document lost. That looks targeted. Table~\tabref{tab:labelfree} feeds the same checkpoints five inputs carrying no human-versus-machine information. Token-shuffled and punctuation-only text draws the human label 94.8\% to 100\% of the time, empty input draws the machine label from all four at up to 0.998 confidence, and random characters split them. The label on content-free input is confident but arbitrary, tracking input type rather than evidence, and majority-prior collapse is excluded by the training balance of 0.4981 against 0.5019. The collapse is not distinguished from that behaviour, so we decline to read our own perturbation numbers as robustness measurements. Back-translation, which leaves text readable, costs the same models only 0.004 to 0.020 weighted F1.
-
-\subsection{A published detector out of domain}
-\label{sec:published}
-
-
-The RoBERTa detector released with HC3~\cite{HelloSimpleAI2023detector} gives an external reference point, run over the same partitions without fine-tuning and reported in Table~\tabref{tab:relatedwork}. Its 17.55\% error on an unseen corpus bounds how far the 99.82 F1 of Section~\secref{sec:related} travels untuned.
 
 % ---- 05_discussion_conclusion.tex ----
 \section{Discussion}
