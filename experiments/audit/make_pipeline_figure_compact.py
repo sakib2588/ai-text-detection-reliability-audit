@@ -108,8 +108,10 @@ def main() -> None:
 
     # ------------------------------------------------------------ 3  views
     header(C3, W3, 3, "Disjoint views")
-    ax.text(C3, 84.0, 'in   He said, "yes" — 42 times.', ha="left",
-            va="center", color=MUTED, **MONO)
+    ax.text(C3, 86.5, "one example document", ha="left", va="center",
+            fontsize=6.4, color=MUTED, fontweight="bold")
+    ax.text(C3, 81.0, 'He said, "yes" — 42 times.', ha="left",
+            va="center", color=INK, **MONO)
 
     views = [("surface", "Surface", ',   "   —   .', "47 marks, no words", 58.0),
              ("content", "Content", "he said yes times", "bag of words", 34.0),
