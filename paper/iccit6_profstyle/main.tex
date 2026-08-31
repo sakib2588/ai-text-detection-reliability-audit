@@ -109,8 +109,6 @@ This paper proposes that measurement and compares three arms on identical splits
 \item A label-free control (Section~\secref{sec:labelfree}) showing that an apparent adversarial collapse is not distinguished from a degenerate response, which makes both controls preconditions on reading an ablation or attack result of these kinds, on the corpora and checkpoints tested here.
 \end{enumerate}
 
-The rest of this paper is organised as follows. Section~\secref{sec:related} reviews detection on these benchmarks, shortcut learning and robustness. Section~\secref{sec:method} states the problem setting, the corpora, the decomposition and the controls. Section~\secref{sec:results} reports the measurements. Section~\secref{sec:discussion} discusses what they license, Section~\secref{sec:limitations} states the limits and Section~\secref{sec:conclusion} concludes.
-
 \begin{table*}[!t]
 \centering
 \caption{Prior work on these benchmarks, by method, result and its limitation. Published figures come from each work's own split and protocol, so they are context rather than a controlled comparison.}
@@ -185,21 +183,36 @@ Each arm fits one logistic regression on the same training partition,
 \label{eq:arm}
 h_{a} = \arg\min_{h} \, \sum_{(x,y) \in \mathcal{D}_{\text{tr}}} \ell\big(h(\phi_{a}(x)), y\big) + \tfrac{1}{2C}\lVert h \rVert_2^2 ,
 \end{equation}
-for $a \in \{\mathrm{S},\mathrm{C}\}$, with $C=1.0$, scikit-learn's default, for both. Sharing the classifier family and the regularisation is what makes the two arms comparable. We report the held-out error $\varepsilon_{a}$ of each arm and the gap $\Delta = \varepsilon_{\mathrm{S}} - \varepsilon_{\mathrm{C}}$, where a gap near zero says orthography alone reaches the accuracy of content alone. The comparison is between two specific arms rather than a partition of the total separability.
+for $a \in \{\mathrm{S},\mathrm{C}\}$, with $C=1.0$, scikit-learn's default, for both. Sharing the classifier family and the regularisation is what makes the two arms comparable. We report the held-out error of each arm and the gap between them,
+\begin{equation}
+\label{eq:gap}
+\varepsilon_{a} = \frac{1}{|\mathcal{D}_{\text{te}}|}\!\!\sum_{(x,y) \in \mathcal{D}_{\text{te}}}\!\!\mathbb{1}\big[h_{a}(\phi_{a}(x)) \neq y\big],
+\quad
+\Delta = \varepsilon_{\mathrm{S}} - \varepsilon_{\mathrm{C}},
+\end{equation}
+where a gap near zero says orthography alone reaches the accuracy of content alone. The comparison is between two specific arms rather than a partition of the total separability.
 
 One channel reaches both arms, since the surface arm reads size counts directly and raw bag-of-words rows sum to document length. Length is a documented confound on both corpora~\cite{Baidya2026detecting}, so we drop the five size-scaling surface features and normalise content rows to unit total before rescaling by the mean training document length, which stops the arm collapsing for reasons of scale rather than length.
 
 \subsection{Evaluation metrics}
 \label{sec:metrics}
 
-Models are scored by weighted F1 and by test error, which move together because the corpora are balanced by construction, and weighted F1 keeps our numbers comparable with the published detectors of Section~\secref{sec:related}. The decomposition is read from the gap between two error rates rather than from either alone.
+Models are scored by weighted F1 and by test error, which move together on balanced corpora, and weighted F1 keeps our numbers comparable with the published detectors of Section~\secref{sec:related}.
 
 \subsection{Statistics and controls}
 \label{sec:stats}
 
-Transformer baselines are read from the deployed checkpoint's own record rather than from a grid maximum, with paired comparisons on the same test set. Writing $b$ and $c$ for the discordant counts, we report the exact two-sided binomial $p$-value~\cite{McNemar1947note} with a paired bootstrap 95\% interval on the error difference over 10,000 resamples~\cite{Efron1979bootstrap}, resampling document indices so the pairing is preserved. A bootstrap says nothing about how the corpus was partitioned and the central claim here is a null, so the decomposition is repeated over five group-aware partitions varying only the split seed. We run no parametric tests at $n \le 30$.
-
-Three controls guard the claims below, on tokenisation, on whether a cleaning pipeline fired, and on inputs carrying no label information at all. Each is described where it is used.
+Transformer baselines are read from the deployed checkpoint's own record rather than from a grid maximum, with paired comparisons on the same test set. Writing $b$ and $c$ for the counts of documents the two systems disagree on, $n=b+c$, the exact two-sided test~\cite{McNemar1947note} reads $B \sim \mathrm{Binomial}(n, \tfrac{1}{2})$ under the null and reports
+\begin{equation}
+\label{eq:mcnemar}
+p = 2\min\big\{\Pr(B \le b),\; \Pr(B \ge b)\big\} \wedge 1 .
+\end{equation}
+The interval is a paired bootstrap over 10,000 resamples~\cite{Efron1979bootstrap}, resampling document indices so the pairing is preserved. A null is read as equivalence rather than as absent evidence only when that interval clears a stated margin $\delta$,
+\begin{equation}
+\label{eq:tost}
+[\Delta_{\text{lo}}, \Delta_{\text{hi}}] \subset (-\delta, +\delta),
+\end{equation}
+which is the form the HC3 result in Section~\secref{sec:decomp} is reported in. A bootstrap says nothing about how the corpus was partitioned and the central claim here is a null, so the decomposition is repeated over five group-aware partitions varying only the split seed. We run no parametric tests at $n \le 30$.
 
 \subsection{Reproducibility}
 \label{sec:repro}
@@ -291,7 +304,7 @@ Table~\tabref{tab:decomp} gives the decomposition. On HC3 the two arms are indis
 
 The content arm is deliberately unfiltered, since refitting it with the stopword removal and lemmatisation of the classical pipeline makes the HC3 filtered arm lose to orthography by 1.30 points where the unfiltered arm ties it, and we report the stronger opponent because it makes the parity claim harder. That arm is not itself clean on HC3, where its largest human-side weights fall on url placeholders and newline fragments rather than words, so the tie is between two partly artefactual views and not between orthography and meaning.
 
-Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so only on HC3 does it reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs over five group-aware partitions. Content leads on DAIGT V2 on all five at $p < 10^{-6}$, while on HC3 it reaches significance on none, with $p$ of 0.81, 0.27, 0.34, 0.23 and 0.78, changing sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average $-0.08$ points over $-0.29$ to $+0.27$. Read as equivalence rather than as a failed rejection, the 95\% interval places the arms within 0.52 points of each other, which is the margin these data support. Tuning regularisation per arm changes no conclusion, since the HC3 arms move to 3.15\% and 3.47\% and stay indistinguishable on all five.
+Surface form is informative on both benchmarks, since DAIGT V2's surface arm reaches 0.9214 weighted F1, so only on HC3 does it reach parity. Closing the length channel widens DAIGT V2's content advantage to 10.6 times and turns HC3's parity into a 2.91-point advantage for orthography. A null on one partition is what a lucky split manufactures, so the decomposition runs over five group-aware partitions. Content leads on DAIGT V2 on all five at $p < 10^{-6}$, while on HC3 it reaches significance on none, with $p$ of 0.81, 0.27, 0.34, 0.23 and 0.78, changing sign between them. That is the strong form of the null, since an underpowered real difference keeps its sign, and the five differences average $-0.08$ points over $-0.29$ to $+0.27$. Read as equivalence rather than as a failed rejection, the interval satisfies~\eqref{eq:tost} at $\delta = 0.52$ points. Tuning regularisation per arm changes no conclusion, since the HC3 arms move to 3.15\% and 3.47\% and stay indistinguishable on all five.
 
 \subsection{The parity belongs to one sub-domain and one cue}
 \label{sec:subgroup}
@@ -309,7 +322,7 @@ The mechanism is measured. The space-before-punctuation cue appears in 98.9\% of
 
 Fig.~\figref{fig:shap} reads the arm that carries this. On HC3 the space-before-punctuation rate is the leading attribution, ahead of length in words and in characters, while on DAIGT V2 the ranking opens with length in characters and mean word length and no single orthographic convention dominates.
 
-Pairing each DAIGT V2 generator against the shared human pool, over the ten above the 200-row floor, content wins on every one, while the surface arm spans sixteenfold, 0.50\% to 8.13\%. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1, from 0.9921 to 0.7902 and 0.9930 to 0.9096 off DAIGT V2, and 0.9930 to 0.8311 and 0.9970 to 0.8512 off HC3.
+Pairing each DAIGT V2 generator against the shared human pool, over the ten above the 200-row floor, content wins on every one, while the surface arm spans sixteenfold, 0.50\% to 8.13\%. Transfer behaves the same way. Each checkpoint scored on the corpus it was not trained on, over three seeds, loses 0.0833 to 0.2019 mean weighted F1.
 
 \subsection{A model that cannot represent the cue reaches 0.9916 anyway}
 \label{sec:tok}
