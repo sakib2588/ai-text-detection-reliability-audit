@@ -18,7 +18,6 @@
 % text macros, since a tikz style cannot be used as a switch inside node text
 \newcommand{\hd}[1]{{\bfseries\fontsize{7.4}{8.6}\selectfont #1}}
 \newcommand{\nt}[1]{{\fontsize{6.5}{7.5}\selectfont\color{note}#1}}
-\newcommand{\spx}[1]{{\ttfamily\fontsize{6.7}{7.8}\selectfont #1}}
 
 \begin{document}
 \begin{tikzpicture}[x=1mm,y=1mm,
@@ -34,7 +33,7 @@
 % ---------------------------------------------------------------- stage bar
 \node[stage] at (0,52)   {1. Dataset};
 \node[stage] at (33,52)  {2. Partition};
-\node[stage] at (66,52)  {3. Disjoint views};
+\node[stage] at (72,52)  {3. Disjoint views};
 \node[stage] at (111,52) {4. Arm and test};
 \draw[ln,draw=note] (0,50.4) -- (141,50.4);
 
@@ -49,14 +48,12 @@
   {\hd{Grouped split}\\[0.15mm]\nt{72 / 8 / 20\\train / val / test\\hashed by content,\\no group crosses}};
 
 % ---------------------------------------------------------------- 3 views
-\node[anchor=north west,font=\itshape\fontsize{6.4}{7.4}\selectfont,text=note]
-  (ex) at (66,49) {one document: \spx{He said, "yes" \textrm{\textemdash} 42 times.}};
-\node[blk,text width=35mm] (v1) at (66,44)
-  {\hd{Surface}\hfill\spx{,\ \ \ "\ \ \ \textrm{\textemdash}\ \ \ .}\\[0.15mm]\nt{47 marks, no words}};
-\node[blk,text width=35mm] (v2) at (66,33)
-  {\hd{Content}\hfill\spx{he said yes times}\\[0.15mm]\nt{bag of words}};
-\node[blk,text width=35mm] (v3) at (66,22)
-  {\hd{Raw}\hfill\spx{He said , " yes "}\\[0.15mm]\nt{128 subword tokens}};
+\node[blk,text width=30mm] (v1) at (72,44)
+  {\hd{Surface}\\[0.15mm]\nt{47 marks, no words}};
+\node[blk,text width=30mm] (v2) at (72,33)
+  {\hd{Content}\\[0.15mm]\nt{bag of words}};
+\node[blk,text width=30mm] (v3) at (72,22)
+  {\hd{Raw}\\[0.15mm]\nt{128 subword tokens}};
 
 % ---------------------------------------------------------------- 4 arms
 \node[blk,text width=27mm] (m1) at (111,45)
@@ -72,7 +69,7 @@
 \draw[ln] (d2.east) -| (b1);
 \draw[ar] (b1) |- (sp.west);
 
-\coordinate (b2) at (61.5,37.2);
+\coordinate (b2) at (67.5,37.2);
 \draw[ln] (sp.east) -| (b2);
 \draw[ar] (b2) |- (v1.west);
 \draw[ar] (b2) |- (v2.west);
