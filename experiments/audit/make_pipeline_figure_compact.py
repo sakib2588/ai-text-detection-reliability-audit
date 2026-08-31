@@ -75,8 +75,8 @@ def main() -> None:
                                      mutation_scale=6, lw=0.85, color=FLOW,
                                      shrinkA=0, shrinkB=0, zorder=1))
 
-    # ------------------------------------------------------------ 1  corpus
-    header(C1, W1, 1, "Corpus")
+    # ------------------------------------------------------------ 1  dataset
+    header(C1, W1, 1, "Dataset")
     for name, n, y in (("DAIGT V2", 34994, 66.0), ("HC3", 53806, 40.0)):
         ax.text(C1, y + 12.0, name, ha="left", va="center", fontsize=7.6,
                 color=INK, fontweight="bold")
