@@ -7,14 +7,10 @@
 \usepackage{booktabs}
 \usepackage{placeins}
 \usepackage{url}
-\usepackage{xcolor}
-\definecolor{citecol}{HTML}{AA3377}
-\definecolor{seccol}{HTML}{228833}
-\definecolor{tabcol}{HTML}{4477AA}
-\usepackage[colorlinks=true,linkcolor=black,citecolor=citecol,urlcolor=black]{hyperref}
-\newcommand{\secref}[1]{\hyperref[#1]{\textcolor{seccol}{\ref*{#1}}}}
-\newcommand{\tabref}[1]{\hyperref[#1]{\textcolor{tabcol}{\ref*{#1}}}}
-\newcommand{\figref}[1]{\hyperref[#1]{\textcolor{tabcol}{\ref*{#1}}}}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\newcommand{\secref}[1]{\hyperref[#1]{\ref*{#1}}}
+\newcommand{\tabref}[1]{\hyperref[#1]{\ref*{#1}}}
+\newcommand{\figref}[1]{\hyperref[#1]{\ref*{#1}}}
 
 \newif\ifblind
 \blindtrue
