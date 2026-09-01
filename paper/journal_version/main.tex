@@ -80,7 +80,6 @@
 }
 
 \begin{document}
-% \title{Accurate Anemia Disease Detection Using Eye Conjunctiva Features with Improved YOLOv9 (\hl{Note: A typical paper title should not be more than 13 words}) }
 \title{A Surface-Content Decomposition of\\AI-Generated Text Detection Benchmarks}
 
 \makeatletter
@@ -90,43 +89,6 @@
   \mbox{}\hfill\begin{@IEEEauthorhalign}
 }
 \makeatother
-
-% \author{\IEEEauthorblockN{Fname Lname} %1\textsuperscript{st}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% 24-93522-3@student.aiub.edu}
-% \and
-% \IEEEauthorblockN{Fname Lname} %2\textsuperscript{nd}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% 24-93521-3@student.aiub.edu}
-% \linebreakand
-% \IEEEauthorblockN{Fname Lname} %3\textsuperscript{rd}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% 24-93520-3@student.aiub.edu}
-% \and
-% \IEEEauthorblockN{Fname Lname} %4\textsuperscript{th}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% 24-93526-3@student.aiub.edu}
-% \linebreakand
-% \IEEEauthorblockN{Fname Lname} %5\textsuperscript{th}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% 24-12345-3@student.aiub.edu}
-% \and
-% \IEEEauthorblockN{Kamruddin Nur} %6\textsuperscript{th}
-% \IEEEauthorblockA{\textit{Department of Computer Science} \\
-% \textit{American International University-Bangladesh}\\
-% Dhaka, Bangladesh \\
-% kamruddin@aiub.edu}
-% }
 
 \author{\IEEEauthorblockN{Nazmus Sakib} %1\textsuperscript{st}
 \IEEEauthorblockA{\textit{Department of Computer Science} \\
@@ -173,38 +135,14 @@ kamruddin@aiub.edu}
 \maketitle
 %\thispagestyle{firstpage}
 
-% \begin{abstract}
-% Anemia is a widespread global health issue affecting billions, demands early and accurate detection to mitigate severe complications. Traditional diagnostic methods are often invasive, time-consuming, and resource-intensive. This study presents a non-invasive, real-time anemia detection application using conjunctiva eye images, leveraging an improved YOLOv9 deep learning model. A custom dataset of 2,606 images was created using traditional augmentation and pre-processing to improve model robustness across diverse imaging conditions. We compared several YOLO variants, spanning YOLOv8 through YOLOv12, to determine their effectiveness in classifying anemia signs. Among these, the proposed model demonstrated superior performance, achieving an impressive F1-score of 1.00 and a mAP@50 of 0.995, showcasing exceptional accuracy and robustness across diverse imaging conditions. The proposed model outperformed existing studies, achieving 98.2\% accuracy.
-
-% \hl{(Note: Abstract length should be 150-170 words)}
-% \end{abstract}
 \begin{abstract}
 A detector scoring 99\% on a machine-generated-text benchmark may have learned how machine language differs from human language, or how one corpus was punctuated, and the headline number does not separate the two. We sweep twenty classical model families over four text representations, 38 configurations per corpus, alongside sixteen fine-tuned transformer runs per corpus, and then decompose the signal into three arms, a surface-only model reading 47 orthographic features and never seeing a word, a content-only model reading text stripped of punctuation, casing and non-ASCII characters, and a fine-tuned transformer on raw text as reference. On HC3 the surface and content arms tie under a paired test, 3.20\% against 3.26\% error, and DeBERTa reaches 0.28\% error on the same split. On DAIGT V2 content is instead stronger by a factor of 7.9, and a character n-gram ridge classifier reaching 0.9941 weighted F1 outscores every transformer we fine-tuned. The HC3 tie traces to its Reddit sub-corpus, three quarters of the data, and reverses elsewhere. Removing the responsible cue, spacing before punctuation, costs it 10.03 points, yet BERT reaches 0.9916 weighted F1 there despite a tokeniser unable to represent that cue. Surface form is informative on both corpora, but it matches content on only one, for one identifiable reason.
 \end{abstract}
 
-% \begin{IEEEkeywords}
-% anemia detection, deep learning, YOLOv9, conjunctiva features, computer vision \hl{(5 to 6 keywords, all small letters except acronym and keywords are comma separated)}
-% \end{IEEEkeywords}
 \begin{IEEEkeywords}
 AI-generated text detection, benchmark evaluation, surface features, shortcut learning, tokenisation, SHAP
 \end{IEEEkeywords}
 
-% \section{Introduction}
-% Anemia continues to pose a critical public health concern worldwide, silently affecting countless individuals' health, growth, and productivity. It is defined by a reduced concentration of hemoglobin or a lower number of red blood cells, impairing the blood’s ability to carry oxygen throughout the body \cite{bib1, 7320922}. According to the WHO, anemia is the most common blood disorder, affecting 1.9 billion people worldwide, particularly children under five and women of reproductive age (15–49) \cite{WHO}. Symptoms include fatigue, dizziness, and pale skin, with severe cases leading to cognitive and immune impairments \cite{inbook}. Low- and middle-income countries bear the heaviest burden, with 40\% of preschool children in Africa and South Asia affected. Without intervention, global cases could exceed 700 million by 2050 \cite{bib3, 11013964}.
-
-% Traditional diagnostic methods rely on blood tests and laboratory analysis, which, although accurate, are often invasive, time-consuming, and impractical in resource-limited or rural settings due to the need for sterile equipment, trained personnel, and centralized testing facilities. The common practice for clinicians is to visually inspect the conjunctiva, tongue, nailbeds, and palms to check for pallor, but this is only accurate to a certain extent. This creates a critical need for alternative screening approaches that are affordable, scalable, and easy to deploy, especially in regions lacking access to modern healthcare infrastructure \cite{10534530}.
-
-% Recent advances in artificial intelligence (AI) and computer vision offer promising results to overcome these challenges. In particular, deep learning models have demonstrated significant potential in medical imaging tasks, enabling automatic analysis with high accuracy and minimal manual effort. The human eye, specifically the paleness of the conjunctiva, has long been used by clinicians as a visual indicator of anemia. Leveraging this physiological cue, computer vision models can be trained to detect anemia-related features in conjunctival images.
-
-% The key contributions of this study are as follows:
-% \begin{enumerate}
-%     \item Proposed a deep learning based application for detecting anemia signs from eye conjunctiva images using improved YOLOv9.
-%     \item Replaced AConv with standard Conv in layers 3, 5, and 9 of the backbone and layer 19 of the neck, reducing layers and parameters. This led to improved inference speed compared to the default YOLOv9s.
-%     \item Compared the proposed YOLOv9 model performance with YOLOv8 through YOLOv12 and achieved the highest F1-score of 1.00 and mAP@50 of 0.995, supporting real-time anemia detection.
-% \end{enumerate}
-
-% The remainder of this paper is organized as follows. Section \ref{sec:RW} reviews prior work on non-invasive anemia detection. Section \ref{sec:PS} details the proposed method, including data collection, preprocessing, and augmentation. Section \ref{sec:ERD} analyzes model performance. Section \ref{SEC: limF} discusses limitations and future work.
-% Finally, Section \ref{sec:con} concludes the study.
 \section{Introduction}
 
 Detectors of machine-generated text report accuracy at or above 97\% on the benchmarks the field uses most, and frequently above 99\%~\cite{Guo2023close,Su2023plus,Zhou2024exploiting,Ansary2026multirepresentation}. Read directly, those numbers say the task is close to solved on the domains these corpora represent. Read carefully, they say something weaker, because a benchmark score measures the separability of a particular corpus and not the capability a reader infers from it.
@@ -228,36 +166,6 @@ The key contributions of this study are as follows.
 
 The remainder of this paper is organised as follows. Section~\ref{sec:related} reviews prior work on benchmark separability and shortcut learning. Section~\ref{sec:method} details the pipeline, the corpora, the model sweep, the decomposition and the paired statistics. Section~\ref{sec:results} reports the sweep, the decomposition, the subgroup analysis and the three controls, and discusses what the measurement does and does not license. Section~\ref{sec:limitations} states the limits every number above is bound by. Section~\ref{sec:conclusion} concludes the study and lists future work.
 
-% \section{Related Works} \label{sec:RW}
-
-% Deep learning, particularly CNNs and advanced models like ResNet and VGG, has proven effective in non-invasive anemia detection using conjunctival images. Recently, real-time object detection models like YOLO have gained attention for their suitability in mobile and low-resource healthcare settings \cite{Bijit}.
-
-% \begin{figure*} [ht]
-% 	\centering
-% 	\includegraphics[width=0.8\linewidth]{Model.png}
-% 	\caption{Workflow of the proposed model training, validation, and testing on the dataset.}
-% 	\label{ProposedModel}
-% \end{figure*}
-
-%\citeauthor{bib5} \cite{bib5}
-% \citet{bib5}  proposed an automated method for anemia detection using non-invasive images of the palpebral conjunctiva. They evaluated the approach using three CNN architectures: AlexNet, ResNet-50, and MobileNetV2. Among them, ResNet-50 achieved the highest accuracy of 97.94\%, followed by MobileNetV2 with 97.19\%, and AlexNet with 89.93\%. \citet{bib6} proposed a smartphone-based anemia detection model using palpebral conjunctiva images. They expanded a dataset of 764 images to 4,315 using DCGAN for augmentation. Multiple machine learning (SVM, KNN, Naïve Bayes, Decision Tree) and deep learning models (GoogLeNet, VGG16, ResNet-50) were tested, along with ensemble techniques. The stacking ensemble model achieved the best results, with 89.48\% accuracy, 88\% precision, and 0.97 AUC.
-
-% The summary of the related works is presented in Table~\ref{tab:related_work}.
-
-% \begin{table*}[!b]
-% \centering
-% \caption{Summary of related studies on software defect prediction}
-% \label{tab:related_work}
-% \resizebox{\textwidth}{!}{%
-% \begin{tabular}{c c p{4.2cm} p{3.6cm} p{3.2cm} p{4.6cm}}
-% \toprule
-% \textbf{Ref.} & \textbf{Year} & \textbf{Method / Algorithm} & \textbf{Dataset} & \textbf{Results} & \textbf{Limitations} \\
-% \midrule
-% {\cite{bib1}} & 2025 & RF, SVM, Gradient Boosting with Deep Learning; SMOTE & Synthetic dataset (5,000 samples) & Accuracy: 94.7\%; Precision: 93.2\%; Recall: 96.1\%; AUC: 0.978 & Synthetic dataset; limited real-world validation \\
-% {\cite{bib2}} & 2024 & MLP with SMOTE; SHAP-based interpretation & ApacheJIT (106,674 commits) & 82.08\% & High computational cost; single dataset \\
-% \bottomrule
-% \end{tabular}}
-% \end{table*}
 \section{Related Works}
 \label{sec:related}
 
@@ -304,25 +212,6 @@ Ref. & Year & Method & Corpus & Reported results, as stated by the authors & Wha
 \end{tabularx}
 \end{table*}
 
-% \section{Methodology}\label{sec:PS}
-% The workflow of the proposed model is presented in Figure \ref{ProposedModel},
-% which consists of six parts: i) image acquisition, ii) dataset preparation and annotation, iii) dataset splitting and preprocessing, iv) data augmentation, v) deep learning model construction, and vi) performance analysis.
-
-% \subsection{Image Acquisition}
-% The image acquisition is the first foundational step in building an effective anemia detection model. For this study, we utilized open-source datasets available on Roboflow to construct a comprehensive dataset focused on the conjunctiva region of the eye \cite{pallor-detection_dataset}. The initial dataset labeled under a single class, ``Conjunctiva\_Pallor'', which visually represents signs of anemia.
-
-% \subsection{Dataset Splitting and Preprocessing}
-% In this phase, we initially split the annotated dataset into 87\% for training (777 images), 6\% for validation (168 images), and 6\% for testing (166 images).
-
-% \subsection{Data Augmentation}
-% The augmentation phase is essential for expanding the dataset and mitigating overfitting, particularly due to the limited number of original images.
-
-% \subsection{Performance Evaluation}
-% The model's performance was evaluated using precision (P), recall (R), mean average precision (mAP), and F1-score.
-% \begin{equation}
-%     P = \left(\frac{T_{P}}{T_{P}+F_{P}}  \right)\times 100
-%     \label{eq4}
-% \end{equation}
 \section{Methodology}
 \label{sec:method}
 
@@ -482,22 +371,6 @@ A bootstrap resamples one test set and therefore says nothing about how the corp
 
 Three controls guard the claims below, each added after an uncontrolled version of the corresponding experiment produced a conclusion that did not survive. The \emph{pipeline-fires} control exists because our whitespace cleaning produces bit-identical BERT predictions on HC3, which alone is indistinguishable from a cleaning step that never ran, so we apply the same pipeline to DAIGT V2, where it also removes emoji that WordPiece represents, and confirm predictions there do change. The \emph{tokenisation} control compares token identifier sequences for minimally different strings, since whether a detector can exploit a character-level cue is a property of its tokeniser and directly testable. The \emph{label-free} control scores 400 inputs per condition carrying no human-versus-machine information at all, including uniform random character strings, token-shuffled text, punctuation-only strings, a repeated token and the empty string, without which a confident prediction on corrupted input is indistinguishable from a learned response to it.
 
-% \section{Results and Discussions } \label{sec:ERD}
-% This section presents the scientific findings of the proposed system with clear interpretations. It begins with a description of the system configurations, followed by an analysis of the simulation results.
-% \subsection{System Configuration}
-% The proposed YOLOv9 model was utilized to detect anemia disease. To optimize and accelerate the training process, we leveraged a powerful NVIDIA L4 GPU with 12.75GB of RAM and 22700MiB capacity.
-% \begin{table}[ht]
-% \caption{Comparing the proposed YOLOv9 performance with other YOLO models}
-% \label{modelCompare}
-% \begin{tabular*}{\textwidth}{p{3cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.2cm}>{\centering\arraybackslash}p{1.5cm}}
-% \cline{1-4}
-% Model    & Optimizer & mAP@50 & F1-score\\
-% \cline{1-4}
-% YOLOv8s &  SGD  &  0.994 &  0.995 \\
-% \textbf{Proposed YOLOv9s} & \textbf{SGD}   & \textbf{0.995}   & \textbf{1.00}   \\
-% \cline{1-4}
-% \end{tabular*}
-% \end{table}
 \section{Results and Discussions}
 \label{sec:results}
 
@@ -988,16 +861,11 @@ Three reporting practices here were adopted after an error reached a draft. Tran
 
 There is a connection to fairness we did not measure and that is the most consequential reason to care which arm a score comes from. Liang et al.~\cite{Liang2023gpt} show deployed detectors misclassify non-native English writing as machine-generated at high rates. A detector whose separability rests on orthographic regularity should be expected to concentrate its false positives on writers whose orthographic habits differ from the corpus it was fitted to. Our measurement predicts which corpora carry that risk most sharply, and the false-positive column of Table~\ref{tab:families} shows the two benchmarks already differ by nineteen times on that quantity. Establishing the effect would need author metadata neither corpus provides.
 
-% \section{Limitations} \label{SEC: limF}
-% While results are promising, challenges like variable lighting, skin tones, and device heterogeneity remain the limitations of the proposed work. \ldots.. \hl{3/4 lines}
 \section{Limitations}
 \label{sec:limitations}
 
 Several limits bound every number above. The transformers see at most 128 tokens, so the DAIGT V2 transformer results describe classification from an essay's opening, and both the cross-corpus comparison in Table~\ref{tab:cross} and the classical-versus-transformer comparison in Table~\ref{tab:families} are not like-for-like in the text each model receives. The four deployed checkpoints were run at three seeds and move by 0.0005 to 0.0036 weighted F1, but the hyperparameter grid behind them is single-seed, and the classical sweep is single-seed throughout, so a different seed could in principle have selected a different winner. The content arm is bag-of-words, so word order and syntax lie outside it and a syntactic arm could narrow the DAIGT V2 gap, while the surface set is 47 hand-built features, two with no variance on the DAIGT V2 test split and one on HC3, so $\varepsilon_{\mathrm{S}}$ is an upper bound. HC3 has one generator collected at one time and both corpora are English, so the orthographic conventions the surface arm reads are not language-independent. We evaluate two corpora and their eighteen sub-corpora across twenty classical families and two transformers, and claim nothing beyond them. Five of those sub-corpora fall below 200 test rows after rebalancing and are reported as underpowered rather than as null results.
 
-% \section{Conclusion and Future Works}\label{sec:con}
-% This study proposed a non-invasive anemia detection method using improved YOLOv9 to analyze palpebral conjunctiva images.
-% The future can be focused on (1) integrating multimodal data, (2) optimizing the model for diverse  demographic groups, and (3) deploying the system in real-time diagnostic platforms.
 \section{Conclusion and Future Works}
 \label{sec:conclusion}
 

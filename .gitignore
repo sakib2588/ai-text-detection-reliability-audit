@@ -52,13 +52,13 @@ paper/iccit/*.out
 paper/iccit/*.blg
 paper/iccit/*.fdb_latexmk
 paper/iccit/*.fls
-paper/iccit_profstyle/*.aux
-paper/iccit_profstyle/*.log
-paper/iccit_profstyle/*.out
-paper/iccit_profstyle/*.blg
-paper/iccit_profstyle/*.fdb_latexmk
-paper/iccit_profstyle/*.fls
-paper/iccit_profstyle/.build-manifest
+paper/journal_version/*.aux
+paper/journal_version/*.log
+paper/journal_version/*.out
+paper/journal_version/*.blg
+paper/journal_version/*.fdb_latexmk
+paper/journal_version/*.fls
+paper/journal_version/.build-manifest
 
 # Material belonging to a different project, dropped in here by hand
 All Outputs_Plot_from_another_project\ /
