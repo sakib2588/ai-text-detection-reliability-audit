@@ -1,0 +1,240 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "FtYgDtShRWXx",
+        "outputId": "74521cd8-b32f-4274-9368-f743d6897023"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['house', 'visitor', 'center']\n"
+          ]
+        }
+      ],
+      "source": [
+        "# case folding example\n",
+        "\n",
+        "tokens = ['House', 'Visitor', 'Center']\n",
+        "normalized_tokens = [x.lower() for x in tokens]\n",
+        "print(normalized_tokens)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# synonym substitution example\n",
+        "\n",
+        "text = [\"I'll be there at 2pm.\", \"We are studying NLP.\"]\n",
+        "for indx, t in enumerate(text):\n",
+        "  print(\"Original Text\", indx+1, \": \", t)\n",
+        "\n",
+        "synonyms = {\"I'll\": \"I will\", \"2pm\": \"2 pm\", \"studying\": \"reading\"}\n",
+        "for indx, t in enumerate(text):\n",
+        "  for key, value in synonyms.items():\n",
+        "    t = t.replace(key, value)\n",
+        "  text[indx] = t\n",
+        "\n",
+        "for indx, t in enumerate(text):\n",
+        "  print(\"Normalized Text\", indx+1, \": \", t)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6g8NJbZ-d79E",
+        "outputId": "7ef26714-8289-432a-c96e-34196899c256"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original Text 1 :  I'll be there at 2pm.\n",
+            "Original Text 2 :  We are studying NLP.\n",
+            "Normalized Text 1 :  I will be there at 2 pm.\n",
+            "Normalized Text 2 :  We are reading NLP.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# stemming example\n",
+        "\n",
+        "import nltk\n",
+        "from nltk.stem import PorterStemmer\n",
+        "from nltk.tokenize import word_tokenize\n",
+        "nltk.download('punkt_tab')\n",
+        "\n",
+        "sentence = \"The quick brown foxes were jumping over the lazy dogs.\"\n",
+        "words = word_tokenize(sentence)\n",
+        "\n",
+        "stemmer = PorterStemmer()\n",
+        "stemmed_words = [stemmer.stem(word) for word in words]\n",
+        "\n",
+        "print(\"Original words:\", words)\n",
+        "print(\"Stemmed words:\", stemmed_words)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yOfegMay7kUU",
+        "outputId": "5c6da4ab-a3cf-41f3-de89-f1330bfdb69c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt_tab to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt_tab.zip.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original words: ['The', 'quick', 'brown', 'foxes', 'were', 'jumping', 'over', 'the', 'lazy', 'dogs', '.']\n",
+            "Stemmed words: ['the', 'quick', 'brown', 'fox', 'were', 'jump', 'over', 'the', 'lazi', 'dog', '.']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# lemmatization example\n",
+        "# https://v2.spacy.io/usage/spacy-101#pipelines\n",
+        "\n",
+        "import spacy\n",
+        "\n",
+        "nlp = spacy.load(\"en_core_web_sm\")\n",
+        "doc = nlp(\"is banker better good goods best\") # tokens\n",
+        "for token in doc:\n",
+        "  print(token.text, \"=>\", token.lemma_)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0XIh6pO0EkOA",
+        "outputId": "fe1d8a60-9336-489c-dde0-163afeee56c4"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "is => be\n",
+            "banker => banker\n",
+            "better => well\n",
+            "good => good\n",
+            "goods => good\n",
+            "best => well\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# punctuation removal example\n",
+        "\n",
+        "import string\n",
+        "\n",
+        "text = \" Good Morning! How are you? \"\n",
+        "print(string.punctuation) #check punctuation characters\n",
+        "text_remove_mapping = text.maketrans(\"\", \"\", string.punctuation)\n",
+        "text = text.translate(text_remove_mapping)\n",
+        "print(text.strip())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5ubQn5oALqRC",
+        "outputId": "597a05f1-9513-42cd-a3ad-8b41acda6c36"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n",
+            "Good Morning How are you\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# stop words removal example\n",
+        "\n",
+        "import nltk\n",
+        "from nltk.corpus import stopwords\n",
+        "nltk.download('stopwords')\n",
+        "\n",
+        "text = \"This is an example sentence with the stopwords.\"\n",
+        "stop_words = set(stopwords.words(\"english\"))\n",
+        "words = text.split()\n",
+        "filtered_words = [word for word in words if word not in stop_words]\n",
+        "text = \" \".join(filtered_words)\n",
+        "print(text)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YjKfAWGDR3E-",
+        "outputId": "91d5dae6-7693-409c-ef38-2b8367342a0d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "This example sentence stopwords.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package stopwords to /root/nltk_data...\n",
+            "[nltk_data]   Package stopwords is already up-to-date!\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

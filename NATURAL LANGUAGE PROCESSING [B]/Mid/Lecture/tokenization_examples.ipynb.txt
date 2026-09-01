@@ -1,0 +1,248 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "https://www.geeksforgeeks.org/5-simple-ways-to-tokenize-text-in-python/\n",
+        "\n",
+        "https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/"
+      ],
+      "metadata": {
+        "id": "phTng6DMbuzy"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jaK3lqlOWT7y",
+        "outputId": "5c42da86-a8db-4858-be20-fe9a9a241cc9"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sentence found:  3\n",
+            "American International University-Bangladesh commonly known by\n",
+            "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+            "\n",
+            "This university was established in 1994.\n",
+            "\n",
+            "It offers several degree programs at the undergraduate and\n",
+            "graduate levels from its five faculties.\n",
+            "\n",
+            "Word found:  43\n",
+            "American\n",
+            "International\n",
+            "University-Bangladesh\n",
+            "commonly\n",
+            "known\n",
+            "by\n",
+            "its\n",
+            "acronym\n",
+            "AIUB\n",
+            ",\n",
+            "is\n",
+            "a\n",
+            "private\n",
+            "research\n",
+            "university\n",
+            "in\n",
+            "Dhaka\n",
+            ",\n",
+            "Bangladesh\n",
+            ".\n",
+            "This\n",
+            "university\n",
+            "was\n",
+            "established\n",
+            "in\n",
+            "1994\n",
+            ".\n",
+            "It\n",
+            "offers\n",
+            "several\n",
+            "degree\n",
+            "programs\n",
+            "at\n",
+            "the\n",
+            "undergraduate\n",
+            "and\n",
+            "graduate\n",
+            "levels\n",
+            "from\n",
+            "its\n",
+            "five\n",
+            "faculties\n",
+            ".\n"
+          ]
+        }
+      ],
+      "source": [
+        "# https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/\n",
+        "# sentence and word tokenization using nltk\n",
+        "\n",
+        "from nltk.tokenize import sent_tokenize, word_tokenize\n",
+        "# download the following only once\n",
+        "# nltk.download('punkt_tab')\n",
+        "\n",
+        "# text from wikipedia\n",
+        "text = \"\"\"American International University-Bangladesh commonly known by\n",
+        "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+        "This university was established in 1994.\n",
+        "It offers several degree programs at the undergraduate and\n",
+        "graduate levels from its five faculties.\"\"\"\n",
+        "\n",
+        "sentences = sent_tokenize(text)\n",
+        "print(\"Sentence found: \", len(sentences))\n",
+        "for sentence in sentences:\n",
+        "  print(sentence, end=\"\\n\\n\")\n",
+        "\n",
+        "words = word_tokenize(text)\n",
+        "print(\"Word found: \", len(words))\n",
+        "for word in words:\n",
+        "  print(word)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/\n",
+        "# word tokenization using nltk TreebankWordTokenizer\n",
+        "\n",
+        "from nltk.tokenize import TreebankWordTokenizer\n",
+        "\n",
+        "text = \"\"\"American International University-Bangladesh commonly known by\n",
+        "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+        "This university was established in 1994.\n",
+        "It offers several degree programs at the undergraduate and\n",
+        "graduate levels from its five faculties.\"\"\"\n",
+        "\n",
+        "tokenizer = TreebankWordTokenizer()\n",
+        "words = tokenizer.tokenize(text)\n",
+        "print(\"Word found: \", len(words))\n",
+        "for word in words:\n",
+        "  print(word)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RFLyc5n7aMQW",
+        "outputId": "7e5e8aa9-a154-4ec5-ff0b-a5de888faacf"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Word found:  41\n",
+            "American\n",
+            "International\n",
+            "University-Bangladesh\n",
+            "commonly\n",
+            "known\n",
+            "by\n",
+            "its\n",
+            "acronym\n",
+            "AIUB\n",
+            ",\n",
+            "is\n",
+            "a\n",
+            "private\n",
+            "research\n",
+            "university\n",
+            "in\n",
+            "Dhaka\n",
+            ",\n",
+            "Bangladesh.\n",
+            "This\n",
+            "university\n",
+            "was\n",
+            "established\n",
+            "in\n",
+            "1994.\n",
+            "It\n",
+            "offers\n",
+            "several\n",
+            "degree\n",
+            "programs\n",
+            "at\n",
+            "the\n",
+            "undergraduate\n",
+            "and\n",
+            "graduate\n",
+            "levels\n",
+            "from\n",
+            "its\n",
+            "five\n",
+            "faculties\n",
+            ".\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# character tokenization using regular expressions\n",
+        "\n",
+        "import re\n",
+        "\n",
+        "text = \"\"\"American International University-Bangladesh commonly known by\n",
+        "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+        "This university was established in 1994.\n",
+        "It offers several degree programs at the undergraduate and\n",
+        "graduate levels from its five faculties.\"\"\"\n",
+        "\n",
+        "# character_list = re.findall(\".|\\n\", text) # any character\n",
+        "character_list = re.findall(\".\", text) # any character (except newline character)\n",
+        "print(\"Main text char count: \", len(text))\n",
+        "print(\"After tokenize char count: \", len(character_list))\n",
+        "\n",
+        "unique_characters = set(character_list)\n",
+        "print(\"Unique char count: \", len(unique_characters))\n",
+        "print(\"Unique characters: \", unique_characters)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SgmVhpNZcvdK",
+        "outputId": "55482137-f581-4e38-fe5d-1439778755c7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Main text char count:  276\n",
+            "After tokenize char count:  272\n",
+            "Unique char count:  35\n",
+            "Unique characters:  {'9', ' ', 't', 'l', 'a', 'k', 'n', 'p', 'c', 'w', 'o', '1', 'h', 'm', 'A', ',', 'd', 'I', '.', 'i', 'B', 'u', 'b', 'e', 'r', 'T', 'y', 's', 'g', '4', '-', 'f', 'v', 'U', 'D'}\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
