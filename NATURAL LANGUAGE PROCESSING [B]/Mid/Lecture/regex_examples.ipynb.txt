@@ -1,0 +1,143 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "import re\n",
+        "\n",
+        "text = \"\"\"American International University-Bangladesh commonly known by\n",
+        "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+        "This university was established in 1994.\n",
+        "It offers several degree programs at the undergraduate and\n",
+        "graduate levels from its five faculties.\"\"\"\n",
+        "\n",
+        "# .span() returns a tuple containing the start-, and end positions of the match.\n",
+        "# .string returns the string passed into the function\n",
+        "# .group() returns the part of the string where there was a match\n",
+        "\n",
+        "capitalized_word_matches = re.search(r\"[A-Z]\\w+\", text)\n",
+        "print(capitalized_word_matches)\n",
+        "print(capitalized_word_matches.span())\n",
+        "print(capitalized_word_matches.string)\n",
+        "print(capitalized_word_matches.group())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6eMhPR2ZT_ta",
+        "outputId": "8b2da8f6-faf0-4b16-e1a7-90dfdc570c53"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<re.Match object; span=(0, 8), match='American'>\n",
+            "(0, 8)\n",
+            "American International University-Bangladesh commonly known by \n",
+            "its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+            "This university was established in 1994. \n",
+            "It offers several degree programs at the undergraduate and \n",
+            "graduate levels from its five faculties.\n",
+            "American\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import re\n",
+        "\n",
+        "text = \"\"\"American International University-Bangladesh commonly known by\n",
+        "        its acronym AIUB, is a private research university in Dhaka, Bangladesh.\n",
+        "        This university was established in 1994.\n",
+        "        It offers several degree programs at the undergraduate and\n",
+        "        graduate levels from its five faculties.\"\"\"\n",
+        "\n",
+        "capitalized_word_list = re.findall(r\"[A-Z]\\w+\", text)\n",
+        "print(capitalized_word_list)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5tHcH5lyPSl1",
+        "outputId": "34aa2f76-13e6-47e3-db98-ebf978970b9d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['American', 'International', 'University', 'Bangladesh', 'AIUB', 'Dhaka', 'Bangladesh', 'This', 'It']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RKscnjuI3HX0",
+        "outputId": "d5481294-4de1-450a-956f-45969f1b51d3"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['today sehri time in dhaka is 05:03 am', ' today iftar time in dhaka is 6:03 pm']\n",
+            "today sehri time in dhaka is 05:03 am\n",
+            "Sehri:  05:03 am\n",
+            "today iftar time in dhaka is 6:03 pm\n",
+            "Ifter:  6:03 pm\n"
+          ]
+        }
+      ],
+      "source": [
+        "import re\n",
+        "\n",
+        "text = 'Today Sehri time in Dhaka is 05:03 am. Today Iftar time in Dhaka is 6:03 PM.'\n",
+        "text = text.lower()\n",
+        "sentence_pattern = r\"[.]\"\n",
+        "sentence_list = re.split(sentence_pattern, text)\n",
+        "sentence_list.remove('')\n",
+        "print(sentence_list)\n",
+        "\n",
+        "for sentence in sentence_list:\n",
+        "  sentence = sentence.strip()\n",
+        "  time_pattern = r\"\\d+:\\d+ [ap]m\"\n",
+        "  time = re.findall(time_pattern, sentence, re.IGNORECASE)\n",
+        "  if time is not None:\n",
+        "    print(sentence)\n",
+        "    if \"sehri\" in sentence:\n",
+        "      print(\"Sehri: \", time[0])\n",
+        "    elif \"iftar\" in sentence:\n",
+        "      print(\"Ifter: \", time[0])\n",
+        "    else:\n",
+        "      print(\"Unknown: \", time[0])"
+      ]
+    }
+  ]
+}
