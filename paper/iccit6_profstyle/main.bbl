@@ -112,54 +112,19 @@ W.~Antoun, V.~Mouilleron, B.~Sagot, and D.~Seddah, ``Towards a robust detection
   \url{https://aclanthology.org/2023.jeptalnrecital-long.2/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Liang2023gpt}
+\BIBentryALTinterwordspacing
+W.~Liang, M.~Yuksekgonul, Y.~Mao, E.~Wu, and J.~Zou, ``{GPT} detectors are
+  biased against non-native {E}nglish writers,'' \emph{Patterns}, vol.~4,
+  no.~7, p. 100779, 2023. [Online]. Available:
+  \url{https://doi.org/10.1016/j.patter.2023.100779}
+\BIBentrySTDinterwordspacing
+
 \bibitem{HelloSimpleAI2023detector}
 \BIBentryALTinterwordspacing
 ``{ChatGPT} detector, {RoBERTa},'' Hugging Face Models, 2023. [Online].
   Available:
   \url{https://huggingface.co/Hello-SimpleAI/chatgpt-detector-roberta}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Yadagiri2025aigenerated}
-\BIBentryALTinterwordspacing
-A.~Yadagiri, S.~Sai~Teja, P.~Pakray, and C.~Chunka, ``{AI}-generated text
-  detection using {DeBERTa} with auxiliary stylometric features,'' in
-  \emph{Proceedings of the RANLP 2025 Workshop on Multi-Domain Detection of
-  AI-Generated Text (M-DAIGT)}, 2025. [Online]. Available:
-  \url{https://aclanthology.org/2025.ranlp-mdaigt.2/}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Annepaka2026synergizing}
-\BIBentryALTinterwordspacing
-Y.~Annepaka, P.~Kumar, Y.~Poddar, P.~Pakray, and C.~Chunka, ``Synergizing
-  linguistic features and transformer networks for detecting {AI}-generated
-  text,'' \emph{Knowledge and Information Systems}, vol.~68, no.~1, 2026.
-  [Online]. Available: \url{https://doi.org/10.1007/s10115-025-02637-6}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Ardeshirifar2025comparing}
-\BIBentryALTinterwordspacing
-R.~Ardeshirifar, ``Comparing hand-crafted and deep learning approaches for
-  detecting {AI}-generated text: performance, generalization, and linguistic
-  insights,'' \emph{AI and Ethics}, vol.~5, no.~4, pp. 4197--4209, 2025.
-  [Online]. Available: \url{https://doi.org/10.1007/s43681-025-00699-4}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Wang2024semeval}
-\BIBentryALTinterwordspacing
-Y.~Wang, J.~Mansurov, P.~Ivanov, J.~Su, A.~Shelmanov, A.~Tsvigun, O.~M. Afzal,
-  T.~Mahmoud, G.~Puccetti, T.~Arnold, A.~F. Aji, N.~Habash, I.~Gurevych, and
-  P.~Nakov, ``{SemEval}-2024 task 8: Multidomain, multimodel and multilingual
-  machine-generated text detection,'' in \emph{Proc. 18th Int. Workshop on
-  Semantic Evaluation (SemEval-2024)}, 2024, pp. 2057--2079. [Online].
-  Available: \url{https://doi.org/10.18653/v1/2024.semeval-1.279}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Torralba2011unbiased}
-\BIBentryALTinterwordspacing
-A.~Torralba and A.~A. Efros, ``Unbiased look at dataset bias,'' in \emph{Proc.
-  IEEE Conf. Computer Vision and Pattern Recognition (CVPR)}, 2011, pp.
-  1521--1528. [Online]. Available:
-  \url{https://doi.org/10.1109/CVPR.2011.5995347}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Geirhos2020shortcut}
@@ -175,14 +140,6 @@ R.~Geirhos, J.-H. Jacobsen, C.~Michaelis, R.~Zemel, W.~Brendel, M.~Bethge, and
 S.~Feng, E.~Wallace, and J.~Boyd-Graber, ``Misleading failures of partial-input
   baselines,'' in \emph{Proc. ACL}, 2019, pp. 5533--5538. [Online]. Available:
   \url{https://doi.org/10.18653/v1/P19-1554}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Liang2023gpt}
-\BIBentryALTinterwordspacing
-W.~Liang, M.~Yuksekgonul, Y.~Mao, E.~Wu, and J.~Zou, ``{GPT} detectors are
-  biased against non-native {E}nglish writers,'' \emph{Patterns}, vol.~4,
-  no.~7, p. 100779, 2023. [Online]. Available:
-  \url{https://doi.org/10.1016/j.patter.2023.100779}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Thedrcat2023daigtv2}

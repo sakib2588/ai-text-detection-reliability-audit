@@ -1,0 +1,88 @@
+% Measurement pipeline, Fig. 1, as a block diagram: one box per stage, arrows
+% for flow. Drawn in TikZ so it sets in the paper's own Times rather than in a
+% plotting library's sans. Compile standalone:
+%   pdflatex fig_pipeline.tex && mv fig_pipeline.pdf fig_pipeline_compact.pdf
+% Millimetres at printed size, width 141mm at 0.78\textwidth, so nothing is
+% rescaled on inclusion. Numbers are literals from main.tex.
+\documentclass[border=1.5pt]{standalone}
+\usepackage{times}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% short lines in narrow boxes, so no word may break
+\hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=2000
+
+\definecolor{ink}{gray}{0.10}
+\definecolor{note}{gray}{0.30}
+
+% text macros, since a tikz style cannot be used as a switch inside node text
+\newcommand{\hd}[1]{{\bfseries\fontsize{7.4}{8.6}\selectfont #1}}
+\newcommand{\nt}[1]{{\fontsize{6.5}{7.5}\selectfont\color{note}#1}}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm,
+  font=\fontsize{7.4}{8.6}\selectfont, text=ink,
+  blk/.style={draw=ink,line width=0.5pt,inner sep=1.15mm,align=left,
+              text=ink,anchor=north west},
+  stage/.style={font=\bfseries\fontsize{6.9}{7.9}\selectfont,text=note,
+                anchor=base west},
+  ln/.style={draw=ink,line width=0.45pt},
+  ar/.style={draw=ink,line width=0.45pt,
+             -{Straight Barb[length=1.15mm,width=1.05mm]}}]
+
+% ---------------------------------------------------------------- stage bar
+\node[stage] at (0,52)   {1. Dataset};
+\node[stage] at (33,52)  {2. Partition};
+\node[stage] at (72,52)  {3. Disjoint views};
+\node[stage] at (111,52) {4. Arm and test};
+\draw[ln,draw=note] (0,50.4) -- (141,50.4);
+
+% ---------------------------------------------------------------- 1 dataset
+\node[blk,text width=23mm] (d1) at (0,45)
+  {\hd{DAIGT V2}\\[0.15mm]\nt{34,994 rows, balanced}};
+\node[blk,text width=23mm] (d2) at (0,29)
+  {\hd{HC3}\\[0.15mm]\nt{53,806 rows, balanced}};
+
+% ---------------------------------------------------------------- 2 split
+\node[blk,text width=23mm] (sp) at (33,42)
+  {\hd{Grouped split}\\[0.15mm]\nt{72 / 8 / 20\\train / val / test\\hashed by content,\\no group crosses}};
+
+% ---------------------------------------------------------------- 3 views
+\node[blk,text width=30mm] (v1) at (72,44)
+  {\hd{Surface}\\[0.15mm]\nt{47 marks, no words}};
+\node[blk,text width=30mm] (v2) at (72,33)
+  {\hd{Content}\\[0.15mm]\nt{bag of words}};
+\node[blk,text width=30mm] (v3) at (72,22)
+  {\hd{Raw}\\[0.15mm]\nt{128 subword tokens}};
+
+% ---------------------------------------------------------------- 4 arms
+\node[blk,text width=27mm] (m1) at (111,45)
+  {\hd{Logistic regression}\\[0.15mm]\nt{one per matched arm}};
+\node[blk,text width=27mm] (rs) at (111,33)
+  {$\Delta=\varepsilon_{\mathrm{S}}-\varepsilon_{\mathrm{C}}$\\[0.15mm]\nt{exact McNemar, 95\% CI, five partitions}};
+\node[blk,text width=27mm] (m2) at (111,18)
+  {\hd{Fine-tuned transformer}\\[0.15mm]\nt{BERT, DeBERTa}};
+
+% ---------------------------------------------------------------- flow
+\coordinate (b1) at (28.5,37.2);
+\draw[ln] (d1.east) -| (b1);
+\draw[ln] (d2.east) -| (b1);
+\draw[ar] (b1) |- (sp.west);
+
+\coordinate (b2) at (67.5,37.2);
+\draw[ln] (sp.east) -| (b2);
+\draw[ar] (b2) |- (v1.west);
+\draw[ar] (b2) |- (v2.west);
+\draw[ar] (b2) |- (v3.west);
+
+\coordinate (b3) at (108.5,38);
+\draw[ln] (v1.east) -| (b3);
+\draw[ln] (v2.east) -| (b3);
+\draw[ar] (b3) |- (m1.west);
+\coordinate (b4) at (108.5,14.5);
+\draw[ln] (v3.east) -| (b4);
+\draw[ar] (b4) |- (m2.west);
+
+\draw[ar] (m1.south) -- (m1.south |- rs.north);
+\end{tikzpicture}
+\end{document}
