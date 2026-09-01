@@ -24,7 +24,7 @@ import numpy as np
 from PIL import Image
 
 FINAL = Path(__file__).resolve().parents[2]
-FIGDIR = FINAL / 'paper' / 'iccit_profstyle'
+FIGDIR = FINAL / 'paper' / 'journal_version'
 
 RASTER_DPI = 150
 WHITE = 248          # a pixel lighter than this counts as background

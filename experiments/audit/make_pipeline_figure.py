@@ -27,7 +27,7 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 FINAL = Path(__file__).resolve().parents[2]
 TABLES = FINAL / 'notebooks' / 'tables'
-OUT = FINAL / 'paper' / 'iccit_profstyle'
+OUT = FINAL / 'paper' / 'journal_version'
 
 # Colourblind-safe (Paul Tol bright). Word views blue, the raw character view
 # red, the subword view purple, the analysis layer green.
