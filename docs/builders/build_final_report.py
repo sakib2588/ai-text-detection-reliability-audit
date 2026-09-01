@@ -31,7 +31,7 @@ PS = ROOT / 'experiments' / 'paper_scale'
 AUDIT = ROOT / 'experiments' / 'audit'
 
 BODY_FONT, BODY_PT = 'Times New Roman', 12
-TABLE_PT, CODE_PT = 7.5, 7.5
+TABLE_PT, CODE_PT = 9.5, 9.5
 
 MEMBERS = [
     ('NILOY PAUL', '23-51773-2',
@@ -780,15 +780,15 @@ def main():
                 + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                 + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
     keep_with_next(cap6)
-    t6 = table_after(doc, cap6, rows, header_rows=2, size=6.5)
-    merge_and_label(t6, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=6.5)
-    merge_and_label(t6, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=6.5)
+    t6 = table_after(doc, cap6, rows, header_rows=2, size=8)
+    merge_and_label(t6, 0, 4, 0, 7, 'Dataset 1 (DAIGT V2)', size=8)
+    merge_and_label(t6, 0, 8, 0, 11, 'Dataset 2 (HC3)', size=8)
     for c, lbl in enumerate(('Model', 'Learning Rate', 'Batch Size', 'Weight Decay')):
-        merge_and_label(t6, 0, c, 1, c, lbl, size=6.5)
-    merge_and_label(t6, 2, 0, 9, 0, 'BERT', size=6.5, bold=False)
-    merge_and_label(t6, 10, 0, 17, 0, 'DeBERTa\n(BERT variant)', size=6.5, bold=False)
-    set_cell(t6.cell(18, 0), 'ENSEMBLE', size=6.5, bold=True)
-    merge_and_label(t6, 18, 1, 18, 3, '(validation-selected weight)', size=6.5, bold=False)
+        merge_and_label(t6, 0, c, 1, c, lbl, size=8)
+    merge_and_label(t6, 2, 0, 9, 0, 'BERT', size=8, bold=False)
+    merge_and_label(t6, 10, 0, 17, 0, 'DeBERTa\n(BERT variant)', size=8, bold=False)
+    set_cell(t6.cell(18, 0), 'ENSEMBLE', size=8, bold=True)
+    merge_and_label(t6, 18, 1, 18, 3, '(validation-selected weight)', size=8, bold=False)
     repeat_header(t6, 2)
     no_row_split(t6)
 
@@ -820,10 +820,10 @@ def main():
     rows.append(['ENSEMBLE'] + [f'{v:.4f}' for v in R['ensemble']['D1']['metrics']]
                 + [f'{v:.4f}' for v in R['ensemble']['D2']['metrics']])
     keep_with_next(cap7)
-    t7 = table_after(doc, cap7, rows, header_rows=2, size=7)
-    merge_and_label(t7, 0, 1, 0, 4, 'Dataset 1 (DAIGT V2)', size=7)
-    merge_and_label(t7, 0, 5, 0, 8, 'Dataset 2 (HC3)', size=7)
-    merge_and_label(t7, 0, 0, 1, 0, 'Model', size=7)
+    t7 = table_after(doc, cap7, rows, header_rows=2, size=8.5)
+    merge_and_label(t7, 0, 1, 0, 4, 'Dataset 1 (DAIGT V2)', size=8.5)
+    merge_and_label(t7, 0, 5, 0, 8, 'Dataset 2 (HC3)', size=8.5)
+    merge_and_label(t7, 0, 0, 1, 0, 'Model', size=8.5)
     repeat_header(t7, 2)
     no_row_split(t7)
 
